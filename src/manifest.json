@@ -1,0 +1,10 @@
+{
+  "name": "女神漫画",
+  "short_name": "nsmh",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#333333",
+  "theme_color": "#673ab8",
+  "icons": []
+}

@@ -15,7 +15,7 @@ module.exports = (config, env, helpers) => {
             },
             {
                 path: "/api/**/*",
-                target: "http://localhost:3000"
+                target: "http://k8s-nsmhdw-ce7f13072e-422525446.ap-northeast-1.elb.amazonaws.com"
             }
         ];
     }

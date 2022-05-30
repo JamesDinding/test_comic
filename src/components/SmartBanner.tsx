@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import Logo from "./../resources/img/logo-text.svg";
 import IconClose from "./../resources/img/icon-close.svg";
+import IconDownload from "./../resources/img/smartbanner-download.svg";
 import { StateUpdater } from 'preact/hooks';
 
 interface SmartBannerProps {
@@ -22,7 +23,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({ SetSmartBannerVisi
                 <span class="text-[11px] text-[#f98d83] py-1 font-medium tracking-widest whitespace-nowrap">最懂您需求的漫画网站</span>
             </div>
 
-            <a href="/home?tc={{ channelId }}" class="rounded-full border-2 border-[#f98d83] text-[#ff978d] p-2 text-xs font-bold mr-2 hover:bg-[#ffe2e0] hover:text-[#e66a5f] whitespace-nowrap">安裝 APP<img src="/assets/img/download.png" class="inline mx-1 h-4" alt="安装" /></a>
+            <a href="/home?tc={{ channelId }}" class="rounded-full border-2 border-[#f98d83] text-[#ff978d] p-2 text-xs font-bold mr-2 hover:bg-[#ffe2e0] hover:text-[#e66a5f] whitespace-nowrap">安裝 APP<IconDownload class="inline mx-1 h-4" alt="安装" /></a>
         </div>
     );
 };

@@ -1,5 +1,4 @@
-
-import { useContext, useEffect } from "preact/hooks";
+import { useContext, useEffect, useCallback } from "preact/hooks";
 import { h, createContext, FunctionComponent, Provider } from "preact";
 
 // 建立上下文
@@ -12,58 +11,54 @@ const worker = new Worker("/api/sdk/worker.js");
 let isInitial = true;
 
 export const WorkerProvider: FunctionComponent = ({ children }) => {
+  const send = useCallback((msg: WorkerTask): Promise<WorkerResponse> => {
+    return new Promise<WorkerResponse>((resolve, reject) => {
+      let chan = new MessageChannel();
 
-    const send = (msg: WorkerTask): Promise<WorkerResponse> => {
-        return new Promise<WorkerResponse>((resolve, reject) => {
-            let chan = new MessageChannel();
+      chan.port1.onmessage = (ev: MessageEvent<WorkerResponse>) => {
+        chan.port1.close();
 
-            chan.port1.onmessage = (ev: MessageEvent<WorkerResponse>) => {
-                chan.port1.close();
+        if (ev.data.status !== 200) {
+          return reject(ev.data.msg);
+        }
 
-                if (ev.data.status !== 200) {
-                    return reject(ev.data.msg);
-                }
+        return resolve(ev.data.data);
+      };
 
-                return resolve(ev.data.data);
-            };
-
-            worker.postMessage(msg, [chan.port2]);
-        });
-    };
-
-    useEffect(() => {
-        // token 只拿一次
-        if (!isInitial) return;
-
-        isInitial = false;
-        (async () => {
-            let challenge = await send({ action: "Init" });
-
-            let body = await fetch("/api/v1/auth/preflight", {
-                method: "POST",
-                body: JSON.stringify({
-                    Challenge: challenge,
-                }),
-                credentials: "include",
-                headers: new Headers({
-                    "Content-Type": "application/json",
-                }),
-            });
-
-            await send({ action: "AuthSetPreflight", data: await body.json() });
-            await send({ action: "AuthGetToken" });
-            await send({ action: "GetResourceDomain" });
-        })();
+      worker.postMessage(msg, [chan.port2]);
     });
+  }, []);
 
-    return (
-        <WorkerContext.Provider value={{ send }}>
-            {children}
-        </WorkerContext.Provider>
-    );
+  useEffect(() => {
+    // token 只拿一次
+    if (!isInitial) return;
+
+    isInitial = false;
+    (async () => {
+      let challenge = await send({ action: "Init" });
+
+      let body = await fetch("/api/v1/auth/preflight", {
+        method: "POST",
+        body: JSON.stringify({
+          Challenge: challenge,
+        }),
+        credentials: "include",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      });
+
+      await send({ action: "AuthSetPreflight", data: await body.json() });
+      await send({ action: "AuthGetToken" });
+      await send({ action: "GetResourceDomain" });
+    })();
+  });
+
+  return (
+    <WorkerContext.Provider value={{ send }}>{children}</WorkerContext.Provider>
+  );
 };
 
-
 export function useWorker(): WorkerContextType {
-    return useContext<WorkerContextType>(WorkerContext);
+  return useContext<WorkerContextType>(WorkerContext);
 }

@@ -1,8 +1,8 @@
-import { h, FunctionalComponent, Fragment } from "preact";
-import { route } from "preact-router";
+import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { useWorker } from "../../context/worker";
-import RecommendBlock from "./RecommendBlock";
+import BookList from "../_Book/List";
+import Image from "../_Image/image";
 
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
@@ -23,9 +23,11 @@ const recommendationBlocksItemPerRow: {
   10084: 3,
 };
 
-const HomeRecommend: FunctionalComponent = () => {
+const Swiper: FunctionalComponent = () => {
   const { send } = useWorker();
+  // blocks[0]，可以拿到輪播要用的圖片
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
+  const [showPending, setPending] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -44,21 +46,28 @@ const HomeRecommend: FunctionalComponent = () => {
     })();
   }, [send]);
 
+  console.log(blocks);
+
   return (
     <div>
-      {blocks.map((blk) => {
-        if (blk.ID == 1) return <></>;
-        return (
-          <RecommendBlock
-            BlockID={blk.ID}
-            BlockName={blk.Name}
-            Items={blk.Items}
-            ItemPerRow={recommendationBlocksItemPerRow[blk.ID]}
-          />
-        );
-      })}
+      <div>
+        <div>
+          {blocks.map((blk) => {
+            if (blk.ID !== 1) return;
+            return blk.Items.map((b) => {
+              return (
+                <Image
+                  path={b.Cover}
+                  alt={b.Name}
+                  setParentPending={setPending}
+                />
+              );
+            });
+          })}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default HomeRecommend;
+export default Swiper;

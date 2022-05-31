@@ -47,6 +47,8 @@ const Swiper: FunctionalComponent = () => {
   // blocks[0]，可以拿到輪播要用的圖片
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
   const [showPending, setPending] = useState(true);
+  const [isTouching, setIsTouching] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [touchOffset, setTouchOffset] = useState(0);
   const [curSlide, setCurSlide] = useState(0);
   const [transList, setTransList] = useState<Array<string>>([
@@ -82,12 +84,17 @@ const Swiper: FunctionalComponent = () => {
 
   // 輪播圖
   useEffect(() => {
+    if (isTouching) return;
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
     gotoSlide(curSlide);
+    console.log(curSlide);
   });
 
   const touchStartHandler = (e: TouchEvent) => {
+    if (isAnimating) return;
+    setIsTouching(true);
+
     timer && clearTimeout(timer);
     touchStartPosition = e.changedTouches[0].clientX;
 
@@ -99,6 +106,7 @@ const Swiper: FunctionalComponent = () => {
   };
 
   const touchMovingHandler = (e: TouchEvent) => {
+    if (isAnimating) return;
     setTouchOffset(e.changedTouches[0].clientX - touchStartPosition);
     // touchOffset = e.changedTouches[0].clientX - touchStartPosition;
 
@@ -118,6 +126,7 @@ const Swiper: FunctionalComponent = () => {
   };
 
   const touchEndHandler = (e: TouchEvent) => {
+    if (isAnimating) return;
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
 
@@ -126,14 +135,18 @@ const Swiper: FunctionalComponent = () => {
     if (prev) prev.style.transform = "";
 
     if (touchOffset < 0) {
+      setIsAnimating(true);
       gotoSlide(curSlide + 1 === swiperLen ? 0 : curSlide + 1);
       nextSlide();
     }
 
     if (touchOffset > 0) {
+      setIsAnimating(true);
       gotoSlide(curSlide - 1 === -1 ? swiperLen - 1 : curSlide - 1, true);
       prevSlide();
     }
+
+    setIsTouching(false);
   };
 
   function nextSlide() {
@@ -176,6 +189,7 @@ const Swiper: FunctionalComponent = () => {
     if (target + 1 === swiperLen) tempList[0] = positionList[2] + "next";
     if (target - 1 === -1) tempList[swiperLen - 1] = positionList[0] + "prev";
     setTransList(tempList);
+    setIsAnimating(false);
   }
 
   return (
@@ -203,6 +217,21 @@ const Swiper: FunctionalComponent = () => {
             );
           });
         })}
+        <ul className="absolute flex bottom-6 left-1/2 translate-x-[-50%] min-w-1/2 z-10">
+          {blocks.map((blk) => {
+            if (blk.ID !== 1) return;
+            return blk.Items.map((_, i) => {
+              const bgColor = curSlide === i ? "bg-amber-300" : "bg-slate-300";
+              return (
+                <li>
+                  <div
+                    className={`h-2.5 w-2.5 mx-1 rounded-full ${bgColor}`}
+                  ></div>
+                </li>
+              );
+            });
+          })}
+        </ul>
       </div>
     </div>
   );

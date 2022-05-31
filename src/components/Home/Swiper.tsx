@@ -4,6 +4,8 @@ import { useWorker } from "../../context/worker";
 import BookList from "../_Book/List";
 import Image from "../_Image/image";
 
+type slider = null | undefined | HTMLElement;
+
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
 ];
@@ -24,21 +26,31 @@ const recommendationBlocksItemPerRow: {
 };
 
 const positionList = [
-  "translate-x-[-100%]",
-  "translate-x-[0%]",
-  "translate-x-[100%]",
+  "translate-x-[-100%] ",
+  "translate-x-[0%] ",
+  "translate-x-[100%] ",
 ];
 let timer: null | ReturnType<typeof setTimeout> = null;
 let swiperLen = 0;
+
+// 只需要x軸
+let touchStartPosition = 0;
+
+let cur: slider = null;
+let next: slider = null;
+let prev: slider = null;
+
+// let touchOffset = 0;
 
 const Swiper: FunctionalComponent = () => {
   const { send } = useWorker();
   // blocks[0]，可以拿到輪播要用的圖片
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
   const [showPending, setPending] = useState(true);
-  const [curSlide, setCurSlide] = useState(1);
-  const [transList, setTransList] = useState<Array<position>>([
-    "translate-x-[0%]",
+  const [touchOffset, setTouchOffset] = useState(0);
+  const [curSlide, setCurSlide] = useState(0);
+  const [transList, setTransList] = useState<Array<string>>([
+    "translate-x-[0%] ",
   ]);
 
   useEffect(() => {
@@ -56,9 +68,13 @@ const Swiper: FunctionalComponent = () => {
         setBlocks(res.blocks);
 
         swiperLen = res.blocks[0].Items.length;
-        const temp = new Array(swiperLen).fill("translate-x-[100%]", 2);
-        temp[0] = "translate-x-[-100%]";
-        temp[1] = "translate-x-[0%]";
+        const temp = new Array(swiperLen).fill(
+          "translate-x-[100%] ",
+          1,
+          swiperLen - 1
+        );
+        temp[swiperLen - 1] = "translate-x-[-100%] ";
+        temp[0] = "translate-x-[0%] ";
         setTransList(temp);
       }
     })();
@@ -67,10 +83,58 @@ const Swiper: FunctionalComponent = () => {
   // 輪播圖
   useEffect(() => {
     timer && clearTimeout(timer);
-    timer = setTimeout(() => {
-      nextSlide();
-    }, 3000);
+    timer = setTimeout(() => nextSlide(), 5000);
+    gotoSlide(curSlide);
   });
+
+  const touchStartHandler = (e: TouchEvent) => {
+    timer && clearTimeout(timer);
+    touchStartPosition = e.changedTouches[0].clientX;
+
+    const t = e.target as Element;
+    const container = t.closest("div");
+    cur = container?.querySelector(".current");
+    next = container?.querySelector(".next");
+    prev = container?.querySelector(".prev");
+  };
+
+  const touchMovingHandler = (e: TouchEvent) => {
+    setTouchOffset(e.changedTouches[0].clientX - touchStartPosition);
+    // touchOffset = e.changedTouches[0].clientX - touchStartPosition;
+
+    cur?.classList.remove("duration-300");
+    next?.classList.remove("duration-300");
+    prev?.classList.remove("duration-300");
+
+    if (cur) cur.style.transform = `translateX(${Math.floor(touchOffset)}px)`;
+    if (next)
+      next.style.transform = `translateX(calc(100% + ${Math.floor(
+        touchOffset
+      )}px))`;
+    if (prev)
+      prev.style.transform = `translateX(calc(-100% + ${Math.floor(
+        touchOffset
+      )}px))`;
+  };
+
+  const touchEndHandler = (e: TouchEvent) => {
+    timer && clearTimeout(timer);
+    timer = setTimeout(() => nextSlide(), 5000);
+
+    if (cur) cur.style.transform = "";
+    if (next) next.style.transform = "";
+    if (prev) prev.style.transform = "";
+
+    if (touchOffset < 0) {
+      gotoSlide(curSlide + 1 === swiperLen ? 0 : curSlide + 1);
+      nextSlide();
+    }
+
+    if (touchOffset > 0) {
+      gotoSlide(curSlide - 1 === -1 ? swiperLen - 1 : curSlide - 1, true);
+      prevSlide();
+    }
+  };
 
   function nextSlide() {
     curSlide === swiperLen - 1
@@ -84,30 +148,44 @@ const Swiper: FunctionalComponent = () => {
       : setCurSlide((prev) => prev - 1);
   }
 
-  function gotoSlide(target: number) {
-    const order = target - curSlide;
+  function gotoSlide(target: number, prev?: boolean) {
     let tempList = transList;
-    transList.forEach((trans, i) => {
-      switch (trans.split(" ")[0]) {
-        case "translate-x-[-100%]":
-          tempList[i] = positionList[2];
-          break;
-        case "translate-x-[0%]":
-          tempList[i] = positionList[0] + " duration-300";
-          break;
-        case "translate-x-[100%]":
-          tempList[i] = positionList[1] + " duration-300";
-          break;
-      }
+    // 往前要給duration的元件是不同的，所以寫了一個if
+    if (prev) {
+      transList.forEach((_, i) => {
+        tempList[i] = positionList[2];
+        if (i === target + 1)
+          tempList[i] = positionList[2] + "duration-300 next";
+        if (i === target)
+          tempList[i] = positionList[1] + "duration-300 current";
+        if (i === target - 1) tempList[i] = positionList[0] + "prev";
+      });
+      if (target + 1 === swiperLen)
+        tempList[0] = positionList[2] + "duration-300 next";
+      if (target - 1 === -1) tempList[swiperLen - 1] = positionList[0] + "prev";
+      setTransList(tempList);
+      return;
+    }
+
+    transList.forEach((_, i) => {
+      tempList[i] = positionList[2];
+      if (i === target + 1) tempList[i] = positionList[2] + "duration-300 next";
+      if (i === target) tempList[i] = positionList[1] + "duration-300 current";
+      if (i === target - 1) tempList[i] = positionList[0] + "duration-300 prev";
     });
+    if (target + 1 === swiperLen) tempList[0] = positionList[2] + "next";
+    if (target - 1 === -1) tempList[swiperLen - 1] = positionList[0] + "prev";
     setTransList(tempList);
   }
 
-  gotoSlide(curSlide);
-
   return (
     <div className="w-full min-h-[300px]">
-      <div className="w-full min-h-[300px] relative overflow-hidden whitespace-nowrap">
+      <div
+        className="w-full min-h-[300px] relative overflow-hidden whitespace-nowrap"
+        onTouchStart={touchStartHandler}
+        onTouchEnd={touchEndHandler}
+        onTouchMove={touchMovingHandler}
+      >
         {blocks.map((blk) => {
           if (blk.ID !== 1) return;
           return blk.Items.map((b, i) => {

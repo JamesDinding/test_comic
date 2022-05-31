@@ -88,7 +88,6 @@ const Swiper: FunctionalComponent = () => {
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
     gotoSlide(curSlide);
-    console.log(curSlide);
   });
 
   const touchStartHandler = (e: TouchEvent) => {
@@ -96,7 +95,8 @@ const Swiper: FunctionalComponent = () => {
     setIsTouching(true);
 
     timer && clearTimeout(timer);
-    touchStartPosition = e.changedTouches[0].clientX;
+
+    touchStartPosition = e.touches[0].clientX;
 
     const t = e.target as Element;
     const container = t.closest("div");
@@ -107,8 +107,8 @@ const Swiper: FunctionalComponent = () => {
 
   const touchMovingHandler = (e: TouchEvent) => {
     if (isAnimating) return;
-    setTouchOffset(e.changedTouches[0].clientX - touchStartPosition);
-    // touchOffset = e.changedTouches[0].clientX - touchStartPosition;
+    setTouchOffset(e.touches[0].clientX - touchStartPosition);
+    // touchOffset = e.touches[0].clientX - touchStartPosition;
 
     cur?.classList.remove("duration-300");
     next?.classList.remove("duration-300");

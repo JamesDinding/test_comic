@@ -48,7 +48,7 @@ const HomeRecommend: FunctionalComponent = () => {
   return (
     <div>
       {blocks.map((blk) => {
-        if (blk.ID == 1) return <></>;
+        if (blk.ID == 1) return <Swiper />;
         return (
           <>
             <RecommendBlock

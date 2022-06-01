@@ -19,7 +19,6 @@ const HomePage: FunctionalComponent = () => {
         <CategoryListBar onCategoryChanged={setCurrentCategory} />
 
         <PullToRefresh containerElement={containerRef}>
-          <Swiper />
           {currentCategory == 0 ? (
             <Recommend />
           ) : (

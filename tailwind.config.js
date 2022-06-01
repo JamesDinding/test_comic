@@ -3,9 +3,12 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "watercolor": "url('../img/watercolor.png')",
-      }
+        watercolor: "url('../img/watercolor.png')",
+      },
     },
   },
-  plugins: [require('tailwindcss-safe-area')],
-}
+  plugins: [
+    require("tailwindcss-safe-area"),
+    require("@tailwindcss/line-clamp"),
+  ],
+};

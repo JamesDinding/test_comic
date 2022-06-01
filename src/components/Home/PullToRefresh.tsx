@@ -56,7 +56,7 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
       onTouchEnd={touchEndHandler}
     >
       <p
-        className={`${dropCss} text-gray-700 text-xs text-center`}
+        className={`${dropCss} text-gray-700 text-xs text-center align-bottom`}
         style={`height: ${dropSpace}px;line-height: ${dropSpace}px;`}
       >
         {dropText}

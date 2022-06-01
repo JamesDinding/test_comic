@@ -1065,6 +1065,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: center;
 }
 
+.align-bottom {
+  vertical-align: bottom;
+}
+
 .text-\[11px\] {
   font-size: 11px;
 }

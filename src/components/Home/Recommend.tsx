@@ -3,6 +3,7 @@ import { route } from "preact-router";
 import { useEffect, useState } from "preact/hooks";
 import { useWorker } from "../../context/worker";
 import RecommendBlock from "./RecommendBlock";
+import Swiper from "./Swiper";
 
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
@@ -49,12 +50,14 @@ const HomeRecommend: FunctionalComponent = () => {
       {blocks.map((blk) => {
         if (blk.ID == 1) return <></>;
         return (
-          <RecommendBlock
-            BlockID={blk.ID}
-            BlockName={blk.Name}
-            Items={blk.Items}
-            ItemPerRow={recommendationBlocksItemPerRow[blk.ID]}
-          />
+          <>
+            <RecommendBlock
+              BlockID={blk.ID}
+              BlockName={blk.Name}
+              Items={blk.Items}
+              ItemPerRow={recommendationBlocksItemPerRow[blk.ID]}
+            />
+          </>
         );
       })}
     </div>

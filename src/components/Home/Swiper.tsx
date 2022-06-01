@@ -108,7 +108,6 @@ const Swiper: FunctionalComponent = () => {
   const touchMovingHandler = (e: TouchEvent) => {
     if (isAnimating) return;
     setTouchOffset(e.touches[0].clientX - touchStartPosition);
-    // touchOffset = e.touches[0].clientX - touchStartPosition;
 
     cur?.classList.remove("duration-300");
     next?.classList.remove("duration-300");

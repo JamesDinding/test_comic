@@ -192,9 +192,9 @@ const Swiper: FunctionalComponent = () => {
   }
 
   return (
-    <div className="w-full min-h-[300px]">
+    <div className="w-full min-h-[190px]">
       <div
-        className="w-full min-h-[300px] relative overflow-hidden whitespace-nowrap"
+        className="w-full min-h-[190px] relative overflow-hidden whitespace-nowrap"
         onTouchStart={touchStartHandler}
         onTouchEnd={touchEndHandler}
         onTouchMove={touchMovingHandler}
@@ -216,7 +216,7 @@ const Swiper: FunctionalComponent = () => {
             );
           });
         })}
-        <ul className="absolute flex bottom-6 left-1/2 translate-x-[-50%] min-w-1/2 z-10">
+        <ul className="absolute flex bottom-4 left-1/2 translate-x-[-50%] min-w-1/2 z-10">
           {blocks.map((blk) => {
             if (blk.ID !== 1) return;
             return blk.Items.map((_, i) => {

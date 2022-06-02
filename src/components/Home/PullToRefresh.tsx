@@ -27,15 +27,15 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
     offsetY = e.touches[0].clientY - startClientY;
     overScrollOffset = offsetY - startScrollTop;
 
-    if (overScrollOffset > 0) {
-      setDropSpace(overScrollOffset);
+    if (overScrollOffset > 30) {
+      setDropSpace(Math.floor(overScrollOffset * 0.3));
       setDropCss("");
     } else {
       setDropCss("hidden");
     }
-    if (overScrollOffset > 30 && overScrollOffset < 80)
+    if (overScrollOffset > 30 && overScrollOffset < 100)
       setDropText("下拉即可刷新...");
-    if (overScrollOffset > 80 && overScrollOffset < 100)
+    if (overScrollOffset > 100 && overScrollOffset < 150)
       setDropText("释放即可刷新...");
   };
 
@@ -56,8 +56,8 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
       onTouchEnd={touchEndHandler}
     >
       <p
-        className={`${dropCss} text-gray-700 text-xs text-center align-bottom`}
-        style={`height: ${dropSpace}px;line-height: ${dropSpace}px;`}
+        className={`${dropCss} text-gray-700 text-xs flex items-end justify-center mb-4 tracking-wider`}
+        style={`height: ${dropSpace}px;`}
       >
         {dropText}
       </p>

@@ -1,8 +1,7 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import ChapterRow from "./ChapterRow";
-
-const list = new Array(20).fill({ cover: "", episode: 1, isLocked: true });
+import { useWorker } from "../../context/worker";
 
 interface ChapterData {
   cover: string;
@@ -13,6 +12,7 @@ interface ChapterData {
 const ChapterList = () => {
   const [fakeData, setFakeData] = useState<Array<ChapterData> | null>(null);
   const [isPending, setIsPending] = useState(true);
+  const { send } = useWorker();
 
   useEffect(() => {
     const fakePromise = new Promise<Array<ChapterData>>((resolve, reject) => {

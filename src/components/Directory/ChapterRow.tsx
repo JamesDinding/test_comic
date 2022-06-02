@@ -1,4 +1,5 @@
 import { FunctionalComponent, h } from "preact";
+import { useState } from "preact/hooks";
 import Image from "../_Image/image";
 import IconLock from "../../resources/img/dir-lock.svg";
 import IconChevron from "../../resources/img/icon-chevron.svg";
@@ -13,11 +14,17 @@ interface ChapterRowProps {
 }
 
 const ChapterRow: FunctionalComponent<ChapterRowProps> = ({ chapter }) => {
+  const [parentPending, setParentPending] = useState(false);
+
   return (
     <li className="list-none">
       <a className="flex py-2 px-0 bourder-t-[1px] border-solid border-[#f5f5f5]">
         <div className="w-24 h-[45px] bg-[#a8a8a8] mr-2">
-          {/* <Image /> */ chapter.cover === "temp"}
+          {
+            /* <Image /> */ chapter.cover && (
+              <Image path="" alt="cover" setParentPending={setParentPending} />
+            )
+          }
         </div>
         <div className="flex items-center grow text-[#4c4c4c]">
           <span>第{chapter.episode}話</span>

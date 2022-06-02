@@ -1,5 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { useState, useEffect } from "preact/hooks";
+import IconChevron from "../../resources/img/icon-chevron.svg";
 
 let layerCss = "translate-y-full";
 const ControlLayer: FunctionalComponent = ({ children }) => {
@@ -16,8 +17,10 @@ const ControlLayer: FunctionalComponent = ({ children }) => {
           setIsShow((prev) => !prev);
         }}
       >
-        <div className="flex p-2">
-          <div>arrow</div>
+        <div className="flex items-center p-2">
+          <div>
+            <IconChevron class="rotate-180 h-5" />
+          </div>
           <div>上一頁</div>
           <div className="grow"></div>
           <div>
@@ -28,7 +31,9 @@ const ControlLayer: FunctionalComponent = ({ children }) => {
           </div>
           <div className="grow"></div>
           <div>下一頁</div>
-          <div>arrow</div>
+          <div>
+            <IconChevron class="h-5" />
+          </div>
         </div>
       </div>
       {children}

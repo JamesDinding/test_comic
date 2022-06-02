@@ -19,7 +19,7 @@ const ChapterList = () => {
       setTimeout(() => {
         let temp = new Array(100).fill(
           {
-            cover: "",
+            cover: "temp",
             episode: 2,
             isLocked: true,
           },
@@ -27,7 +27,7 @@ const ChapterList = () => {
         );
 
         temp[0] = {
-          cover: "",
+          cover: "temp",
           episode: 1,
           isLocked: false,
         };

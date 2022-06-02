@@ -38,7 +38,7 @@ const App: FunctionalComponent = () => {
             <DefaultRouteHandler default />
           </Router>
 
-          <FooterBar />
+          {/* <FooterBar /> */}
         </div>
       </div>
     </WorkerProvider>

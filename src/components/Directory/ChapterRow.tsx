@@ -16,7 +16,9 @@ const ChapterRow: FunctionalComponent<ChapterRowProps> = ({ chapter }) => {
   return (
     <li className="list-none">
       <a className="flex py-2 px-0 bourder-t-[1px] border-solid border-[#f5f5f5]">
-        <div className="w-24 h-[45px] bg-[#a8a8a8] mr-2">{/* <Image /> */}</div>
+        <div className="w-24 h-[45px] bg-[#a8a8a8] mr-2">
+          {/* <Image /> */ chapter.cover === "temp"}
+        </div>
         <div className="flex items-center grow text-[#4c4c4c]">
           <span>第{chapter.episode}話</span>
           <div className="grow"></div>

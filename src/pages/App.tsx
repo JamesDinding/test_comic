@@ -32,7 +32,7 @@ const App: FunctionalComponent = () => {
             <VideoPage path="/video-home" />
             <BookmarkPage path="/bookmark" />
             <ProfilePage path="/profile" />
-            <DirectoryPage path="/directory" />
+            <DirectoryPage path="/directory/:cid" />
             <DefaultRouteHandler default />
           </Router>
 

@@ -1,6 +1,5 @@
 import { FunctionalComponent, h } from "preact";
 import { useState } from "preact/hooks";
-import Image from "../_Image/image";
 import IconOrder from "../../resources/img/dir-order.svg";
 
 const ChapterHead = () => {

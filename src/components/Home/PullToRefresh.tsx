@@ -19,6 +19,7 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
   const [dropText, setDropText] = useState("下拉即可更新");
 
   const touchStartHandler = (e: TouchEvent) => {
+    console.log("touch start");
     startClientY = e.touches[0].clientY;
     startScrollTop = containerElement.current.scrollTop;
   };

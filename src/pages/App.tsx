@@ -13,6 +13,7 @@ import BookmarkPage from "./Bookmark";
 import ProfilePage from "./Profile";
 import DirectoryPage from "./Directory";
 import { useState } from "preact/hooks";
+import ReadPage from "./Read";
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -33,6 +34,7 @@ const App: FunctionalComponent = () => {
             <BookmarkPage path="/bookmark" />
             <ProfilePage path="/profile" />
             <DirectoryPage path="/directory/:cid" />
+            <ReadPage path="/read/:id" />
             <DefaultRouteHandler default />
           </Router>
 

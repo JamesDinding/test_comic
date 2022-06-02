@@ -26,6 +26,20 @@ a {
   @apply line-clamp-4 text-ellipsis mt-2 leading-4 text-xs;
 }
 
+/* 漫畫閱讀頁 */
+.control-bar {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.8) 0,
+    rgba(0, 0, 0, 0.8) 35%,
+    transparent
+  );
+  font-size: 0.8rem;
+  color: #fff;
+  z-index: 9999;
+  transition-duration: 150ms;
+}
+
 /* 分類列表 */
 .category_list_box {
   @apply overflow-hidden px-2 py-1 pb-2;

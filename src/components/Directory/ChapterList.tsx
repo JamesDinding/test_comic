@@ -17,7 +17,7 @@ const ChapterList = () => {
   useEffect(() => {
     const fakePromise = new Promise<Array<ChapterData>>((resolve, reject) => {
       setTimeout(() => {
-        let temp = new Array(20).fill(
+        let temp = new Array(100).fill(
           {
             cover: "",
             episode: 2,

@@ -21,7 +21,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({ title }) => {
       </div>
       <div className="w-[50px]">
         <Link href="/">
-          <IconHome class="h-10" />
+          <IconHome class="h-8" />
         </Link>
       </div>
     </div>

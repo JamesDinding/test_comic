@@ -1,17 +1,21 @@
 import { FunctionalComponent, h } from "preact";
-import { useRef } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 import { ObserverProvider } from "../context/observer";
 import ControlLayer from "../components/Read/ControlLayer";
 
 const ReadPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
+  const [isShow, setIsShow] = useState(false);
 
   return (
-    <div className="grow" ref={containerRef}>
+    <div
+      className="grow"
+      ref={containerRef}
+      onClick={() => setIsShow((prev) => !prev)}
+    >
       <ObserverProvider rootElement={containerRef}>
-        <ControlLayer>
-          <div>Page Content</div>
-        </ControlLayer>
+        <ControlLayer onSetIsShow={setIsShow} isShow={isShow} />
+        <div>pages.map((page) =&gt; page )</div>
       </ObserverProvider>
     </div>
   );

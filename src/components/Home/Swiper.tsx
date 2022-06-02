@@ -48,7 +48,6 @@ const Swiper: FunctionalComponent = () => {
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
   const [showPending, setPending] = useState(true);
   const [isTouching, setIsTouching] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [touchOffset, setTouchOffset] = useState(0);
   const [curSlide, setCurSlide] = useState(0);
   const [transList, setTransList] = useState<Array<string>>([
@@ -91,7 +90,6 @@ const Swiper: FunctionalComponent = () => {
   });
 
   const touchStartHandler = (e: TouchEvent) => {
-    if (isAnimating) return;
     setIsTouching(true);
 
     timer && clearTimeout(timer);
@@ -106,7 +104,6 @@ const Swiper: FunctionalComponent = () => {
   };
 
   const touchMovingHandler = (e: TouchEvent) => {
-    if (isAnimating) return;
     setTouchOffset(e.touches[0].clientX - touchStartPosition);
 
     cur?.classList.remove("duration-300");
@@ -125,7 +122,6 @@ const Swiper: FunctionalComponent = () => {
   };
 
   const touchEndHandler = (e: TouchEvent) => {
-    if (isAnimating) return;
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
 
@@ -134,13 +130,11 @@ const Swiper: FunctionalComponent = () => {
     if (prev) prev.style.transform = "";
 
     if (touchOffset < 0) {
-      setIsAnimating(true);
       gotoSlide(curSlide + 1 === swiperLen ? 0 : curSlide + 1);
       nextSlide();
     }
 
     if (touchOffset > 0) {
-      setIsAnimating(true);
       gotoSlide(curSlide - 1 === -1 ? swiperLen - 1 : curSlide - 1, true);
       prevSlide();
     }
@@ -188,7 +182,6 @@ const Swiper: FunctionalComponent = () => {
     if (target + 1 === swiperLen) tempList[0] = positionList[2] + "next";
     if (target - 1 === -1) tempList[swiperLen - 1] = positionList[0] + "prev";
     setTransList(tempList);
-    setIsAnimating(false);
   }
 
   return (

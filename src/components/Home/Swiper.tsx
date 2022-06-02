@@ -41,6 +41,7 @@ let next: slider = null;
 let prev: slider = null;
 
 // let touchOffset = 0;
+let cur_test = 0;
 
 const Swiper: FunctionalComponent = () => {
   const { send } = useWorker();
@@ -86,6 +87,7 @@ const Swiper: FunctionalComponent = () => {
     if (isTouching) return;
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
+    // 因為會先render再執行useEffect裡面的東西，所以我的圖片會有閃爍(估計是因此導致curSlide = 1 ，但是顯示的是 0的，所以touch 滑動時會閃一下)
     gotoSlide(curSlide);
   });
 
@@ -181,7 +183,8 @@ const Swiper: FunctionalComponent = () => {
     });
     if (target + 1 === swiperLen) tempList[0] = positionList[2] + "next";
     if (target - 1 === -1) tempList[swiperLen - 1] = positionList[0] + "prev";
-    setTransList(tempList);
+    // console.log("target:", target, "tempList:", tempList);
+    setTransList((prev) => tempList);
   }
 
   return (
@@ -195,6 +198,7 @@ const Swiper: FunctionalComponent = () => {
         {blocks.map((blk) => {
           if (blk.ID !== 1) return;
           return blk.Items.map((b, i) => {
+            console.log(transList[i]);
             return (
               <a
                 href={"/directory/" + b.ID}

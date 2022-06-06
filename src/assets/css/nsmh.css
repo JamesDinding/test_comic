@@ -554,6 +554,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: .4rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -590,16 +595,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.5rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
 
 .mt-2 {
   margin-top: 0.5rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
 }
 
 .block {
@@ -694,16 +699,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 50px;
 }
 
+.h-\[2\.5rem\] {
+  height: 2.5rem;
+}
+
 .h-auto {
   height: auto;
 }
 
-.h-\[100px\] {
-  height: 100px;
-}
-
 .min-h-\[190px\] {
   min-height: 190px;
+}
+
+.min-h-\[90px\] {
+  min-height: 90px;
 }
 
 .w-\[50px\] {
@@ -746,16 +755,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 2.86rem;
 }
 
+.w-\[47\%\] {
+  width: 47%;
+}
+
 .w-6 {
   width: 1.5rem;
 }
 
 .w-\[7rem\] {
   width: 7rem;
-}
-
-.w-\[175px\] {
-  width: 175px;
 }
 
 .min-w-\[112px\] {
@@ -881,14 +890,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 0.5rem;
 }
 
-.gap-5 {
-  gap: 1.25rem;
-}
-
-.gap-4 {
-  gap: 1rem;
-}
-
 .overflow-auto {
   overflow: auto;
 }
@@ -935,6 +936,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded-\[2\.4rem\] {
   border-radius: 2.4rem;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 
 .rounded-\[3rem\] {
@@ -1040,9 +1045,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(203 213 225 / var(--tw-bg-opacity));
 }
 
-.bg-slate-200 {
+.bg-rose-300 {
   --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+  background-color: rgb(253 164 175 / var(--tw-bg-opacity));
+}
+
+.bg-\[length\:25px_25px\] {
+  background-size: 25px 25px;
+}
+
+.bg-\[center_left_0\.9rem\] {
+  background-position: center left 0.9rem;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .p-2 {
@@ -1055,6 +1072,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-2\.5 {
   padding: 0.625rem;
+}
+
+.p-4 {
+  padding: 1rem;
 }
 
 .py-2 {
@@ -1155,6 +1176,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: center;
 }
 
+.indent-12 {
+  text-indent: 3rem;
+}
+
 .indent-\[50px\] {
   text-indent: 50px;
 }
@@ -1209,10 +1234,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .font-bold {
   font-weight: 700;
-}
-
-.font-light {
-  font-weight: 300;
 }
 
 .font-extralight {
@@ -1287,14 +1308,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
-.text-gray-300 {
+.text-gray-600 {
   --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
-.text-slate-200 {
+.text-rose-300 {
   --tw-text-opacity: 1;
-  color: rgb(226 232 240 / var(--tw-text-opacity));
+  color: rgb(253 164 175 / var(--tw-text-opacity));
 }
 
 .opacity-70 {
@@ -1386,6 +1407,69 @@ ul {
   background-position: 50%;
 }
 
+/* 尋回帳戶 */
+
+.recovery-text {
+  padding-bottom: 0.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+/* 充值頁面 */
+
+.charge-item {
+  position: relative;
+  margin-bottom: .8rem;
+  min-height: 90px;
+  width: 47%;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.15rem 0.4rem 0 #a8a8a8;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* 熱銷標籤 */
+
+.charge-hot {
+  margin-left: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  padding: 0 4px;
+  background-color: #ff978d;
+  font-size: 12px;
+  border-radius: 0.3rem;
+  word-break: keep-all;
+}
+
+.charge-recommend {
+  position: absolute;
+  top: 9px;
+  right: -10px;
+  --tw-rotate: 45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 114 100 / var(--tw-bg-opacity));
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: .1rem;
+  font-size: 12px;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.charge-vip-hint {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  --tw-text-opacity: 1;
+  color: rgb(255 104 90 / var(--tw-text-opacity));
+}
+
 /* 我的 */
 
 .user-card {
@@ -1394,7 +1478,7 @@ ul {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   background-repeat: no-repeat;
-  padding: 0.7rem;
+  padding: .7rem;
   background-image: "";
   background-size: 80%;
   background-position: 100% 10px;
@@ -1669,10 +1753,6 @@ footer .group:hover span {
 footer .active span {
   --tw-text-opacity: 1;
   color: rgb(249 141 131 / var(--tw-text-opacity));
-}
-
-.placeholder\:font-light::placeholder {
-  font-weight: 300;
 }
 
 .placeholder\:font-extralight::placeholder {

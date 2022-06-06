@@ -55,10 +55,41 @@ ul {
   background-position: 50%;
 }
 
+/* 尋回帳戶 */
+.recovery-text {
+  @apply pb-2 tracking-widest font-light;
+}
+
+/* 充值頁面 */
+.charge-item {
+  @apply relative p-2 min-h-[90px] w-[47%] mb-[.8rem];
+  border-radius: 0.8rem;
+  box-shadow: 0 0.15rem 0.4rem 0 #a8a8a8;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* 熱銷標籤 */
+.charge-hot {
+  @apply text-white ml-2;
+  padding: 0 4px;
+  background-color: #ff978d;
+  font-size: 12px;
+  border-radius: 0.3rem;
+  word-break: keep-all;
+}
+
+.charge-recommend {
+  @apply absolute top-[9px] right-[-10px] py-0 px-2 pb-[.1rem] text-white bg-[#ff7264] rotate-[45deg] text-[12px];
+}
+
+.charge-vip-hint {
+  @apply mb-8 text-[.6rem] text-center text-[#ff685a] font-bold tracking-[1px];
+}
+
 /* 我的 */
 .user-card {
-  @apply rounded-2xl bg-no-repeat bg-white mt-2;
-  padding: 0.7rem;
+  @apply rounded-2xl bg-no-repeat bg-white mt-2 p-[.7rem];
   background-image: "";
   background-size: 80%;
   background-position: 100% 10px;

@@ -89,8 +89,8 @@ const Swiper: FunctionalComponent = () => {
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
     // 因為會先render再執行useEffect裡面的東西，所以我的圖片會有閃爍(估計是因此導致curSlide = 1 ，但顯示的 0的，所以touch 滑動時會閃一下)
+    gotoSlide(curSlide);
   });
-  gotoSlide(curSlide);
 
   const touchStartHandler = (e: TouchEvent) => {
     setIsTouching(true);
@@ -203,11 +203,13 @@ const Swiper: FunctionalComponent = () => {
                 href={"/directory/" + b.ID}
                 className={`block w-full absolute ${transList[i]}`}
               >
-                <Image
-                  path={b.Cover}
-                  alt={b.Name}
-                  setParentPending={setPending}
-                />
+                <div>
+                  <Image
+                    path={b.Cover}
+                    alt={b.Name}
+                    setParentPending={setPending}
+                  />
+                </div>
               </a>
             );
           });

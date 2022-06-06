@@ -14,6 +14,8 @@ import ProfilePage from "./Profile";
 import DirectoryPage from "./Directory";
 import { useState } from "preact/hooks";
 import ReadPage from "./Read";
+import RegisterPage from "./Register";
+import ChargePage from "./Charge";
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -35,6 +37,8 @@ const App: FunctionalComponent = () => {
             <ProfilePage path="/profile" />
             <DirectoryPage path="/directory/:cid" />
             <ReadPage path="/read/:id" />
+            <RegisterPage path="/register" />
+            <ChargePage path="/charge" />
             <DefaultRouteHandler default />
           </Router>
 

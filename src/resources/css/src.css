@@ -6,6 +6,12 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* 不顯示捲軸 */
 
 .no-scrollbar::-webkit-scrollbar {
@@ -15,6 +21,56 @@ a {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* 註冊form */
+.register-form {
+  @apply p-6 pt-4 bg-no-repeat grow;
+  background-position-y: 100%;
+  background-image: url();
+}
+
+/* form-input */
+.register-form-input {
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 15px;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+}
+
+/* Return Bar */
+.return-bar {
+  box-shoadow: 0 2px 5px #999;
+  padding: 0.3rem 0.2rem;
+  background-image: url(../img/watercolor.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+/* 我的 */
+.user-card {
+  @apply rounded-2xl bg-no-repeat bg-white mt-2;
+  padding: 0.7rem;
+  background-image: "";
+  background-size: 80%;
+  background-position: 100% 10px;
+}
+
+.user-card-info > div {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 0.5rem 0;
+}
+
+.user-card-info {
+  @apply grow text-[#4c4c4c];
 }
 
 /* 章節目錄 */

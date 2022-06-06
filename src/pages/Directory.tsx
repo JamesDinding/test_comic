@@ -10,7 +10,7 @@ const DirectoryPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
 
   return (
-    <div class="grow px-2" ref={containerRef}>
+    <div class="grow overflow-hidden overflow-y-auto px-2" ref={containerRef}>
       <ObserverProvider rootElement={containerRef}>
         <ReturnBar title="test" />
         <Description />

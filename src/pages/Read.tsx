@@ -9,7 +9,7 @@ const ReadPage: FunctionalComponent = () => {
 
   return (
     <div
-      className="grow"
+      className="grow overflow-hidden overflow-y-auto"
       ref={containerRef}
       onClick={() => setIsShow((prev) => !prev)}
     >

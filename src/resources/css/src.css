@@ -67,6 +67,15 @@ ul {
   @apply grayscale;
 }
 
+/* 客服轉跳頁面 */
+.customer-button {
+  @apply flex my-8 mx-12 py-4 px-8 text-center text-[1.5rem] grow;
+}
+
+.customer-section-title {
+  @apply text-base m-8 tracking-[.2rem] leading-[2rem] font-normal;
+}
+
 /* 尋回帳戶 */
 .recovery-text {
   @apply pb-2 tracking-widest font-light;

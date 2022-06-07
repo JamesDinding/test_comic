@@ -1,9 +1,9 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import Router from "preact-router";
+import { useState } from "preact/hooks";
 
 import { WorkerProvider } from "./../context/worker";
 
-import FooterBar from "../components/FooterBar";
 import SmartBanner from "../components/SmartBanner";
 import DefaultRouteHandler from "../components/DefaultRouteHandler";
 
@@ -12,13 +12,13 @@ import VideoPage from "./Video";
 import BookmarkPage from "./Bookmark";
 import ProfilePage from "./Profile";
 import DirectoryPage from "./Directory";
-import { useState } from "preact/hooks";
 import ReadPage from "./Read";
 import RegisterPage from "./Register";
 import ChargePage from "./Charge";
 import RecoveryPage from "./Recovery";
 import PurchaseRecordPage from "./PurchaseRecord";
 import ChargeRecordPage from "./ChargeRecord";
+import CustomerPage from "./Customer";
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -45,6 +45,7 @@ const App: FunctionalComponent = () => {
             <RecoveryPage path="/recovery" />
             <PurchaseRecordPage path="/purchase-record" />
             <ChargeRecordPage path="/charge-record" />
+            <CustomerPage path="/service" />
             <DefaultRouteHandler default />
           </Router>
 

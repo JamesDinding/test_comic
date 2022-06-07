@@ -55,6 +55,18 @@ ul {
   background-position: 50%;
 }
 
+/* Selection Bar */
+.record-tab-active {
+  @apply text-[#4c4c4c] bg-no-repeat grayscale-0;
+  background-image: url(../img/watercolor.png);
+  background-size: 100%;
+  background-position: 50%;
+}
+
+.record-tab-inactive {
+  @apply grayscale;
+}
+
 /* 尋回帳戶 */
 .recovery-text {
   @apply pb-2 tracking-widest font-light;

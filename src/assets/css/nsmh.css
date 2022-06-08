@@ -711,8 +711,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100vh;
 }
 
-.h-\[160px\] {
-  height: 160px;
+.h-\[10rem\] {
+  height: 10rem;
 }
 
 .h-\[45px\] {
@@ -725,6 +725,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[20px\] {
   height: 20px;
+}
+
+.h-\[160px\] {
+  height: 160px;
 }
 
 .h-3 {
@@ -1054,10 +1058,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 3rem;
 }
 
-.rounded-sm {
-  border-radius: 0.125rem;
-}
-
 .border-2 {
   border-width: 2px;
 }
@@ -1337,11 +1337,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: .4rem;
 }
 
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
 .py-\[10px\] {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1410,10 +1405,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .indent-\[50px\] {
   text-indent: 50px;
-}
-
-.indent-2 {
-  text-indent: 0.5rem;
 }
 
 .indent-1 {

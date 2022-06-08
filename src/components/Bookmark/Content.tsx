@@ -4,6 +4,7 @@ import BookListItem from "../_Book/ListItem";
 import { useWorker } from "../../context/worker";
 import EmptyContent from "./EmptyContent";
 import Empty from "../Profile/Services/Record/Empty";
+import BookList from "../_Book/List";
 
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
@@ -47,19 +48,13 @@ const Content = () => {
 
   return (
     <ul className="py-0 px-[2%]">
-      {[].length === 0 && <EmptyContent title="立刻去收藏" />}
-      {/* {blocks.map((block, i) => {
+      {/* {[].length === 0 && <EmptyContent title="立刻去收藏" />} */}
+      {blocks.map((block, i) => {
         // 先用其他api拿資料
         if (i !== 1) return;
-        return block.Items.map((c) => {
-          console.log(c);
-          return (
-            <li className="inline-flex box-border w-[32%] h-[160px] py-[.4rem] px-0">
-              <BookListItem Data={c} />
-            </li>
-          );
-        });
-      })} */}
+
+        return <BookList Items={block.Items} ItemPerRow={3} />;
+      })}
     </ul>
   );
 };

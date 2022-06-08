@@ -1,5 +1,5 @@
 import { FunctionalComponent, h, Fragment } from "preact";
-import RecordBottom from "./RecordBottom";
+import EndBottom from "../../../EndBottom";
 import Empty from "./Empty";
 
 let fetchData = [];
@@ -8,7 +8,7 @@ const ChargeRecord = () => {
   return (
     <>
       <div></div>
-      <RecordBottom />
+      <EndBottom />
       {fetchData.length === 0 && <Empty title="立即充值" url="/charge" />}
     </>
   );

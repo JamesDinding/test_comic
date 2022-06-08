@@ -12,6 +12,11 @@ ul {
   padding: 0;
 }
 
+textarea,
+input:focus {
+  outline: none;
+}
+
 /* 不顯示捲軸 */
 
 .no-scrollbar::-webkit-scrollbar {
@@ -21,6 +26,21 @@ ul {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* 聊天室 */
+.chat-text {
+  @apply p-[10px] text-white text-sm bg-[#f7ccc8];
+}
+
+/* Search Page */
+/* 搜尋列 */
+.search-bar {
+  @apply z-[9] py-[.3rem] px-2 bg-no-repeat;
+  box-shadow: 0 2px 5px #999;
+  background-image: url(../img/watercolor-o.84ec2591.png);
+  background-size: 100%;
+  background-position: 50%;
 }
 
 /* 註冊form */

@@ -2,6 +2,8 @@ import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import BookListItem from "../_Book/ListItem";
 import { useWorker } from "../../context/worker";
+import EmptyContent from "./EmptyContent";
+import Empty from "../Profile/Services/Record/Empty";
 
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
@@ -45,7 +47,8 @@ const Content = () => {
 
   return (
     <ul className="py-0 px-[2%]">
-      {blocks.map((block, i) => {
+      {[].length === 0 && <EmptyContent title="立刻去收藏" />}
+      {/* {blocks.map((block, i) => {
         // 先用其他api拿資料
         if (i !== 1) return;
         return block.Items.map((c) => {
@@ -56,7 +59,7 @@ const Content = () => {
             </li>
           );
         });
-      })}
+      })} */}
     </ul>
   );
 };

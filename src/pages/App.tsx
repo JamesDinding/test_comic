@@ -20,6 +20,7 @@ import PurchaseRecordPage from "./PurchaseRecord";
 import ChargeRecordPage from "./ChargeRecord";
 import CustomerPage from "./Customer";
 import BookPurchasePage from "./BookPurchase";
+import SearchPage from "./Search";
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -48,6 +49,7 @@ const App: FunctionalComponent = () => {
             <ChargeRecordPage path="/charge-record" />
             <CustomerPage path="/service" />
             <BookPurchasePage path="/book-history" />
+            <SearchPage path="/search" />
             <DefaultRouteHandler default />
           </Router>
 

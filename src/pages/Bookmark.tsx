@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { useRef } from "preact/hooks";
+import { MutableRef, useRef } from "preact/hooks";
 import FooterBar from "../components/FooterBar";
 import SelectionBar from "../components/SelectionBar";
 import Content from "../components/Bookmark/Content";
@@ -11,7 +11,7 @@ const desArr = [
 ];
 
 const BookmarkPage: FunctionalComponent = () => {
-  const containerRef = useRef<MutableRef<HTMLDivElement>>(null!);
+  const containerRef = useRef<HTMLDivElement>(null!);
 
   return (
     <>

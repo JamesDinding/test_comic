@@ -36,7 +36,7 @@ input:focus {
 /* Search Page */
 /* 搜尋列 */
 .search-bar {
-  @apply z-[9] py-[.3rem] px-2 bg-no-repeat;
+  @apply z-[9] py-[.3rem] px-2 bg-no-repeat z-10;
   box-shadow: 0 2px 5px #999;
   background-image: url(../img/watercolor-o.84ec2591.png);
   background-size: 100%;
@@ -67,11 +67,11 @@ input:focus {
 
 /* Return Bar */
 .return-bar {
-  box-shoadow: 0 2px 5px #999;
+  @apply z-10 bg-no-repeat;
+  box-shadow: 0 2px 5px #999;
   padding: 0.3rem 0.2rem;
   background-image: url(../img/watercolor.png);
   background-size: 100%;
-  background-repeat: no-repeat;
   background-position: 50%;
 }
 

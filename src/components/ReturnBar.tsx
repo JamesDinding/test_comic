@@ -11,7 +11,7 @@ interface ReturnBarProps {
 const ReturnBar: FunctionalComponent<ReturnBarProps> = ({ title }) => {
   return (
     <div className="flex items-center bg-white return-bar">
-      <div className="w-[50px]" onClick={() => history.back()}>
+      <div className="w-[50px] cursor-pointer" onClick={() => history.back()}>
         <span>
           <IconChevron class="h-8 rotate-180" />
         </span>

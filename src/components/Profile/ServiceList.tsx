@@ -1,12 +1,13 @@
 import { FunctionalComponent, h } from "preact";
 import IconChevron from "../../resources/img/icon-chevron.svg";
+import { Link } from "preact-router";
 
 const serviceList = [
-  { title: "註冊", img: "" },
-  { title: "立即充值", img: "" },
-  { title: "錢包紀錄", img: "" },
-  { title: "尋回帳戶", img: "" },
-  { title: "客服中心", img: "" },
+  { title: "註冊", img: "", url: "/register" },
+  { title: "立即充值", img: "", url: "/charge" },
+  { title: "錢包紀錄", img: "", url: "/purchase-record" },
+  { title: "尋回帳戶", img: "", url: "/recovery" },
+  { title: "客服中心", img: "", url: "/service" },
 ];
 
 const ServiceList = () => {
@@ -16,9 +17,12 @@ const ServiceList = () => {
         <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
           <div className="m-2">
             <ul>
-              {serviceList.map(({ title, img }) => {
+              {serviceList.map(({ title, img, url }) => {
                 return (
-                  <li className="flex justify-between items-center bg-white py-2 px-[.4rem] border-b-[1px] border-solid border-[#f1f1f1]">
+                  <Link
+                    className="flex justify-between items-center bg-white py-2 px-[.4rem] border-b-[1px] border-solid border-[#f1f1f1]"
+                    href={url}
+                  >
                     <div className="h-[1.5rem] flex items-center grow">
                       <div>img</div>
                       {title}
@@ -26,7 +30,7 @@ const ServiceList = () => {
                     <div>
                       <IconChevron class="h-6" />
                     </div>
-                  </li>
+                  </Link>
                 );
               })}
             </ul>

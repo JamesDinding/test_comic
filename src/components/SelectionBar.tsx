@@ -11,7 +11,7 @@ const SelectionBar: FunctionalComponent<SelectionBarProps> = ({
   const currentUrl = "/" + window.location.href.split("/").pop();
 
   return (
-    <nav className=" p-3 text-sm bg-white">
+    <nav className=" text-sm bg-white">
       <ul className="flex justify-between items-center grow text-center">
         {destinationArr.map((des, i) => {
           let tabCss =

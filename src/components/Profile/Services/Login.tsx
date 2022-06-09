@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from "preact";
 import { useRef, MutableRef } from "preact/hooks";
 import InputField from "./InputField";
+import { Link } from "preact-router";
 
 const Login = () => {
   const phoneRef = useRef<HTMLInputElement>(null!);
@@ -16,7 +17,9 @@ const Login = () => {
           登錄
         </div>
         <div className="font-extralight text-center text-[.7rem] mt-2">
-          <a className="text-[#a8a8a8]">沒有帳戶，立即註冊</a>
+          <Link href="/register" className="text-[#a8a8a8]">
+            沒有帳戶，立即註冊
+          </Link>
         </div>
       </div>
     </div>

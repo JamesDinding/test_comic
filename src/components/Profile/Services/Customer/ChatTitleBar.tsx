@@ -1,4 +1,5 @@
 import { FunctionalComponent, h } from "preact";
+import { Link } from "preact-router";
 
 const CharTitleBar = ({ userName = "" }) => {
   return (
@@ -8,7 +9,9 @@ const CharTitleBar = ({ userName = "" }) => {
       </div>
       <div className="ml-2 text-white font-medium">{userName}</div>
       <div className="grow"></div>
-      <button className="text-xl">X</button>
+      <button className="text-xl">
+        <Link href="/profile">X</Link>
+      </button>
     </div>
   );
 };

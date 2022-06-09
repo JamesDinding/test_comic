@@ -1,10 +1,10 @@
-import Customer from "../components/Profile/Services/Customer";
+import Customer from "../../components/Profile/Services/Customer";
 import { FunctionalComponent, h } from "preact";
 import { useState, useRef, useEffect } from "preact/hooks";
-import CharTitleBar from "../components/Profile/Services/Customer/ChatTitleBar";
-import ServerMessage from "../components/Profile/Services/Customer/ServerMessage";
-import UserMessage from "../components/Profile/Services/Customer/UserMessage";
-import UserInput from "../components/Profile/Services/Customer/UserInput";
+import CharTitleBar from "../../components/Profile/Services/Customer/ChatTitleBar";
+import ServerMessage from "../../components/Profile/Services/Customer/ServerMessage";
+import UserMessage from "../../components/Profile/Services/Customer/UserMessage";
+import UserInput from "../../components/Profile/Services/Customer/UserInput";
 
 // test arr
 const msgArr = [

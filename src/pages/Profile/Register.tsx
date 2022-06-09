@@ -1,6 +1,6 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import ReturnBar from "../components/ReturnBar";
-import Register from "../components/Profile/Services/Register";
+import ReturnBar from "../../components/ReturnBar";
+import Register from "../../components/Profile/Services/Register";
 
 const RegisterPage: FunctionalComponent = () => {
   return (

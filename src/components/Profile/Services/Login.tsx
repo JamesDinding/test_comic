@@ -2,10 +2,9 @@ import { FunctionalComponent, h } from "preact";
 import { useRef, MutableRef } from "preact/hooks";
 import InputField from "./InputField";
 
-const Register = () => {
+const Login = () => {
   const phoneRef = useRef<HTMLInputElement>(null!);
   const passwordRef = useRef<HTMLInputElement>(null!);
-  const checkedPasswordRef = useRef<HTMLInputElement>(null!);
 
   return (
     <div className="sign-form">
@@ -13,16 +12,15 @@ const Register = () => {
       <div className="mb-6">
         <InputField text="請輸入手機號碼" icon="" ref={phoneRef} />
         <InputField text="請輸入密碼" icon="" ref={passwordRef} />
-        <InputField text="請再次輸入密碼" icon="" ref={checkedPasswordRef} />
         <div className="font-extralight block h-[2.4rem] rounded-[2.4rem] text-white text-center leading-[2.4rem] bg-[#ff978d]">
-          立即註冊，心上戶即贈送 150 金幣
+          登錄
         </div>
         <div className="font-extralight text-center text-[.7rem] mt-2">
-          <a className="text-[#a8a8a8]">已有帳戶，登陸去</a>
+          <a className="text-[#a8a8a8]">沒有帳戶，立即註冊</a>
         </div>
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Login;

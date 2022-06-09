@@ -9,17 +9,19 @@ import DefaultRouteHandler from "../components/DefaultRouteHandler";
 
 import HomePage from "./Home";
 import VideoPage from "./Video";
-import BookmarkPage from "./Bookmark";
+import BookmarkPage from "./Bookmark/Bookmark";
 import ProfilePage from "./Profile";
 import DirectoryPage from "./Directory";
 import ReadPage from "./Read";
-import RegisterPage from "./Register";
-import ChargePage from "./Charge";
-import RecoveryPage from "./Recovery";
-import PurchaseRecordPage from "./PurchaseRecord";
-import ChargeRecordPage from "./ChargeRecord";
-import CustomerPage from "./Customer";
-import BookPurchasePage from "./BookPurchase";
+import RegisterPage from "./Profile/Register";
+import LoginPage from "./Profile/Login";
+import ModifyPasswordPage from "./Profile/ModifyPassword";
+import ChargePage from "./Profile/Charge";
+import RecoveryPage from "./Profile/Recovery";
+import PurchaseRecordPage from "./Profile/PurchaseRecord";
+import ChargeRecordPage from "./Profile/ChargeRecord";
+import CustomerPage from "./Profile/Customer";
+import BookPurchasePage from "./Bookmark/BookPurchase";
 import SearchPage from "./Search";
 
 const App: FunctionalComponent = () => {
@@ -43,6 +45,8 @@ const App: FunctionalComponent = () => {
             <DirectoryPage path="/directory/:cid" />
             <ReadPage path="/read/:id" />
             <RegisterPage path="/register" />
+            <LoginPage path="/login" />
+            <ModifyPasswordPage path="/modify-password" />
             <ChargePage path="/charge" />
             <RecoveryPage path="/recovery" />
             <PurchaseRecordPage path="/purchase-record" />

@@ -1,11 +1,11 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { useRef, useEffect, useState } from "preact/hooks";
-import FooterBar from "../components/FooterBar";
-import SelectionBar from "../components/SelectionBar";
-import Content from "../components/Bookmark/Content";
-import MixRecommendBlock from "../components/Bookmark/MixRecommendBlock";
-import { useWorker } from "../context/worker";
-import { ObserverProvider } from "../context/observer";
+import FooterBar from "../../components/FooterBar";
+import SelectionBar from "../../components/SelectionBar";
+import Content from "../../components/Bookmark/Content";
+import MixRecommendBlock from "../../components/Bookmark/MixRecommendBlock";
+import { useWorker } from "../../context/worker";
+import { ObserverProvider } from "../../context/observer";
 
 const desArr = [
   { url: "/bookmark", title: "收藏", icon: "" },

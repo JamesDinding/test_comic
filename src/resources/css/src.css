@@ -43,15 +43,15 @@ input:focus {
   background-position: 50%;
 }
 
-/* 註冊form */
-.register-form {
+/* sign form */
+.sign-form {
   @apply p-6 pt-4 bg-no-repeat grow;
   background-position-y: 100%;
   background-image: url();
 }
 
 /* form-input */
-.register-form-input {
+.sign-form-input {
   -webkit-appearance: none;
   background-color: #fff;
   border: 1px solid #dcdfe6;

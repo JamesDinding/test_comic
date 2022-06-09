@@ -1,6 +1,6 @@
 import { FunctionalComponent, h, Fragment } from "preact";
-import FooterBar from "../components/FooterBar";
-import SelectionBar from "../components/SelectionBar";
+import FooterBar from "../../components/FooterBar";
+import SelectionBar from "../../components/SelectionBar";
 
 const desArr = [
   { url: "/bookmark", title: "收藏", icon: "" },

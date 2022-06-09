@@ -28,6 +28,16 @@ input:focus {
   scrollbar-width: none;
 }
 
+.back-drop {
+  @apply fixed left-0 top-0 w-full h-full z-30;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 彈窗 pop- */
+.pop-payment {
+  @apply fixed left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] w-4/5 max-w-[500px] max-h-[70vh] z-50;
+}
+
 /* 聊天室 */
 .chat-text {
   @apply p-[10px] text-white text-sm bg-[#f7ccc8];

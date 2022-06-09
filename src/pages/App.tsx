@@ -60,6 +60,8 @@ const App: FunctionalComponent = () => {
           {/* <FooterBar /> */}
         </div>
       </div>
+      <div id="back-drop"></div>
+      <div id="pop-window"></div>
     </WorkerProvider>
   );
 };

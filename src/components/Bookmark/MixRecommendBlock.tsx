@@ -13,11 +13,11 @@ const MixRecommendBlock: FunctionalComponent<MixRecommendBlockProps> = ({
   BlockName,
   Items,
 }) => {
-  const firstSlice = Items.slice(0, 3);
+  const firstSlice = Items.slice(0, 4);
   const restSlice = Items.slice(4);
 
   return (
-    <div class="items my-3">
+    <div class="my-3 bg-white">
       <RecommendTitleBar BlockName={BlockName} BlockID={BlockID} />
       <BookList Items={firstSlice} ItemPerRow={2} Rows={2} />
       <BookList Items={restSlice} ItemPerRow={3} Rows={3} />

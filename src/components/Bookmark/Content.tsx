@@ -47,13 +47,12 @@ const Content = () => {
   }, [send]);
 
   return (
-    <ul className="py-0 px-[2%]">
+    <ul className="py-0 px-[2%] bg-white">
       {/* {[].length === 0 && <EmptyContent title="立刻去收藏" />} */}
       {blocks.map((block, i) => {
         // 先用其他api拿資料
         if (i !== 1) return;
-
-        return <BookList Items={block.Items} ItemPerRow={3} />;
+        return <BookList Items={block.Items} ItemPerRow={3} Rows={11} />;
       })}
     </ul>
   );

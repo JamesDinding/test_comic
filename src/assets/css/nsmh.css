@@ -591,6 +591,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1rem;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -773,6 +778,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-h-\[20vh\] {
   min-height: 20vh;
+}
+
+.min-h-\[10vh\] {
+  min-height: 10vh;
+}
+
+.min-h-\[5vh\] {
+  min-height: 5vh;
 }
 
 .w-\[50px\] {
@@ -1155,6 +1168,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(251 191 36 / var(--tw-border-opacity));
 }
 
+.border-\[\#D9D9D9\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(217 217 217 / var(--tw-border-opacity));
+}
+
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
@@ -1233,6 +1251,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#d8d8d8\] {
   --tw-bg-opacity: 1;
   background-color: rgb(216 216 216 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#fdddcb\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 221 203 / var(--tw-bg-opacity));
 }
 
 .bg-\[length\:25px_25px\] {
@@ -2179,6 +2202,31 @@ footer .active span {
 
 .placeholder\:font-extralight::placeholder {
   font-weight: 200;
+}
+
+.before\:right-0::before {
+  content: var(--tw-content);
+  right: 0px;
+}
+
+.before\:bottom-0::before {
+  content: var(--tw-content);
+  bottom: 0px;
+}
+
+.before\:h-4::before {
+  content: var(--tw-content);
+  height: 1rem;
+}
+
+.before\:w-4::before {
+  content: var(--tw-content);
+  width: 1rem;
+}
+
+.before\:content-\[\'\'\]::before {
+  --tw-content: '';
+  content: var(--tw-content);
 }
 
 .first\:ml-0:first-child {

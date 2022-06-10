@@ -5,6 +5,7 @@ interface InputFieldProps {
   text: string;
   icon: string;
   ref: MutableRef<HTMLInputElement>;
+  type?: string;
 }
 
 // Input Field Component
@@ -12,12 +13,13 @@ const InputField: FunctionalComponent<InputFieldProps> = ({
   text,
   icon,
   ref,
+  type = "text",
 }) => {
   return (
     <div className="relative inline-block text-sm w-full mb-6">
       <input
         ref={ref}
-        type="number"
+        type={type}
         autocomplete="off"
         placeholder={text}
         className="sign-form-input rounded-[3rem] h-[45px] indent-[50px] placeholder:font-extralight"

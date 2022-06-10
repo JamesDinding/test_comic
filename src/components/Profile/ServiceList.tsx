@@ -37,9 +37,12 @@ const ServiceList = () => {
           </div>
         </div>
       </div>
-      <a className="block h-[2.4rem] text-white rounded-[2.4rem] text-center leading-[2.4rem] mt-0 mx-[.4rem] mb-2 bg-[#ff978d]">
+      <Link
+        className="block h-[2.4rem] text-white rounded-[2.4rem] text-center leading-[2.4rem] mt-0 mx-[.4rem] mb-2 bg-[#ff978d]"
+        href="/login"
+      >
         登錄
-      </a>
+      </Link>
     </div>
   );
 };

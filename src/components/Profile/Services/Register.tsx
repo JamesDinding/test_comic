@@ -12,7 +12,12 @@ const Register = () => {
     <div className="sign-form">
       <div className="w-[7rem] mb-4">logo</div>
       <div className="mb-6">
-        <InputField text="請輸入手機號碼" icon="" ref={phoneRef} />
+        <InputField
+          text="請輸入手機號碼"
+          icon=""
+          type="number"
+          ref={phoneRef}
+        />
         <InputField text="請輸入密碼" icon="" ref={passwordRef} />
         <InputField text="請再次輸入密碼" icon="" ref={checkedPasswordRef} />
         <div className="font-extralight block h-[2.4rem] rounded-[2.4rem] text-white text-center leading-[2.4rem] bg-[#ff978d]">

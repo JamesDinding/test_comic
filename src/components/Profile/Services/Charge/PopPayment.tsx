@@ -1,5 +1,5 @@
-import { FunctionComponent, h } from "preact";
-import { useState, useEffect } from "preact/hooks";
+import { FunctionalComponent, FunctionComponent, h } from "preact";
+import { useState, useEffect, StateUpdater } from "preact/hooks";
 import PaymentBar from "./PaymentBar";
 
 const payAmountArr = [
@@ -21,15 +21,19 @@ type Payment = {
   id: number;
 };
 
+interface PopPaymentkDrop {
+  onClose: StateUpdater<boolean>;
+}
 interface PayListProps {
   payList: Array<Payment>;
 }
 
-const PopPayment = () => {
+const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({ onClose }) => {
   // section 支付寶/微信
   const [curSection, setCurSection] = useState(0);
   // 通道１２３的資料
   const [data, setData] = useState<Array<Payment> | null>(null);
+  const [isPending, setIsPending] = useState(false);
   // 現在通道１．２．３
   const [curPayment, setCurPayment] = useState<number | null>(null);
   // 金額
@@ -54,13 +58,21 @@ const PopPayment = () => {
       }, 1500);
     });
 
+    setIsPending(true);
     fake.then((data) => {
       setData(data);
+      setIsPending(false);
     });
   }, [curSection]);
 
   return (
-    <div className="flex flex-col items-center pop-payment bg-white py-2">
+    <div className="relative flex flex-col items-center pop-payment bg-white py-2">
+      <div
+        className="absolute cursor-pointer right-1 top-0 opacity-50"
+        onClick={() => onClose(false)}
+      >
+        X
+      </div>
       <PaymentBar
         onSetCurSection={setCurSection}
         curSection={curSection}
@@ -71,24 +83,26 @@ const PopPayment = () => {
           <div className="text-base border-l-4 border-amber-400 mx-4 px-2 tracking-wider">
             請選擇支付通道
           </div>
-          <div className="grid grid-cols-1 min-h-[5vh] my-4 mx-2">
-            {data?.map((pay) => {
-              const paymentActive =
-                pay.id === curPayment
-                  ? "bg-[#fdddcb] border-[#f98d83] text-[#f98d83] pop-payment-active-decoration"
-                  : "bg-white border-[#D9D9D9]";
+          {!isPending && (
+            <div className="grid grid-cols-1 min-h-[5vh] my-4 mx-2">
+              {data?.map((pay) => {
+                const paymentActive =
+                  pay.id === curPayment
+                    ? "bg-[#fdddcb] border-[#f98d83] text-[#f98d83] pop-payment-active-decoration"
+                    : "bg-white border-[#D9D9D9]";
 
-              return (
-                <div
-                  id={pay.id.toString()}
-                  className={`cursor-pointer relative text-center text-sm tracking-wide my-1 mx-2 py-2 px-4 border-[1px] border-solid rounded ${paymentActive}`}
-                  onClick={() => setCurPayment(pay.id)}
-                >
-                  {pay.name}
-                </div>
-              );
-            })}
-          </div>
+                return (
+                  <div
+                    id={pay.id.toString()}
+                    className={`cursor-pointer relative text-center text-sm tracking-wide my-1 mx-2 py-2 px-4 border-[1px] border-solid rounded ${paymentActive}`}
+                    onClick={() => setCurPayment(pay.id)}
+                  >
+                    {pay.name}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>

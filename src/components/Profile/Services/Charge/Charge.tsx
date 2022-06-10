@@ -51,7 +51,10 @@ const Charge = () => {
           document.getElementById("back-drop")!
         )}
       {isPop &&
-        createPortal(<PopPayment />, document.getElementById("pop-window")!)}
+        createPortal(
+          <PopPayment onClose={setIsPop} />,
+          document.getElementById("pop-window")!
+        )}
       <div className="flex flex-col justify-center items-center w-full bg-white rounded-2xl mt-4 px-4">
         <div className="flex flex-col items-center pt-4 mb-2">
           <span>i 充值金幣 i</span>

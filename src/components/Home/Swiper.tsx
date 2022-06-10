@@ -44,6 +44,30 @@ let prev: slider = null;
 let cur_test = 0;
 
 const Swiper: FunctionalComponent = () => {
+  console.log(`
+                    ,d"=≥,.,qOp,
+                 ,7'  ''²$(  )
+                ,7'      '?q$7'
+             ..,$$,.
+   ,.  .,,--***²""²***--,,.  .,
+ ²   ,p²''              ''²q,   ²
+:  ,7'                      '7,  :     輪播圖下面的點點是對的，圖片並沒有正確的輪播，用了reddit的圖案來警示！
+ ' $      ,db,      ,db,      $ '
+  '$      ²$$²      ²$$²      $'
+  '$                          $'
+   '$.     .,        ,.     .$'
+    'b,     '²«»«»«»²'     ,d'
+     '²?bn,,          ,,nd?²'
+       ,7$ ''²²²²²²²²'' $7,
+     ,² ²$              $² ²,
+     $  :$              $:  $
+     $   $              $   $
+     'b  q:            :p  d'
+      '²«?$.          .$?»²'
+         'b            d'
+       ,²²'?,.      .,?'²²,
+  `);
+
   const { send } = useWorker();
   // blocks[0]，可以拿到輪播要用的圖片
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);

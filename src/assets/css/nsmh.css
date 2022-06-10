@@ -959,6 +959,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   user-select: none;
 }
 
+.scroll-mb-5 {
+  scroll-margin-bottom: 1.25rem;
+}
+
 .list-none {
   list-style-type: none;
 }

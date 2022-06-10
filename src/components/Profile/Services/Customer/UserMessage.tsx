@@ -23,7 +23,7 @@ const UserMessage: FunctionalComponent<UserMessageProps> = ({
   }, [bottomRef, lastOne]);
 
   return (
-    <div className="flex max-w-[50%] self-end border-solid border-2 rounded-lg my-2 chat-text">
+    <div className="flex max-w-[50%] self-end border-solid border-2 rounded-lg my-2 chat-text break-all">
       {type === "image" && <img src={msg} className="" alt="無法顯示圖片" />}
       {type === "msg" && isTyping && (
         <>

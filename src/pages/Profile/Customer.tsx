@@ -52,7 +52,7 @@ const CustomerPage: FunctionalComponent = () => {
   };
 
   return (
-    <div className="bg-white w-full flex flex-col justify-between h-screen">
+    <div className="bg-white w-full flex flex-col justify-between grow max-h-screen">
       <CharTitleBar userName={"test"} />
       <audio className="hidden" preload="auto" id="audio-player"></audio>
       <div className="grow flex flex-col overflow-y-auto no-scrollbar px-4">
@@ -65,7 +65,7 @@ const CustomerPage: FunctionalComponent = () => {
         {/* {clientInput.length !== 0 && (
           <UserMessage bottomRef={bottomRef} lastOne={true} isTyping={true} />
         )} */}
-        <div id="bottom" ref={bottomRef}></div>
+        <div id="bottom" className="mt-[75px]" ref={bottomRef}></div>
       </div>
 
       <UserInput

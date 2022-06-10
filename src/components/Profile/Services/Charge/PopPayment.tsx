@@ -60,22 +60,22 @@ const PopPayment = () => {
   }, [curSection]);
 
   return (
-    <div className="flex flex-col items-center pop-payment bg-[#efefef]">
+    <div className="flex flex-col items-center pop-payment bg-white py-2">
       <PaymentBar
         onSetCurSection={setCurSection}
         curSection={curSection}
         paymentArr={paymentArr}
       />
       <div className="min-h-[20vh] w-full">
-        <div className="bg-white pt-2 mb-2">
+        <div className="bg-white pt-2">
           <div className="text-base border-l-4 border-amber-400 mx-4 px-2 tracking-wider">
             請選擇支付通道
           </div>
-          <div className="grid grid-cols-3 min-h-[5vh] my-4 mx-2">
+          <div className="grid grid-cols-1 min-h-[5vh] my-4 mx-2">
             {data?.map((pay) => {
               const paymentActive =
                 pay.id === curPayment
-                  ? "bg-[#fdddcb] border-[#f98d83] text-[#f98d83] before:content-[''] before:right-0 before:bottom-0 before:w-4 before:h-4"
+                  ? "bg-[#fdddcb] border-[#f98d83] text-[#f98d83] pop-payment-active-decoration"
                   : "bg-white border-[#D9D9D9]";
 
               return (
@@ -85,35 +85,6 @@ const PopPayment = () => {
                   onClick={() => setCurPayment(pay.id)}
                 >
                   {pay.name}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className="bg-white py-2">
-          <div className="text-base border-l-4 border-amber-400 mx-4 px-2 tracking-wider">
-            請選擇充值金額
-          </div>
-          <div className="grid grid-cols-3 min-h-[5vh] my-4 mx-2">
-            {payAmountArr.map((pay, i) => {
-              return (
-                <div
-                  className={`cursor-pointer text-center text-sm text-[#f98d83] tracking-wide my-1 mx-2 py-2 px-4 border-[1px] border-solid border-[#f98d83] rounded-xl`}
-                  onClick={() => {
-                    console.log(
-                      "現在的廠商：",
-                      curSection,
-                      "現在的通道：",
-                      curPayment,
-                      "金額：",
-                      pay.amount
-                    );
-                  }}
-                >
-                  <div className="font-medium">{pay.amount}元</div>
-                  <div className="text-[.6rem] whitespace-nowrap">
-                    {pay.title}
-                  </div>
                 </div>
               );
             })}

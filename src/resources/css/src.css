@@ -38,6 +38,13 @@ input:focus {
   @apply fixed left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] w-4/5 max-w-[500px] max-h-[70vh] z-50;
 }
 
+/* translate-x/y-[1px] 是bordor的寬度 */
+.pop-payment-active-decoration::before {
+  @apply absolute bg-[#f98d83] bottom-0 right-0 translate-x-[1px] translate-y-[1px] w-4 h-4 block rounded;
+  clip-path: polygon(100% 25%, 0% 100%, 100% 100%);
+  content: "";
+}
+
 /* 聊天室 */
 .chat-text {
   @apply p-[10px] text-white text-sm bg-[#f7ccc8];

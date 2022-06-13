@@ -47,7 +47,11 @@ input:focus {
 
 /* 聊天室 */
 .chat-text {
-  @apply p-[10px] text-white text-sm bg-[#f7ccc8];
+  @apply p-[10px] text-white text-sm font-light bg-red-200;
+}
+
+.chat-text-server {
+  @apply p-[10px] text-white text-sm font-light bg-slate-300;
 }
 
 /* Search Page */

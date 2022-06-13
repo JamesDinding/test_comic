@@ -648,6 +648,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.5rem;
 }
 
+.mt-\[75px\] {
+  margin-top: 75px;
+}
+
 .ml-10 {
   margin-left: 2.5rem;
 }
@@ -666,14 +670,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-4 {
   margin-left: 1rem;
-}
-
-.mt-\[80px\] {
-  margin-top: 80px;
-}
-
-.mt-\[75px\] {
-  margin-top: 75px;
 }
 
 .block {
@@ -768,10 +764,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 50px;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .h-auto {
   height: auto;
 }
@@ -782,18 +774,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[40px\] {
   height: 40px;
-}
-
-.h-\[70px\] {
-  height: 70px;
-}
-
-.max-h-\[\] {
-  max-height: ;
-}
-
-.max-h-\[80\%\] {
-  max-height: 80%;
 }
 
 .max-h-screen {
@@ -957,10 +937,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .select-none {
   user-select: none;
-}
-
-.scroll-mb-5 {
-  scroll-margin-bottom: 1.25rem;
 }
 
 .list-none {
@@ -1288,6 +1264,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#fdddcb\] {
   --tw-bg-opacity: 1;
   background-color: rgb(253 221 203 / var(--tw-bg-opacity));
+}
+
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#d8d8d8\] {
@@ -1814,10 +1795,22 @@ input:focus {
 
 .chat-text {
   --tw-bg-opacity: 1;
-  background-color: rgb(247 204 200 / var(--tw-bg-opacity));
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
   padding: 10px;
   font-size: 0.875rem;
   line-height: 1.25rem;
+  font-weight: 300;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.chat-text-server {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+  padding: 10px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 300;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }

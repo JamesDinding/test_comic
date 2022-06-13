@@ -76,7 +76,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
   };
 
   return (
-    <div className="flex items-center pr-8 py-1 border-t-2 bg-[#ff978d]">
+    <div className="flex items-center pr-8 py-1 border-t-2 bg-red-300">
       <div className="px-4 w-[7.5%]">
         <img
           onClick={triggerUploadImg}

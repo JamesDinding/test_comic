@@ -131,7 +131,7 @@ const Swiper: FunctionalComponent = () => {
     if (next) next.style.transform = "";
     if (prev) prev.style.transform = "";
 
-    if (touchOffset < 0) nextSlide();
+    touchOffset < 0 && nextSlide();
     if (touchOffset > 0) prevSlide();
 
     setIsTouching(false);

@@ -13,11 +13,11 @@ const Login = () => {
       <div className="mb-6">
         <InputField
           text="請輸入手機號碼"
-          icon=""
+          icon="acc"
           type="number"
           ref={phoneRef}
         />
-        <InputField text="請輸入密碼" icon="" ref={passwordRef} />
+        <InputField text="請輸入密碼" icon="pw" ref={passwordRef} />
         <div className="font-extralight block h-[2.4rem] rounded-[2.4rem] text-white text-center leading-[2.4rem] bg-[#ff978d]">
           登錄
         </div>

@@ -14,12 +14,12 @@ const Register = () => {
       <div className="mb-6">
         <InputField
           text="請輸入手機號碼"
-          icon=""
+          icon="acc"
           type="number"
           ref={phoneRef}
         />
-        <InputField text="請輸入密碼" icon="" ref={passwordRef} />
-        <InputField text="請再次輸入密碼" icon="" ref={checkedPasswordRef} />
+        <InputField text="請輸入密碼" icon="pw" ref={passwordRef} />
+        <InputField text="請再次輸入密碼" icon="pw" ref={checkedPasswordRef} />
         <div className="font-extralight block h-[2.4rem] rounded-[2.4rem] text-white text-center leading-[2.4rem] bg-[#ff978d]">
           立即註冊，心上戶即贈送 150 金幣
         </div>

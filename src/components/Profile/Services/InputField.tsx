@@ -1,5 +1,7 @@
 import { FunctionalComponent, h } from "preact";
 import { MutableRef } from "preact/hooks";
+import IconPhone from "../../../resources/img/profile-phone.svg";
+import IconPassword from "../../../resources/img/sign-password.svg";
 
 interface InputFieldProps {
   text: string;
@@ -25,7 +27,10 @@ const InputField: FunctionalComponent<InputFieldProps> = ({
         className="sign-form-input rounded-[3rem] h-[45px] indent-[50px] placeholder:font-extralight"
       />
       <span className="absolute top-1/2 translate-y-[-50%] h-auto left-[12px]">
-        <div className="w-6">icon</div>
+        <div className="w-6">
+          {icon === "acc" && <IconPhone class="h-6" />}
+          {icon === "pw" && <IconPassword class="h-6" />}
+        </div>
       </span>
     </div>
   );

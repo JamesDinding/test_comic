@@ -3,6 +3,9 @@ import { useState } from "preact/compat";
 import { createPortal } from "preact/compat";
 import BackDrop from "../../../BackDrop";
 import PopPayment from "./PopPayment";
+import IconCoins from "../../../../resources/img/icon-coins.svg";
+import IconVip from "../../../../resources/img/icon-vip.svg";
+import IconDiamond from "../../../../resources/img/charge-diamond.svg";
 
 const salesList = [
   { title: `50元`, price: `5000+3000`, bonus: "多送30元", explain: "金幣" },
@@ -57,7 +60,15 @@ const Charge = () => {
         )}
       <div className="flex flex-col justify-center items-center w-full bg-white rounded-2xl mt-4 px-4">
         <div className="flex flex-col items-center pt-4 mb-2">
-          <span>i 充值金幣 i</span>
+          <div className="flex items-center">
+            <div>
+              <IconCoins class="h-4 pr-1" />
+            </div>
+            充值金幣
+            <div>
+              <IconCoins class="h-4 pl-1" />
+            </div>
+          </div>
           <span className="text-xs flex text-[#a8a8a8]">
             歡迎使用
             <img className="w-[20px]" src="/img/payment/pay1.png" alt="" />
@@ -75,11 +86,18 @@ const Charge = () => {
                 key={index}
               >
                 {sale.recommend && <div className="charge-recommend">推薦</div>}
+                <div className="absolute bottom-1 right-2 opacity-50">
+                  {sale.title.startsWith("VIP") ? (
+                    <IconVip class="h-5" />
+                  ) : (
+                    <IconDiamond class="h-5" />
+                  )}
+                </div>
                 <div>
                   {sale.title}
                   {sale.hot && <span className="charge-hot">熱銷</span>}
                 </div>
-                <div>
+                <div className="text-[#ff230e]">
                   {sale.price}
                   <span className="text-gray-500 text-sm">{sale.explain}</span>
                 </div>

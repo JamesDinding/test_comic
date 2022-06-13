@@ -24,6 +24,9 @@ import CustomerPage from "./Profile/Customer";
 import BookPurchasePage from "./Bookmark/BookPurchase";
 import SearchPage from "./Search";
 
+// DEBUG, make sure that this import is the first import in your whole app
+import "preact/debug";
+
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
 

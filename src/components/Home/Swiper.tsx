@@ -55,30 +55,6 @@ const Swiper: FunctionalComponent = () => {
     "translate-x-[0%] ",
   ]);
 
-  console.log(`
-                    ,d"=≥,.,qOp,
-                 ,7'  ''²$(  )
-                ,7'      '?q$7'
-             ..,$$,.
-   ,.  .,,--***²""²***--,,.  .,
- ²   ,p²''              ''²q,   ²
-:  ,7'                      '7,  :     輪播圖下面的點點是對的，圖片並沒有正確的輪播，用了reddit的圖案來警示！
- ' $      ,db,      ,db,      $ '      當前的${curSlide} (count from 0)
-  '$      ²$$²      ²$$²      $'
-  '$                          $'
-   '$.     .,        ,.     .$'
-    'b,     '²«»«»«»²'     ,d'
-     '²?bn,,          ,,nd?²'
-       ,7$ ''²²²²²²²²'' $7,
-     ,² ²$              $² ²,
-     $  :$              $:  $
-     $   $              $   $
-     'b  q:            :p  d'
-      '²«?$.          .$?»²'
-         'b            d'
-       ,²²'?,.      .,?'²²,
-  `);
-
   useEffect(() => {
     (async () => {
       let res = await send({
@@ -109,13 +85,10 @@ const Swiper: FunctionalComponent = () => {
 
   // 輪播圖
   useEffect(() => {
-    console.log("useEffect:", curSlide);
     if (isTouching) return;
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
-    // 因為會先render再執行useEffect裡面的東西，所以我的圖片會有閃爍(估計是因此導致curSlide = 1 ，但顯示的 0的，所以touch 滑動時會閃一下)
-    console.log("timer:", curSlide);
-    gotoSlide(curSlide);
+    // gotoSlide(curSlide);
   });
 
   const touchStartHandler = (e: TouchEvent) => {
@@ -158,35 +131,33 @@ const Swiper: FunctionalComponent = () => {
     if (next) next.style.transform = "";
     if (prev) prev.style.transform = "";
 
-    if (touchOffset < 0) {
-      gotoSlide(curSlide + 1 === swiperLen ? 0 : curSlide + 1);
-      nextSlide();
-    }
-
-    if (touchOffset > 0) {
-      gotoSlide(curSlide - 1 === -1 ? swiperLen - 1 : curSlide - 1, true);
-      prevSlide();
-    }
+    if (touchOffset < 0) nextSlide();
+    if (touchOffset > 0) prevSlide();
 
     setIsTouching(false);
   };
 
   function nextSlide() {
-    curSlide === swiperLen - 1
-      ? setCurSlide(0)
-      : setCurSlide((prev) => prev + 1);
+    const isEnd = curSlide === swiperLen - 1;
+    gotoSlide(isEnd ? 0 : curSlide + 1);
+    isEnd ? setCurSlide(0) : setCurSlide((prev) => prev + 1);
   }
 
   function prevSlide() {
-    curSlide === 0
-      ? setCurSlide(swiperLen - 1)
-      : setCurSlide((prev) => prev - 1);
+    const isFirst = curSlide - 1 === -1;
+    if (isFirst) {
+      gotoSlide(swiperLen - 1, true);
+      setCurSlide(swiperLen - 1);
+    } else {
+      gotoSlide(curSlide - 1, true);
+      setCurSlide((prev) => prev - 1);
+    }
   }
 
-  function gotoSlide(target: number, prev?: boolean) {
+  function gotoSlide(target: number, isBackward?: boolean) {
     let tempList = transList;
     // 往前要給duration的元件是不同的，所以寫了一個if
-    if (prev) {
+    if (isBackward) {
       transList.forEach((_, i) => {
         tempList[i] = positionList[2];
         if (i === target + 1)
@@ -210,7 +181,7 @@ const Swiper: FunctionalComponent = () => {
     });
     if (target + 1 === swiperLen) tempList[0] = positionList[2] + "next";
     if (target - 1 === -1) tempList[swiperLen - 1] = positionList[0] + "prev";
-    setTransList((prev) => tempList);
+    setTransList(tempList);
   }
 
   return (

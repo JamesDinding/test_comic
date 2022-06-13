@@ -65,7 +65,7 @@ const CustomerPage: FunctionalComponent = () => {
         {/* {clientInput.length !== 0 && (
           <UserMessage bottomRef={bottomRef} lastOne={true} isTyping={true} />
         )} */}
-        <div id="bottom" className="mt-[75px]" ref={bottomRef}></div>
+        <div id="bottom" className="min-h-[64px]" ref={bottomRef}></div>
       </div>
 
       <UserInput

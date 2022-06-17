@@ -21,6 +21,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({ title }) => {
       </div>
       <div className="w-[50px]">
         <Link href="/profile">
+          {/* 為了測試avif decoder 改成profile ，請於測試完畢後改回 '/' 指向首頁 */}
           <IconHome class="h-8" />
         </Link>
       </div>

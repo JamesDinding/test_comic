@@ -58,13 +58,13 @@ async function av1DecodeAvif(avifArr) {
 
 // input: Blob
 // output: base64
-export default function avifDecoder(imgBlob, decoderType = "", dCtx = null) {
+
+// wasm need dav1d context
+let dContext = null;
+export default function avifDecoder(imgBlob, decoderType = "") {
   return new Promise(async (resolve, reject) => {
     const imgUrl = await blob2Base64(imgBlob);
     const avifImgUrl = imgUrl.replace("application/octet-stream", "image/avif");
-
-    // 先檢查是否可以直接解碼
-    // let decoderType = await checkDecoderSupported(avifImgUrl);
 
     if (decoderType === "native") {
       return resolve(avifImgUrl);
@@ -72,6 +72,7 @@ export default function avifDecoder(imgBlob, decoderType = "", dCtx = null) {
 
     let avifArr = null;
 
+    //  chrome version smaller 76 do not support API
     if (!Blob.arrayBuffer) {
       avifArr = await blob2ArrayBuffer(imgBlob);
     } else {
@@ -79,13 +80,14 @@ export default function avifDecoder(imgBlob, decoderType = "", dCtx = null) {
     }
 
     if (decoderType === "wasm") {
-      let dContext = await dav1d.create({ wasmURL: WASM_URL });
+      if (!dContext) dContext = await dav1d.create({ wasmURL: WASM_URL });
 
-      // polyfillDecodeAvif(client, id, avifArr) return blob
+      // arraybuffer 先用dav1d轉成 blob 再轉 base64
       return resolve(await blob2Base64(dav1dDecodeAvif(avifArr, dContext)));
     }
 
     if (decoderType === "av1") {
+      // arraybuffer 先用av1轉成 blob 再轉 base64
       return resolve(await blob2Base64(await av1DecodeAvif(avifArr)));
     }
 

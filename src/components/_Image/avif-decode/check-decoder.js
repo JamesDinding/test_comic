@@ -1,6 +1,7 @@
 import { hasAv1Support } from "./avif-decoder.js";
 import { hasWasmSupport } from "./check-wasm.js";
 
+// 檢查該瀏覽器是用的解碼方式
 export const checkDecoderSupported = (dataUri) => {
   return new Promise((resolve, reject) => {
     const image = new Image();
@@ -17,7 +18,7 @@ export const checkDecoderSupported = (dataUri) => {
       hasWasmSupport() && resolve("wasm");
 
       // no decoder could be used
-      reject("no supported decoder");
+      reject("non");
     };
 
     image.src = dataUri;

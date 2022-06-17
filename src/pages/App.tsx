@@ -24,6 +24,9 @@ import CustomerPage from "./Profile/Customer";
 import BookPurchasePage from "./Bookmark/BookPurchase";
 import SearchPage from "./Search";
 
+/* test */
+import TestPage from "./Test";
+
 // DEBUG, make sure that this import is the first import in your whole app
 import "preact/debug";
 
@@ -57,6 +60,9 @@ const App: FunctionalComponent = () => {
             <CustomerPage path="/service" />
             <BookPurchasePage path="/book-history" />
             <SearchPage path="/search" />
+
+            {/* test page */}
+            <TestPage path="/test" />
             <DefaultRouteHandler default />
           </Router>
 

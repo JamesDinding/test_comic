@@ -20,7 +20,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({ title }) => {
         <div className="text-center text-[#4c4c4c] text-[.9rem]">{title}</div>
       </div>
       <div className="w-[50px]">
-        <Link href="/">
+        <Link href="/profile">
           <IconHome class="h-8" />
         </Link>
       </div>

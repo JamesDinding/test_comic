@@ -14,28 +14,38 @@ interface ImageProps {
 class ImageFactory {
   static isRegisted = false;
   static dCtx = null;
-  static regist() {}
-  static unregist() {}
+  static regist() {
+    // check avif decode
+    ImageFactory.isRegisted = true;
+  }
+
+  constructor() {
+    ImageFactory.regist();
+  }
 
   create(imageBlob: Blob, type: string) {
     !ImageFactory.isRegisted && ImageFactory.regist();
 
     if (type === "avif") {
-      return;
+      const res = new avifImage(imageBlob);
+
+      return res;
     }
   }
 }
 
 class avifImage {
-  imgBase64;
+  imgBlob;
   constructor(imgBlob: Blob) {
-    this.imgBase64 = this.decode(imgBlob);
+    this.imgBlob = imgBlob;
   }
 
-  decode(imageBlob: Blob) {
-    return imageBlob;
+  async decode() {
+    return await avifDecoder(this.imgBlob);
   }
 }
+
+const imgFactory = new ImageFactory();
 
 const FastImage: FunctionalComponent<ImageProps> = ({
   alt,
@@ -52,11 +62,13 @@ const FastImage: FunctionalComponent<ImageProps> = ({
     (async () => {
       /*******test start*******/
       fetch("/assets/img/Test-avif/Mexico.avif").then(async (res) => {
-        console.log(res);
         const blob = await res.blob();
-        const base64IMG = await avifDecoder(blob);
+        const temp = imgFactory.create(blob, "avif");
+        const imgBase = await temp?.decode();
 
-        setImageBase64(base64IMG);
+        setImageBase64(imgBase);
+
+        // const base64IMG = await avifDecoder(blob);
       });
       /*******test end*******/
 
@@ -70,7 +82,6 @@ const FastImage: FunctionalComponent<ImageProps> = ({
       });
 
       if (res.imageblob !== undefined) {
-        console.log(res.imageblob);
         const avifBase64Img = await avifDecoder(res.imageblob);
         setImageBase64(avifBase64Img);
         setParentPending(false);

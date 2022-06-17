@@ -6,7 +6,7 @@ import dav1d from "./dav1d.js";
 import { rgba2bmp } from "./bmp.js";
 import { avif2obu, avif2mov } from "./mov.js";
 
-const WASM_URL = "./dav1d.wasm";
+const WASM_URL = "/assets/dav1d.wasm";
 
 export function blob2Base64(blob) {
   return new Promise((resolve, _) => {

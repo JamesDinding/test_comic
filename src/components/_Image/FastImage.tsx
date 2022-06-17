@@ -4,48 +4,13 @@ import { useObserver } from "../../context/observer";
 import { useWorker } from "../../context/worker";
 
 import avifDecoder from "./avif-decode/index";
+import { imgFactory } from "./ImageFactory";
 
 interface ImageProps {
   alt: string;
   path: string;
   setParentPending: StateUpdater<boolean>;
 }
-
-class ImageFactory {
-  static isRegisted = false;
-  static dCtx = null;
-  static regist() {
-    // check avif decode
-    ImageFactory.isRegisted = true;
-  }
-
-  constructor() {
-    ImageFactory.regist();
-  }
-
-  create(imageBlob: Blob, type: string) {
-    !ImageFactory.isRegisted && ImageFactory.regist();
-
-    if (type === "avif") {
-      const res = new avifImage(imageBlob);
-
-      return res;
-    }
-  }
-}
-
-class avifImage {
-  imgBlob;
-  constructor(imgBlob: Blob) {
-    this.imgBlob = imgBlob;
-  }
-
-  async decode() {
-    return await avifDecoder(this.imgBlob);
-  }
-}
-
-const imgFactory = new ImageFactory();
 
 const FastImage: FunctionalComponent<ImageProps> = ({
   alt,

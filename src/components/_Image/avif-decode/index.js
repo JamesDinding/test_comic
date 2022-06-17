@@ -58,15 +58,15 @@ async function av1DecodeAvif(avifArr) {
 
 // input: Blob
 // output: base64
-export default function avifDecoder(imgBlob) {
+export default function avifDecoder(imgBlob, decoderType = "", dCtx = null) {
   return new Promise(async (resolve, reject) => {
     const imgUrl = await blob2Base64(imgBlob);
     const avifImgUrl = imgUrl.replace("application/octet-stream", "image/avif");
 
     // 先檢查是否可以直接解碼
-    let decoderType = await checkDecoderSupported(avifImgUrl);
+    // let decoderType = await checkDecoderSupported(avifImgUrl);
 
-    if (decoderType == "native") {
+    if (decoderType === "native") {
       return resolve(avifImgUrl);
     }
 
@@ -79,16 +79,16 @@ export default function avifDecoder(imgBlob) {
     }
 
     if (decoderType === "wasm") {
-      let dCtx = await dav1d.create({ wasmURL: WASM_URL });
+      let dContext = await dav1d.create({ wasmURL: WASM_URL });
 
       // polyfillDecodeAvif(client, id, avifArr) return blob
-      return resolve(await blob2Base64(dav1dDecodeAvif(avifArr, dCtx)));
+      return resolve(await blob2Base64(dav1dDecodeAvif(avifArr, dContext)));
     }
 
     if (decoderType === "av1") {
       return resolve(await blob2Base64(await av1DecodeAvif(avifArr)));
     }
 
-    return reject("no image found.");
+    return reject("non-avif");
   });
 }

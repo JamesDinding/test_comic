@@ -2,6 +2,7 @@ import { FunctionalComponent, h } from "preact";
 import { MutableRef, StateUpdater, useState } from "preact/hooks";
 
 interface UserInputProps {
+  ws: null | WebSocket;
   clientInput: string;
   onSetClientInput: StateUpdater<string>;
   onSetMsg: StateUpdater<
@@ -16,6 +17,7 @@ interface UserInputProps {
 }
 
 const UserInput: FunctionalComponent<UserInputProps> = ({
+  ws,
   clientInput,
   onSetClientInput,
   onSetMsg,
@@ -30,6 +32,12 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
   const sendMsgHandler = (e: KeyboardEvent) => {
     const target = e.target as HTMLInputElement;
     if (e.keyCode !== 13 || !target.value) return;
+
+    // send msg to backend
+    ws?.send(
+      JSON.stringify({ identity: "client", type: "msg", msg: target.value })
+    );
+
     onSetMsg((prev) => {
       const temp = [...prev];
       temp.push({ identity: "client", type: "msg", msg: target.value });

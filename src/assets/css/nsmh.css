@@ -485,10 +485,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
-.static {
-  position: static;
-}
-
 .absolute {
   position: absolute;
 }
@@ -1838,6 +1834,55 @@ input:focus {
   font-weight: 300;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+/* 聊天室 輸入框 輸入中 */
+
+.userTypingDot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 0.4rem 0;
+  border-radius: 50%;
+  margin-right: 5px;
+  background: white;
+  animation: wave 1.3s linear infinite;
+}
+
+.userTypingDot:nth-child(2) {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 0.4rem 0;
+  border-radius: 50%;
+  margin-right: 5px;
+  background: white;
+  animation: wave 1.3s linear infinite;
+  animation-delay: -0.9s;
+}
+
+.userTypingDot:nth-child(3) {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 0.4rem 0;
+  border-radius: 50%;
+  margin-right: 5px;
+  background: white;
+  animation: wave 1.3s linear infinite;
+  animation-delay: -0.6s;
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: initial;
+  }
+
+  30% {
+    transform: translateY(-3px);
+  }
 }
 
 /* Search Page */

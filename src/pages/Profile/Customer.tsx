@@ -28,6 +28,8 @@ const msgArr = [
   { identity: "server", type: "msg", msg: "final test msg from server side." },
 ];
 
+let ws: null | WebSocket = null;
+
 // interface CustomerPageProps {
 //   userName:string
 // }
@@ -36,12 +38,47 @@ const CustomerPage: FunctionalComponent = () => {
   const [msgList, setMsgList] = useState(msgArr);
   const [clientInput, setClientInput] = useState("");
 
+  const [isTyping, setIsTyping] = useState(false);
+
   const bottomRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
     console.log("re-render");
     bottomRef.current?.scrollIntoView();
   }, []);
+
+  /* websocket testing start */
+  useEffect(() => {
+    ws = new WebSocket("ws://localhost:3000");
+    ws.onopen = () => {
+      console.log("open connection");
+    };
+
+    ws.onclose = () => {
+      console.log("close connection");
+    };
+
+    ws.onmessage = (e) => {
+      const res = JSON.parse(e.data);
+
+      res.type === "startTyping" && setIsTyping(true);
+
+      res.type === "endTyping" && setIsTyping(false);
+
+      if (res.type === "msg") {
+        setIsTyping(false);
+
+        setMsgList((prev) => {
+          const temp = [...prev];
+          temp.push(res);
+          return temp;
+        });
+      }
+
+      bottomRef.current?.scrollIntoView();
+    };
+  }, []);
+  /* sebsocket testing end */
 
   const triggerAudioHandler = (messageType: string) => {
     // const audio: HTMLAudioElement = document.getElementById("audio-player")!;
@@ -62,13 +99,12 @@ const CustomerPage: FunctionalComponent = () => {
           if (identity === "client")
             return <UserMessage msg={msg} type={type} key={i} />;
         })}
-        {/* {clientInput.length !== 0 && (
-          <UserMessage bottomRef={bottomRef} lastOne={true} isTyping={true} />
-        )} */}
+        {isTyping && <ServerMessage msg={"輸入中..."} type={"startTyping"} />}
         <div id="bottom" className="min-h-[64px]" ref={bottomRef}></div>
       </div>
 
       <UserInput
+        ws={ws}
         clientInput={clientInput}
         onSetClientInput={setClientInput}
         onSetMsg={setMsgList}

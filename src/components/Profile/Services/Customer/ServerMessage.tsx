@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from "preact";
+import { FunctionalComponent, h, Fragment } from "preact";
 
 interface ServerMessageProps {
   msg: string;
@@ -10,9 +10,16 @@ const ServerMessage: FunctionalComponent<ServerMessageProps> = ({
   type = "msg",
 }) => {
   return (
-    <div className="self-start my-2 flex items-start">
-      <div className="shrink border-solid tracking-wider border-2 rounded-lg max-w-[50%] inline-block chat-text-server break-all">
+    <div className="max-w-[50%] self-start my-2 flex items-start">
+      <div className="shrink border-solid tracking-wider rounded-lg inline-block chat-text-server break-all">
         {type === "msg" && msg}
+        {type === "startTyping" && (
+          <>
+            <span className="userTypingDot"></span>
+            <span className="userTypingDot"></span>
+            <span className="userTypingDot"></span>
+          </>
+        )}
       </div>
     </div>
   );

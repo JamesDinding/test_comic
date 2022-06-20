@@ -1,5 +1,7 @@
 import { FunctionalComponent, h } from "preact";
 import { MutableRef, StateUpdater, useState } from "preact/hooks";
+import IconImage from "../../../../resources/img/chat-image.svg";
+import IconSend from "../../../../resources/img/chat-send.svg";
 
 interface UserInputProps {
   ws: null | WebSocket;
@@ -84,14 +86,11 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
   };
 
   return (
-    <div className="flex items-center pr-8 py-1 border-t-2 bg-red-300 min-h-[64px]">
-      <div className="px-4 w-[7.5%]">
-        <img
-          onClick={triggerUploadImg}
-          src="/img/upload.png"
-          className="w-full cursor-pointer"
-          alt="uplaod"
-        />
+    <div className="flex items-center py-1 border-t-2 bg-red-300 min-h-[64px]">
+      <div className="px-4 h-6">
+        <div className="bg-white h-6" onClick={triggerUploadImg}>
+          <IconImage class="h-6" />
+        </div>
         <input
           onChange={uploadImgHandler}
           id="user-upload"
@@ -103,14 +102,14 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
 
       <input
         type="text"
-        className="outline-none rounded-xl indent-1 py-2.5 px-4 my-2 grow text-base ml-4"
+        className="outline-none rounded-xl indent-1 py-2.5 px-4 my-2 mr-2 grow text-base"
         placeholder="請輸入內容"
         value={clientInput}
         onChange={typeMsgHandler}
         onKeyDown={sendMsgHandler}
       />
-      <button className="pl-4">
-        <img src="/img/right-arrow.png" className="w-6 h-6" alt="enter" />
+      <button className="pr-2">
+        <IconSend class="h-6" />
       </button>
     </div>
   );

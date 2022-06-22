@@ -11,21 +11,26 @@ const msgArr = [
   {
     identity: "server",
     type: "msg",
-    msg: "這遍都是測試用的文字，用來測試對話框的效果與感覺。",
+    content: "這遍都是測試用的文字，用來測試對話框的效果與感覺。",
   },
-  { identity: "server", type: "msg", msg: "test message herer!" },
-  { identity: "client", type: "msg", msg: "client msg" },
+  { identity: "server", type: "msg", content: "test message herer!" },
+  { identity: "client", type: "msg", content: "client msg" },
   {
     identity: "server",
     type: "msg",
-    msg: "test message herer!test message herer!test message herer!test message herer!test message herer!",
+    content:
+      "test message herer!test message herer!test message herer!test message herer!test message herer!",
   },
   {
     identity: "client",
     type: "msg",
-    msg: "測試用的文字",
+    content: "測試用的文字",
   },
-  { identity: "server", type: "msg", msg: "final test msg from server side." },
+  {
+    identity: "server",
+    type: "msg",
+    content: "final test msg from server side.",
+  },
 ];
 
 let ws: null | WebSocket = null;
@@ -52,6 +57,15 @@ const CustomerPage: FunctionalComponent = () => {
     ws = new WebSocket("ws://localhost:3000");
     ws.onopen = () => {
       console.log("open connection");
+      // 建立連線後，先向server發送資料來匹配客服人員
+      ws?.send(
+        JSON.stringify({
+          type: "initial",
+          identity: "client",
+          userId: 40001,
+          content: "",
+        })
+      );
     };
 
     ws.onclose = () => {
@@ -61,9 +75,9 @@ const CustomerPage: FunctionalComponent = () => {
     ws.onmessage = (e) => {
       const res = JSON.parse(e.data);
 
-      res.type === "startTyping" && setIsTyping(true);
-
-      res.type === "endTyping" && setIsTyping(false);
+      if (res.type === "isTyping") {
+        res.content ? setIsTyping(true) : setIsTyping(false);
+      }
 
       if (res.type === "msg") {
         setIsTyping(false);
@@ -93,11 +107,11 @@ const CustomerPage: FunctionalComponent = () => {
       <CharTitleBar userName={"test"} />
       <audio className="hidden" preload="auto" id="audio-player"></audio>
       <div className="grow flex flex-col overflow-y-auto no-scrollbar px-4">
-        {msgList.map(({ identity, type, msg }, i) => {
+        {msgList.map(({ identity, type, content }, i) => {
           if (identity === "server")
-            return <ServerMessage msg={msg} type={type} key={i} />;
+            return <ServerMessage msg={content} type={type} key={i} />;
           if (identity === "client")
-            return <UserMessage msg={msg} type={type} key={i} />;
+            return <UserMessage msg={content} type={type} key={i} />;
         })}
         {isTyping && <ServerMessage msg={"輸入中..."} type={"startTyping"} />}
         <div id="bottom" className="min-h-[64px]" ref={bottomRef}></div>

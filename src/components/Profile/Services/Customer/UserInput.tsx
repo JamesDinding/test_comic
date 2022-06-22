@@ -11,7 +11,7 @@ interface UserInputProps {
     Array<{
       identity: string;
       type: string;
-      msg: string;
+      content: string;
     }>
   >;
   onVoice: (messageType: string) => void;
@@ -35,14 +35,19 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
     const target = e.target as HTMLInputElement;
     if (e.keyCode !== 13 || !target.value) return;
 
-    // send msg to backend
+    // send msg to backend 發送訊息時，要包含自己的userId，這樣server回傳知道你誰
     ws?.send(
-      JSON.stringify({ identity: "client", type: "msg", msg: target.value })
+      JSON.stringify({
+        type: "msg",
+        identity: "client",
+        userId: 40001,
+        content: target.value,
+      })
     );
 
     onSetMsg((prev) => {
       const temp = [...prev];
-      temp.push({ identity: "client", type: "msg", msg: target.value });
+      temp.push({ identity: "client", type: "msg", content: target.value });
       return temp;
     });
 
@@ -73,7 +78,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
       const result = e.target?.result as string;
       onSetMsg((prev) => {
         const temp = [...prev];
-        temp.push({ identity: "client", type: "image", msg: result });
+        temp.push({ identity: "client", type: "image", content: result });
         return temp;
       });
 

@@ -19,6 +19,7 @@ const CharTitleBar: FunctionalComponent<CharTitleBarProps> = ({
       <button
         className="text-xl"
         onClick={() => {
+          console.log("應該是因為Link會先轉過去下一個頁面，所以這邊就不回觸發");
           ws?.send(
             JSON.stringify({
               type: "disconnect",
@@ -27,6 +28,7 @@ const CharTitleBar: FunctionalComponent<CharTitleBarProps> = ({
               content: "",
             })
           );
+
           ws?.close();
         }}
       >

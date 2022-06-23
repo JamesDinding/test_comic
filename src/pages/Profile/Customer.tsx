@@ -69,6 +69,8 @@ const CustomerPage: FunctionalComponent = () => {
     };
 
     ws.onclose = () => {
+      // disconnected should inform server, then server could delete route from table.
+
       console.log("close connection");
     };
 
@@ -104,7 +106,7 @@ const CustomerPage: FunctionalComponent = () => {
 
   return (
     <div className="bg-white w-full flex flex-col justify-between grow max-h-screen">
-      <CharTitleBar userName={"test"} />
+      <CharTitleBar userName={"test"} ws={ws} />
       <audio className="hidden" preload="auto" id="audio-player"></audio>
       <div className="grow flex flex-col overflow-y-auto no-scrollbar px-4">
         {msgList.map(({ identity, type, content }, i) => {

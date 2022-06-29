@@ -6,41 +6,17 @@ import ServerMessage from "../../components/Profile/Services/Customer/ServerMess
 import UserMessage from "../../components/Profile/Services/Customer/UserMessage";
 import UserInput from "../../components/Profile/Services/Customer/UserInput";
 
-// test arr
-const msgArr = [
-  {
-    identity: "server",
-    type: "msg",
-    content: "這遍都是測試用的文字，用來測試對話框的效果與感覺。",
-  },
-  { identity: "server", type: "msg", content: "test message herer!" },
-  { identity: "client", type: "msg", content: "client msg" },
-  {
-    identity: "server",
-    type: "msg",
-    content:
-      "test message herer!test message herer!test message herer!test message herer!test message herer!",
-  },
-  {
-    identity: "client",
-    type: "msg",
-    content: "測試用的文字",
-  },
-  {
-    identity: "server",
-    type: "msg",
-    content: "final test msg from server side.",
-  },
-];
+type MessageResponse = {
+  type: string;
+  content: string;
+  identity: string;
+};
 
 let ws: null | WebSocket = null;
 
-// interface CustomerPageProps {
-//   userName:string
-// }
-
 const CustomerPage: FunctionalComponent = () => {
-  const [msgList, setMsgList] = useState(msgArr);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [msgList, setMsgList] = useState<Array<MessageResponse>>([]);
   const [clientInput, setClientInput] = useState("");
 
   const [isTyping, setIsTyping] = useState(false);
@@ -50,6 +26,23 @@ const CustomerPage: FunctionalComponent = () => {
   useEffect(() => {
     console.log("re-render");
     bottomRef.current?.scrollIntoView();
+  }, []);
+
+  // 讀取先前的聯天室內容
+  useEffect(() => {
+    if (!isInitialLoad) return;
+
+    setIsInitialLoad(false);
+    fetch("http://192.168.1.247:3000/chat/client/40001")
+      .then((res) => {
+        if (!res.ok) throw new Error("Fetch failed!");
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setMsgList(data.conversation);
+      })
+      .catch((err) => console.log(err.message || "Something wrong!"));
   }, []);
 
   /* websocket testing start */
@@ -66,6 +59,27 @@ const CustomerPage: FunctionalComponent = () => {
           content: "",
         })
       );
+      // initial 要順帶把使用者資料傳送過去
+      // 先寫死 使用者 測試傳送資料的api
+      fetch("http://192.168.1.247:3000/user/profile/40001", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: 40002,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("failed");
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err.message || "error happen");
+        });
     };
 
     ws.onclose = () => {
@@ -75,7 +89,7 @@ const CustomerPage: FunctionalComponent = () => {
     };
 
     ws.onmessage = (e) => {
-      const res = JSON.parse(e.data);
+      const res: MessageResponse = JSON.parse(e.data);
 
       if (res.type === "isTyping") {
         res.content ? setIsTyping(true) : setIsTyping(false);
@@ -94,7 +108,7 @@ const CustomerPage: FunctionalComponent = () => {
       bottomRef.current?.scrollIntoView();
     };
   }, []);
-  /* sebsocket testing end */
+  /* websocket testing end */
 
   const triggerAudioHandler = (messageType: string) => {
     // const audio: HTMLAudioElement = document.getElementById("audio-player")!;

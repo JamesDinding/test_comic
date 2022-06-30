@@ -46,6 +46,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
     );
 
     onSetMsg((prev) => {
+      console.log("userinput msgList", prev);
       const temp = [...prev];
       temp.push({ identity: "client", type: "msg", content: target.value });
       return temp;

@@ -24,7 +24,6 @@ const CustomerPage: FunctionalComponent = () => {
   const bottomRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
-    console.log("re-render");
     bottomRef.current?.scrollIntoView();
   }, []);
 
@@ -39,8 +38,8 @@ const CustomerPage: FunctionalComponent = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-        setMsgList(data.conversation);
+        console.log("conversation: ", data.conversation);
+        setMsgList(data.conversation || []);
       })
       .catch((err) => console.log(err.message || "Something wrong!"));
   }, []);
@@ -99,6 +98,7 @@ const CustomerPage: FunctionalComponent = () => {
         setIsTyping(false);
 
         setMsgList((prev) => {
+          console.log(prev);
           const temp = [...prev];
           temp.push(res);
           return temp;
@@ -117,6 +117,8 @@ const CustomerPage: FunctionalComponent = () => {
     // audio.volume = 0.1;
     // audio.play();
   };
+
+  console.log(msgList);
 
   return (
     <div className="bg-white w-full flex flex-col justify-between grow max-h-screen">

@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { Link } from "preact-router";
+import { route } from "preact-router";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 
 interface CharTitleBarProps {
@@ -19,7 +19,6 @@ const CharTitleBar: FunctionalComponent<CharTitleBarProps> = ({
       <button
         className="text-xl"
         onClick={() => {
-          console.log("應該是因為Link會先轉過去下一個頁面，所以這邊就不回觸發");
           ws?.send(
             JSON.stringify({
               type: "disconnect",
@@ -30,11 +29,13 @@ const CharTitleBar: FunctionalComponent<CharTitleBarProps> = ({
           );
 
           ws?.close();
+
+          route("/profile");
         }}
       >
-        <Link href="/profile">
+        <div>
           <IconCross class="h-8" />
-        </Link>
+        </div>
       </button>
     </div>
   );

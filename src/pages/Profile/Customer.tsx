@@ -38,7 +38,6 @@ const CustomerPage: FunctionalComponent = () => {
         return res.json();
       })
       .then((data) => {
-        console.log("conversation: ", data.conversation);
         setMsgList(data.conversation || []);
       })
       .catch((err) => console.log(err.message || "Something wrong!"));

@@ -65,7 +65,7 @@ const CustomerPage: FunctionalComponent = () => {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          userId: 40002,
+          userId: 40001,
         }),
       })
         .then((res) => {
@@ -116,8 +116,6 @@ const CustomerPage: FunctionalComponent = () => {
     // audio.volume = 0.1;
     // audio.play();
   };
-
-  console.log(msgList);
 
   return (
     <div className="bg-white w-full flex flex-col justify-between grow max-h-screen">

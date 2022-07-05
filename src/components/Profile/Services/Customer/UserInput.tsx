@@ -46,14 +46,32 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
     );
 
     onSetMsg((prev) => {
-      console.log("userinput msgList", prev);
       const temp = [...prev];
-      temp.push({ identity: "client", type: "msg", content: target.value });
+      temp.push({ type: "msg", identity: "client", content: target.value });
       return temp;
     });
 
     bottomRef.current.scrollIntoView({ behavior: "smooth" });
-    onVoice("friend-request-14878.mp3");
+    onSetClientInput("");
+  };
+
+  const clickSendMsgHandler = (e: MouseEvent) => {
+    ws?.send(
+      JSON.stringify({
+        type: "msg",
+        identity: "client",
+        userId: 40001,
+        content: clientInput,
+      })
+    );
+
+    onSetMsg((prev) => {
+      const temp = [...prev];
+      temp.push({ type: "msg", identity: "client", content: clientInput });
+      return temp;
+    });
+
+    bottomRef.current.scrollIntoView({ behavior: "smooth" });
     onSetClientInput("");
   };
 
@@ -77,15 +95,24 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
     const reader = new FileReader();
     reader.onload = (e) => {
       const result = e.target?.result as string;
+
+      ws?.send(
+        JSON.stringify({
+          type: "image",
+          identity: "client",
+          userId: 40001,
+          content: result,
+        })
+      );
+
       onSetMsg((prev) => {
         const temp = [...prev];
-        temp.push({ identity: "client", type: "image", content: result });
+        temp.push({ type: "image", identity: "client", content: result });
         return temp;
       });
 
       // 滾動功能未作用
       bottomRef.current.scrollIntoView();
-      onVoice("emotional-damage.mp3");
     };
 
     reader.readAsDataURL(file);
@@ -94,7 +121,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
   return (
     <div className="flex items-center py-1 border-t-2 bg-red-300 min-h-[64px]">
       <div className="px-4 h-6">
-        <div className="bg-white h-6" onClick={triggerUploadImg}>
+        <div className="bg-white h-6 cursor-pointer" onClick={triggerUploadImg}>
           <IconImage class="h-6" />
         </div>
         <input
@@ -114,7 +141,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
         onChange={typeMsgHandler}
         onKeyDown={sendMsgHandler}
       />
-      <button className="pr-2">
+      <button className="pr-2 cursor-pointer" onClick={clickSendMsgHandler}>
         <IconSend class="h-6" />
       </button>
     </div>

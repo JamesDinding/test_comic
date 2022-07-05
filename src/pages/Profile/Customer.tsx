@@ -6,6 +6,10 @@ import ServerMessage from "../../components/Profile/Services/Customer/ServerMess
 import UserMessage from "../../components/Profile/Services/Customer/UserMessage";
 import UserInput from "../../components/Profile/Services/Customer/UserInput";
 
+// 可以導入ID之類的？
+import { ID_GENERATED } from "../../_id_generate";
+import { API_ROUTE } from "../../const";
+
 type MessageResponse = {
   type: string;
   content: string;
@@ -32,7 +36,7 @@ const CustomerPage: FunctionalComponent = () => {
     if (!isInitialLoad) return;
 
     setIsInitialLoad(false);
-    fetch("http://192.168.1.247:3000/chat/client/40001")
+    fetch(`${API_ROUTE}/chat/client/40001`)
       .then((res) => {
         if (!res.ok) throw new Error("Fetch failed!");
         return res.json();
@@ -53,19 +57,19 @@ const CustomerPage: FunctionalComponent = () => {
         JSON.stringify({
           type: "initial",
           identity: "client",
-          userId: 40001,
+          userId: ID_GENERATED,
           content: "",
         })
       );
       // initial 要順帶把使用者資料傳送過去
       // 先寫死 使用者 測試傳送資料的api
-      fetch("http://192.168.1.247:3000/user/profile/40001", {
+      fetch(`${API_ROUTE}/user/profile/40001`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          userId: 40001,
+          userId: ID_GENERATED,
         }),
       })
         .then((res) => {

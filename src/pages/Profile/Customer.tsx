@@ -10,6 +10,8 @@ import UserInput from "../../components/Profile/Services/Customer/UserInput";
 import { ID_GENERATED } from "../../_id_generate";
 import { API_ROUTE } from "../../const";
 
+const ID_LOCAL_STORAGE = localStorage.getItem("room-id");
+
 type MessageResponse = {
   type: string;
   content: string;
@@ -28,7 +30,19 @@ const CustomerPage: FunctionalComponent = () => {
   const bottomRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
-    if (!msgList) return;
+    if (msgList.length === 0) {
+      setMsgList((prev) => {
+        const temp = [...prev];
+        temp.push({
+          type: "msg",
+          identity: "server",
+          content:
+            "很高兴为您服务，平均回覆时间约在5分钟内，还请您静候一会儿。",
+        });
+        return temp;
+      });
+      return;
+    }
     bottomRef.current?.scrollIntoView();
   }, [msgList]);
 

@@ -28,8 +28,9 @@ const CustomerPage: FunctionalComponent = () => {
   const bottomRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
+    if (!msgList) return;
     bottomRef.current?.scrollIntoView();
-  }, []);
+  }, [msgList]);
 
   // 讀取先前的聯天室內容
   useEffect(() => {
@@ -133,7 +134,7 @@ const CustomerPage: FunctionalComponent = () => {
             return <UserMessage msg={content} type={type} key={i} />;
         })}
         {isTyping && <ServerMessage msg={"輸入中..."} type={"startTyping"} />}
-        <div id="bottom" className="min-h-[64px]" ref={bottomRef}></div>
+        <div id="bottom" className="min-h-[44px]" ref={bottomRef}></div>
       </div>
 
       <UserInput

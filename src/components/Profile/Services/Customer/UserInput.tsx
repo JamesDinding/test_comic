@@ -6,6 +6,7 @@ import IconSend from "../../../../resources/img/chat-send.svg";
 interface UserInputProps {
   ws: null | WebSocket;
   clientInput: string;
+  userId: string | null;
   onSetClientInput: StateUpdater<string>;
   onSetMsg: StateUpdater<
     Array<{
@@ -25,6 +26,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
   onSetMsg,
   onVoice,
   bottomRef,
+  userId,
 }) => {
   const typeMsgHandler = (e: h.JSX.TargetedEvent<HTMLInputElement, Event>) => {
     const target = e.target as HTMLInputElement;
@@ -40,7 +42,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
       JSON.stringify({
         type: "msg",
         identity: "client",
-        userId: 40001,
+        userId: userId,
         content: target.value,
       })
     );
@@ -60,7 +62,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
       JSON.stringify({
         type: "msg",
         identity: "client",
-        userId: 40001,
+        userId: userId,
         content: clientInput,
       })
     );
@@ -100,7 +102,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
         JSON.stringify({
           type: "image",
           identity: "client",
-          userId: 40001,
+          userId: userId,
           content: result,
         })
       );

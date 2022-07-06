@@ -7,10 +7,17 @@ import UserMessage from "../../components/Profile/Services/Customer/UserMessage"
 import UserInput from "../../components/Profile/Services/Customer/UserInput";
 
 // 可以導入ID之類的？
-import { ID_GENERATED } from "../../_id_generate";
+// import { ID_GENERATED } from "../../_id_generate";
 import { API_ROUTE } from "../../const";
 
-const ID_LOCAL_STORAGE = localStorage.getItem("room-id");
+// 透過某個地方放
+localStorage.setItem("room-id", JSON.stringify({ id: "10104" }));
+
+// 這個component拿
+const retrieveObj = JSON.parse(localStorage.getItem("room-id")!);
+const ID_LOCAL_STORAGE = retrieveObj.id;
+
+console.log("ID_LOCAL_STORAGE: ", ID_LOCAL_STORAGE);
 
 type MessageResponse = {
   type: string;
@@ -51,7 +58,7 @@ const CustomerPage: FunctionalComponent = () => {
     if (!isInitialLoad) return;
 
     setIsInitialLoad(false);
-    fetch(`${API_ROUTE}/chat/client/40001`)
+    fetch(`${API_ROUTE}/chat/client/${ID_LOCAL_STORAGE}`)
       .then((res) => {
         if (!res.ok) throw new Error("Fetch failed!");
         return res.json();
@@ -72,19 +79,19 @@ const CustomerPage: FunctionalComponent = () => {
         JSON.stringify({
           type: "initial",
           identity: "client",
-          userId: ID_GENERATED,
+          userId: ID_LOCAL_STORAGE,
           content: "",
         })
       );
       // initial 要順帶把使用者資料傳送過去
       // 先寫死 使用者 測試傳送資料的api
-      fetch(`${API_ROUTE}/user/profile/40001`, {
+      fetch(`${API_ROUTE}/user/profile/${ID_LOCAL_STORAGE}`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          userId: ID_GENERATED,
+          userId: ID_LOCAL_STORAGE,
         }),
       })
         .then((res) => {
@@ -138,7 +145,7 @@ const CustomerPage: FunctionalComponent = () => {
 
   return (
     <div className="bg-white w-full flex flex-col justify-between grow max-h-screen">
-      <CharTitleBar userName={"test"} ws={ws} />
+      <CharTitleBar userName={"用戶名稱"} ws={ws} userId={ID_LOCAL_STORAGE} />
       <audio className="hidden" preload="auto" id="audio-player"></audio>
       <div className="grow flex flex-col overflow-y-auto no-scrollbar px-4">
         {msgList.map(({ identity, type, content }, i) => {
@@ -158,6 +165,7 @@ const CustomerPage: FunctionalComponent = () => {
         onSetMsg={setMsgList}
         onVoice={triggerAudioHandler}
         bottomRef={bottomRef}
+        userId={ID_LOCAL_STORAGE}
       />
     </div>
   );

@@ -5,11 +5,13 @@ import IconCross from "../../../../resources/img/icon-cross.svg";
 interface CharTitleBarProps {
   userName: string;
   ws: null | WebSocket;
+  userId: string | null;
 }
 
 const CharTitleBar: FunctionalComponent<CharTitleBarProps> = ({
   userName = "",
   ws,
+  userId,
 }) => {
   return (
     <div className="flex items-center justify-between px-4 py-2 border-b-2 border-solid bg-red-300">
@@ -23,7 +25,7 @@ const CharTitleBar: FunctionalComponent<CharTitleBarProps> = ({
             JSON.stringify({
               type: "disconnect",
               identity: "client",
-              userId: 40001,
+              userId: userId,
               content: "",
             })
           );

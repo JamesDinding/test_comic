@@ -1,4 +1,4 @@
-function generateID(arg) {
+function generateID() {
   return 40001;
 }
 

@@ -1,4 +1,3 @@
-import Customer from "../../components/Profile/Services/Customer";
 import { FunctionalComponent, h } from "preact";
 import { useState, useRef, useEffect } from "preact/hooks";
 import CharTitleBar from "../../components/Profile/Services/Customer/ChatTitleBar";
@@ -142,6 +141,23 @@ const CustomerPage: FunctionalComponent = () => {
     };
   }, []);
   /* websocket testing end */
+
+  useEffect(() => {
+    if (!window) return;
+    window.onbeforeunload = () => {
+      console.log("user leaving");
+      ws?.send(
+        JSON.stringify({
+          type: "disconnect",
+          identity: "client",
+          userId: ID_LOCAL_STORAGE,
+          content: "",
+        })
+      );
+    };
+
+    ws?.close();
+  }, []);
 
   const triggerAudioHandler = (messageType: string) => {
     // const audio: HTMLAudioElement = document.getElementById("audio-player")!;

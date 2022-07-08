@@ -70,7 +70,7 @@ const CustomerPage: FunctionalComponent = () => {
 
   /* websocket testing start */
   useEffect(() => {
-    ws = new WebSocket("ws://localhost:3000");
+    ws = new WebSocket("ws://192.168.1.247:3000");
     ws.onopen = () => {
       console.log("open connection");
       // 建立連線後，先向server發送資料來匹配客服人員
@@ -154,9 +154,9 @@ const CustomerPage: FunctionalComponent = () => {
           content: "",
         })
       );
-    };
 
-    ws?.close();
+      ws?.close();
+    };
   }, []);
 
   const triggerAudioHandler = (messageType: string) => {
@@ -179,7 +179,7 @@ const CustomerPage: FunctionalComponent = () => {
             return <UserMessage msg={content} type={type} key={i} />;
         })}
         {isTyping && <ServerMessage msg={"輸入中..."} type={"startTyping"} />}
-        <div id="bottom" className="min-h-[44px]" ref={bottomRef}></div>
+        <div id="bottom" className="min-h-[54px]" ref={bottomRef}></div>
       </div>
 
       <UserInput

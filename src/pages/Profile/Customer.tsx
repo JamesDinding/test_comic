@@ -11,7 +11,7 @@ import UserInput from "../../components/Profile/Services/Customer/UserInput";
 import { API_ROUTE } from "../../const";
 
 // 透過某個地方放
-localStorage.setItem("room-id", JSON.stringify({ id: "123123" }));
+localStorage.setItem("room-id", JSON.stringify({ id: "10105" }));
 
 // 這個component拿
 const retrieveObj = JSON.parse(localStorage.getItem("room-id")!);

@@ -95,7 +95,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
     const file = target.files[0];
 
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       const result = e.target?.result as string;
 
       ws?.send(

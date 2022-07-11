@@ -31,6 +31,16 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
   const typeMsgHandler = (e: h.JSX.TargetedEvent<HTMLInputElement, Event>) => {
     const target = e.target as HTMLInputElement;
     onSetClientInput(target.value);
+
+    // 把使用者正在打字的內容傳送過去
+    ws?.send(
+      JSON.stringify({
+        type: "isTyping",
+        identity: "client",
+        userId: userId,
+        content: "target.value",
+      })
+    );
   };
 
   const sendMsgHandler = (e: KeyboardEvent) => {

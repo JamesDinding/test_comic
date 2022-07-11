@@ -35,6 +35,7 @@ const CustomerPage: FunctionalComponent = () => {
 
   const bottomRef = useRef<HTMLDivElement>(null!);
 
+  // 可以被放到拿完先前聊天內容if(data.length === 0) 在給罐頭
   useEffect(() => {
     if (msgList.length === 0) {
       setMsgList((prev) => {

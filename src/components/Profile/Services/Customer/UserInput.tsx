@@ -38,7 +38,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
         type: "isTyping",
         identity: "client",
         userId: userId,
-        content: "target.value",
+        content: target.value,
       })
     );
   };

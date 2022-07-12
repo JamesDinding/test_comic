@@ -5,12 +5,10 @@ import ServerMessage from "../../components/Profile/Services/Customer/ServerMess
 import UserMessage from "../../components/Profile/Services/Customer/UserMessage";
 import UserInput from "../../components/Profile/Services/Customer/UserInput";
 
-// 可以導入ID之類的？
-// import { ID_GENERATED } from "../../_id_generate";
 import { API_ROUTE } from "../../const";
 
 // 透過某個地方放
-localStorage.setItem("room-id", JSON.stringify({ id: "10105" }));
+localStorage.setItem("room-id", JSON.stringify({ id: "111206" }));
 
 // 這個component拿
 const retrieveObj = JSON.parse(localStorage.getItem("room-id")!);
@@ -30,6 +28,7 @@ const CustomerPage: FunctionalComponent = () => {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [msgList, setMsgList] = useState<Array<MessageResponse>>([]);
   const [clientInput, setClientInput] = useState("");
+  const [haveService, setHaveService] = useState(true);
 
   const [isTyping, setIsTyping] = useState(false);
 
@@ -138,6 +137,10 @@ const CustomerPage: FunctionalComponent = () => {
         });
       }
 
+      if (res.type === "NOT_IN_SERVICE_AREA") {
+        setHaveService(false);
+      }
+
       bottomRef.current?.scrollIntoView();
     };
   }, []);
@@ -171,17 +174,24 @@ const CustomerPage: FunctionalComponent = () => {
   return (
     <div className="bg-white w-full flex flex-col justify-between grow max-h-screen">
       <CharTitleBar userName={"用戶名稱"} ws={ws} userId={ID_LOCAL_STORAGE} />
-      <audio className="hidden" preload="auto" id="audio-player"></audio>
-      <div className="grow flex flex-col overflow-y-auto no-scrollbar px-4">
-        {msgList.map(({ identity, type, content }, i) => {
-          if (identity === "server")
-            return <ServerMessage msg={content} type={type} key={i} />;
-          if (identity === "client")
-            return <UserMessage msg={content} type={type} key={i} />;
-        })}
-        {isTyping && <ServerMessage msg={"輸入中..."} type={"startTyping"} />}
-        <div id="bottom" className="min-h-[54px]" ref={bottomRef}></div>
-      </div>
+      {/* <audio className="hidden" preload="auto" id="audio-player"></audio> */}
+      {haveService ? (
+        <div className="grow flex flex-col overflow-y-auto no-scrollbar px-4">
+          {msgList.map(({ identity, type, content }, i) => {
+            if (identity === "server")
+              return <ServerMessage msg={content} type={type} key={i} />;
+            if (identity === "client")
+              return <UserMessage msg={content} type={type} key={i} />;
+          })}
+          {isTyping && <ServerMessage msg={"輸入中..."} type={"startTyping"} />}
+          <div id="bottom" className="min-h-[54px]" ref={bottomRef}></div>
+        </div>
+      ) : (
+        <div className="text-center">
+          <div>使用者不在服務範圍內</div>
+          <div>請確認網路狀況或向ISP洽詢。</div>
+        </div>
+      )}
 
       <UserInput
         ws={ws}

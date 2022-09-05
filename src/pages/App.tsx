@@ -1,3 +1,6 @@
+// DEBUG, make sure that this import is the first import in your whole app
+import "preact/debug";
+
 import { FunctionalComponent, h, Fragment } from "preact";
 import Router from "preact-router";
 import { useState } from "preact/hooks";
@@ -23,9 +26,8 @@ import ChargeRecordPage from "./Profile/ChargeRecord";
 import CustomerPage from "./Profile/Customer";
 import BookPurchasePage from "./Bookmark/BookPurchase";
 import SearchPage from "./Search";
-
-// DEBUG, make sure that this import is the first import in your whole app
-import "preact/debug";
+// Test page
+import TestPage from "./Test";
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -57,6 +59,9 @@ const App: FunctionalComponent = () => {
             <CustomerPage path="/service" />
             <BookPurchasePage path="/book-history" />
             <SearchPage path="/search" />
+
+            {/* test page */}
+            <TestPage path="/test" />
 
             <DefaultRouteHandler default />
           </Router>

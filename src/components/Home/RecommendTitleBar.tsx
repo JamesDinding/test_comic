@@ -10,14 +10,15 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockID,
 }) => {
   return (
-    <div class="relative item-header item-header-bg select-none text-center leading-8 text-sm h-8 tracking-[1rem]">
+    <div class="flex items-center item-header item-header-bg select-none text-xl font-semibold leading-8 text-sm text-[#9e7654] h-8 tracking-widest">
       <img src="/assets/img/item-header-icon.png" class="inline h-6" />
       {BlockName}
+      <div class="grow"></div>
       <a
         href={"/book-more/" + BlockID}
-        class="block absolute right-4 top-2 text-[10px] text-center font-bold tracking-normal rounded-md bg-[#ff978d] text-white px-1 py-0 leading-[16px]"
+        class="block text-sm font-normal tracking-normal leading-[16px]"
       >
-        MORE ▶
+        更多 ▶
       </a>
     </div>
   );

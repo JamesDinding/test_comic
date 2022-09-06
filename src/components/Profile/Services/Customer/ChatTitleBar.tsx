@@ -17,25 +17,25 @@ const CharTitleBar: FunctionalComponent<CharTitleBarProps> = ({
   userId,
 }) => {
   return (
-    <div className="flex items-center bg-white return-bar">
+    <div className="flex items-center bg-[#1e1e1e] p-2.5">
       <div
-        className="w-[50px] cursor-pointer"
+        className="cursor-pointer"
         onClick={() => {
           history.back();
         }}
       >
         <span>
-          <IconChevron class="h-8 rotate-180" />
+          <IconChevron class="h-8 rotate-180 text-white" />
         </span>
       </div>
       <div className="grow">
-        <div className="text-center text-[#4c4c4c] text-[.9rem]">
+        <div className="text-center text-white text-lg">
           {"客服小天使 千千"}
         </div>
       </div>
-      <div className="w-[50px]">
+      <div className="w-">
         <Link href="/">
-          <IconHome class="h-8" />
+          <IconCross class="h-8 text-white" />
         </Link>
       </div>
     </div>

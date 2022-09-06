@@ -172,7 +172,7 @@ const CustomerPage: FunctionalComponent = () => {
   };
 
   return (
-    <div className="bg-white w-full flex flex-col justify-between grow max-h-screen">
+    <div className="bg-black w-full flex flex-col justify-between grow max-h-screen">
       <CharTitleBar userName={"用戶名稱"} ws={ws} userId={ID_LOCAL_STORAGE} />
       {/* <audio className="hidden" preload="auto" id="audio-player"></audio> */}
       {haveService ? (

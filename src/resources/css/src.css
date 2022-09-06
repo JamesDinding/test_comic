@@ -58,7 +58,7 @@ input:focus {
 }
 
 .chat-text-server {
-  @apply p-[10px] text-white text-sm font-light bg-slate-300;
+  @apply p-[10px] text-white text-sm font-light bg-slate-800;
 }
 
 /* 聊天室 輸入框 輸入中 */

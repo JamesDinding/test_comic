@@ -6,7 +6,7 @@ import Image from "./../_Image/image";
 
 interface BookListItemProps {
   Data: Book;
-  type?: string;
+  type?: "separate" | "stack" | "original";
 }
 
 const BookListItem: FunctionalComponent<BookListItemProps> = ({
@@ -20,18 +20,17 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
     return (
       <Link
         href={"/directory/" + Data.ID}
-        class={
-          "relative overflow-visible item " + (showPending ? " pending" : "")
-        }
+        class={"item-separte " + (showPending ? " pending" : "")}
       >
-        <Image
-          path={Data.Cover}
-          alt={Data.Name}
-          setParentPending={setPending}
-        />
-        <div class="bottom-12 tag">連載</div>
-        <div class="bottom-12 tag-decoration"></div>
-        <div class="item-overlay z-[5]">&nbsp;</div>
+        <div class="relative">
+          <div class="bottom-4 tag">{"連載"}</div>
+          <div class="bottom-4 tag-decoration"></div>
+          <Image
+            path={Data.Cover}
+            alt={Data.Name}
+            setParentPending={setPending}
+          />
+        </div>
         <span class="title-separate">{Data.Name}</span>
         <span class="rating-separate">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>
       </Link>
@@ -42,17 +41,15 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
     return (
       <Link
         href={"/directory/" + Data.ID}
-        class={
-          "relative overflow-visible item " + (showPending ? " pending" : "")
-        }
+        class={"relative item " + (showPending ? " pending" : "")}
       >
         <Image
           path={Data.Cover}
           alt={Data.Name}
           setParentPending={setPending}
         />
-        <div class="bottom-12 tag">連載</div>
-        <div class="bottom-12 tag-decoration"></div>
+        <div class="bottom-[3.25rem] tag">{"連載"}</div>
+        <div class="bottom-[3.25rem] tag-decoration"></div>
         <div class="item-overlay z-[5]">&nbsp;</div>
         <span class="title z-10">{Data.Name}</span>
         <span class="rating z-10">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>

@@ -11,7 +11,7 @@ const ServerMessage: FunctionalComponent<ServerMessageProps> = ({
 }) => {
   return (
     <div className="max-w-[50%] self-start my-2 flex items-start">
-      <div className="shrink border-solid tracking-wider rounded-lg inline-block chat-text-server break-all">
+      <div className="shrink border-solid tracking-wider rounded inline-block chat-text-server break-all">
         {type === "msg" && msg}
         {type === "image" && <img src={msg} alt="" />}
         {type === "startTyping" && (

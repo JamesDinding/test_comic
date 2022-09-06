@@ -131,7 +131,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
   };
 
   return (
-    <div className="flex items-center py-1 border-t-2 bg-red-300 min-h-[64px]">
+    <div className="flex items-center py-1 px-2 bg-[#1e1e1e] min-h-[60px]">
       <div className="px-4 h-6">
         <div className="bg-white h-6 cursor-pointer" onClick={triggerUploadImg}>
           <IconImage class="h-6" />
@@ -147,14 +147,17 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
 
       <input
         type="text"
-        className="outline-none rounded-xl indent-1 py-2.5 px-4 my-2 mr-2 grow text-base"
+        className="outline-none rounded py-1.5 px-2 my-2 mr-2 grow text-base"
         placeholder="請輸入內容"
         value={clientInput}
         onChange={typeMsgHandler}
         onKeyDown={sendMsgHandler}
       />
-      <button className="pr-2 cursor-pointer" onClick={clickSendMsgHandler}>
-        <IconSend class="h-6" />
+      <button
+        className="py-1.5 px-2.5 rounded cursor-pointer text-white bg-[#855595]"
+        onClick={clickSendMsgHandler}
+      >
+        送出
       </button>
     </div>
   );

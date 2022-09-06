@@ -46,8 +46,15 @@ input:focus {
 }
 
 /* 聊天室 */
+.chat-message-tail {
+  @apply absolute right-[-16px] block w-0 h-0;
+  border: 8px solid transparent;
+  border-left-color: #855595;
+  transform: scaleY(0.5);
+}
+
 .chat-text {
-  @apply p-[10px] text-white text-sm font-light bg-red-200;
+  @apply p-[10px] text-white text-sm font-light bg-[#855595];
 }
 
 .chat-text-server {

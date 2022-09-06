@@ -20,8 +20,10 @@ const UserMessage: FunctionalComponent<UserMessageProps> = ({
     bottomRef?.current.scrollIntoView();
   }, [bottomRef, lastOne]);
 
+  //border-[#855595]
   return (
-    <div className="flex max-w-[50%] self-end border-solid tracking-wider rounded-lg my-2 chat-text break-all">
+    <div className="relative flex max-w-[50%] self-end border-solid tracking-wider rounded my-2 chat-text break-all">
+      <div className="chat-message-tail top-[.8rem] "></div>
       {type === "image" && <img src={msg} className="" alt="無法顯示圖片" />}
       {type === "msg" && msg}
     </div>

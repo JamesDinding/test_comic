@@ -34,8 +34,16 @@ input:focus {
 }
 
 /* 彈窗 pop- */
+.modal {
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-30 rounded-lg bg-white min-w-[335px] h-3/4;
+}
+
 .pop-payment {
   @apply fixed left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] w-4/5 max-w-[500px] max-h-[70vh] z-50;
+}
+
+.pop-payment-title {
+  @apply w-full mt-10 pb-2.5 text-center text-[#9e7654] text-lg tracking-wider border-b-[1px] border-solid border-[#9e7654];
 }
 
 /* translate-x/y-[1px] 是bordor的寬度 */
@@ -178,6 +186,10 @@ input:focus {
 }
 
 /* 充值頁面 */
+.charge-input-container {
+  @apply w-full py-2.5 px-5 my-2.5 rounded-lg border-solid border-[1px] border-[#9e7654] text-[#9e7654] text-sm;
+}
+
 .charge-item {
   @apply relative p-2 min-h-[90px] w-[47%] mb-[.8rem];
   border-radius: 0.8rem;

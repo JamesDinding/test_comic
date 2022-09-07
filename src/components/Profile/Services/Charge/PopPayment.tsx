@@ -1,6 +1,40 @@
-import { FunctionalComponent, FunctionComponent, h } from "preact";
+import { FunctionalComponent, h } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
 import PaymentBar from "./PaymentBar";
+import PaySelection from "./PaySelection";
+import Card from "../../../Modal/Card";
+import IconCross from "../../../../resources/img/icon-cross.svg";
+
+// temp
+const temp_pay = [
+  {
+    pay: "支付寶",
+    p_id: "12345",
+    p_way: ["线路名称 1", "线路名称 2", "线路名称 3", "线路名称 4"],
+  },
+  {
+    pay: "微信",
+    p_id: "23456",
+    p_way: ["线路名称 1", "线路名称 2", "线路名称 3", "线路名称 4"],
+  },
+  {
+    pay: "雲散服",
+    p_id: "34567",
+    p_way: ["线路名称 1", "线路名称 2", "线路名称 3", "线路名称 4"],
+  },
+  {
+    pay: "USDT",
+    p_id: "45678",
+    p_way: [
+      "线路名称 1",
+      "线路名称 2",
+      "线路名称 3",
+      "线路名称 4",
+      "线路名称 5",
+      "线路名称 6",
+    ],
+  },
+];
 
 const payAmountArr = [
   { amount: 50, title: "8000金幣" },
@@ -29,83 +63,42 @@ interface PayListProps {
 }
 
 const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({ onClose }) => {
-  // section 支付寶/微信
-  const [curSection, setCurSection] = useState(0);
-  // 通道１２３的資料
-  const [data, setData] = useState<Array<Payment> | null>(null);
-  const [isPending, setIsPending] = useState(false);
-  // 現在通道１．２．３
-  const [curPayment, setCurPayment] = useState<number | null>(null);
-  // 金額
-  const [chargeAmount, setChargeAmount] = useState(0);
-
-  useEffect(() => {
-    const fake: Promise<Array<Payment>> = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        curSection === 0 &&
-          resolve([
-            { name: "通道1", id: 12345 },
-            { name: "通道2", id: 12346 },
-            { name: "通道3", id: 12347 },
-            { name: "通道8", id: 12348 },
-          ]);
-        curSection === 1 &&
-          resolve([
-            { name: "通道5", id: 12350 },
-            { name: "通道6", id: 12349 },
-            { name: "通道7", id: 12351 },
-          ]);
-      }, 1500);
-    });
-
-    setIsPending(true);
-    fake.then((data) => {
-      setData(data);
-      setIsPending(false);
-    });
-  }, [curSection]);
+  const [curExpand, setCurExpand] = useState(0);
 
   return (
-    <div className="relative flex flex-col items-center pop-payment bg-white py-2">
-      <div
-        className="absolute cursor-pointer right-1 top-0 opacity-50"
-        onClick={() => onClose(false)}
-      >
-        X
-      </div>
-      <PaymentBar
-        onSetCurSection={setCurSection}
-        curSection={curSection}
-        paymentArr={paymentArr}
-      />
-      <div className="min-h-[20vh] w-full">
-        <div className="bg-white pt-2">
-          <div className="text-base border-l-4 border-amber-400 mx-4 px-2 tracking-wider">
-            請選擇支付通道
-          </div>
-          {!isPending && (
-            <div className="grid grid-cols-1 min-h-[5vh] my-4 mx-2">
-              {data?.map((pay) => {
-                const paymentActive =
-                  pay.id === curPayment
-                    ? "bg-[#fdddcb] border-[#f98d83] text-[#f98d83] pop-payment-active-decoration"
-                    : "bg-white border-[#D9D9D9]";
-
-                return (
-                  <div
-                    id={pay.id.toString()}
-                    className={`cursor-pointer relative text-center text-sm tracking-wide my-1 mx-2 py-2 px-4 border-[1px] border-solid rounded ${paymentActive}`}
-                    onClick={() => setCurPayment(pay.id)}
-                  >
-                    {pay.name}
-                  </div>
-                );
-              })}
-            </div>
-          )}
+    <Card>
+      <div className="relative flex flex-col items-center h-full p-5">
+        <div
+          className="absolute cursor-pointer right-4 top-4"
+          onClick={() => onClose(false)}
+        >
+          <IconCross class="h-8" />
         </div>
+        <div className="pop-payment-title">選擇支付方案</div>
+        {temp_pay.map((pay, i) => {
+          const isNowExpand = curExpand === i;
+          return (
+            <div
+              className="w-full"
+              onClick={(e) => {
+                // if (curExpand === i) {
+                //   setCurExpand(-1);
+                //   return;
+                // }
+
+                setCurExpand(i);
+              }}
+            >
+              <PaySelection payInfo={pay} isExpand={isNowExpand} />
+            </div>
+          );
+        })}
+        <div className="grow"></div>
+        <button className="w-full py-4 text-center text-white text-lg bg-[#d19463] rounded-xl">
+          下一步
+        </button>
       </div>
-    </div>
+    </Card>
   );
 };
 

@@ -1,5 +1,6 @@
 import { h, FunctionalComponent } from "preact";
 import { useState, useEffect, useRef } from "preact/hooks";
+import IconChevron from "../../../../resources/img/icon-chevron.svg";
 
 type PayInfo = {
   pay: string;
@@ -21,7 +22,16 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
     <div
       className={"charge-input-container " + (isExpand ? "bg-[#fef4e7]" : "")}
     >
-      <div>{payInfo.pay}</div>
+      <div className="flex items-center justify-between">
+        {payInfo.pay}
+        <div>
+          <IconChevron
+            class={
+              "h-4 duration-300 " + (isExpand ? "rotate-90" : "-rotate-90")
+            }
+          />
+        </div>
+      </div>
       <div
         className={
           "flex flex-col items-start overflow-y-auto no-scrollbar duration-300 " +

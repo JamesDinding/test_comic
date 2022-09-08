@@ -1,25 +1,17 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
+import { useCharge } from "../../../../context/charge";
 import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 
 interface PopConfirmProps {
   onClose: StateUpdater<boolean>;
-  way: string;
-  wire: string;
-  coins: number;
-  cost: number;
 }
 
 let timer: ReturnType<typeof setTimeout>;
 
-const PopConfirm: FunctionalComponent<PopConfirmProps> = ({
-  onClose,
-  way,
-  wire,
-  coins,
-  cost,
-}) => {
+const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
+  const { payments, userSelect } = useCharge();
   const [countDown, setCountDown] = useState(300);
   const [validationCode, setValidationCode] = useState<Array<number | null>>(
     new Array(4).fill(null)
@@ -42,7 +34,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({
 
   return (
     <Card>
-      <div className="relative flex flex-col items-center h-full p-5">
+      <div className="relative overflow-auto no-scrollbar text-[#9e7654] flex flex-col items-center h-full p-5">
         <div
           className="absolute cursor-pointer right-4 top-4"
           onClick={() => onClose(false)}
@@ -50,21 +42,22 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({
           <IconCross class="h-8" />
         </div>
         <div className="pop-payment-title">訂單確認</div>
-        <div className="flex items-center justify-between w-full px-2.5 py-2.5 border-b-[1px] border-[#e6e6e6] border-solid">
+        <div className="flex items-center justify-between w-full px-2.5 py-2.5 mt-2.5 border-b-[1px] border-[#e6e6e6] border-solid">
           <div>方案 :</div>
           <div>
-            金幣充值 - <span className="text-red-warning">{coins}</span> 枚
+            金幣充值 -{" "}
+            <span className="text-[#dc6060]">{userSelect.coins}</span> 枚
           </div>
         </div>
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 border-b-[1px] border-[#e6e6e6] border-solid">
           <div>支付方式 :</div>
           <div>
-            {way}支付 - 线路{wire}
+            {userSelect.pay}支付 - 线路{userSelect.p_way}
           </div>
         </div>
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 border-b-[1px] border-[#e6e6e6] border-solid">
           <div>金額 :</div>
-          <div className="text-red-warning">&#165; {cost}</div>
+          <div className="text-[#dc6060]">&#165; {userSelect.cost}</div>
         </div>
         <div className="w-full pt-2.5 pb-1.5 border-b-[1px] border-[#e6e6e6] border-solid">
           <div className="flex items-center justify-between w-full px-2.5 ">
@@ -111,13 +104,14 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({
             </div>
           </div>
         </div>
-        <span className="mt-5 text-red-warning whitespace-nowrap">
+        <span className="mt-5 text-sm text-[#ff978d] whitespace-nowrap">
           送出後將跳轉該官方授權網站，請安心使用
         </span>
+        <div className="grow"></div>
         <button
           id="validation-4"
           tabIndex={5}
-          className="w-full py-3 mt-[3.625rem] btn-bg-primary rounded-lg text-center text-xl text-white"
+          className="w-full py-4 mt-[3.625rem] bg-[#ff978d] rounded-lg text-center text-xl text-white"
         >
           確認充值
         </button>

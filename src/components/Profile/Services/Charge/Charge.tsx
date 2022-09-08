@@ -3,6 +3,7 @@ import { useState } from "preact/compat";
 import { createPortal } from "preact/compat";
 import BackDrop from "../../../BackDrop";
 import PopPayment from "./PopPayment";
+import PopConfirm from "./PopConfirm";
 import IconCoins from "../../../../resources/img/icon-coins.svg";
 import IconVip from "../../../../resources/img/icon-vip.svg";
 import IconDiamond from "../../../../resources/img/charge-diamond.svg";
@@ -41,21 +42,35 @@ const salesList = [
 ];
 
 const Charge = () => {
-  const [isPop, setIsPop] = useState(false);
-  const clickHandler = () => {
-    setIsPop(true);
+  const [isPopPayment, setIsPopPayment] = useState(false);
+  const [isPopConfirm, setIsPopConfirm] = useState(false);
+  const popPaymentHandler = () => {
+    setIsPopPayment(true);
   };
 
   return (
     <>
-      {isPop &&
+      {isPopPayment &&
         createPortal(
-          <BackDrop onClose={setIsPop} />,
+          <BackDrop onClose={setIsPopPayment} />,
           document.getElementById("back-drop")!
         )}
-      {isPop &&
+      {isPopPayment &&
         createPortal(
-          <PopPayment onClose={setIsPop} />,
+          <PopPayment
+            onClose={setIsPopPayment}
+            onNextConfirm={() => setIsPopConfirm(true)}
+          />,
+          document.getElementById("pop-window")!
+        )}
+      {isPopConfirm &&
+        createPortal(
+          <BackDrop onClose={setIsPopConfirm} />,
+          document.getElementById("back-drop")!
+        )}
+      {isPopConfirm &&
+        createPortal(
+          <PopConfirm onClose={setIsPopConfirm} />,
           document.getElementById("pop-window")!
         )}
       <div className="flex flex-col justify-center items-center w-full bg-white rounded-2xl mt-4 px-4">
@@ -81,8 +96,8 @@ const Charge = () => {
           {salesList.map((sale, index) => {
             return (
               <div
-                className="rounded-2xl min-h-[90px] w-[47%] p-2.5 border-[1px] charge-item my-2 charge-item"
-                onClick={clickHandler}
+                className="rounded-2xl min-h-[127px] w-[47%] p-2.5 border-[1px] charge-item my-2 charge-item"
+                onClick={popPaymentHandler}
                 key={index}
               >
                 {sale.recommend && <div className="charge-recommend">推薦</div>}

@@ -683,12 +683,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.625rem;
 }
 
-.ml-4 {
-  margin-left: 1rem;
+.mt-2\.5 {
+  margin-top: 0.625rem;
 }
 
 .mt-\[3\.625rem\] {
   margin-top: 3.625rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
 }
 
 .block {
@@ -795,20 +799,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.5rem;
 }
 
-.h-\[10rem\] {
-  height: 10rem;
-}
-
-.h-0 {
-  height: 0px;
-}
-
 .h-\[40px\] {
   height: 40px;
 }
 
 .max-h-screen {
   max-height: 100vh;
+}
+
+.max-h-full {
+  max-height: 100%;
+}
+
+.max-h-\[0px\] {
+  max-height: 0px;
 }
 
 .min-h-\[153px\] {
@@ -831,8 +835,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 54px;
 }
 
-.min-h-\[90px\] {
-  min-height: 90px;
+.min-h-\[127px\] {
+  min-height: 127px;
 }
 
 .min-h-\[60px\] {
@@ -1220,6 +1224,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(211 66 66 / var(--tw-border-opacity));
 }
 
+.border-\[\#e6e6e6\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(230 230 230 / var(--tw-border-opacity));
+}
+
 .border-\[\#979797\] {
   --tw-border-opacity: 1;
   border-color: rgb(151 151 151 / var(--tw-border-opacity));
@@ -1228,11 +1237,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-\[\#f4f4f4\] {
   --tw-border-opacity: 1;
   border-color: rgb(244 244 244 / var(--tw-border-opacity));
-}
-
-.border-\[\#e6e6e6\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(230 230 230 / var(--tw-border-opacity));
 }
 
 .bg-gray-200 {
@@ -1325,9 +1329,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(254 243 199 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#9e7654\] {
+.bg-\[\#d19463\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(158 118 84 / var(--tw-bg-opacity));
+  background-color: rgb(209 148 99 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#1e1e1e\] {
@@ -1343,11 +1347,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#855595\] {
   --tw-bg-opacity: 1;
   background-color: rgb(133 85 149 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#d19463\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 148 99 / var(--tw-bg-opacity));
 }
 
 .bg-\[length\:25px_25px\] {
@@ -1470,14 +1469,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: .4rem;
 }
 
-.py-1\.5 {
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
-}
-
 .px-2\.5 {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
+}
+
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
 }
 
 .py-\[10px\] {
@@ -1498,11 +1497,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-\[\.6rem\] {
   padding-left: .6rem;
   padding-right: .6rem;
-}
-
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
 }
 
 .pt-2 {
@@ -1541,14 +1535,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 0.25rem;
 }
 
-.pt-\[100px\] {
-  padding-top: 100px;
-}
-
-.pr-4 {
-  padding-right: 1rem;
-}
-
 .pt-2\.5 {
   padding-top: 0.625rem;
 }
@@ -1559,6 +1545,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-1 {
   padding-bottom: 0.25rem;
+}
+
+.pt-\[100px\] {
+  padding-top: 100px;
+}
+
+.pr-4 {
+  padding-right: 1rem;
 }
 
 .text-center {
@@ -1785,6 +1779,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 35 14 / var(--tw-text-opacity));
 }
 
+.text-\[\#dc6060\] {
+  --tw-text-opacity: 1;
+  color: rgb(220 96 96 / var(--tw-text-opacity));
+}
+
 .text-\[\#cccccc\] {
   --tw-text-opacity: 1;
   color: rgb(204 204 204 / var(--tw-text-opacity));
@@ -1834,6 +1833,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+:root {
+  --brown: #d19463;
+  --brown-text: #9e7654;
+  --brown-light: #f8c889;
+  --brown-heavy: #9f7b5d;
+  --pink: #ff978d;
+  --pink-light: #ffbcbc;
+}
+
 a {
   text-decoration: none;
 }
@@ -1867,7 +1875,7 @@ input:focus {
   z-index: 30;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* 彈窗 pop- */
@@ -1877,7 +1885,8 @@ input:focus {
   top: 50%;
   left: 50%;
   z-index: 30;
-  height: 75%;
+  height: 80%;
+  min-height: 515px;
   min-width: 335px;
   --tw-translate-y: -50%;
   --tw-translate-x: -50%;
@@ -1901,7 +1910,7 @@ input:focus {
 }
 
 .pop-payment-title {
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   width: 100%;
   border-bottom-width: 1px;
   border-style: solid;
@@ -2129,8 +2138,6 @@ input:focus {
 /* 充值頁面 */
 
 .charge-input-container {
-  margin-top: 0.625rem;
-  margin-bottom: 0.625rem;
   width: 100%;
   border-radius: 0.5rem;
   border-width: 1px;
@@ -2502,6 +2509,10 @@ footer .group:hover span {
 footer .active span {
   --tw-text-opacity: 1;
   color: rgb(249 141 131 / var(--tw-text-opacity));
+}
+
+.test-duration {
+  transition: all 0.3s ease-in-out;
 }
 
 .placeholder\:text-xs::placeholder {

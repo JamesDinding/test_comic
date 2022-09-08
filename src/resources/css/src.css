@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --brown: #d19463;
+  --brown-text: #9e7654;
+  --brown-light: #f8c889;
+  --brown-heavy: #9f7b5d;
+  --pink: #ff978d;
+  --pink-light: #ffbcbc;
+}
+
 a {
   text-decoration: none;
 }
@@ -30,12 +39,12 @@ input:focus {
 
 .back-drop {
   @apply fixed left-0 top-0 w-full h-full z-30;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* 彈窗 pop- */
 .modal {
-  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-30 rounded-lg bg-white min-w-[335px] h-3/4;
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-30 rounded-lg bg-white min-w-[335px] min-h-[515px] h-[80%];
 }
 
 .pop-payment {
@@ -43,7 +52,7 @@ input:focus {
 }
 
 .pop-payment-title {
-  @apply w-full mt-10 pb-2.5 text-center text-[#9e7654] text-lg tracking-wider border-b-[1px] border-solid border-[#9e7654];
+  @apply w-full mt-6 pb-2.5 text-center text-[#9e7654] text-lg tracking-wider border-b-[1px] border-solid border-[#9e7654];
 }
 
 /* translate-x/y-[1px] 是bordor的寬度 */
@@ -187,7 +196,7 @@ input:focus {
 
 /* 充值頁面 */
 .charge-input-container {
-  @apply w-full py-2.5 px-5 my-2.5 rounded-lg border-solid border-[1px] border-[#9e7654] text-[#9e7654] text-sm;
+  @apply w-full py-2.5 px-5 rounded-lg border-solid border-[1px] border-[#9e7654] text-[#9e7654] text-sm;
 }
 
 .charge-item {
@@ -381,4 +390,8 @@ footer .group:hover span {
 
 footer .active span {
   @apply text-[#f98d83];
+}
+
+.test-duration {
+  transition: all 0.3s ease-in-out;
 }

@@ -27,18 +27,22 @@ type Payment = {
 
 interface PopPaymentkDrop {
   onClose: StateUpdater<boolean>;
+  onNextConfirm: () => void;
 }
 interface PayListProps {
   payList: Array<Payment>;
 }
 
-const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({ onClose }) => {
+const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
+  onClose,
+  onNextConfirm,
+}) => {
   const { selectPay, payments, userSelect } = useCharge();
   const [curExpand, setCurExpand] = useState(0);
 
   return (
     <Card>
-      <div className="relative flex flex-col items-center h-full p-5">
+      <div className="relative overflow-auto no-scrollbar flex flex-col items-center h-full p-5">
         <div
           className="absolute cursor-pointer right-4 top-4"
           onClick={() => onClose(false)}
@@ -50,7 +54,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({ onClose }) => {
           const isNowExpand = curExpand === i;
           return (
             <div
-              className="w-full"
+              className="w-full mt-2.5"
               onClick={(e) => {
                 // if (curExpand === i) {
                 //   setCurExpand(-1);
@@ -65,7 +69,13 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({ onClose }) => {
           );
         })}
         <div className="grow"></div>
-        <button className="w-full py-4 text-center text-white text-lg bg-[#d19463] rounded-xl">
+        <button
+          className="w-full py-4 text-center text-white text-lg bg-[#d19463] rounded-xl"
+          onClick={() => {
+            onClose(false);
+            onNextConfirm();
+          }}
+        >
           下一步
         </button>
       </div>

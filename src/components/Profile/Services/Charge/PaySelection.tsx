@@ -23,7 +23,10 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
 
   return (
     <div
-      className={"charge-input-container " + (isExpand ? "bg-[#fef4e7]" : "")}
+      className={
+        "charge-input-container overflow-y-auto duration-300 " +
+        (isExpand ? "bg-[#fef4e7]" : "")
+      }
     >
       <div className="flex items-center justify-between">
         {userSelect.pay === payInfo.pay && userSelect.p_way
@@ -39,8 +42,8 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
       </div>
       <div
         className={
-          "flex flex-col items-start overflow-y-auto no-scrollbar duration-300 " +
-          (isExpand ? "h-[10rem]" : "h-0")
+          "flex flex-col items-start overflow-hidden " +
+          (isExpand ? "max-h-full" : "max-h-[0px]")
         }
       >
         {payInfo.p_way.map((p, i) => {

@@ -8,6 +8,7 @@ import IconCoins from "../../../../resources/img/icon-coins.svg";
 import IconVip from "../../../../resources/img/icon-vip.svg";
 import IconDiamond from "../../../../resources/img/charge-diamond.svg";
 
+const vipList = ["", ""];
 const salesList = [
   { title: `50元`, price: `5000+3000`, bonus: "多送30元", explain: "金幣" },
   { title: `30元`, price: `3000`, bonus: "多送30元", explain: "金幣" },
@@ -24,20 +25,6 @@ const salesList = [
     price: `20000+2000`,
     bonus: "多送200元",
     explain: "金幣",
-  },
-  {
-    title: `VIP季卡`,
-    price: `188`,
-    bonus: "",
-    explain: "90天 免費看",
-    hot: true,
-  },
-  {
-    title: `VIP年卡`,
-    price: `359`,
-    bonus: "",
-    explain: "365天 免費看",
-    hot: true,
   },
 ];
 
@@ -73,50 +60,70 @@ const Charge = () => {
           <PopConfirm onClose={setIsPopConfirm} />,
           document.getElementById("pop-window")!
         )}
-      <div className="flex flex-col justify-center items-center w-full bg-white rounded-2xl mt-4 px-4">
-        <div className="flex flex-col items-center pt-4 mb-2">
-          <div className="flex items-center">
-            <div>
-              <IconCoins class="h-4 pr-1" />
-            </div>
-            充值金幣
-            <div>
-              <IconCoins class="h-4 pl-1" />
-            </div>
-          </div>
-          <span className="text-xs flex text-[#a8a8a8]">
-            歡迎使用
-            <img className="w-[20px]" src="/img/payment/pay1.png" alt="" />
-            支付寶
-            <img className="w-[20px]" src="/img/payment/pay2.png" alt="" />
-            微信
-          </span>
-        </div>
-        <div className="flex flex-wrap justify-between">
+      <div className="flex flex-col justify-center items-center w-full bg-white mt-4 px-5">
+        <div className="pop-payment-title mb-5">选择充值金额</div>
+        <div className="w-full grid grid-cols-2 gap-4">
           {salesList.map((sale, index) => {
             return (
               <div
-                className="rounded-2xl min-h-[127px] w-[47%] p-2.5 border-[1px] charge-item my-2 charge-item"
+                className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(248,200,137,0.2)] rounded-xl"
                 onClick={popPaymentHandler}
                 key={index}
               >
-                {sale.recommend && <div className="charge-recommend">推薦</div>}
-                <div className="absolute bottom-1 right-2 opacity-50">
-                  {sale.title.startsWith("VIP") ? (
-                    <IconVip class="h-5" />
-                  ) : (
-                    <IconDiamond class="h-5" />
-                  )}
+                <div className="h-[40px] w-[27px] absolute top-0 right-[5px] bg-[#9f7b5d] text-xs text-white flex flex-col justify-center items-center">
+                  <span>省</span>
+                  <span>80</span>
                 </div>
-                <div>
-                  {sale.title}
-                  {sale.hot && <span className="charge-hot">熱銷</span>}
+                <div className="flex w-full pl-3">
+                  <div>
+                    <img
+                      src="/assets/img/coin.png"
+                      className="h-10 w-10"
+                      alt=""
+                    />
+                  </div>
+                  <div className="pl-2.5">
+                    <div className="text-sm">金幣</div>
+                    <div className="text-lg font-semibold">3,000</div>
+                    {index !== 0 && (
+                      <div className="text-sm opacity-60">含贈送 3,000</div>
+                    )}
+                  </div>
                 </div>
-                <div className="text-[#ff230e]">
-                  {sale.price}
-                  <span className="text-gray-500 text-sm">{sale.explain}</span>
+
+                <button className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#d19463]">
+                  &#165;&nbsp;30
+                </button>
+              </div>
+            );
+          })}
+          {vipList.map((sale, index) => {
+            return (
+              <div
+                className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(255,188,188,0.2)] rounded-xl"
+                onClick={popPaymentHandler}
+                key={index}
+              >
+                <div className="flex w-full pl-3">
+                  <div>
+                    <img
+                      src="/assets/img/coin.png"
+                      className="h-10 w-10"
+                      alt=""
+                    />
+                  </div>
+                  <div className="pl-2.5">
+                    <div className="text-sm">金幣</div>
+                    <div className="text-lg font-semibold">3,000</div>
+                    {index !== 0 && (
+                      <div className="text-sm opacity-60">含贈送 3,000</div>
+                    )}
+                  </div>
                 </div>
-                <div className="text-[#a8a8a8] text-xs">{sale.bonus}</div>
+
+                <button className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#ff978d]">
+                  &#165;&nbsp;30
+                </button>
               </div>
             );
           })}

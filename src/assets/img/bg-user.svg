@@ -1,0 +1,33 @@
+<svg viewBox="0 0 335 57" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter x="-53.8%" y="-111.9%" width="207.7%" height="323.9%" filterUnits="objectBoundingBox" id="ol7he0qlcb">
+            <feGaussianBlur stdDeviation="25" in="SourceGraphic"/>
+        </filter>
+        <filter x="-159.8%" y="-300%" width="419.6%" height="700%" filterUnits="objectBoundingBox" id="iqdy4djegd">
+            <feGaussianBlur stdDeviation="30" in="SourceGraphic"/>
+        </filter>
+        <filter x="-72.9%" y="-144%" width="245.7%" height="388%" filterUnits="objectBoundingBox" id="pn0y6lilxe">
+            <feGaussianBlur stdDeviation="12" in="SourceGraphic"/>
+        </filter>
+        <filter x="-69.1%" y="-134%" width="238.3%" height="368%" filterUnits="objectBoundingBox" id="cokqh06wmf">
+            <feGaussianBlur stdDeviation="46" in="SourceGraphic"/>
+        </filter>
+        <path d="M0 0h335v49a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V0z" id="8hlxm8lmua"/>
+        <path id="rabp4mkicg" d="M0 0h335v6H0z"/>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="9psco0mwhh">
+            <stop stop-color="#CE9361" offset="0%"/>
+            <stop stop-color="#CE9361" stop-opacity="0" offset="100%"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="x588vdh0hc" fill="#fff">
+            <use xlink:href="#8hlxm8lmua"/>
+        </mask>
+        <use fill="#F8C490" xlink:href="#8hlxm8lmua"/>
+        <rect fill="#DF4C00" opacity=".16" filter="url(#ol7he0qlcb)" mask="url(#x588vdh0hc)" x="216.416" y="-22" width="139.336" height="67" rx="33.5"/>
+        <rect fill="#FFF99A" filter="url(#iqdy4djegd)" mask="url(#x588vdh0hc)" x="111.667" y="-13" width="56.327" height="30" rx="15"/>
+        <rect fill="#FFE882" opacity=".299" filter="url(#pn0y6lilxe)" mask="url(#x588vdh0hc)" x="269.779" y="-12" width="49.41" height="25" rx="12.5"/>
+        <rect fill="#FFCE4F" opacity=".249" filter="url(#cokqh06wmf)" mask="url(#x588vdh0hc)" x="-20.752" y="29" width="199.617" height="103" rx="51.5"/>
+        <use fill="url(#9psco0mwhh)" opacity=".4" xlink:href="#rabp4mkicg"/>
+    </g>
+</svg>

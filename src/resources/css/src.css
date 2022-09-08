@@ -207,6 +207,10 @@ input:focus {
   box-sizing: border-box;
 }
 
+.user-icon-shadow {
+  box-shadow: 3px 15px 20px 1px rgba(0, 0, 0, 0.2);
+}
+
 /* 熱銷標籤 */
 .charge-hot {
   @apply text-white ml-2;

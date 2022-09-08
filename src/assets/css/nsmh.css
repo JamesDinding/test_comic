@@ -537,6 +537,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: .8rem;
 }
 
+.top-0 {
+  top: 0px;
+}
+
+.right-\[5px\] {
+  right: 5px;
+}
+
 .z-\[5\] {
   z-index: 5;
 }
@@ -605,6 +613,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: .4rem;
 }
 
+.mx-2\.5 {
+  margin-left: 0.625rem;
+  margin-right: 0.625rem;
+}
+
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -613,6 +626,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.mx-\[1\.125rem\] {
+  margin-left: 1.125rem;
+  margin-right: 1.125rem;
+}
+
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.mx-16 {
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 .ml-3 {
@@ -663,6 +691,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.5rem;
 }
 
+.mb-\[-1\.25rem\] {
+  margin-bottom: -1.25rem;
+}
+
 .ml-10 {
   margin-left: 2.5rem;
 }
@@ -693,6 +725,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-4 {
   margin-left: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .block {
@@ -791,6 +831,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.86rem;
 }
 
+.h-\[90px\] {
+  height: 90px;
+}
+
 .h-\[50px\] {
   height: 50px;
 }
@@ -801,6 +845,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[40px\] {
   height: 40px;
+}
+
+.h-10 {
+  height: 2.5rem;
 }
 
 .max-h-screen {
@@ -831,6 +879,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 190px;
 }
 
+.min-h-\[120px\] {
+  min-height: 120px;
+}
+
 .min-h-\[54px\] {
   min-height: 54px;
 }
@@ -841,6 +893,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-h-\[60px\] {
   min-height: 60px;
+}
+
+.min-h-\[130px\] {
+  min-height: 130px;
+}
+
+.min-h-\[150px\] {
+  min-height: 150px;
+}
+
+.min-h-\[140px\] {
+  min-height: 140px;
 }
 
 .w-\[50px\] {
@@ -895,6 +959,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 2.86rem;
 }
 
+.w-\[90px\] {
+  width: 90px;
+}
+
 .w-6 {
   width: 1.5rem;
 }
@@ -909,6 +977,30 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[40px\] {
   width: 40px;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-\[42\%\] {
+  width: 42%;
+}
+
+.w-\[45\%\] {
+  width: 45%;
+}
+
+.w-4\/5 {
+  width: 80%;
+}
+
+.w-\[27px\] {
+  width: 27px;
 }
 
 .min-w-\[112px\] {
@@ -1067,6 +1159,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .self-start {
@@ -1349,6 +1445,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(133 85 149 / var(--tw-bg-opacity));
 }
 
+.bg-\[rgba\(248\2c 200\2c 137\2c 0\.2\)\] {
+  background-color: rgba(248,200,137,0.2);
+}
+
+.bg-\[rgba\(255\2c 188\2c 188\2c 0\.2\)\] {
+  background-color: rgba(255,188,188,0.2);
+}
+
+.bg-\[\#9f7b5d\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(159 123 93 / var(--tw-bg-opacity));
+}
+
+.bg-userSection {
+  background-image: url('../img/bg-user.svg');
+}
+
 .bg-\[length\:25px_25px\] {
   background-size: 25px 25px;
 }
@@ -1367,6 +1480,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-\[1px\] {
   padding: 1px;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .p-4 {
@@ -1531,10 +1648,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1rem;
 }
 
-.pl-1 {
-  padding-left: 0.25rem;
-}
-
 .pt-2\.5 {
   padding-top: 0.625rem;
 }
@@ -1553,6 +1666,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pr-4 {
   padding-right: 1rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pl-2\.5 {
+  padding-left: 0.625rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
 }
 
 .text-center {
@@ -1734,6 +1859,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(158 118 84 / var(--tw-text-opacity));
 }
 
+.text-\[\#f7bc86\] {
+  --tw-text-opacity: 1;
+  color: rgb(247 188 134 / var(--tw-text-opacity));
+}
+
 .text-\[\#ccc\] {
   --tw-text-opacity: 1;
   color: rgb(204 204 204 / var(--tw-text-opacity));
@@ -1795,6 +1925,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-70 {
   opacity: 0.7;
+}
+
+.opacity-60 {
+  opacity: 0.6;
 }
 
 .shadow {
@@ -2164,6 +2298,10 @@ input:focus {
   box-shadow: 0 0.15rem 0.4rem 0 #a8a8a8;
   flex-shrink: 0;
   box-sizing: border-box;
+}
+
+.user-icon-shadow {
+  box-shadow: 3px 15px 20px 1px rgba(0, 0, 0, 0.2);
 }
 
 /* 熱銷標籤 */

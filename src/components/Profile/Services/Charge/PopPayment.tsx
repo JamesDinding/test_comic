@@ -1,40 +1,10 @@
 import { FunctionalComponent, h } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
+import { useCharge } from "../../../../context/charge";
 import PaymentBar from "./PaymentBar";
 import PaySelection from "./PaySelection";
 import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
-
-// temp
-const temp_pay = [
-  {
-    pay: "支付寶",
-    p_id: "12345",
-    p_way: ["线路名称 1", "线路名称 2", "线路名称 3", "线路名称 4"],
-  },
-  {
-    pay: "微信",
-    p_id: "23456",
-    p_way: ["线路名称 1", "线路名称 2", "线路名称 3", "线路名称 4"],
-  },
-  {
-    pay: "雲散服",
-    p_id: "34567",
-    p_way: ["线路名称 1", "线路名称 2", "线路名称 3", "线路名称 4"],
-  },
-  {
-    pay: "USDT",
-    p_id: "45678",
-    p_way: [
-      "线路名称 1",
-      "线路名称 2",
-      "线路名称 3",
-      "线路名称 4",
-      "线路名称 5",
-      "线路名称 6",
-    ],
-  },
-];
 
 const payAmountArr = [
   { amount: 50, title: "8000金幣" },
@@ -63,6 +33,7 @@ interface PayListProps {
 }
 
 const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({ onClose }) => {
+  const { selectPay, payments, userSelect } = useCharge();
   const [curExpand, setCurExpand] = useState(0);
 
   return (
@@ -75,7 +46,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({ onClose }) => {
           <IconCross class="h-8" />
         </div>
         <div className="pop-payment-title">選擇支付方案</div>
-        {temp_pay.map((pay, i) => {
+        {payments?.map((payment, i) => {
           const isNowExpand = curExpand === i;
           return (
             <div
@@ -89,7 +60,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({ onClose }) => {
                 setCurExpand(i);
               }}
             >
-              <PaySelection payInfo={pay} isExpand={isNowExpand} />
+              <PaySelection payInfo={payment} isExpand={isNowExpand} />
             </div>
           );
         })}

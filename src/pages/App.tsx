@@ -6,6 +6,7 @@ import Router from "preact-router";
 import { useState } from "preact/hooks";
 
 import { WorkerProvider } from "./../context/worker";
+import { ChargeProvider } from "../context/charge";
 
 import SmartBanner from "../components/SmartBanner";
 import DefaultRouteHandler from "../components/DefaultRouteHandler";
@@ -34,43 +35,47 @@ const App: FunctionalComponent = () => {
 
   return (
     <WorkerProvider>
-      <div id="root" class="w-full max-w-[420px] h-full">
-        <div id="container" class="bg-white w-full h-full flex flex-col">
-          {showSmartBanner ? (
-            <SmartBanner SetSmartBannerVisiblity={setShowSmartBanner} />
-          ) : (
-            <></>
-          )}
+      <ChargeProvider>
+        <div id="root" class="w-full max-w-[420px] h-full">
+          <div id="container" class="bg-white w-full h-full flex flex-col">
+            {showSmartBanner ? (
+              <SmartBanner SetSmartBannerVisiblity={setShowSmartBanner} />
+            ) : (
+              <></>
+            )}
 
-          <Router>
-            <HomePage path="/home" />
-            <VideoPage path="/video-home" />
-            <BookmarkPage path="/bookmark" />
-            <ProfilePage path="/profile" />
-            <DirectoryPage path="/directory/:cid" />
-            <ReadPage path="/read/:id" />
-            <RegisterPage path="/register" />
-            <LoginPage path="/login" />
-            <ModifyPasswordPage path="/modify-password" />
-            <ChargePage path="/charge" />
-            <RecoveryPage path="/recovery" />
-            <PurchaseRecordPage path="/purchase-record" />
-            <ChargeRecordPage path="/charge-record" />
-            <CustomerPage path="/service" />
-            <BookPurchasePage path="/book-history" />
-            <SearchPage path="/search" />
+            <Router>
+              <HomePage path="/home" />
+              <VideoPage path="/video-home" />
+              <BookmarkPage path="/bookmark" />
+              <ProfilePage path="/profile" />
+              <DirectoryPage path="/directory/:cid" />
+              <ReadPage path="/read/:id" />
+              <RegisterPage path="/register" />
+              <LoginPage path="/login" />
+              <ModifyPasswordPage path="/modify-password" />
 
-            {/* test page */}
-            <TestPage path="/test" />
+              <ChargePage path="/charge" />
 
-            <DefaultRouteHandler default />
-          </Router>
+              <RecoveryPage path="/recovery" />
+              <PurchaseRecordPage path="/purchase-record" />
+              <ChargeRecordPage path="/charge-record" />
+              <CustomerPage path="/service" />
+              <BookPurchasePage path="/book-history" />
+              <SearchPage path="/search" />
 
-          {/* <FooterBar /> */}
+              {/* test page */}
+              <TestPage path="/test" />
+
+              <DefaultRouteHandler default />
+            </Router>
+
+            {/* <FooterBar /> */}
+          </div>
         </div>
-      </div>
-      <div id="back-drop"></div>
-      <div id="pop-window"></div>
+        <div id="back-drop"></div>
+        <div id="pop-window"></div>
+      </ChargeProvider>
     </WorkerProvider>
   );
 };

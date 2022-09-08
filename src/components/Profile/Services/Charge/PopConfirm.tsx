@@ -26,8 +26,10 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({
   );
 
   useEffect(() => {
-    if (countDown === 0) onClose(false);
-
+    if (countDown === 0) {
+      clearTimeout(timer);
+      onClose(false);
+    }
     clearTimeout(timer);
     timer = setTimeout(() => {
       setCountDown((prev) => prev - 1);

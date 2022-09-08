@@ -1,5 +1,6 @@
 import { h, FunctionalComponent } from "preact";
 import { useState, useEffect, useRef } from "preact/hooks";
+import { useCharge } from "../../../../context/charge";
 import IconChevron from "../../../../resources/img/icon-chevron.svg";
 
 type PayInfo = {
@@ -18,12 +19,16 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   payInfo,
   isExpand,
 }) => {
+  const { payments, userSelect, selectPay } = useCharge();
+
   return (
     <div
       className={"charge-input-container " + (isExpand ? "bg-[#fef4e7]" : "")}
     >
       <div className="flex items-center justify-between">
-        {payInfo.pay}
+        {userSelect.pay === payInfo.pay && userSelect.p_way
+          ? payInfo.pay.concat(" / ", userSelect.p_way)
+          : payInfo.pay}
         <div>
           <IconChevron
             class={
@@ -41,7 +46,12 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
         {payInfo.p_way.map((p, i) => {
           return (
             <div className="mt-5">
-              <label className="cursor-pointer">
+              <label
+                className="cursor-pointer"
+                onClick={() => {
+                  selectPay(payInfo.pay, "123", p);
+                }}
+              >
                 <input className="mr-2.5" type="radio" name={"foo"} value={p} />
                 {p}
               </label>

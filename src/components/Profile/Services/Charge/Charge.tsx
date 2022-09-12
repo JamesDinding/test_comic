@@ -4,13 +4,20 @@ import { createPortal } from "preact/compat";
 import BackDrop from "../../../BackDrop";
 import PopPayment from "./PopPayment";
 import PopConfirm from "./PopConfirm";
+import Attention from "./Attention";
 import IconCoins from "../../../../resources/img/icon-coins.svg";
 import IconVip from "../../../../resources/img/icon-vip.svg";
 import IconDiamond from "../../../../resources/img/charge-diamond.svg";
 
 const vipList = ["", ""];
 const salesList = [
-  { title: `50元`, price: `5000+3000`, bonus: "多送30元", explain: "金幣" },
+  {
+    type: "金幣",
+    title: "3,000",
+    bonus: "含贈送 3,000",
+    cost: "30",
+    mark: "省30",
+  },
   { title: `30元`, price: `3000`, bonus: "多送30元", explain: "金幣" },
   {
     title: `100元`,
@@ -62,7 +69,7 @@ const Charge = () => {
         )}
       <div className="flex flex-col justify-center items-center w-full bg-white mt-4 px-5">
         <div className="pop-payment-title mb-5">选择充值金额</div>
-        <div className="w-full grid grid-cols-2 gap-4">
+        <div className="w-full grid grid-cols-2 gap-4 mb-5">
           {salesList.map((sale, index) => {
             return (
               <div
@@ -128,13 +135,7 @@ const Charge = () => {
             );
           })}
         </div>
-        <div className="charge-vip-hint">VIP用户可无限阅读所有作品！</div>
-        <span className="text-xs text-[#a8a8a8]">
-          有任何問題請聯繫
-          <div className="text-center">
-            <a>在線克服</a>
-          </div>
-        </span>
+        <Attention />
       </div>
     </>
   );

@@ -229,6 +229,11 @@ input:focus {
   @apply mb-8 text-[.6rem] text-center text-[#ff685a] font-bold tracking-[1px];
 }
 
+.charge-attention-title {
+  @apply pb-2 border-b-2 text-center text-lg;
+  border-color: rgba(158, 118, 84, 0.4);
+}
+
 /* 我的 */
 .user-card {
   @apply rounded-2xl bg-no-repeat bg-white mt-2 p-[.7rem];
@@ -252,7 +257,7 @@ input:focus {
 }
 
 .book-description {
-  @apply line-clamp-4 text-ellipsis mt-2 leading-4 text-xs;
+  @apply line-clamp-4 text-ellipsis mt-2 leading-4 text-xs text-[#999999];
 }
 
 /* 漫畫閱讀頁 */

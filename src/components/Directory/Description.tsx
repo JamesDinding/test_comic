@@ -40,35 +40,36 @@ const Description = () => {
   return (
     <>
       <div className="flex py-4">
-        <div className="w-[112px] min-w-[112px] h-[160px] bg-[#a8a8a8] rounded mr-4">
-          <Image alt="image test" path="" setParentPending={setPending} />
+        <div className="w-[161px] min-w-[161px] h-[242px] bg-[#a8a8a8] rounded mr-5">
+          <Image alt="image" path="" setParentPending={setPending} />
         </div>
         <div className="flex flex-col grow items-start">
-          <p className="text-[#4c4c4c] text-lg font-bold book-oneline">
+          <div className="text-[#666666] text-xl font-semibold book-oneline">
             {fakeData?.title}
-          </p>
-          <p className="text-[#a8a8a8] mt-0 book-oneline">
-            <span className="text-[.6rem] mr-2">作者:{fakeData?.author}</span>
-          </p>
-          <p>
-            <span className="text-[.6rem] mr-2 inline-block py-[.1rem] px-2 bg-[#ff6a6a] text-white rounded">
-              tag
-            </span>
-          </p>
+          </div>
+          <div className="text-[#999999] text-xs mt-2 book-oneline">
+            <span className="mr-2">作者:{fakeData?.author}</span>
+          </div>
+
           <p className="book-description">{fakeData?.description}</p>
           <div className="grow"></div>
-          <p className="flex items-center w-full mt-1 text-[#a8a8a8]">
+          <div className="leading-3">
+            {new Array(6).fill("test").map((tag, i, arr) => {
+              return (
+                <span className="text-xs text-[#68b2e1] mr-2 inline-block text-white rounded">
+                  #&nbsp;{tag}
+                </span>
+              );
+            })}
+          </div>
+          <div className="flex items-center w-full mt-1 text-[#a8a8a8]">
             <span className="mr-2 text-[.6rem] book-oneline">
               <span>★&nbsp;{fakeData?.views}</span>
             </span>
             <span className="mr-2 text-[.6rem] book-oneline">
               <span>◉&nbsp;{fakeData?.collections}</span>
             </span>
-            <span className="mr-2 px-1 py-[2px] text-[.6rem] book-oneline p-[1px] pr-[4px] bg-[#ffaea7] text-white ml-auto rounded">
-              <IconCollect class="h-3 inline-block pr-1" />
-              收藏
-            </span>
-          </p>
+          </div>
         </div>
       </div>
     </>

@@ -7,7 +7,7 @@ import Charge from "../../components/Profile/Services/Charge/Charge";
 const ChargePage: FunctionalComponent = () => {
   return (
     <>
-      <div class="grow bg-white">
+      <div class="grow bg-white overflow-y-auto no-scollbar">
         <ReturnBar title="立即充值" />
         <div className="w-full px-5 mb-[-1.25rem]">
           <UserSection />

@@ -1,41 +1,39 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
+import ChapterItem from "../Directory/ChapterItem";
 import IconChevron from "../../resources/img/icon-chevron.svg";
+import IconCross from "../../resources/img/icon-cross.svg";
 
 interface ControlLayerProps {
   onSetIsShow: StateUpdater<boolean>;
   isShow: boolean;
+  chapterList: Array<{ cover: string; episode: number; isLocked: boolean }>;
 }
 
 let layerCss = "translate-y-full";
 const ControlLayer: FunctionalComponent<ControlLayerProps> = ({
   onSetIsShow,
   isShow,
+  chapterList,
 }) => {
   layerCss = isShow ? "" : "translate-y-full";
 
   return (
     <div
       id="control-view"
-      className={`absolute p-2 w-full h-[50px] bottom-0 control-bar ${layerCss}`}
+      className={`control-container bg-white overflow-y-auto no-scollbar ${layerCss}`}
+      onClick={(e) => e.stopPropagation()}
     >
-      <div className="flex items-center p-2">
-        <div>
-          <IconChevron class="rotate-180 h-5" />
+      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[#9e7654]">
+        章節選擇
+        <div onClick={(e) => onSetIsShow(false)}>
+          <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
-        <div>上一頁</div>
-        <div className="grow"></div>
-        <div>
-          img/<span>目錄</span>
-        </div>
-        <div>
-          img/<span>收藏</span>
-        </div>
-        <div className="grow"></div>
-        <div>下一頁</div>
-        <div>
-          <IconChevron class="h-5" />
-        </div>
+      </div>
+      <div className="grid grid-cols-4 gap-2.5 px-5 py-2.5">
+        {chapterList.map((c, i, arr) => {
+          return <ChapterItem chapter={c} smallSize={true} />;
+        })}
       </div>
     </div>
   );

@@ -252,6 +252,16 @@ input:focus {
 }
 
 /* 章節目錄 */
+.chapter-title {
+  @apply text-lg text-[#9e7654] border-b-2 pb-2;
+  border-color: rgba(158, 118, 84, 0.4);
+}
+
+.chapter-item-backdrop {
+  @apply absolute w-full h-full;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), #000);
+}
+
 .book-oneline {
   @apply line-clamp-1 text-ellipsis;
 }
@@ -261,17 +271,20 @@ input:focus {
 }
 
 /* 漫畫閱讀頁 */
-.control-bar {
-  background: linear-gradient(
+.control-container {
+  @apply absolute w-full h-2/3 rounded-t-xl bottom-0 border-t-[1px];
+
+  /* background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.8) 0,
     rgba(0, 0, 0, 0.8) 35%,
     transparent
-  );
+  ); */
+  box-shadow: 0px -2px 10px -3px #000;
   font-size: 0.8rem;
   color: #fff;
-  z-index: 9999;
-  transition-duration: 150ms;
+  z-index: 999;
+  transition-duration: 200ms;
 }
 
 /* 分類列表 */

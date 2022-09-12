@@ -1,13 +1,7 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect } from "preact/hooks";
-import ChapterRow from "./ChapterRow";
+import ChapterItem from "./ChapterItem";
 import { useWorker } from "../../context/worker";
-
-interface ChapterData {
-  cover: string;
-  episode: number;
-  isLocked: boolean;
-}
 
 const ChapterList = () => {
   const [fakeData, setFakeData] = useState<Array<ChapterData> | null>(null);
@@ -17,7 +11,7 @@ const ChapterList = () => {
   useEffect(() => {
     const fakePromise = new Promise<Array<ChapterData>>((resolve, reject) => {
       setTimeout(() => {
-        let temp = new Array(100).fill(
+        let temp = new Array(4).fill(
           {
             cover: "temp",
             episode: 2,
@@ -43,10 +37,13 @@ const ChapterList = () => {
 
   return (
     <>
-      {!isPending &&
-        fakeData?.map((list) => {
-          return <ChapterRow chapter={list} />;
-        })}
+      <div className="chapter-title mb-2">章節</div>
+      <div className="grid grid-cols-3 gap-2.5 justify-between">
+        {!isPending &&
+          fakeData?.map((list) => {
+            return <ChapterItem chapter={list} />;
+          })}
+      </div>
     </>
   );
 };

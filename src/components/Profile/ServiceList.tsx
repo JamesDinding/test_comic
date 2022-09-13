@@ -1,49 +1,81 @@
-import { FunctionalComponent, h } from "preact";
-import IconChevron from "../../resources/img/icon-chevron.svg";
+import { FunctionalComponent, h, Fragment as F } from "preact";
+import { StateUpdater, useState } from "preact/hooks";
+import { createPortal } from "preact/compat";
 import { Link } from "preact-router";
-import IconPhone from "../../resources/img/profile-phone.svg";
-import IconIdentification from "../../resources/img/profile-identification.svg";
-import IconWallet from "../../resources/img/profile-wallet.svg";
-import IconWechat from "../../resources/img/profile-wechat.svg";
+import { route } from "preact-router";
+import BindPhone from "./Services/BindPhone";
+import BackDrop from "../BackDrop";
 
 const serviceList = [
   { title: "註冊", msg: "完成註冊即贈送150金幣!", url: "/register" },
-  { title: "完善會員資料", msg: "完成即贈送150金幣!", url: "/profile" },
+  { title: "完善會員資料", msg: "完成即贈送150金幣!", url: "bind" },
   { title: "充值服務", msg: "", url: "/charge" },
   { title: "錢包紀錄", msg: "", url: "/profile" },
   { title: "尋回帳戶", msg: "", url: "/profile" },
   { title: "客服中心", msg: "", url: "/profile" },
 ];
 
-const ServiceList = () => {
+// interface ServiceListProps {
+//   isPopBinding: boolean;
+//   setIsPopBinding: StateUpdater<boolean>;
+// }
+
+const ServiceList: FunctionalComponent = (
+  {
+    // isPopBinding,
+    // setIsPopBinding,
+  }
+) => {
+  const [isPopBinding, setIsPopBinding] = useState(false);
+
   return (
-    <div className="flex flex-col overflow-auto">
-      <div className="mb-2 rounded-2xl">
-        <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
-          <ul>
-            {serviceList.map((service, i, arr) => {
-              return (
-                <Link
-                  className="flex items-center bg-white py-4 px-5"
-                  href={service.url}
-                >
-                  <div className="text-[#9e7654] text-sm">{service.title}</div>
-                  <div className="ml-5 grow text-left text-[#ff978d] text-xs">
-                    {service.msg}
-                  </div>
-                  <div>
-                    <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#9e7654] rounded-sm"></div>
-                  </div>
-                </Link>
-              );
-            })}
-          </ul>
+    <F>
+      {isPopBinding &&
+        createPortal(
+          <BackDrop onClose={() => setIsPopBinding(false)} />,
+          document.getElementById("back-drop")!
+        )}
+      <div className="flex flex-col overflow-auto">
+        {isPopBinding && <BindPhone onClose={() => setIsPopBinding(false)} />}
+        <div className="mb-2 rounded-2xl">
+          <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
+            <ul>
+              {serviceList.map((service, i, arr) => {
+                return (
+                  <li
+                    className="flex items-center bg-white py-4 px-5"
+                    onClick={() => {
+                      if (service.url === "bind") {
+                        setIsPopBinding(true);
+                        return;
+                      }
+                      route(service.url);
+                    }}
+                    href={service.url}
+                  >
+                    <div className="text-[#9e7654] text-sm">
+                      {service.title}
+                    </div>
+                    <div className="ml-5 grow text-left text-[#ff978d] text-xs">
+                      {service.msg}
+                    </div>
+                    <div>
+                      <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#9e7654] rounded-sm"></div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
+        <Link
+          className="bg-white py-4 px-5 text-[#9e7654] text-sm"
+          href="/login"
+        >
+          登錄
+        </Link>
       </div>
-      <Link className="bg-white py-4 px-5 text-[#9e7654] text-sm" href="/login">
-        登錄
-      </Link>
-    </div>
+    </F>
   );
 };
 

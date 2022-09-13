@@ -42,7 +42,24 @@ input:focus {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* 彈窗 pop- */
+/* 彈窗 */
+/* modal 下方上彈的modal */
+.modal-bottom {
+  @apply absolute w-full max-h-[66%] min-h-[445px] rounded-t-xl border-t-[1px];
+
+  /* background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.8) 0,
+    rgba(0, 0, 0, 0.8) 35%,
+    transparent
+  ); */
+  box-shadow: 0px -2px 10px -3px #000;
+  font-size: 0.8rem;
+  color: #fff;
+  z-index: 999;
+  transition-duration: 200ms;
+}
+
 .modal {
   @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-30 rounded-lg bg-white min-w-[335px] min-h-[515px] h-[80%];
 }
@@ -271,21 +288,6 @@ input:focus {
 }
 
 /* 漫畫閱讀頁 */
-.control-container {
-  @apply absolute w-full h-2/3 rounded-t-xl bottom-0 border-t-[1px];
-
-  /* background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.8) 0,
-    rgba(0, 0, 0, 0.8) 35%,
-    transparent
-  ); */
-  box-shadow: 0px -2px 10px -3px #000;
-  font-size: 0.8rem;
-  color: #fff;
-  z-index: 999;
-  transition-duration: 200ms;
-}
 
 /* 分類列表 */
 .category_list_box {
@@ -416,4 +418,34 @@ footer .active span {
 
 .test-duration {
   transition: all 0.3s ease-in-out;
+}
+
+/* input error handle */
+.error-shaking {
+  animation: shake 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  /* animation: shake 5s cubic-bezier(0.38, 0.82, 0.63, 0.22); */
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }

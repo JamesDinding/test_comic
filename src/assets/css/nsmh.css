@@ -517,6 +517,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   bottom: 0.5rem;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
+.bottom-\[-60px\] {
+  bottom: -60px;
+}
+
 .left-\[12px\] {
   left: 12px;
 }
@@ -604,11 +612,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.5rem;
 }
 
-.mx-\[\.4rem\] {
-  margin-left: .4rem;
-  margin-right: .4rem;
-}
-
 .mx-2\.5 {
   margin-left: 0.625rem;
   margin-right: 0.625rem;
@@ -622,6 +625,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
 }
 
 .ml-3 {
@@ -672,10 +680,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1rem;
 }
 
-.mt-0 {
-  margin-top: 0px;
-}
-
 .mr-8 {
   margin-right: 2rem;
 }
@@ -694,6 +698,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mb-\[-1\.25rem\] {
   margin-bottom: -1.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .ml-10 {
@@ -756,6 +764,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100%;
 }
 
+.h-\[60px\] {
+  height: 60px;
+}
+
 .h-8 {
   height: 2rem;
 }
@@ -800,8 +812,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 0.5rem;
 }
 
-.h-\[1\.5rem\] {
-  height: 1.5rem;
+.h-0 {
+  height: 0px;
+}
+
+.h-\[90px\] {
+  height: 90px;
+}
+
+.h-\[50px\] {
+  height: 50px;
+}
+
+.h-\[45px\] {
+  height: 45px;
 }
 
 .h-6 {
@@ -810,14 +834,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[2\.4rem\] {
   height: 2.4rem;
-}
-
-.h-\[90px\] {
-  height: 90px;
-}
-
-.h-\[45px\] {
-  height: 45px;
 }
 
 .h-\[2\.5rem\] {
@@ -830,14 +846,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-10 {
   height: 2.5rem;
-}
-
-.h-\[50px\] {
-  height: 50px;
-}
-
-.h-0 {
-  height: 0px;
 }
 
 .max-h-screen {
@@ -940,8 +948,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 0.5rem;
 }
 
+.w-0 {
+  width: 0px;
+}
+
 .w-\[90px\] {
   width: 90px;
+}
+
+.w-\[330px\] {
+  width: 330px;
 }
 
 .w-6 {
@@ -968,16 +984,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 40px;
 }
 
-.w-0 {
-  width: 0px;
-}
-
 .min-w-\[161px\] {
   min-width: 161px;
-}
-
-.min-w-\[2rem\] {
-  min-width: 2rem;
 }
 
 .max-w-\[420px\] {
@@ -1190,60 +1198,32 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 1rem;
 }
 
-.rounded-\[2\.4rem\] {
-  border-radius: 2.4rem;
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 
 .rounded-\[3rem\] {
   border-radius: 3rem;
 }
 
-.rounded-3xl {
-  border-radius: 1.5rem;
+.rounded-\[2\.4rem\] {
+  border-radius: 2.4rem;
 }
 
-.rounded-sm {
-  border-radius: 0.125rem;
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 
 .border-2 {
   border-width: 2px;
 }
 
-.border-\[1px\] {
-  border-width: 1px;
-}
-
-.border-\[10px\] {
-  border-width: 10px;
-}
-
-.border-4 {
-  border-width: 4px;
-}
-
-.border-8 {
-  border-width: 8px;
-}
-
-.border-\[2rem\] {
-  border-width: 2rem;
-}
-
-.border-\[\.5rem\] {
-  border-width: .5rem;
-}
-
-.border-\[\.3rem\] {
-  border-width: .3rem;
-}
-
 .border-\[\.35rem\] {
   border-width: .35rem;
 }
 
-.border-\[\.4rem\] {
-  border-width: .4rem;
+.border-\[1px\] {
+  border-width: 1px;
 }
 
 .border-t {
@@ -1254,24 +1234,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-bottom-width: 1px;
 }
 
+.border-l-\[\.5rem\] {
+  border-left-width: .5rem;
+}
+
 .border-b-\[1px\] {
   border-bottom-width: 1px;
 }
 
 .border-b-2 {
   border-bottom-width: 2px;
-}
-
-.border-l-\[\.4rem\] {
-  border-left-width: .4rem;
-}
-
-.border-l-\[\.5rem\] {
-  border-left-width: .5rem;
-}
-
-.border-l-\[\.6rem\] {
-  border-left-width: .6rem;
 }
 
 .border-solid {
@@ -1288,9 +1260,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(249 141 131 / var(--tw-border-opacity));
 }
 
-.border-\[\#f1f1f1\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(241 241 241 / var(--tw-border-opacity));
+.border-transparent {
+  border-color: transparent;
 }
 
 .border-\[\#9e7654\] {
@@ -1341,10 +1312,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-\[\#f4f4f4\] {
   --tw-border-opacity: 1;
   border-color: rgb(244 244 244 / var(--tw-border-opacity));
-}
-
-.border-transparent {
-  border-color: transparent;
 }
 
 .border-l-\[\#9e7654\] {
@@ -1469,12 +1436,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-image: url('../img/bg-user.png');
 }
 
-.bg-\[length\:25px_25px\] {
-  background-size: 25px 25px;
-}
-
 .bg-\[length\:100\%_50\%\] {
   background-size: 100% 50%;
+}
+
+.bg-\[length\:25px_25px\] {
+  background-size: 25px 25px;
 }
 
 .bg-\[center_left_0\.9rem\] {
@@ -1563,14 +1530,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1rem;
 }
 
-.px-\[\.4rem\] {
-  padding-left: .4rem;
-  padding-right: .4rem;
-}
-
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .px-2\.5 {
@@ -1772,12 +1739,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 16px;
 }
 
-.leading-\[2\.4rem\] {
-  line-height: 2.4rem;
-}
-
 .leading-\[1\.6rem\] {
   line-height: 1.6rem;
+}
+
+.leading-\[2\.4rem\] {
+  line-height: 2.4rem;
 }
 
 .leading-relaxed {
@@ -2014,7 +1981,30 @@ input:focus {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* 彈窗 pop- */
+/* 彈窗 */
+
+/* modal 下方上彈的modal */
+
+.modal-bottom {
+  position: absolute;
+  max-height: 66%;
+  min-height: 445px;
+  width: 100%;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  border-top-width: 1px;
+  /* background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.8) 0,
+    rgba(0, 0, 0, 0.8) 35%,
+    transparent
+  ); */
+  box-shadow: 0px -2px 10px -3px #000;
+  font-size: 0.8rem;
+  color: #fff;
+  z-index: 999;
+  transition-duration: 200ms;
+}
 
 .modal {
   position: fixed;
@@ -2423,27 +2413,6 @@ input:focus {
 
 /* 漫畫閱讀頁 */
 
-.control-container {
-  position: absolute;
-  bottom: 0px;
-  height: 66.666667%;
-  width: 100%;
-  border-top-left-radius: 0.75rem;
-  border-top-right-radius: 0.75rem;
-  border-top-width: 1px;
-  /* background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.8) 0,
-    rgba(0, 0, 0, 0.8) 35%,
-    transparent
-  ); */
-  box-shadow: 0px -2px 10px -3px #000;
-  font-size: 0.8rem;
-  color: #fff;
-  z-index: 999;
-  transition-duration: 200ms;
-}
-
 /* 分類列表 */
 
 .category_list_box {
@@ -2691,6 +2660,37 @@ footer .active span {
   transition: all 0.3s ease-in-out;
 }
 
+/* input error handle */
+
+.error-shaking {
+  animation: shake 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  /* animation: shake 5s cubic-bezier(0.38, 0.82, 0.63, 0.22); */
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 .placeholder\:text-xs::placeholder {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -2698,6 +2698,11 @@ footer .active span {
 
 .placeholder\:font-extralight::placeholder {
   font-weight: 200;
+}
+
+.placeholder\:text-\[\#bbbbbb\]::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(187 187 187 / var(--tw-text-opacity));
 }
 
 .first\:ml-0:first-child {

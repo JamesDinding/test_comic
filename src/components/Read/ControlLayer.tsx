@@ -22,7 +22,7 @@ const ControlLayer: FunctionalComponent<ControlLayerProps> = ({
   return (
     <div
       id="control-view"
-      className={`control-container bg-white overflow-y-auto no-scollbar ${layerCss}`}
+      className={`modal-bottom bg-white overflow-y-auto no-scollbar ${layerCss}`}
       onClick={(e) => e.stopPropagation()}
     >
       <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[#9e7654]">

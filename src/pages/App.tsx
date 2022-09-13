@@ -13,7 +13,7 @@ import DefaultRouteHandler from "../components/DefaultRouteHandler";
 
 import HomePage from "./Home";
 import VideoPage from "./Video";
-import BookmarkPage from "./Bookmark/Bookmark";
+import CollectPage from "./Collect";
 import ProfilePage from "./Profile";
 import DirectoryPage from "./Directory";
 import ReadPage from "./Read";
@@ -25,7 +25,6 @@ import RecoveryPage from "./Profile/Recovery";
 import PurchaseRecordPage from "./Profile/PurchaseRecord";
 import ChargeRecordPage from "./Profile/ChargeRecord";
 import CustomerPage from "./Profile/Customer";
-import BookPurchasePage from "./Bookmark/BookPurchase";
 import SearchPage from "./Search";
 // Test page
 import TestPage from "./Test";
@@ -47,7 +46,7 @@ const App: FunctionalComponent = () => {
             <Router>
               <HomePage path="/home" />
               <VideoPage path="/video-home" />
-              <BookmarkPage path="/bookmark" />
+              <CollectPage path="/collect" />
               <ProfilePage path="/profile" />
               <DirectoryPage path="/directory/:cid" />
               <ReadPage path="/read/:id" />
@@ -61,7 +60,6 @@ const App: FunctionalComponent = () => {
               <PurchaseRecordPage path="/purchase-record" />
               <ChargeRecordPage path="/charge-record" />
               <CustomerPage path="/service" />
-              <BookPurchasePage path="/book-history" />
               <SearchPage path="/search" />
 
               {/* test page */}

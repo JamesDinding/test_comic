@@ -347,7 +347,7 @@ input:focus {
 }
 
 .item-separte .title-separate {
-  @apply px-2 text-ellipsis whitespace-nowrap text-white block w-full overflow-hidden;
+  @apply px-2 text-ellipsis whitespace-nowrap text-[#666666] block w-full overflow-hidden;
 }
 
 .item .rating {
@@ -355,22 +355,21 @@ input:focus {
 }
 
 .item-separte .rating-separate {
-  @apply text-xs text-gray-400 left-3;
+  @apply text-xs text-gray-400 px-2.5;
 }
 
 .item:hover .item-overlay {
   @apply to-gray-700;
 }
 
-.item.pending {
-  @apply bg-[#ffeeec] shadow-none border-none;
-  min-height: 10rem;
+.pending {
+  @apply bg-[#ffeeec] rounded shadow-none border-none;
 }
 
-.item.pending img,
-.item.pending .item-overlay,
-.item.pending .title,
-.item.pending .rating {
+.pending img,
+.pending .item-overlay,
+.pending .title,
+.pending .rating {
   visibility: hidden;
 }
 

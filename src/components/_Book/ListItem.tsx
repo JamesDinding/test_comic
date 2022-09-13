@@ -18,21 +18,20 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   // cover and title is separated
   if (type === "separate")
     return (
-      <Link
-        href={"/directory/" + Data.ID}
-        class={"item-separte " + (showPending ? " pending" : "")}
-      >
+      <Link href={"/directory/" + Data.ID} class={"item-separte "}>
         <div class="relative">
           <div class="bottom-4 tag">{"連載"}</div>
           <div class="bottom-4 tag-decoration"></div>
-          <Image
-            path={Data.Cover}
-            alt={Data.Name}
-            setParentPending={setPending}
-          />
+          <div className={showPending ? " pending min-h-[157px]" : ""}>
+            <Image
+              path={Data.Cover}
+              alt={Data.Name}
+              setParentPending={setPending}
+            />
+          </div>
         </div>
-        <span class="title-separate">{Data.Name}</span>
-        <span class="rating-separate">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>
+        <div class="title-separate">{Data.Name}</div>
+        <div class="rating-separate">★ 7.8&nbsp;&nbsp;◉ 103.5万</div>
       </Link>
     );
 
@@ -41,7 +40,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
     return (
       <Link
         href={"/directory/" + Data.ID}
-        class={"relative item " + (showPending ? " pending" : "")}
+        class={"relative item " + (showPending ? " pending min-h-[242px]" : "")}
       >
         <Image
           path={Data.Cover}

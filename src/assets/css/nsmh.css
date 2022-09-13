@@ -720,6 +720,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.625rem;
 }
 
+.mr-8 {
+  margin-right: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -1096,6 +1100,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .justify-start {
   justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -1607,8 +1615,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1rem;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .indent-4 {

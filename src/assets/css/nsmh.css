@@ -2573,6 +2573,7 @@ input:focus {
 }
 
 .item-separte .rating-separate {
+  white-space: nowrap;
   padding-left: 0.625rem;
   padding-right: 0.625rem;
   font-size: 0.75rem;

@@ -355,7 +355,7 @@ input:focus {
 }
 
 .item-separte .rating-separate {
-  @apply text-xs text-gray-400 px-2.5;
+  @apply text-xs whitespace-nowrap text-gray-400 px-2.5;
 }
 
 .item:hover .item-overlay {

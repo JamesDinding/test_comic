@@ -2,7 +2,7 @@ import { h, FunctionalComponent } from "preact";
 
 const UserSection: FunctionalComponent = () => {
   return (
-    <div className="flex items-center w-full bg-userSection bg-no-repeat bg-[length_100%_50%] min-h-[120px]">
+    <div className="flex items-center w-full bg-no-repeat bg-userSection bg-[length:100%_50%] min-h-[120px]">
       <div className="bg-white mx-2.5 p-3 rounded-full w-[90px] h-[90px]">
         <div className="user-icon-shadow w-full h-full rounded-full bg-[#ff978d]"></div>
       </div>

@@ -13,9 +13,7 @@ const Test: FunctionComponent = () => {
   const [isPop, setIsPop] = useState(false);
   return (
     <F>
-      {true && (
-        <PopConfirm onClose={setIsPop} way="" wire="" coins={0} cost={0} />
-      )}
+      {true && <PopConfirm onClose={setIsPop} />}
       <div className="overflow-y-scroll no-scrollbar">
         <div className="mt-5">
           <RecommendTitleBar BlockID={124} BlockName="舊品下市" />

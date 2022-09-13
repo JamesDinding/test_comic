@@ -676,10 +676,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0px;
 }
 
-.mr-4 {
-  margin-right: 1rem;
-}
-
 .mr-8 {
   margin-right: 2rem;
 }
@@ -714,6 +710,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mr-2\.5 {
   margin-right: 0.625rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
 }
 
 .mt-\[3\.625rem\] {
@@ -810,10 +810,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[2\.4rem\] {
   height: 2.4rem;
-}
-
-.h-\[2\.86rem\] {
-  height: 2.86rem;
 }
 
 .h-\[90px\] {
@@ -940,10 +936,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 0.5rem;
 }
 
-.w-\[2\.86rem\] {
-  width: 2.86rem;
-}
-
 .w-\[90px\] {
   width: 90px;
 }
@@ -998,10 +990,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .grow {
   flex-grow: 1;
-}
-
-.basis-\[60px\] {
-  flex-basis: 60px;
 }
 
 .translate-y-\[-50\%\] {
@@ -1249,11 +1237,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(241 241 241 / var(--tw-border-opacity));
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .border-\[\#9e7654\] {
   --tw-border-opacity: 1;
   border-color: rgb(158 118 84 / var(--tw-border-opacity));
@@ -1354,11 +1337,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(203 213 225 / var(--tw-bg-opacity));
 }
 
-.bg-red-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
-}
-
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
@@ -1407,6 +1385,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(30 30 30 / var(--tw-bg-opacity));
 }
 
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#d8d8d8\] {
   --tw-bg-opacity: 1;
   background-color: rgb(216 216 216 / var(--tw-bg-opacity));
@@ -1418,11 +1401,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .bg-userSection {
-  background-image: url('../img/bg-user.svg');
+  background-image: url('../img/bg-user.png');
 }
 
 .bg-\[length\:25px_25px\] {
   background-size: 25px 25px;
+}
+
+.bg-\[length\:100\%_50\%\] {
+  background-size: 100% 50%;
 }
 
 .bg-\[center_left_0\.9rem\] {
@@ -1561,14 +1548,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-3 {
   padding-bottom: 0.75rem;
-}
-
-.pt-0 {
-  padding-top: 0px;
-}
-
-.pr-1 {
-  padding-right: 0.25rem;
 }
 
 .pt-4 {

@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         watercolor: "url('../img/watercolor.png')",
-        userSection: "url('../img/bg-user.svg')",
+        userSection: "url('../img/bg-user.png')",
       },
     },
   },

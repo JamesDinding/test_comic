@@ -8,7 +8,7 @@ const ProfilePage: FunctionalComponent = () => {
   return (
     <>
       <ReturnBar title="會員中心" />
-      <div class="grow bg-[#efefef] px-5">
+      <div class="grow bg-white px-5">
         <UserSection />
         <div className="my-4"></div>
         <ServiceList />

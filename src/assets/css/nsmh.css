@@ -652,6 +652,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1.25rem;
 }
 
+.mb-2\.5 {
+  margin-bottom: 0.625rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -674,6 +678,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mr-4 {
   margin-right: 1rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
+}
+
+.mt-2\.5 {
+  margin-top: 0.625rem;
 }
 
 .mb-1 {
@@ -704,24 +716,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.625rem;
 }
 
-.mt-2\.5 {
-  margin-top: 0.625rem;
-}
-
 .mt-\[3\.625rem\] {
   margin-top: 3.625rem;
 }
 
 .ml-4 {
   margin-left: 1rem;
-}
-
-.mb-2\.5 {
-  margin-bottom: 0.625rem;
-}
-
-.mr-8 {
-  margin-right: 2rem;
 }
 
 .block {
@@ -1615,16 +1615,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1rem;
 }
 
-.text-left {
-  text-align: left;
-}
-
 .text-center {
   text-align: center;
-}
-
-.text-right {
-  text-align: right;
 }
 
 .indent-4 {
@@ -2263,7 +2255,7 @@ input:focus {
 }
 
 .user-icon-shadow {
-  box-shadow: 3px 15px 20px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 20px 20px -5px rgba(0, 0, 0, 0.2);
 }
 
 /* 熱銷標籤 */

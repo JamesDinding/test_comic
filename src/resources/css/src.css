@@ -208,7 +208,7 @@ input:focus {
 }
 
 .user-icon-shadow {
-  box-shadow: 5px 20px 20px -5px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 25px 15px -10px rgba(0, 0, 0, 0.2);
 }
 
 /* 熱銷標籤 */

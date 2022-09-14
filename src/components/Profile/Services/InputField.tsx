@@ -49,7 +49,7 @@ const InputField: FunctionComponent<InputProps> = ({
       <div className="flex items-center mb-1">
         <div className="font-bold text-lg">{title}</div>
         <div className="grow"></div>
-        <div className="text-[#ff978d] text-sm">
+        <div className="text-[#ff978d] text-input-warning text-sm">
           {isWrong ? warningMsg : ""}
         </div>
       </div>

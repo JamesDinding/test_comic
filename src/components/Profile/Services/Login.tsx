@@ -1,33 +1,140 @@
-import { FunctionalComponent, h } from "preact";
-import { useRef, MutableRef } from "preact/hooks";
+import { h, FunctionComponent, Fragment as F } from "preact";
+import { route } from "preact-router";
+import { useState, useRef, StateUpdater } from "preact/hooks";
 import InputField from "./InputField";
-import { Link } from "preact-router";
+import Btn from "../../UI/Btn";
+import IconLogo from "../../../resources/img/logo-text.svg";
 
-const Login = () => {
-  const phoneRef = useRef<HTMLInputElement>(null!);
-  const passwordRef = useRef<HTMLInputElement>(null!);
+interface LoginProps {}
+
+// remove error-shaking, attach it when user click next time.
+let timer: ReturnType<typeof setTimeout> | undefined;
+
+const Login: FunctionComponent<LoginProps> = ({}) => {
+  // const { login } = useAuth();
+
+  const accountRef = useRef<HTMLInputElement>(null!);
+  const psRef = useRef<HTMLInputElement>(null!);
+
+  const [isAccountWrong, setIsAccountWrong] = useState(false);
+  const [isPsWrong, setIsPsWrong] = useState(false);
+
+  const [accWarning, setAccWarning] = useState("帳號輸入錯誤，請重新輸入");
+  const [psWarning, setPsWarning] = useState("密碼輸入錯誤，請重新輸入");
+
+  const isInputCorrect = () => {
+    const acc = accountRef.current.value;
+    const pw = psRef.current.value;
+    const accLen = acc.length;
+    const pwLen = pw.length;
+
+    let isAccCorrect = true;
+    let isPwCorrect = true;
+
+    function onlyLettersAndNumbers(str: string) {
+      return /^[A-Za-z0-9]*$/.test(str);
+    }
+
+    if (accLen < 4 || accLen > 8) {
+      // acc len error
+      setIsAccountWrong(true);
+      isAccCorrect = false;
+    }
+    if (pwLen < 4 || pwLen > 8) {
+      // pw len error
+      setIsPsWrong(true);
+      isPwCorrect = false;
+    }
+    if (!onlyLettersAndNumbers(acc)) {
+      // acc pattern error
+      setIsAccountWrong(true);
+      isAccCorrect = false;
+    }
+    if (!onlyLettersAndNumbers(pw)) {
+      // pw pattern error
+      setIsPsWrong(true);
+      isPwCorrect = false;
+    }
+
+    isAccCorrect && setIsAccountWrong(false);
+    isPwCorrect && setIsPsWrong(false);
+
+    console.log(isAccCorrect, isPwCorrect);
+
+    return isAccCorrect && isPwCorrect;
+  };
 
   return (
-    <div className="sign-form">
-      <div className="w-[7rem] mb-4">logo</div>
-      <div className="mb-6">
+    <F>
+      <div className="flex flex-col items-center py-5 px-12 w-full h-full text-[#9e7654] bg-cartoon bg-[length:100%_100%] bg-no-repeat">
+        <IconLogo class="w-[150px] h-[44px] mt-[3.75rem] mb-4" />
+        <div className="text-xs tracking-[10px] mb-5">|最多精彩二次元动漫|</div>
         <InputField
-          text="請輸入手機號碼"
-          icon="acc"
-          type="number"
-          ref={phoneRef}
+          title="帳號"
+          inputSetting={{
+            placeHolder: "請輸入4-8位英文字母和數字組合帳號",
+            type: "text",
+            maxLen: 8,
+          }}
+          isWrong={isAccountWrong}
+          warningMsg={accWarning}
+          inputRef={accountRef}
         />
-        <InputField text="請輸入密碼" icon="pw" ref={passwordRef} />
-        <div className="font-extralight block h-[2.4rem] rounded-[2.4rem] text-white text-center leading-[2.4rem] bg-[#ff978d]">
-          登錄
+        <InputField
+          title="密碼"
+          inputSetting={{
+            placeHolder: "請輸入4-8位英文字母和數字組合帳號",
+            type: "password",
+            maxLen: 8,
+          }}
+          isWrong={isPsWrong}
+          warningMsg={psWarning}
+          inputRef={psRef}
+        />
+        <div className="flex items-center w-full mt-5 mb-20 text-sm">
+          <input type="checkbox" name="memorize" className="cursor-pointer" />
+          <label className="ml-2 text-[#666666]" for="memorize">
+            記住我的帳號密碼
+          </label>
+          <div className="grow"></div>
+          <div className="cursor-pointer text-primary-light btn-text">
+            忘記密碼？
+          </div>
         </div>
-        <div className="font-extralight text-center text-[.7rem] mt-2">
-          <Link href="/register" className="text-[#a8a8a8]">
-            沒有帳戶，立即註冊
-          </Link>
+        <Btn
+          title="立即登入"
+          cb={() => {
+            const errorTextAll = document.querySelectorAll(
+              ".text-input-warning"
+            );
+            errorTextAll.forEach((errText) => {
+              errText.classList.remove("error-shaking");
+              errText.classList.add("error-shaking");
+            });
+
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+              errorTextAll.forEach((errText) => {
+                errText.classList.remove("error-shaking");
+              });
+            }, 1000);
+
+            if (!isInputCorrect()) return;
+            // login(accountRef.current.value, psRef.current.value);
+            route("/member");
+          }}
+        />
+        <div className="mt-5 text-sm text-[#666666]">
+          不是會員？
+          <span
+            className="cursor-pointer px-2 text-[#a1b68b] btn-text"
+            onClick={() => route("/register")}
+          >
+            免費註冊
+          </span>
         </div>
       </div>
-    </div>
+    </F>
   );
 };
 

@@ -5,6 +5,7 @@ module.exports = {
       backgroundImage: {
         watercolor: "url('../img/watercolor.png')",
         userSection: "url('../img/bg-user.png')",
+        cartoon: "url('../img/bg-cartoon.png')",
       },
     },
   },

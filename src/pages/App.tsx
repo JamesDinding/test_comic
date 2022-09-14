@@ -22,8 +22,7 @@ import LoginPage from "./Profile/Login";
 import ModifyPasswordPage from "./Profile/ModifyPassword";
 import ChargePage from "./Profile/Charge";
 import RecoveryPage from "./Profile/Recovery";
-import PurchaseRecordPage from "./Profile/PurchaseRecord";
-import ChargeRecordPage from "./Profile/ChargeRecord";
+import RecordPage from "./Profile/Record";
 import CustomerPage from "./Profile/Customer";
 import SearchPage from "./Search";
 // Test page
@@ -55,10 +54,9 @@ const App: FunctionalComponent = () => {
               <ModifyPasswordPage path="/modify-password" />
 
               <ChargePage path="/charge" />
-
+              <RecordPage path="/record" />
               <RecoveryPage path="/recovery" />
-              <PurchaseRecordPage path="/purchase-record" />
-              <ChargeRecordPage path="/charge-record" />
+
               <CustomerPage path="/service" />
               <SearchPage path="/search" />
 

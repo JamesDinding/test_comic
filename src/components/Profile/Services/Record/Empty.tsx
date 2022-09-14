@@ -1,16 +1,13 @@
 import { FunctionalComponent, h } from "preact";
+import Btn from "../../../UI/Btn";
 
-interface EmptyProps {
-  title: string;
-  url: string;
-}
-
-const Empty: FunctionalComponent<EmptyProps> = ({ title, url }) => {
+const Empty: FunctionalComponent = () => {
   return (
-    <div className="pt-[100px] text-center">
-      <button className="rounded-[2.4rem] text-white text-center py-[10px] px-[64px] bg-[#ff978d]">
-        {title}
-      </button>
+    <div className="h-full flex flex-col justify-between pt-[100px] text-center bg-[#fffbf6]">
+      <div className="text-[#9e7654] text-center opacity-40">啥都沒有呢~</div>
+      <div className="px-5 pb-2.5">
+        <Btn title="去逛逛" />
+      </div>
     </div>
   );
 };

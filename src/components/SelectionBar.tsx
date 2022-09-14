@@ -21,9 +21,7 @@ const SelectionBar: FunctionalComponent<SelectionBarProps> = ({
             <li
               className={
                 "cursor-pointer py-2.5 px-5 tracking-wide  " +
-                (curSelect === i
-                  ? "border-b-[1px] border-[#9e7654]"
-                  : "opacity-60")
+                (curSelect === i ? "border-b-2 border-[#9e7654]" : "opacity-60")
               }
               onClick={() => setCurSelect(i)}
             >

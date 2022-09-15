@@ -64,7 +64,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
   };
 
   return (
-    <CardBottom customCss="bottom-[-60px]">
+    <CardBottom footerOffset={true}>
       <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[#9e7654]">
         綁定會員資料
         <div onClick={(e) => onClose()}>

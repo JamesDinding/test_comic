@@ -2,7 +2,7 @@ import { h, FunctionalComponent } from "preact";
 
 interface CardBottomProps {
   customCss?: string;
-  footerOffset?: false;
+  footerOffset?: boolean;
 }
 
 // 需要再其parent 給relative

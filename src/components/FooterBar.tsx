@@ -7,21 +7,21 @@ import { Link } from "preact-router/match";
 
 const FooterBar: FunctionalComponent = () => {
   return (
-    <footer class="h-[60px] border-t border-gray-100 shrink-0 shadow grid grid-cols-4 text-center py-2 select-none">
+    <footer class="relative h-[60px] border-t border-gray-100 shrink-0 grid grid-cols-4 text-center py-2 select-none">
       <Link activeClassName="active" href="/home" class="group">
-        <IconHome class="h-6" alt="首页" />
+        <IconHome alt="首页" />
         <span className="text-[12px]">首页</span>
       </Link>
       <Link activeClassName="active" href="/video-home" class="group">
-        <IconVideo class="h-6" alt="动漫" />
+        <IconVideo alt="动漫" />
         <span className="text-[12px]">动漫</span>
       </Link>
       <Link activeClassName="active" href="/bookmark" class="group">
-        <IconBookmark class="h-6" alt="收藏" />
+        <IconBookmark alt="收藏" />
         <span className="text-[12px]">收藏</span>
       </Link>
       <Link activeClassName="active" href="/profile" class="group">
-        <IconProfile class="h-6" alt="我的" />
+        <IconProfile alt="我的" />
         <span className="text-[12px]">我的</span>
       </Link>
     </footer>

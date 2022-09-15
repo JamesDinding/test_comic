@@ -796,12 +796,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 60px;
 }
 
-.h-6 {
-  height: 1.5rem;
+.h-5 {
+  height: 1.25rem;
 }
 
-.h-8 {
-  height: 2rem;
+.h-\[30px\] {
+  height: 30px;
 }
 
 .h-4 {
@@ -812,8 +812,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 3rem;
 }
 
-.h-5 {
-  height: 1.25rem;
+.h-8 {
+  height: 2rem;
 }
 
 .h-\[500px\] {
@@ -868,6 +868,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 45px;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .h-\[44px\] {
   height: 44px;
 }
@@ -890,10 +894,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[49px\] {
   height: 49px;
-}
-
-.h-\[30px\] {
-  height: 30px;
 }
 
 .max-h-screen {
@@ -1606,14 +1606,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.5rem;
 }
 
-.py-2\.5 {
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-}
-
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 
 .py-1 {
@@ -1779,8 +1779,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 12px;
 }
 
-.text-\[\.9rem\] {
-  font-size: .9rem;
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .text-lg {
@@ -1797,13 +1798,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.25rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
 .text-\[\.6rem\] {
   font-size: .6rem;
+}
+
+.text-\[\.9rem\] {
+  font-size: .9rem;
 }
 
 .text-\[1\.2rem\] {
@@ -1934,11 +1934,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(102 102 102 / var(--tw-text-opacity));
 }
 
-.text-\[\#4c4c4c\] {
-  --tw-text-opacity: 1;
-  color: rgb(76 76 76 / var(--tw-text-opacity));
-}
-
 .text-\[\#9e7654\] {
   --tw-text-opacity: 1;
   color: rgb(158 118 84 / var(--tw-text-opacity));
@@ -1987,6 +1982,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.text-\[\#4c4c4c\] {
+  --tw-text-opacity: 1;
+  color: rgb(76 76 76 / var(--tw-text-opacity));
 }
 
 .text-\[\#f7bc86\] {
@@ -2083,12 +2083,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-20 {
   opacity: 0.2;
-}
-
-.shadow {
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .shadow-sm {
@@ -2847,11 +2841,25 @@ input:focus {
 
 /* 下方功能列 */
 
+/* footer 上方小陰影*/
+
+footer::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(-100%);
+  content: "";
+  width: 100%;
+  height: 6px;
+  opacity: 0.2;
+  background-image: linear-gradient(to bottom, rgba(158, 118, 84, 0), #3a2b1e);
+}
+
 footer svg {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  height: 2rem;
+  height: 1.5rem;
   opacity: 0.5;
   --tw-grayscale: grayscale(100%);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);

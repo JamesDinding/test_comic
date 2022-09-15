@@ -2,6 +2,7 @@ import { FunctionalComponent, h } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import PaymentBar from "./PaymentBar";
+import ModalTitle from "../../../UI/ModalTitle";
 import PaySelection from "./PaySelection";
 import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
@@ -43,13 +44,10 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   return (
     <Card>
       <div className="relative overflow-auto no-scrollbar flex flex-col items-center h-full p-5">
-        <div
-          className="absolute cursor-pointer right-4 top-4"
-          onClick={() => onClose(false)}
-        >
+        <div className="modal-cross" onClick={() => onClose(false)}>
           <IconCross class="h-8" />
         </div>
-        <div className="pop-payment-title">選擇支付方案</div>
+        <ModalTitle title="選擇支付方案" />
         {payments?.map((payment, i) => {
           const isNowExpand = curExpand === i;
           return (

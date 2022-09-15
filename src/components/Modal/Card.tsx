@@ -1,7 +1,13 @@
 import { h, FunctionalComponent } from "preact";
 
-const Card: FunctionalComponent = ({ children }) => {
-  return <div className="modal">{children}</div>;
+interface CardProps {
+  heightShrink?: boolean;
+}
+
+const Card: FunctionalComponent<CardProps> = ({ children, heightShrink }) => {
+  return (
+    <div className={"modal" + (heightShrink ? "-shrink" : "")}>{children}</div>
+  );
 };
 
 export default Card;

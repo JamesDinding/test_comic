@@ -64,12 +64,20 @@ input:focus {
   @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-30 rounded-lg bg-white min-w-[335px] min-h-[515px] h-[80%];
 }
 
+.modal-shrink {
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-30 rounded-lg bg-white min-w-[335px];
+}
+
 .pop-payment {
   @apply fixed left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] w-4/5 max-w-[500px] max-h-[70vh] z-50;
 }
 
-.pop-payment-title {
+.modal-title {
   @apply w-full mt-6 pb-2.5 text-center text-[#9e7654] text-lg tracking-wider border-b-[1px] border-solid border-[#9e7654];
+}
+
+.modal-cross {
+  @apply absolute cursor-pointer right-4 top-4;
 }
 
 /* translate-x/y-[1px] 是bordor的寬度 */
@@ -305,6 +313,15 @@ input:focus {
 .category-item.active {
   @apply !px-2.5 !text-gray-700 font-bold;
   background: linear-gradient(to bottom, #fff, #ffdacb);
+}
+
+/* recovery頁面 */
+.recovery-phase-circle {
+  @apply flex items-center justify-center w-10 h-10 border-[.2rem] border-solid border-[#9e7654] rounded-full text-[#9e7654] font-semibold;
+}
+
+.recovery-phase-dash {
+  @apply grow h-[.2rem] bg-[#9e7654];
 }
 
 /* 首頁區塊 */

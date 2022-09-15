@@ -185,12 +185,7 @@ input:focus {
 
 /* Return Bar */
 .return-bar {
-  @apply z-10 bg-no-repeat;
-  box-shadow: 0 2px 5px #999;
-  padding: 0.3rem 0.2rem;
-  background-image: url(../img/watercolor.png);
-  background-size: 100%;
-  background-position: 50%;
+  @apply flex items-center justify-between h-[60px];
 }
 
 /* Selection Bar */

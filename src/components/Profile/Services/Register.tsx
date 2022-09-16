@@ -114,12 +114,13 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}
-          inputRef={psRef}
+          inputRef={psCheckRef}
         />
         <div className="mb-[1.875rem]"></div>
         <Btn
-          title="立即登入"
+          title="註冊"
           cb={() => {
+            console.log("rehister");
             const errorTextAll = document.querySelectorAll(
               ".text-input-warning"
             );

@@ -71,7 +71,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
       </div>
-      <div className="px-5">
+      <div className="px-5 pt-5 text-[#666666]">
         <InputField
           inputRef={phoneRef}
           title="手機號"
@@ -109,7 +109,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
           }}
         />
       </div>
-      <div className="px-5">
+      <div className="px-5 pb-5">
         <button
           className="bg-[#d19463] w-full py-4 mt-8 rounded-lg text-white text-xl"
           onClick={(e) => {

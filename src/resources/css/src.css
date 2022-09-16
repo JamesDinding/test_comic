@@ -45,7 +45,7 @@ input:focus {
 /* 彈窗 */
 /* modal 下方上彈的modal */
 .modal-bottom {
-  @apply absolute w-full max-h-[66%] min-h-[445px] rounded-t-xl border-t-[1px];
+  @apply absolute w-full min-h-[445px] rounded-t-xl border-t-[1px];
 
   /* background: linear-gradient(
     0deg,

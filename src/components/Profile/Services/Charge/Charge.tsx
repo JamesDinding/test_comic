@@ -66,7 +66,7 @@ const Charge = () => {
           <PopConfirm onClose={setIsPopConfirm} />,
           document.getElementById("pop-window")!
         )}
-      <div className="flex flex-col justify-center items-center w-full bg-white mt-4 px-5">
+      <div className="flex flex-col justify-center items-center w-full bg-white mt-4 px-5 pb-10">
         <div className="modal-title mb-5">选择充值金额</div>
         <div className="w-full grid grid-cols-2 gap-4 mb-5">
           {salesList.map((sale, index) => {

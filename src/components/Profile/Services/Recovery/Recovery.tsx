@@ -24,7 +24,10 @@ const Recovery = () => {
     <F>
       {isPop && <BackDrop onClose={setIsPop} />}
       {isPop && <PopDescription onClose={() => setIsPop(false)} />}
-      <div className="grow flex flex-col bg-cartoon bg-[length:100%_100%] bg-no-repeat">
+      <div
+        className="relative z-10 grow flex flex-col before:absolute before:z-[-1] before:scale-y-[-1]
+      before:content-[''] before:w-full before:h-full before:bg-cartoon before:bg-[length:100%_100%] before:bg-no-repeat"
+      >
         <div className="px-12 pt-10 flex items-center">
           <div className={"recovery-phase-circle"}>1</div>
 

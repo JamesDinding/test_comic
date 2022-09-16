@@ -17,7 +17,7 @@ const Recovery = () => {
   const [phase, setPhase] = useState(1);
 
   useEffect(() => {
-    // setIsPop(true);
+    setIsPop(true);
   }, []);
 
   return (

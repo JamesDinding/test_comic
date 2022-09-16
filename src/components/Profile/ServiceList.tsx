@@ -43,7 +43,7 @@ const ServiceList: FunctionalComponent = (
               {serviceList.map((service, i, arr) => {
                 return (
                   <li
-                    className="flex items-center bg-white py-4 px-5"
+                    className="cursor-pointer flex items-center bg-white py-4 px-5"
                     onClick={() => {
                       if (service.url === "bind") {
                         setIsPopBinding(true);

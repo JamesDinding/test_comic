@@ -5,9 +5,8 @@ import BackDrop from "../../../BackDrop";
 import PopPayment from "./PopPayment";
 import PopConfirm from "./PopConfirm";
 import Attention from "./Attention";
-import IconCoins from "../../../../resources/img/icon-coins.svg";
-import IconVip from "../../../../resources/img/icon-vip.svg";
-import IconDiamond from "../../../../resources/img/charge-diamond.svg";
+import IconDiscountCoins from "../../../../resources/img/icon-discount-coins.svg";
+import IconDiscountVip from "../../../../resources/img/icon-discount-vip.svg";
 
 const vipList = ["", ""];
 const salesList = [
@@ -77,9 +76,12 @@ const Charge = () => {
                 onClick={popPaymentHandler}
                 key={index}
               >
-                <div className="h-[40px] w-[27px] absolute top-0 right-[5px] bg-[#9f7b5d] text-xs text-white flex flex-col justify-center items-center">
-                  <span>省</span>
-                  <span>80</span>
+                <div className="charge-discount-container">
+                  <IconDiscountCoins class="h-[40px]" />
+                  <div className="charge-discount-text">
+                    <span>省</span>
+                    <span>80</span>
+                  </div>
                 </div>
                 <div className="flex w-full pl-3">
                   <div>
@@ -111,6 +113,9 @@ const Charge = () => {
                 onClick={popPaymentHandler}
                 key={index}
               >
+                <div className="charge-discount-container">
+                  <IconDiscountVip class="w-[27px]" />
+                </div>
                 <div className="flex w-full pl-3">
                   <div>
                     <img

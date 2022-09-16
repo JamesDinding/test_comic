@@ -1,6 +1,7 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
+import ModalTitle from "../../../UI/ModalTitle";
 import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 
@@ -39,27 +40,27 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
           className="absolute cursor-pointer right-4 top-4"
           onClick={() => onClose(false)}
         >
-          <IconCross class="h-8" />
+          <IconCross class="h-8 text-[#666666]" />
         </div>
-        <div className="pop-payment-title">訂單確認</div>
-        <div className="flex items-center justify-between w-full px-2.5 py-2.5 mt-2.5 border-b-[1px] border-[#e6e6e6] border-solid">
+        <ModalTitle title="訂單確認" />
+        <div className="flex items-center justify-between w-full px-2.5 py-2.5 mt-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>方案 :</div>
           <div>
             金幣充值 -{" "}
             <span className="text-[#dc6060]">{userSelect.coins}</span> 枚
           </div>
         </div>
-        <div className="flex items-center justify-between w-full px-2.5 py-2.5 border-b-[1px] border-[#e6e6e6] border-solid">
+        <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>支付方式 :</div>
           <div>
             {userSelect.pay}支付 - 线路{userSelect.p_way}
           </div>
         </div>
-        <div className="flex items-center justify-between w-full px-2.5 py-2.5 border-b-[1px] border-[#e6e6e6] border-solid">
+        <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>金額 :</div>
           <div className="text-[#dc6060]">&#165; {userSelect.cost}</div>
         </div>
-        <div className="w-full pt-2.5 pb-1.5 border-b-[1px] border-[#e6e6e6] border-solid">
+        <div className="w-full pt-2.5 pb-1.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div className="flex items-center justify-between w-full px-2.5 ">
             <div>驗證碼 :</div>
             <div>
@@ -73,7 +74,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                     max={9}
                     min={0}
                     value={validationCode[i]!}
-                    className="w-[40px] h-[50px] px-2 py-1.5 ml-2 border-solid border-2 text-center text-lg"
+                    className="w-[40px] h-[50px] px-2 py-1.5 ml-2 border-solid border-2 rounded text-center text-lg"
                     onInput={(e) => {
                       const target = e.target as HTMLInputElement;
                       setValidationCode((prev) => {

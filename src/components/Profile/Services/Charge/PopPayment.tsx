@@ -48,24 +48,29 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
           <IconCross class="h-8" />
         </div>
         <ModalTitle title="選擇支付方案" />
-        {payments?.map((payment, i) => {
-          const isNowExpand = curExpand === i;
-          return (
-            <div
-              className="w-full mt-2.5"
-              onClick={(e) => {
-                // if (curExpand === i) {
-                //   setCurExpand(-1);
-                //   return;
-                // }
+        <div className="relative w-full h-2/3">
+          <div className="payment-shadow"></div>
+          <div className="h-full overflow-y-auto no-scollbar">
+            {payments?.map((payment, i) => {
+              const isNowExpand = curExpand === i;
+              return (
+                <div
+                  className="w-full mt-2.5"
+                  onClick={(e) => {
+                    // if (curExpand === i) {
+                    //   setCurExpand(-1);
+                    //   return;
+                    // }
 
-                setCurExpand(i);
-              }}
-            >
-              <PaySelection payInfo={payment} isExpand={isNowExpand} />
-            </div>
-          );
-        })}
+                    setCurExpand(i);
+                  }}
+                >
+                  <PaySelection payInfo={payment} isExpand={isNowExpand} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
         <div className="grow"></div>
         <button
           className="w-full py-4 text-center text-white text-lg bg-[#d19463] rounded-xl"

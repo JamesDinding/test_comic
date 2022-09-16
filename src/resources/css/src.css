@@ -73,7 +73,7 @@ input:focus {
 }
 
 .modal-title {
-  @apply w-full mt-6 pb-2.5 text-center text-[#9e7654] text-lg tracking-wider border-b-[1px] border-solid border-[#9e7654];
+  @apply w-full mt-6 pb-2.5 text-center text-[#9e7654] text-lg tracking-wider border-b-[1px] border-solid border-[rgba(158,118,84,.4)];
 }
 
 .modal-cross {
@@ -409,9 +409,13 @@ input:focus {
   @apply bottom-0.5;
 }
 
+.payment-shadow {
+  @apply absolute bottom-0 w-full h-[6px] opacity-20;
+  background-image: linear-gradient(to bottom, rgba(158, 118, 84, 0), #3a2b1e);
+}
+
 /* 下方功能列 */
 
-/* footer 上方小陰影*/
 footer::before {
   position: absolute;
   left: 0;

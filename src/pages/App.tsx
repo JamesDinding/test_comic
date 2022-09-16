@@ -19,7 +19,6 @@ import DirectoryPage from "./Directory";
 import ReadPage from "./Read";
 import RegisterPage from "./Profile/Register";
 import LoginPage from "./Profile/Login";
-import ModifyPasswordPage from "./Profile/ModifyPassword";
 import ChargePage from "./Profile/Charge";
 import RecoveryPage from "./Profile/Recovery";
 import RecordPage from "./Profile/Record";
@@ -51,7 +50,6 @@ const App: FunctionalComponent = () => {
               <ReadPage path="/read/:id" />
               <RegisterPage path="/register" />
               <LoginPage path="/login" />
-              <ModifyPasswordPage path="/modify-password" />
 
               <ChargePage path="/charge" />
               <RecordPage path="/record" />

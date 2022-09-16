@@ -5,9 +5,13 @@ import { Link } from "preact-router";
 
 interface ReturnBarProps {
   title: string;
+  type?: "service" | "charge";
 }
 
-const ReturnBar: FunctionalComponent<ReturnBarProps> = ({ title }) => {
+const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
+  title,
+  type = "service",
+}) => {
   return (
     <div className="return-bar px-5">
       <div
@@ -24,11 +28,20 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({ title }) => {
       <div className="grow">
         <div className="text-center text-[#666666] text-xl">{title}</div>
       </div>
-      <div className="h-[30px]">
-        <Link href="/profile">
-          <IconCs class="h-[37px]" />
-        </Link>
-      </div>
+      {type === "service" && (
+        <div className="h-[30px]">
+          <Link href="/profile">
+            <IconCs class="h-[37px]" />
+          </Link>
+        </div>
+      )}
+      {type === "charge" && (
+        <div className="h-[30px]">
+          <Link href="/charge">
+            <img src="/assets/img/deposit.gif" className="w-full" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

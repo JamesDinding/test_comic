@@ -14,15 +14,6 @@ const Test: FunctionComponent = () => {
   const [isPop, setIsPop] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null!);
 
-  // div test
-  return (
-    <div className="h-[500px]">
-      <div className="h-[100px] w-ful bg-amber-500">test start</div>
-      <div className="bg-[#666666] h-full">test mid</div>
-      <div className="h-[100px] w-ful bg-amber-500"> text end</div>
-    </div>
-  );
-
   return (
     <F>
       {isPop && <PopConfirm onClose={setIsPop} />}

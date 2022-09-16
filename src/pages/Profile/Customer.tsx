@@ -5,6 +5,8 @@ import ServerMessage from "../../components/Profile/Services/Customer/ServerMess
 import UserMessage from "../../components/Profile/Services/Customer/UserMessage";
 import UserInput from "../../components/Profile/Services/Customer/UserInput";
 
+import ReturnBar from "../../components/ReturnBar";
+
 import { API_ROUTE } from "../../const";
 
 // 透過某個地方放
@@ -172,8 +174,11 @@ const CustomerPage: FunctionalComponent = () => {
   };
 
   return (
-    <div className="bg-black w-full flex flex-col justify-between grow max-h-screen">
-      <CharTitleBar userName={"用戶名稱"} ws={ws} userId={ID_LOCAL_STORAGE} />
+    <div className="bg-[#fffbf6] w-full flex flex-col justify-between grow max-h-screen">
+      {/* <CharTitleBar userName={"用戶名稱"} ws={ws} userId={ID_LOCAL_STORAGE} /> */}
+      <div className="bg-white">
+        <ReturnBar title="用戶名稱" />
+      </div>
       {/* <audio className="hidden" preload="auto" id="audio-player"></audio> */}
       {haveService ? (
         <div className="grow flex flex-col overflow-y-auto no-scrollbar px-4">

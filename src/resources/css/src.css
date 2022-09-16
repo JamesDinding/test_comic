@@ -91,16 +91,28 @@ input:focus {
 .chat-message-tail {
   @apply absolute right-[-16px] block w-0 h-0;
   border: 8px solid transparent;
-  border-left-color: #855595;
+  border-left-color: #d19463;
+  transform: scaleY(0.5);
+}
+
+.chat-message-tail--server {
+  @apply absolute left-[-16px] block w-0 h-0;
+  border: 8px solid transparent;
+  border-right-color: #c1b7ab;
   transform: scaleY(0.5);
 }
 
 .chat-text {
-  @apply p-[10px] text-white text-sm font-light bg-[#855595];
+  @apply p-[10px] text-white text-sm font-light bg-[#d19463];
 }
 
 .chat-text-server {
-  @apply p-[10px] text-white text-sm font-light bg-slate-800;
+  @apply p-[10px] text-white text-sm font-light bg-[#c1b7ab];
+}
+
+.chat-input-shadow {
+  @apply absolute top-0 translate-y-[-100%] w-full h-[6px] opacity-20;
+  background-image: linear-gradient(to bottom, rgba(158, 118, 84, 0), #3a2b1e);
 }
 
 /* 聊天室 輸入框 輸入中 */

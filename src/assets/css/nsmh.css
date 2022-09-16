@@ -623,6 +623,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1rem;
 }
 
+.mx-\[-\.5rem\] {
+  margin-left: -.5rem;
+  margin-right: -.5rem;
+}
+
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -820,14 +825,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2rem;
 }
 
-.h-\[500px\] {
-  height: 500px;
-}
-
-.h-\[100px\] {
-  height: 100px;
-}
-
 .h-auto {
   height: auto;
 }
@@ -890,10 +887,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-2\/3 {
   height: 66.666667%;
-}
-
-.h-\[6px\] {
-  height: 6px;
 }
 
 .h-\[72px\] {
@@ -1004,6 +997,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 6rem;
 }
 
+.w-6 {
+  width: 1.5rem;
+}
+
 .w-2\.5 {
   width: 0.625rem;
 }
@@ -1018,10 +1015,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[90px\] {
   width: 90px;
-}
-
-.w-6 {
-  width: 1.5rem;
 }
 
 .w-\[150px\] {
@@ -1458,16 +1451,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(239 239 239 / var(--tw-bg-opacity));
 }
 
-.bg-amber-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(245 158 11 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#666666\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(102 102 102 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#ff978d\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 151 141 / var(--tw-bg-opacity));
@@ -1491,11 +1474,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-slate-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(203 213 225 / var(--tw-bg-opacity));
-}
-
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#e9f4ff\] {
@@ -1531,11 +1509,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(254 243 199 / var(--tw-bg-opacity));
 }
 
-.bg-amber-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#1e1e1e\] {
   --tw-bg-opacity: 1;
   background-color: rgb(30 30 30 / var(--tw-bg-opacity));
@@ -1549,11 +1522,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#d8d8d8\] {
   --tw-bg-opacity: 1;
   background-color: rgb(216 216 216 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#855595\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(133 85 149 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#a186af\] {
@@ -1990,11 +1958,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(104 178 225 / var(--tw-text-opacity));
 }
 
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
@@ -2293,13 +2256,24 @@ input:focus {
   height: 0px;
   width: 0px;
   border: 8px solid transparent;
-  border-left-color: #855595;
+  border-left-color: #d19463;
+  transform: scaleY(0.5);
+}
+
+.chat-message-tail--server {
+  position: absolute;
+  left: -16px;
+  display: block;
+  height: 0px;
+  width: 0px;
+  border: 8px solid transparent;
+  border-right-color: #c1b7ab;
   transform: scaleY(0.5);
 }
 
 .chat-text {
   --tw-bg-opacity: 1;
-  background-color: rgb(133 85 149 / var(--tw-bg-opacity));
+  background-color: rgb(209 148 99 / var(--tw-bg-opacity));
   padding: 10px;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -2310,13 +2284,24 @@ input:focus {
 
 .chat-text-server {
   --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+  background-color: rgb(193 183 171 / var(--tw-bg-opacity));
   padding: 10px;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 300;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.chat-input-shadow {
+  position: absolute;
+  top: 0px;
+  height: 6px;
+  width: 100%;
+  --tw-translate-y: -100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  opacity: 0.2;
+  background-image: linear-gradient(to bottom, rgba(158, 118, 84, 0), #3a2b1e);
 }
 
 /* 聊天室 輸入框 輸入中 */
@@ -3006,12 +2991,6 @@ footer .active span {
   width: 100%;
 }
 
-.before\:scale-y-\[-\]::before {
-  content: var(--tw-content);
-  --tw-scale-y: -;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .before\:scale-y-\[-1\]::before {
   content: var(--tw-content);
   --tw-scale-y: -1;
@@ -3055,6 +3034,10 @@ footer .active span {
 .hover\:text-\[\#e66a5f\]:hover {
   --tw-text-opacity: 1;
   color: rgb(230 106 95 / var(--tw-text-opacity));
+}
+
+.hover\:opacity-100:hover {
+  opacity: 1;
 }
 
 .focus\:border-rose-200:focus {

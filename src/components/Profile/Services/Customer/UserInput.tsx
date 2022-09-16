@@ -131,7 +131,8 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
   };
 
   return (
-    <div className="flex items-center py-1 px-2 bg-[#1e1e1e] min-h-[60px]">
+    <div className="relative flex items-center py-1 px-2 bg-white min-h-[60px]">
+      <div className="chat-input-shadow mx-[-.5rem]"></div>
       <div className="px-4 h-6">
         <div className="bg-white h-6 cursor-pointer" onClick={triggerUploadImg}>
           <IconImage class="h-6" />
@@ -154,7 +155,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
         onKeyDown={sendMsgHandler}
       />
       <button
-        className="py-1.5 px-2.5 rounded cursor-pointer text-white bg-[#855595]"
+        className="py-1.5 px-2.5 rounded cursor-pointer text-white bg-[#d19463] opacity-40 hover:opacity-100"
         onClick={clickSendMsgHandler}
       >
         送出

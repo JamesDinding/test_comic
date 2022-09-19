@@ -28,10 +28,14 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
         (isExpand ? "bg-[#fef4e7]" : "")
       }
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center">
         {userSelect.pay === payInfo.pay && userSelect.p_way
           ? payInfo.pay.concat(" / ", userSelect.p_way)
           : payInfo.pay}
+        <div>
+          <img src={`/assets/img/payment/pay${payInfo.p_id}`} />
+        </div>
+        <div className="grow"></div>
         <div>
           <IconChevron
             class={
@@ -49,15 +53,22 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
         {payInfo.p_way.map((p, i) => {
           return (
             <div className="mt-5">
-              <label
-                className="cursor-pointer"
-                onClick={() => {
-                  selectPay(payInfo.pay, "123", p);
-                }}
-              >
-                <input className="mr-2.5" type="radio" name={"foo"} value={p} />
-                {p}
-              </label>
+              <div>
+                <label
+                  className="cursor-pointer"
+                  onClick={() => {
+                    selectPay(payInfo.pay, "123", p);
+                  }}
+                >
+                  <input
+                    className="mr-2.5"
+                    type="radio"
+                    name={"foo"}
+                    value={p}
+                  />
+                  {p}
+                </label>
+              </div>
             </div>
           );
         })}

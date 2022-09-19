@@ -36,7 +36,7 @@ export const ChargeProvider: FunctionalComponent = ({ children }) => {
               p_way: ["线路名称 1", "线路名称 2", "线路名称 3", "线路名称 4"],
             },
             {
-              pay: "USDT",
+              pay: "GASH",
               p_id: "45678",
               p_way: [
                 "线路名称 1",

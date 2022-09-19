@@ -197,7 +197,7 @@ input:focus {
 
 /* Return Bar */
 .return-bar {
-  @apply flex items-center justify-between h-[60px];
+  @apply flex items-center justify-between h-[60px] min-h-[60px];
 }
 
 /* Selection Bar */

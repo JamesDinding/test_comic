@@ -72,7 +72,10 @@ const Recovery = () => {
                 inputRef={serialNumRef}
               />
             </div>
-            <button className="px-12 pt-2.5 w-full flex items-center justify-end text-[#d19463] text-sm font-light">
+            <button
+              className="px-12 pt-2.5 w-full flex items-center justify-end text-[#d19463] text-sm font-light"
+              onClick={() => setIsPop(true)}
+            >
               尋回帳戶說明
               <div className="ml-1">
                 <IconQuestion class="h-4" />

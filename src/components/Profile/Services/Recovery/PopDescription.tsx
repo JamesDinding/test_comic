@@ -3,6 +3,7 @@ import Card from "../../../Modal/Card";
 import ModalTitle from "../../../UI/ModalTitle";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 import Btn from "../../../UI/Btn";
+import { route } from "preact-router";
 
 interface PopDescriptionProps {
   onClose: () => void;
@@ -39,7 +40,11 @@ const PopDescription: FunctionalComponent<PopDescriptionProps> = ({
         <div className="w-full text-sm text-[#ff978d] mt-5 mb-10">
           提醒您：綁定會員資料可避免帳戶遺失！
         </div>
-        <Btn title="联系客服" bgColor="bg-[#a186af]" />
+        <Btn
+          title="联系客服"
+          bgColor="bg-[#a186af]"
+          cb={() => route("/service")}
+        />
       </div>
     </Card>
   );

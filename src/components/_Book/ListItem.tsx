@@ -22,7 +22,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         <div class="relative">
           <div class="bottom-4 tag">{"連載"}</div>
           <div class="bottom-4 tag-decoration"></div>
-          <div className={showPending ? " pending min-h-[157px]" : ""}>
+          <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}>
             <Image
               path={Data.Cover}
               alt={Data.Name}

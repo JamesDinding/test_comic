@@ -545,6 +545,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   z-index: 10;
 }
 
+.z-\[30\] {
+  z-index: 30;
+}
+
+.z-\[10\] {
+  z-index: 10;
+}
+
+.z-\[20\] {
+  z-index: 20;
+}
+
 .col-span-full {
   grid-column: 1 / -1;
 }
@@ -2822,7 +2834,8 @@ input:focus {
 }
 
 .item:hover .item-overlay {
-  --tw-gradient-to: #374151;
+  /* @apply to-gray-700; */
+  background-image: linear-gradient(to bottom, rgba(89, 89, 89, 0), #000);
 }
 
 .pending {

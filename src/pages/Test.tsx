@@ -11,7 +11,7 @@ const comicArr = ["123", "234", "345", "456"];
 const adArr = ["fxck_me"];
 
 const Test: FunctionComponent = () => {
-  const [isPop, setIsPop] = useState(true);
+  const [isPop, setIsPop] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null!);
 
   return (

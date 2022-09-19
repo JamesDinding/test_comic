@@ -363,7 +363,7 @@ input:focus {
 }
 
 .tag {
-  @apply absolute left-[-5px] w-[36px] h-[21px] text-[12px] font-light leading-[21px] text-white pl-[7px] pr-[5px] bg-[#d0719a] rounded-r rounded-l-sm z-10;
+  @apply absolute z-10 left-[-5px] w-[36px] h-[21px] text-[12px] font-light leading-[21px] text-white pl-[7px] pr-[5px] bg-[#d0719a] rounded-r rounded-l-sm;
 }
 
 .tag-decoration {
@@ -391,7 +391,8 @@ input:focus {
 }
 
 .item:hover .item-overlay {
-  @apply to-gray-700;
+  /* @apply to-gray-700; */
+  background-image: linear-gradient(to bottom, rgba(89, 89, 89, 0), #000);
 }
 
 .pending {

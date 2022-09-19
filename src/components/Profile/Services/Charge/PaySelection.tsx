@@ -29,12 +29,15 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
       }
     >
       <div className="flex items-center">
+        <div className="mr-2.5">
+          <img
+            src={`/assets/img/payment/pay${payInfo.p_id}.png`}
+            className="h-5 w-5"
+          />
+        </div>
         {userSelect.pay === payInfo.pay && userSelect.p_way
           ? payInfo.pay.concat(" / ", userSelect.p_way)
           : payInfo.pay}
-        <div>
-          <img src={`/assets/img/payment/pay${payInfo.p_id}`} />
-        </div>
         <div className="grow"></div>
         <div>
           <IconChevron

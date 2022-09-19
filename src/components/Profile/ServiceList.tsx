@@ -10,7 +10,7 @@ const serviceList = [
   { title: "註冊", msg: "完成註冊即贈送150金幣!", url: "/register" },
   { title: "完善會員資料", msg: "完成即贈送150金幣!", url: "bind" },
   { title: "充值服務", msg: "", url: "/charge" },
-  { title: "錢包紀錄", msg: "", url: "/collect" },
+  { title: "錢包紀錄", msg: "", url: "/record" },
   { title: "尋回帳戶", msg: "", url: "/recovery" },
   { title: "客服中心", msg: "", url: "/profile" },
 ];

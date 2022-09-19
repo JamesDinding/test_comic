@@ -148,8 +148,8 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
 
       <input
         type="text"
-        className="outline-none rounded py-1.5 px-2 my-2 mr-2 grow text-base"
-        placeholder="請輸入內容"
+        className="outline-none py-1.5 px-2 my-2 mr-2 grow text-base border-solid border-[#d19463] border-[1px] rounded"
+        placeholder=""
         value={clientInput}
         onChange={typeMsgHandler}
         onKeyDown={sendMsgHandler}

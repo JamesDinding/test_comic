@@ -765,6 +765,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.75rem;
 }
 
+.mt-\[-\.2rem\] {
+  margin-top: -.2rem;
+}
+
 .block {
   display: block;
 }
@@ -1043,6 +1047,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-2\/5 {
   width: 40%;
+}
+
+.w-\[1\.5rem\] {
+  width: 1.5rem;
 }
 
 .min-w-\[161px\] {
@@ -1409,6 +1417,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-\[rgba\(158\2c 118\2c 84\2c 0\.4\)\] {
   border-color: rgba(158,118,84,0.4);
+}
+
+.border-\[\#d19463\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 148 99 / var(--tw-border-opacity));
 }
 
 .border-l-\[\#9e7654\] {

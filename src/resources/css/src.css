@@ -318,7 +318,7 @@ input:focus {
 }
 
 .category-item {
-  @apply text-gray-500 w-fit text-sm whitespace-nowrap p-0.5 px-1;
+  @apply text-gray-500 w-fit text-sm whitespace-nowrap p-0.5 px-1 rounded;
 }
 
 .category-item:hover:not(.active) {
@@ -326,8 +326,8 @@ input:focus {
 }
 
 .category-item.active {
-  @apply !px-2.5 !text-gray-700 font-bold;
-  background: linear-gradient(to bottom, #fff, #ffdacb);
+  @apply !px-2 !text-gray-700 font-bold;
+  background: linear-gradient(to bottom, #ffffff80, #ffdacb80);
 }
 
 /* recovery頁面 */
@@ -343,7 +343,7 @@ input:focus {
 
 .item-header-bg {
   @apply mx-5 rounded;
-  background: linear-gradient(to right, #ffdacb -89%, #ffffff);
+  background: linear-gradient(to right, #ffdacb -89%, #ffffff80);
 }
 
 .item {
@@ -379,15 +379,15 @@ input:focus {
 }
 
 .item-separte .title-separate {
-  @apply px-2 text-ellipsis whitespace-nowrap text-[#666666] block w-full overflow-hidden;
+  @apply px-1 text-ellipsis whitespace-nowrap text-[#666666] block w-full overflow-hidden;
 }
 
 .item .rating {
-  @apply text-xs text-gray-400 absolute bottom-2.5 px-2.5 z-10;
+  @apply text-xs text-white absolute bottom-2.5 px-2.5 z-10;
 }
 
 .item-separte .rating-separate {
-  @apply text-xs whitespace-nowrap text-gray-400 px-2.5;
+  @apply text-xs whitespace-nowrap text-gray-400 px-1;
 }
 
 .item:hover .item-overlay {

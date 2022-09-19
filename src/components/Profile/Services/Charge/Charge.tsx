@@ -51,7 +51,7 @@ const Charge = () => {
       {isPopPayment &&
         createPortal(
           <PopPayment
-            onClose={setIsPopPayment}
+            onClose={() => setIsPopPayment(false)}
             onNextConfirm={() => setIsPopConfirm(true)}
           />,
           document.getElementById("pop-window")!
@@ -63,7 +63,7 @@ const Charge = () => {
         )}
       {isPopConfirm &&
         createPortal(
-          <PopConfirm onClose={setIsPopConfirm} />,
+          <PopConfirm onClose={() => setIsPopConfirm(false)} />,
           document.getElementById("pop-window")!
         )}
       <div className="flex flex-col justify-center items-center w-full bg-white mt-4 px-5 pb-10">

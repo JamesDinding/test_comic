@@ -27,7 +27,7 @@ type Payment = {
 };
 
 interface PopPaymentkDrop {
-  onClose: StateUpdater<boolean>;
+  onClose: () => void;
   onNextConfirm: () => void;
 }
 interface PayListProps {
@@ -44,10 +44,10 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   return (
     <Card>
       <div className="relative overflow-auto no-scrollbar flex flex-col items-center h-full p-5">
-        <div className="modal-cross" onClick={() => onClose(false)}>
+        <div className="modal-cross" onClick={() => onClose()}>
           <IconCross class="h-8" />
         </div>
-        <ModalTitle title="選擇支付方案" />
+        <ModalTitle title="選擇支付方案" onClose={onClose} />
         <div className="relative w-full h-2/3">
           <div className="payment-shadow"></div>
           <div className="h-full overflow-y-auto no-scollbar">
@@ -75,7 +75,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         <button
           className="w-full py-4 text-center text-white text-lg bg-[#d19463] rounded-xl"
           onClick={() => {
-            onClose(false);
+            onClose();
             onNextConfirm();
           }}
         >

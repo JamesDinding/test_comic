@@ -10,7 +10,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockID,
 }) => {
   return (
-    <div class="flex items-center item-header item-header-bg select-none text-xl font-semibold leading-8 text-sm text-[#9e7654] h-8 tracking-widest">
+    <div class="flex items-center item-header item-header-bg select-none text-lg font-semibold leading-8 text-[#9e7654] h-8 tracking-widest">
       <img
         src="/assets/img/item-header-icon.png"
         class="inline-block h-8 w-8 translate-y-[-5px] mx-2"

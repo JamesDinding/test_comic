@@ -16,7 +16,7 @@ const Test: FunctionComponent = () => {
 
   return (
     <F>
-      {isPop && <PopConfirm onClose={setIsPop} />}
+      {isPop && <PopConfirm onClose={() => setIsPop(false)} />}
       <div className="overflow-y-scroll no-scrollbar" ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>
           <div className="mt-5">

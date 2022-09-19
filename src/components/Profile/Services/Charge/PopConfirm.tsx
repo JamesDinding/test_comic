@@ -6,7 +6,7 @@ import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 
 interface PopConfirmProps {
-  onClose: StateUpdater<boolean>;
+  onClose: () => void;
 }
 
 let timer: ReturnType<typeof setTimeout>;
@@ -21,7 +21,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
   useEffect(() => {
     if (countDown === 0) {
       clearTimeout(timer);
-      onClose(false);
+      onClose();
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
@@ -36,13 +36,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
   return (
     <Card>
       <div className="relative overflow-auto no-scrollbar text-[#9e7654] flex flex-col items-center h-full p-5">
-        <div
-          className="absolute cursor-pointer right-4 top-4"
-          onClick={() => onClose(false)}
-        >
-          <IconCross class="h-8 text-[#666666]" />
-        </div>
-        <ModalTitle title="訂單確認" />
+        <ModalTitle title="訂單確認" onClose={onClose} />
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 mt-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>方案 :</div>
           <div>

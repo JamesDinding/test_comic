@@ -14,10 +14,7 @@ const PopDescription: FunctionalComponent<PopDescriptionProps> = ({
   return (
     <Card heightShrink={true}>
       <div className="relative overflow-y-auto no-scrollbar flex flex-col items-center h-full p-5">
-        <div className="modal-cross" onClick={() => onClose()}>
-          <IconCross class="h-8" />
-        </div>
-        <ModalTitle title="寻回帳戶說明" />
+        <ModalTitle title="寻回帳戶說明" onClose={onClose} />
         <div className="w-full text-sm text-[#ff978d] mt-5">
           若您的帳戶遗失了，请别担心，请您提供下列完整信息，将由专人为您解决。
         </div>

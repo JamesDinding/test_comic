@@ -347,7 +347,8 @@ input:focus {
 }
 
 .item {
-  @apply rounded-lg border border-gray-200 shadow-md relative h-full;
+  /* remove shadow-md */
+  @apply rounded-lg border border-gray-200 relative h-full;
 }
 
 .item-separate {

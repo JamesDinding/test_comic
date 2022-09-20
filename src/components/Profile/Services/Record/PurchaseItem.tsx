@@ -36,7 +36,7 @@ const PurchaseItem: FunctionComponent<PurchaseItemProps> = ({
         <div className="flex items-center justify-end">
           <div
             className={
-              "w-0 h-0 border-t-[6px] border-[6px] border-transparent border-t-[#9e7654] translate-y-[3px] origin-[50%_25%] duration-300 " +
+              "w-0 h-0 border-t-[6px] border-[6px] border-transparent border-t-[#9e765499] translate-y-[3px] origin-[50%_25%] duration-300 " +
               (isDrop ? "rotate-[180deg]" : "")
             }
           />

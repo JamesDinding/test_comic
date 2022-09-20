@@ -1424,6 +1424,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-top-color: rgb(158 118 84 / var(--tw-border-opacity));
 }
 
+.border-t-\[\#9e765499\] {
+  border-top-color: #9e765499;
+}
+
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));

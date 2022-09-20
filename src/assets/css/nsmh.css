@@ -1393,14 +1393,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(209 148 99 / var(--tw-border-opacity));
 }
 
-.border-\[\#f8f8f8\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(248 248 248 / var(--tw-border-opacity));
+.border-\[\#9e765419\] {
+  border-color: #9e765419;
 }
 
-.border-\[\#bbbbbb\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(187 187 187 / var(--tw-border-opacity));
+.border-\[\#9e765466\] {
+  border-color: #9e765466;
 }
 
 .border-\[\#f4f4f4\] {
@@ -1410,14 +1408,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-\[rgba\(158\2c 118\2c 84\2c 0\.4\)\] {
   border-color: rgba(158,118,84,0.4);
-}
-
-.border-\[\#9e765466\] {
-  border-color: #9e765466;
-}
-
-.border-\[\#9e765419\] {
-  border-color: #9e765419;
 }
 
 .border-l-\[\#9e7654\] {
@@ -2877,7 +2867,7 @@ input:focus {
   bottom: 0px;
   height: 6px;
   width: 100%;
-  opacity: 0.2;
+  opacity: 0.1;
   background-image: linear-gradient(to bottom, rgba(158, 118, 84, 0), #3a2b1e);
 }
 

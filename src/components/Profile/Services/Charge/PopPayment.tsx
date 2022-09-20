@@ -1,25 +1,10 @@
 import { FunctionalComponent, h } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
-import PaymentBar from "./PaymentBar";
 import ModalTitle from "../../../UI/ModalTitle";
 import PaySelection from "./PaySelection";
 import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
-
-const payAmountArr = [
-  { amount: 50, title: "8000金幣" },
-  { amount: 30, title: "3000金幣" },
-  { amount: 100, title: "18000金幣" },
-  { amount: 200, title: "40000金幣" },
-  { amount: 188, title: "VIP季卡" },
-  { amount: 359, title: "VIP年卡" },
-];
-
-const paymentArr = [
-  { img: "", title: "支付寶" },
-  { img: "", title: "微信" },
-];
 
 type Payment = {
   name: string;
@@ -39,7 +24,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   onNextConfirm,
 }) => {
   const { selectPay, payments, userSelect } = useCharge();
-  const [curExpand, setCurExpand] = useState(0);
+  const [curExpand, setCurExpand] = useState(-1);
 
   return (
     <Card>

@@ -10,7 +10,7 @@ export const ChargeProvider: FunctionalComponent = ({ children }) => {
     pay: "",
     p_id: "",
     p_way: "",
-    coins: 0,
+    coins: "0",
     cost: 0,
   });
 
@@ -57,7 +57,7 @@ export const ChargeProvider: FunctionalComponent = ({ children }) => {
     });
   });
 
-  const selectCoinsHandler = (coins: number, cost: number) => {
+  const selectCoinsHandler = (coins: string, cost: number) => {
     setUserSelect((prev) => ({ ...prev, coins, cost }));
   };
 

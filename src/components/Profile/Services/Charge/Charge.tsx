@@ -1,6 +1,7 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState } from "preact/compat";
 import { createPortal } from "preact/compat";
+import { useCharge } from "../../../../context/charge";
 import BackDrop from "../../../BackDrop";
 import PopPayment from "./PopPayment";
 import PopConfirm from "./PopConfirm";
@@ -8,7 +9,30 @@ import Attention from "./Attention";
 import IconDiscountCoins from "../../../../resources/img/icon-discount-coins.svg";
 import IconDiscountVip from "../../../../resources/img/icon-discount-vip.svg";
 
-const vipList = ["", ""];
+interface PorductItem {
+  type: string;
+  title: string;
+  bonus: string;
+  cost: string;
+  mark: string;
+}
+
+const vipList = [
+  {
+    type: "VIP无限看",
+    title: "90 天",
+    bonus: "任你挑选",
+    cost: "188",
+    mark: "推薦",
+  },
+  {
+    type: "VIP无限看",
+    title: "180 天",
+    bonus: "任你挑选",
+    cost: "369",
+    mark: "推薦",
+  },
+];
 const salesList = [
   {
     type: "金幣",
@@ -17,27 +41,36 @@ const salesList = [
     cost: "30",
     mark: "省30",
   },
-  { title: `30元`, price: `3000`, bonus: "多送30元", explain: "金幣" },
   {
-    title: `100元`,
-    price: `10000+8000`,
-    bonus: "多送80元",
-    explain: "金幣",
-    recommend: true,
-    hot: true,
+    type: "金幣",
+    title: "3,000",
+    bonus: "含贈送 3,000",
+    cost: "30",
+    mark: "省30",
   },
   {
-    title: `200元`,
-    price: `20000+2000`,
-    bonus: "多送200元",
-    explain: "金幣",
+    type: "金幣",
+    title: "3,000",
+    bonus: "含贈送 3,000",
+    cost: "30",
+    mark: "省30",
+  },
+  {
+    type: "金幣",
+    title: "3,000",
+    bonus: "含贈送 3,000",
+    cost: "30",
+    mark: "省30",
   },
 ];
 
 const Charge = () => {
+  const { selectCoins } = useCharge();
   const [isPopPayment, setIsPopPayment] = useState(false);
   const [isPopConfirm, setIsPopConfirm] = useState(false);
-  const popPaymentHandler = () => {
+  const popPaymentHandler = (sale: { title: string; cost: string }) => {
+    console.log(sale);
+    selectCoins(sale.title, parseInt(sale.cost, 10));
     setIsPopPayment(true);
   };
 
@@ -73,7 +106,10 @@ const Charge = () => {
             return (
               <div
                 className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(248,200,137,0.2)] rounded-xl"
-                onClick={popPaymentHandler}
+                onClick={popPaymentHandler.bind(this, {
+                  title: sale.title,
+                  cost: sale.cost,
+                })}
                 key={index}
               >
                 <div className="charge-discount-container">
@@ -110,7 +146,7 @@ const Charge = () => {
             return (
               <div
                 className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(255,188,188,0.2)] rounded-xl"
-                onClick={popPaymentHandler}
+                onClick={popPaymentHandler.bind(this, sale)}
                 key={index}
               >
                 <div className="charge-discount-container">

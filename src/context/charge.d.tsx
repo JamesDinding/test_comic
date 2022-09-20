@@ -2,7 +2,7 @@ declare type UserSelectType = {
   pay: string;
   p_id: string;
   p_way: string;
-  coins: number;
+  coins: string;
   cost: number;
 };
 
@@ -19,6 +19,6 @@ declare interface AllPaymentType {
 declare interface ChargeContextType {
   payments: Array<PaymentType> | null;
   userSelect: UserSelectType;
-  selectCoins: (coins: number, cost: number) => void;
+  selectCoins: (coins: string, cost: number) => void;
   selectPay: (pay: string, p_id: string, p_way: string) => void;
 }

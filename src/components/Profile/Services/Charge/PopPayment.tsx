@@ -35,7 +35,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         <ModalTitle title="選擇支付方案" onClose={onClose} />
         <div className="relative w-full h-2/3">
           <div className="payment-shadow"></div>
-          <div className="h-full overflow-y-auto no-scollbar">
+          <div className="h-full px-1 overflow-y-auto no-scollbar bg-[#fffbf6]">
             {payments?.map((payment, i) => {
               const isNowExpand = curExpand === i;
               return (

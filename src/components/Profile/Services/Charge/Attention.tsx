@@ -14,7 +14,7 @@ const Attention: FunctionalComponent = () => {
       <ul className="py-2.5">
         {att.map((a, i, arr) => {
           return (
-            <li className="flex text-xs leading-relaxed">
+            <li className="flex text-xs font-light leading-relaxed tracing-wider">
               <span>{i + 1}.&nbsp;</span>
               <span>{a}</span>
             </li>

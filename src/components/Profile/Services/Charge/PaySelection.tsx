@@ -22,12 +22,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   const { payments, userSelect, selectPay } = useCharge();
 
   return (
-    <div
-      className={
-        "charge-input-container overflow-y-auto duration-300 " +
-        (isExpand ? "bg-[#fef4e7]" : "")
-      }
-    >
+    <div className={"charge-input-container overflow-y-auto duration-300 "}>
       <div className="flex items-center">
         <div className="mr-2.5">
           <img

@@ -228,7 +228,7 @@ input:focus {
 
 /* 充值頁面 */
 .charge-input-container {
-  @apply w-full py-2.5 px-5 rounded-lg border-solid border-[1px] border-[#9e7654] text-[#9e7654] text-sm;
+  @apply w-full py-2.5 px-5 bg-white rounded-lg border-solid border-[1px] border-[#9e7654] text-[#9e7654] text-sm;
 }
 
 .charge-item {

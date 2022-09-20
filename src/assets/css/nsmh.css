@@ -937,6 +937,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 100vh;
 }
 
+.min-h-\[44px\] {
+  min-height: 44px;
+}
+
 .min-h-\[140px\] {
   min-height: 140px;
 }
@@ -2556,7 +2560,7 @@ input:focus {
 }
 
 .charge-attention-title {
-  border-bottom-width: 2px;
+  border-bottom-width: 1px;
   padding-bottom: 0.5rem;
   text-align: center;
   font-size: 1.125rem;
@@ -2714,7 +2718,7 @@ input:focus {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.item-separte {
+.item-separate {
   height: 100%;
 }
 
@@ -2723,7 +2727,7 @@ input:focus {
   width: 100%;
 }
 
-.item-separte img {
+.item-separate img {
   height: auto;
   width: 100%;
 }
@@ -2731,7 +2735,7 @@ input:focus {
 .tag {
   position: absolute;
   left: -5px;
-  z-index: 10;
+  z-index: 30;
   height: 21px;
   width: 36px;
   border-top-right-radius: 0.25rem;
@@ -2752,13 +2756,14 @@ input:focus {
 .tag-decoration {
   position: absolute;
   left: -5px;
+  z-index: 10;
   height: 0.75rem;
   width: 0.75rem;
   transform-origin: bottom left;
   --tw-rotate: 30deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+  background-color: rgb(171 75 116 / var(--tw-bg-opacity));
 }
 
 .item .item-overlay {
@@ -2790,7 +2795,7 @@ input:focus {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.item-separte .title-separate {
+.item-separate .title-separate {
   display: block;
   width: 100%;
   overflow: hidden;
@@ -2814,7 +2819,7 @@ input:focus {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.item-separte .rating-separate {
+.item-separate .rating-separate {
   white-space: nowrap;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -2829,7 +2834,13 @@ input:focus {
   background-image: linear-gradient(to bottom, rgba(89, 89, 89, 0), #000);
 }
 
-.pending {
+.pending::before {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 12;
+  height: 100%;
+  width: 100%;
   border-radius: 0.25rem;
   border-style: none;
   --tw-bg-opacity: 1;
@@ -2837,6 +2848,8 @@ input:focus {
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-content: '';
+  content: var(--tw-content);
 }
 
 .pending img,

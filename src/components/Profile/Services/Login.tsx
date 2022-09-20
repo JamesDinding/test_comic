@@ -67,7 +67,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
   return (
     <F>
       <div className="flex flex-col items-center py-5 px-12 w-full h-full text-[#9e7654] bg-cartoon bg-[length:100%_100%] bg-no-repeat">
-        <IconLogo class="w-[150px] h-[44px] mt-[3.75rem] mb-4" />
+        <IconLogo class="w-[150px] h-[44px] min-h-[44px] mt-[3.75rem] mb-4" />
         <div className="text-xs tracking-[10px] mb-5">|最多精彩二次元动漫|</div>
         <InputField
           title="帳號"

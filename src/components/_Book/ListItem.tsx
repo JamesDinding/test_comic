@@ -18,7 +18,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   // cover and title is separated
   if (type === "separate")
     return (
-      <Link href={"/directory/" + Data.ID} class={"item-separte "}>
+      <Link href={"/directory/" + Data.ID} class={"item-separate "}>
         <div class="relative">
           <div class="bottom-4 tag">{"連載"}</div>
           <div class="bottom-4 tag-decoration"></div>

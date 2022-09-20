@@ -1423,6 +1423,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-top-color: #9e765499;
 }
 
+.border-l-\[\#9e765499\] {
+  border-left-color: #9e765499;
+}
+
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));

@@ -60,7 +60,7 @@ const ServiceList: FunctionalComponent = (
                       {service.msg}
                     </div>
                     <div>
-                      <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#9e7654] rounded-sm"></div>
+                      <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#9e765499] rounded-sm"></div>
                     </div>
                   </li>
                 );

@@ -6,6 +6,10 @@ import RecommendTitleBar from "../components/Home/RecommendTitleBar";
 import PopConfirm from "../components/Profile/Services/Charge/PopConfirm";
 import { ObserverProvider } from "../context/observer";
 
+const recommendationBlocks = [
+  1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
+];
+
 const comicArr = ["123", "234", "345", "456"];
 //col-span-full
 const adArr = ["fxck_me"];
@@ -13,6 +17,15 @@ const adArr = ["fxck_me"];
 const Test: FunctionComponent = () => {
   const [isPop, setIsPop] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null!);
+
+  useEffect(() => {
+    fetch(
+      "http://k8s-nsmhdw-ce7f13072e-422525446.ap-northeast-1.elb.amazonaws.com/api/v1/content/recommendations?blkID=" +
+        recommendationBlocks.join(",")
+    ).then((res) => {
+      console.log(res);
+    });
+  }, []);
 
   return (
     <F>

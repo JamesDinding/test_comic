@@ -14,7 +14,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
   type = "service",
 }) => {
   return (
-    <div className="return-bar px-5">
+    <div className="return-bar px-5 bg-white">
       <div
         className="h-[37px] flex flex-col justify-end items-center cursor-pointer"
         onClick={() => history.back()}

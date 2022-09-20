@@ -26,9 +26,10 @@ const ChargeItem: FunctionComponent<ChargeItemProps> = ({ chargeObj }) => {
     <F>
       <div
         className={
-          "w-full h-[49px] px-5 leading-[49px] flex text-sm text-[#79727d] border-solid border-b-[1px] " +
-          (isDrop ? "border-[#f8f8f8]" : "border-[#bbbbbb]")
+          "cursor-pointer w-full h-[49px] px-5 leading-[49px] flex text-sm text-[#79727d] border-solid border-b-[1px] " +
+          (isDrop ? "border-[#9e765419]" : "border-[#9e765466]")
         }
+        onClick={() => setIsDrop((prev) => !prev)}
       >
         <div className="w-1/3 text-center text-[#ecad1d] font-semibold tracking-wide">
           +&nbsp;&nbsp;{chargeObj.coinsCharged} 金幣
@@ -43,12 +44,11 @@ const ChargeItem: FunctionComponent<ChargeItemProps> = ({ chargeObj }) => {
               "w-0 h-0 border-t-[6px] border-[6px] border-transparent border-t-[#9e7654] translate-y-[3px] origin-[50%_25%] duration-300 " +
               (isDrop ? "rotate-[180deg]" : "")
             }
-            onClick={() => setIsDrop((prev) => !prev)}
           />
         </div>
       </div>
       <div
-        className={`w-full px-5 text-sm text-[#666666] flex flex-col justify-center tracking-wide border-solid border-b-[1px] border-[#bbbbbb] duration-300 overflow-hidden ${dropCss}`}
+        className={`w-full px-5 text-sm text-[#666666] flex flex-col justify-center tracking-wide border-solid border-b-[1px] border-[#9e765466] duration-300 overflow-hidden ${dropCss}`}
       >
         <div className="mt-2 mb-1">單號 : {chargeObj.id}</div>
         <div className="mb-2">時間 : {chargeObj.date}</div>

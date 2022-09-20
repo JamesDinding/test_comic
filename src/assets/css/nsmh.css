@@ -1412,6 +1412,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgba(158,118,84,0.4);
 }
 
+.border-\[\#9e765466\] {
+  border-color: #9e765466;
+}
+
+.border-\[\#9e765419\] {
+  border-color: #9e765419;
+}
+
 .border-l-\[\#9e7654\] {
   --tw-border-opacity: 1;
   border-left-color: rgb(158 118 84 / var(--tw-border-opacity));

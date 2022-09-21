@@ -3074,6 +3074,11 @@ footer .active span {
   background-repeat: no-repeat;
 }
 
+.before\:opacity-60::before {
+  content: var(--tw-content);
+  opacity: 0.6;
+}
+
 .before\:content-\[\'\'\]::before {
   --tw-content: '';
   content: var(--tw-content);

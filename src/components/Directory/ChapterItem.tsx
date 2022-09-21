@@ -21,7 +21,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
       )}
       <img src="" alt="" />
       <img src="/assets/img/test/Image.png" className="w-full h-full" alt="" />
-      <div className="absolute left-1/2 bottom-2.5 translate-x-[-50%] text-sm text-white text-center font-semibold w-[70px] h-[20px] leading-[20px]">
+      <div className="absolute left-1/2 bottom-2.5 translate-x-[-50%] text-sm text-white text-center w-[70px] h-[20px] leading-[20px]">
         名稱最長五
       </div>
     </div>

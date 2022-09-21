@@ -2077,6 +2077,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(209 148 99 / var(--tw-text-opacity));
 }
 
+.text-\[\#d29a6a\] {
+  --tw-text-opacity: 1;
+  color: rgb(210 154 106 / var(--tw-text-opacity));
+}
+
 .opacity-60 {
   opacity: 0.6;
 }

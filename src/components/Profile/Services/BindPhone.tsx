@@ -64,8 +64,8 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
   };
 
   return (
-    <CardBottom footerOffset={true}>
-      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[#9e7654]">
+    <CardBottom>
+      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[rgba(158,118,84,.4)]">
         綁定會員資料
         <div onClick={(e) => onClose()}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
@@ -74,7 +74,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
       <div className="px-5 pt-5 text-[#666666]">
         <InputField
           inputRef={phoneRef}
-          title="手機號"
+          title="手机号"
           warningMsg="無效號碼，請重新輸入!"
           isWrong={isPhoneWrong}
           inputSetting={{
@@ -86,7 +86,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
         />
         <InputField
           inputRef={mailRef}
-          title="郵箱"
+          title="邮箱"
           warningMsg="無效信箱，請重新輸入!"
           isWrong={isMailWrong}
           inputSetting={{
@@ -98,7 +98,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
         />
         <InputField
           inputRef={nameRef}
-          title="暱稱"
+          title="昵称"
           warningMsg="無效暱稱，請重新輸入!"
           isWrong={isNameWrong}
           inputSetting={{

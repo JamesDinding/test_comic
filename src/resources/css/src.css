@@ -26,6 +26,19 @@ input:focus {
   outline: none;
 }
 
+/* 數字 defualt arrow */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 /* 不顯示捲軸 */
 
 .no-scrollbar::-webkit-scrollbar {
@@ -45,7 +58,7 @@ input:focus {
 /* 彈窗 */
 /* modal 下方上彈的modal */
 .modal-bottom {
-  @apply absolute w-full min-h-[445px] rounded-t-xl border-t-[1px];
+  @apply fixed bottom-0 left-1/2 translate-x-[-50%] w-full max-w-[420px] min-h-[445px] rounded-t-xl border-t-[1px];
 
   /* background: linear-gradient(
     0deg,

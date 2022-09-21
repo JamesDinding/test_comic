@@ -17,12 +17,12 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
           <span className="text-sm">ID</span>
           <span className={showVIP ? "text-sm" : "text-lg"}>1239002029</span>
         </div>
-        <div className="h-[30px] flex items-center justify-between text-[#f7bc86]">
+        <div className="h-[17px] mt-[3px] flex items-center justify-between text-[#f7bc86]">
           <span className="text-xs">剩餘金幣</span>
           <span className={showVIP ? "text-xs" : "text-lg"}>{"0"}&nbsp;元</span>
         </div>
         {showVIP && (
-          <div className="flex items-center justify-between text-[#666666]">
+          <div className="h-[17px] mt-[1px] flex items-center justify-between text-[#999999]">
             <span className="text-xs">VIP 會員</span>
             <span className="text-xs">尚未開通</span>
           </div>

@@ -35,8 +35,8 @@ const ServiceList: FunctionalComponent = (
           <BackDrop onClose={() => setIsPopBinding(false)} />,
           document.getElementById("back-drop")!
         )}
+      {isPopBinding && <BindPhone onClose={() => setIsPopBinding(false)} />}
       <div className="flex flex-col overflow-auto">
-        {isPopBinding && <BindPhone onClose={() => setIsPopBinding(false)} />}
         <div className="mb-2 rounded-2xl">
           <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
             <ul>
@@ -69,7 +69,7 @@ const ServiceList: FunctionalComponent = (
           </div>
         </div>
         <Link
-          className="bg-white py-4 px-5 text-[#9e7654] text-sm"
+          className="bg-white pt-2.5 pb-12 px-5 text-[#9e7654] text-sm"
           href="/login"
         >
           登錄

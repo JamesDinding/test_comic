@@ -1,22 +1,18 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
+import { useReadingModal } from "../../context/reading";
 import ChapterItem from "../Directory/ChapterItem";
 import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconCross from "../../resources/img/icon-cross.svg";
 import IconSort from "../../resources/img/icon-sort.svg";
 
 interface PopChapterProps {
-  onSetIsPopChapter: StateUpdater<boolean>;
-  isPopChapter: boolean;
   chapterList: Array<{ cover: string; episode: number; isLocked: boolean }>;
 }
 
 let layerCss = "translate-y-full";
-const PopChapter: FunctionalComponent<PopChapterProps> = ({
-  onSetIsPopChapter,
-  isPopChapter,
-  chapterList,
-}) => {
+const PopChapter: FunctionalComponent<PopChapterProps> = ({ chapterList }) => {
+  const { isPopChapter, reset } = useReadingModal();
   layerCss = isPopChapter ? "" : "translate-y-[120%]";
 
   return (
@@ -27,7 +23,7 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
     >
       <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[rgba(158,118,84,.4)]">
         章節選擇
-        <div onClick={(e) => onSetIsPopChapter(false)}>
+        <div onClick={reset}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
       </div>

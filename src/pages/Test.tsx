@@ -1,11 +1,10 @@
 import { h, Fragment as F, FunctionComponent } from "preact";
 import { useState, useRef, useEffect } from "preact/hooks";
-import { Link } from "preact-router";
 import BookListItem from "../components/_Book/ListItem";
 import RecommendTitleBar from "../components/Home/RecommendTitleBar";
-import PopConfirm from "../components/Profile/Services/Charge/PopConfirm";
 import { ObserverProvider } from "../context/observer";
 import IconCoin from "../resources/img/icon-coin.svg";
+import ModalBuy from "../components/Modal/ModalBuy";
 
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
@@ -16,14 +15,10 @@ const comicArr = ["123", "234", "345", "456"];
 const adArr = ["fxck_me"];
 
 const Test: FunctionComponent = () => {
-  const [isPop, setIsPop] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null!);
 
   return (
     <F>
-      <IconCoin />
-
-      {isPop && <PopConfirm onClose={() => setIsPop(false)} />}
       <div className="overflow-y-scroll no-scrollbar" ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>
           <div className="mt-5">

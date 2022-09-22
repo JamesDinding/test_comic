@@ -26,6 +26,7 @@ import CustomerPage from "./Profile/Customer";
 import SearchPage from "./Search";
 // Test page
 import TestPage from "./Test";
+import { ReadingProvider } from "../context/reading";
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -46,8 +47,10 @@ const App: FunctionalComponent = () => {
               <VideoPage path="/video-home" />
               <CollectPage path="/collect" />
               <ProfilePage path="/profile" />
+
               <DirectoryPage path="/directory/:cid" />
               <ReadPage path="/read/:id" />
+
               <RegisterPage path="/register" />
               <LoginPage path="/login" />
 

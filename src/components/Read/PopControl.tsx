@@ -4,6 +4,7 @@ import { useReadingModal } from "../../context/reading";
 import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconMenu from "../../resources/img/icon-menu.svg";
 
+const maxPage = 30;
 const PopControl: FunctionalComponent = ({}) => {
   const { isPopControl, popChapter, reset } = useReadingModal();
   const [curPage, setCurPage] = useState(1);
@@ -17,13 +18,17 @@ const PopControl: FunctionalComponent = ({}) => {
         }
       >
         <div className="flex items-center h-full w-full">
-          <button className="ml-2">
+          <button className="ml-2" onClick={popChapter}>
+            <IconMenu class="h-10 w-10" />
+          </button>
+          <div className="grow"></div>
+          <button className="mr-2">
             <IconChevron class="h-10 w-10 text-white rotate-180" />
           </button>
           <div className="flex items-center justify-between font-light text-white text-sm text-center w-[60px]">
             <span className="text-[#9e7654] w-[25px]">{curPage}</span>
             <span className="text-lg">&nbsp;/&nbsp;</span>
-            <span className="w-[25px]">30</span>
+            <span className="w-[25px]">{maxPage}</span>
           </div>
 
           <input
@@ -33,7 +38,10 @@ const PopControl: FunctionalComponent = ({}) => {
             max="30"
             value={curPage}
             step="1"
-            className="ml-4 w-[120px]"
+            className="ml-4 w-[150px] input-range-page"
+            style={{
+              backgroundSize: `${(curPage / maxPage) * 100}% 100%`,
+            }}
             onChange={(e) => {
               const target = e.target as HTMLInputElement;
               setCurPage(parseInt(target.value, 10));
@@ -42,10 +50,6 @@ const PopControl: FunctionalComponent = ({}) => {
 
           <button className="ml-4">
             <IconChevron class="h-10 w-10 text-white" />
-          </button>
-          <div className="grow"></div>
-          <button className="mr-4" onClick={popChapter}>
-            <IconMenu class="h-10 w-10" />
           </button>
         </div>
       </div>

@@ -10,8 +10,6 @@ const ModalBuy: FunctionalComponent = ({}) => {
   // probably has: const {user} = useUser
   const user = { coins: 59 };
 
-  console.log(layerCss, "modal buy/pourchase");
-
   return (
     <div
       id="control-view"

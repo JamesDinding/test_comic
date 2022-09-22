@@ -16,7 +16,7 @@ const FooterBar: FunctionalComponent = () => {
         <IconVideo alt="动漫" />
         <span className="text-[12px]">动漫</span>
       </Link>
-      <Link activeClassName="active" href="/bookmark" class="group">
+      <Link activeClassName="active" href="/collect" class="group">
         <IconBookmark alt="收藏" />
         <span className="text-[12px]">收藏</span>
       </Link>

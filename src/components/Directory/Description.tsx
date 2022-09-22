@@ -41,7 +41,8 @@ const Description = () => {
     <>
       <div className="flex py-4">
         <div className="w-[161px] min-w-[161px] h-[242px] bg-[#a8a8a8] rounded mr-5">
-          <Image alt="image" path="" setParentPending={setPending} />
+          {/* <Image alt="image" path="" setParentPending={setPending} /> */}
+          <img src="/assets/img/test/Image.png" className="h-full w-full" />
         </div>
         <div className="flex flex-col grow items-start">
           <div className="text-[#666666] text-xl font-semibold book-oneline">

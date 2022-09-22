@@ -6,7 +6,7 @@ import Image from "./../_Image/image";
 
 interface BookListItemProps {
   Data: Book;
-  type?: "separate" | "stack" | "original";
+  type?: "separate" | "stack" | "original" | "collect";
 }
 
 const BookListItem: FunctionalComponent<BookListItemProps> = ({

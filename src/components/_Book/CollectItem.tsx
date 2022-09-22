@@ -25,12 +25,25 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
   }, [curPress, index_temp]);
 
   return (
-    <Link href={"/directory/" + Data.ID} class={"item-separate "}>
+    <div href={"/directory/" + Data.ID} class={"cursor-pointer item-separate "}>
       <div class="relative h-[157px] rounded-lg overflow-hidden">
         <div
           className={
             "duration-300 " + (isLongPress ? "translate-y-[-30px]" : '"')
           }
+          onMouseDown={(e) => {
+            e.preventDefault();
+            setCurPress(index_temp);
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+              setIsLongPress(true);
+            }, 400);
+          }}
+          onMouseUp={(e) => {
+            clearTimeout(timer);
+            if (isLongPress) return;
+            route("/directory/1234");
+          }}
           onTouchStart={(e) => {
             e.preventDefault();
             setCurPress(index_temp);
@@ -63,7 +76,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
       </div>
       <div class="title-separate">{Data.Name}</div>
       <div class="rating-separate">★ 7.8&nbsp;&nbsp;◉ 103.5万</div>
-    </Link>
+    </div>
   );
 };
 

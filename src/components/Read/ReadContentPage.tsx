@@ -40,7 +40,7 @@ const ReadContentPage: FunctionalComponent = () => {
       >
         <PopReturn isPop={isPopControl} />
         <ObserverProvider rootElement={containerRef}>
-          <div>pages.map((page) =&gt; page )</div>
+          <div>尚未串接api</div>
         </ObserverProvider>
       </div>
     </F>

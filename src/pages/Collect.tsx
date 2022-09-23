@@ -28,6 +28,11 @@ const CollectPage: FunctionalComponent = () => {
   const [curPress, setCurPress] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null!);
 
+  const unPressHandler = (e: MouseEvent) => {
+    const target = e.target as HTMLDivElement | HTMLImageElement;
+    target.nodeName !== "IMG" && setCurPress(-1);
+  };
+
   return (
     <F>
       <ReturnBar title="我的收藏" />
@@ -43,7 +48,10 @@ const CollectPage: FunctionalComponent = () => {
           />
           {curSelect === 0 &&
             (temp_collect_arr.length ? (
-              <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
+              <div
+                className="items-box grid grid-cols-3 gap-2.5 py-4 px-5"
+                onClick={unPressHandler}
+              >
                 {temp_collect_arr.map((collect, i, arr) => {
                   return (
                     <CollectItem

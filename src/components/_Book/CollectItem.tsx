@@ -25,7 +25,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
   }, [curPress, index_temp]);
 
   return (
-    <div href={"/directory/" + Data.ID} class={"cursor-pointer item-separate "}>
+    <div id={Data.ID.toString()} class={"cursor-pointer item-separate "}>
       <div class="relative h-[157px] rounded-lg overflow-hidden">
         <div
           className={
@@ -41,7 +41,10 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
           }}
           onMouseUp={(e) => {
             clearTimeout(timer);
-            if (isLongPress) return;
+            if (isLongPress) {
+              e.stopPropagation();
+              return;
+            }
             route("/directory/1234");
           }}
           onTouchStart={(e) => {
@@ -54,7 +57,10 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
           }}
           onTouchEnd={(e) => {
             clearTimeout(timer);
-            if (isLongPress) return;
+            if (isLongPress) {
+              e.stopPropagation();
+              return;
+            }
             route("/directory/1234");
           }}
         >

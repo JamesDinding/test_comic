@@ -5,7 +5,7 @@ import Register from "../../components/Profile/Services/Register";
 const RegisterPage: FunctionalComponent = () => {
   return (
     <>
-      <div class="grow min-h-screen bg-white">
+      <div class="grow flex flex-col min-h-screen bg-white">
         <ReturnBar title="註冊" />
         <Register />
       </div>

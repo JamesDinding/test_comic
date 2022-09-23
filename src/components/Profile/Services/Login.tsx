@@ -66,8 +66,8 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
 
   return (
     <F>
-      <div className="flex flex-col items-center py-5 px-12 w-full h-full text-[#9e7654] bg-cartoon bg-[length:100%_100%] bg-no-repeat">
-        <IconLogo class="w-[150px] h-[44px] min-h-[44px] mt-[3.75rem] mb-4" />
+      <div className="grow flex flex-col items-center py-5 px-12 w-full text-[#9e7654] bg-cartoon bg-[length:100%_100%] bg-no-repeat">
+        <IconLogo class="w-[150px] h-[44px] min-h-[44px] mt-12 mb-4" />
         <div className="text-xs text-[#d29a6a] tracking-[10px] mb-5">
           |最多精彩二次元动漫|
         </div>
@@ -99,7 +99,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             記住我的帳號密碼
           </label>
           <div className="grow"></div>
-          <div className="cursor-pointer text-primary-light btn-text">
+          <div className="cursor-pointer text-[#d19463] btn-text">
             忘記密碼？
           </div>
         </div>

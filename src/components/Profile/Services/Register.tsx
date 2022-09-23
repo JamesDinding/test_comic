@@ -80,8 +80,8 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
 
   return (
     <F>
-      <div className="flex flex-col items-center py-5 px-12 w-full h-full text-[#9e7654] bg-cartoon bg-[length:100%_100%] bg-no-repeat">
-        <IconLogo class="w-[150px] h-[44px] mt-[3.75rem] mb-4" />
+      <div className="grow flex flex-col items-center py-5 px-12 w-full text-[#9e7654] bg-cartoon bg-[length:100%_100%] bg-no-repeat">
+        <IconLogo class="w-[150px] h-[44px] mt-12 mb-4" />
         <div className="text-xs text-[#d29a6a] tracking-[10px] mb-5">
           |最多精彩二次元动漫|
         </div>
@@ -143,7 +143,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
             route("/member");
           }}
         />
-        <div className="mt-5 text-sm text-[#666666]">
+        <div className="mt-5 text-sm text-[#999999]">
           已經是會員？
           <span
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"

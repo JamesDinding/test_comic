@@ -5,7 +5,7 @@ import Login from "../../components/Profile/Services/Login";
 const LoginPage: FunctionalComponent = () => {
   return (
     <>
-      <div class="grow min-h-screen bg-white">
+      <div class="grow flex flex-col min-h-screen bg-white">
         <ReturnBar title="登錄" />
         <Login />
       </div>

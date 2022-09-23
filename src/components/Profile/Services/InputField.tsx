@@ -47,7 +47,7 @@ const InputField: FunctionComponent<InputProps> = ({
   return (
     <div className="flex flex-col w-full mb-2">
       <div className="flex items-center mb-1">
-        <div className="font-medium text-lg text-[#666666]">{title}</div>
+        <div className="text-lg text-[#9e7654]">{title}</div>
         <div className="grow"></div>
         <div className="text-[#ff978d] text-input-warning text-sm">
           {isWrong ? warningMsg : ""}
@@ -57,8 +57,8 @@ const InputField: FunctionComponent<InputProps> = ({
         type={inputSetting.type}
         placeholder={inputSetting.placeHolder}
         className={
-          "w-full h-[50px] py-3 px-5 text-sm border-[1px] border-solid border-[rgba(158,118,84,0.4)] rounded-lg placeholder:text-[#bbbbbb] " +
-          (isWrong ? "border-[#ff978d]" : "")
+          "w-full h-[50px] py-3 px-5 text-sm border-[1px] border-solid rounded-lg placeholder:text-[#bbbbbb] " +
+          (isWrong ? "border-[#ff978d]" : "border-[rgba(158,118,84,0.4)]")
         }
         ref={inputRef}
       />

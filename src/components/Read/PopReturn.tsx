@@ -22,7 +22,9 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({ isPop }) => {
         <span className="mb-[.125rem]">
           <IconArrow class="w-[1.125rem] text-white" />
         </span>
-        <div className="pt-1 text-[12px] leading-[12px]">返回</div>
+        <div className="pt-1 text-[12px] whitespace-nowrap leading-[12px]">
+          返回
+        </div>
       </div>
       <div className="grow">
         <div className="text-center text-white text-xl">{"漫畫名稱"}</div>
@@ -33,7 +35,7 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({ isPop }) => {
           <span>
             <IconCoin class="w-full" />
           </span>
-          <div className="w-full mt-[.125rem] text-[12px] leading-[12px]">
+          <div className="w-full mt-[.125rem] text-[12px] whitespace-nowrap leading-[12px]">
             充值
           </div>
         </Link>

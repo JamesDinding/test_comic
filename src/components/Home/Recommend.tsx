@@ -11,16 +11,17 @@ const recommendationBlocks = [
 const recommendationBlocksItemPerRow: {
   [index: number]: number;
 } = {
-  1: 0,
-  2: 3,
-  10077: 2,
-  10078: 3,
-  10079: 2,
-  10080: 3,
-  10081: 2,
-  10082: 3,
-  10083: 2,
-  10084: 3,
+  0: 0,
+  1: 3,
+  2: 2,
+  10077: 3,
+  10078: 2,
+  10079: 3,
+  10080: 2,
+  10081: 3,
+  10082: 2,
+  10083: 3,
+  10084: 2,
 };
 
 // temp_book name
@@ -37,6 +38,7 @@ const HomeRecommend: FunctionalComponent = () => {
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
   // temp
   const [tempBlocks, setTempBlocks] = useState([
+    { ID: 0, Name: "論波圖", Items: [{ ID: 123, Cover: "", Name: "" }] },
     { ID: 1, Name: "吸睛首選", Items: [{ ID: 123, Cover: "", Name: "" }] },
     { ID: 2, Name: "新書強推", Items: [{ ID: 123, Cover: "", Name: "" }] },
     { ID: 10077, Name: "本週更新", Items: [{ ID: 123, Cover: "", Name: "" }] },
@@ -68,7 +70,7 @@ const HomeRecommend: FunctionalComponent = () => {
   return (
     <div>
       {tempBlocks.map((blk) => {
-        if (blk.ID == 1) return <Swiper />;
+        if (blk.ID == 0) return <Swiper />;
         return (
           <>
             <RecommendBlock

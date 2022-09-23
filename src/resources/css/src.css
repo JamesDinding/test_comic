@@ -384,12 +384,12 @@ input[type="number"] {
   @apply absolute z-10 bg-[#ab4b74] w-3 h-3 rotate-[30deg] left-[-5px] origin-bottom-left;
 }
 
-.item .item-overlay {
-  @apply bg-gradient-to-b from-transparent to-black rounded-b-lg absolute bottom-0 left-0 w-full h-28;
+.item-overlay {
+  @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-black rounded-b-lg absolute bottom-0 left-0 w-full h-28;
 }
 
 .item .title {
-  @apply absolute bottom-7 px-2.5 text-ellipsis whitespace-nowrap text-white block w-full overflow-hidden z-10;
+  @apply absolute bottom-7 px-2.5 text-ellipsis whitespace-nowrap text-white block w-full overflow-hidden;
 }
 
 .item-separate .title-separate {
@@ -397,7 +397,7 @@ input[type="number"] {
 }
 
 .item .rating {
-  @apply text-xs text-white absolute bottom-2.5 px-2.5 z-10;
+  @apply text-xs text-white absolute bottom-2.5 px-2.5;
 }
 
 .item-separate .rating-separate {

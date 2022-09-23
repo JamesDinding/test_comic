@@ -19,20 +19,29 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   if (type === "separate")
     return (
       <Link href={"/directory/" + Data.ID} class={"item-separate "}>
-        <div class="relative">
+        <div class="relative rounded-lg">
+          <div className="item-overlay z-[25] !h-[60px]"></div>
           <div class="bottom-4 tag">{"連載"}</div>
           <div class="bottom-4 tag-decoration"></div>
-          {/* <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}> */}
-          <div className={showPending ? "relative z-[20] min-h-[157px]" : ""}>
-            {/* <Image
+          <div className="rounded-lg overflow-hidden">
+            {/* <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}> */}
+            <div
+              className={
+                "rounded-lg overflow-hidden" +
+                (showPending ? "relative z-[20] min-h-[157px]" : "")
+              }
+            >
+              {/* <Image
               path={Data.Cover}
               alt={Data.Name}
               setParentPending={setPending}
             /> */}
-            <img src="/assets/img/test/Image.png" alt="" />
+              <img src="/assets/img/test/Image.png" alt="" />
+            </div>
           </div>
         </div>
         <div class="title-separate">{Data.Name}</div>
+
         <div class="rating-separate">★ 7.8&nbsp;&nbsp;◉ 103.5万</div>
       </Link>
     );
@@ -45,21 +54,21 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         // class={"relative item " + (showPending ? " pending min-h-[242px]" : "")}
         class={"relative item " + (showPending ? " min-h-[242px]" : "")}
       >
-        {/* <Image
+        <div className="relative z-20 rounded-lg overflow-hidden">
+          {/* <Image
           path={Data.Cover}
           alt={Data.Name}
           setParentPending={setPending}
         /> */}
-        <img
-          src="/assets/img/test/Image.png"
-          className="relative z-20"
-          alt=""
-        />
+          <img src="/assets/img/test/Image.png" className="" alt="" />
+        </div>
         <div class="bottom-[3.25rem] tag">{"連載"}</div>
         <div class="bottom-[3.25rem] tag-decoration"></div>
         <div class="item-overlay z-[5]">&nbsp;</div>
-        <span class="title z-10">{Data.Name}</span>
-        <span class="rating z-10">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>
+        <div className="item-overlay z-[25]">
+          <span class="title z-30">{Data.Name}</span>
+          <span class="rating z-30">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>
+        </div>
       </Link>
     );
 

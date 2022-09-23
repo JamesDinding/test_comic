@@ -24,7 +24,10 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       <div className="w-[60px]">
         <img
           src={`/assets/img/title/${pic}@3x.png`}
-          class="inline-block translate-y-[-10px] w-full px-2.5"
+          class={
+            "inline-block translate-y-[-10px] w-full px-2.5" +
+            (BlockName === "本週更新" ? "!px-0" : "")
+          }
         />
       </div>
       {BlockName}

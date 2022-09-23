@@ -37,7 +37,7 @@ const CollectPage: FunctionalComponent = () => {
     <F>
       <ReturnBar title="我的收藏" />
       <div
-        class="relative grow bg-white overflow-y-auto no-scollbar"
+        class="relative grow flex flex-col bg-white overflow-y-auto no-scollbar"
         ref={containerRef}
       >
         <ObserverProvider rootElement={containerRef}>
@@ -49,7 +49,7 @@ const CollectPage: FunctionalComponent = () => {
           {curSelect === 0 &&
             (temp_collect_arr.length ? (
               <div
-                className="items-box grid grid-cols-3 gap-2.5 py-4 px-5"
+                className="grow items-box grid grid-cols-3 gap-2.5 py-4 px-5 bg-[#fffbf6]"
                 onClick={unPressHandler}
               >
                 {temp_collect_arr.map((collect, i, arr) => {
@@ -87,7 +87,7 @@ const CollectPage: FunctionalComponent = () => {
             ))}
           {curSelect === 1 &&
             (temp_purchase_arr.length ? (
-              <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
+              <div className="grow items-box grid grid-cols-3 gap-2.5 py-4 px-5 bg-[#fffbf6]">
                 {temp_purchase_arr.map((purchase, i, arr) => {
                   return (
                     <CollectItem

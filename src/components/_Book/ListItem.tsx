@@ -22,12 +22,14 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         <div class="relative">
           <div class="bottom-4 tag">{"連載"}</div>
           <div class="bottom-4 tag-decoration"></div>
-          <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}>
-            <Image
+          {/* <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}> */}
+          <div className={showPending ? "relative z-[20] min-h-[157px]" : ""}>
+            {/* <Image
               path={Data.Cover}
               alt={Data.Name}
               setParentPending={setPending}
-            />
+            /> */}
+            <img src="/assets/img/test/Image.png" alt="" />
           </div>
         </div>
         <div class="title-separate">{Data.Name}</div>
@@ -40,12 +42,18 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
     return (
       <Link
         href={"/directory/" + Data.ID}
-        class={"relative item " + (showPending ? " pending min-h-[242px]" : "")}
+        // class={"relative item " + (showPending ? " pending min-h-[242px]" : "")}
+        class={"relative item " + (showPending ? " min-h-[242px]" : "")}
       >
-        <Image
+        {/* <Image
           path={Data.Cover}
           alt={Data.Name}
           setParentPending={setPending}
+        /> */}
+        <img
+          src="/assets/img/test/Image.png"
+          className="relative z-20"
+          alt=""
         />
         <div class="bottom-[3.25rem] tag">{"連載"}</div>
         <div class="bottom-[3.25rem] tag-decoration"></div>

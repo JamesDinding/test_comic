@@ -1,6 +1,5 @@
 import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import { useWorker } from "../../context/worker";
 import BookList from "../_Book/List";
 import Image from "../_Image/image";
 
@@ -44,7 +43,6 @@ let prev: slider = null;
 let cur_test = 0;
 
 const Swiper: FunctionalComponent = () => {
-  const { send } = useWorker();
   // blocks[0]，可以拿到輪播要用的圖片
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
   const [showPending, setPending] = useState(true);
@@ -56,32 +54,29 @@ const Swiper: FunctionalComponent = () => {
   ]);
 
   useEffect(() => {
-    (async () => {
-      let res = await send({
-        action: "Get",
-        data: {
-          url:
-            "/api/v1/content/recommendations?blkID=" +
-            recommendationBlocks.join(","),
-        },
-      });
-
-      if (res.blocks !== undefined) {
-        setBlocks(res.blocks);
-
-        swiperLen = res.blocks[0].Items.length;
-        const temp = new Array(swiperLen).fill(
-          "translate-x-[100%] ",
-          1,
-          swiperLen - 1
-        );
-        temp[swiperLen - 1] = "translate-x-[-100%] ";
-        temp[0] = "translate-x-[0%] ";
-
-        setTransList(temp);
-      }
-    })();
-  }, [send]);
+    // (async () => {
+    //   let res = await send({
+    //     action: "Get",
+    //     data: {
+    //       url:
+    //         "/api/v1/content/recommendations?blkID=" +
+    //         recommendationBlocks.join(","),
+    //     },
+    //   });
+    //   if (res.blocks !== undefined) {
+    //     setBlocks(res.blocks);
+    //     swiperLen = res.blocks[0].Items.length;
+    //     const temp = new Array(swiperLen).fill(
+    //       "translate-x-[100%] ",
+    //       1,
+    //       swiperLen - 1
+    //     );
+    //     temp[swiperLen - 1] = "translate-x-[-100%] ";
+    //     temp[0] = "translate-x-[0%] ";
+    //     setTransList(temp);
+    //   }
+    // })();
+  }, []);
 
   // 輪播圖
   useEffect(() => {

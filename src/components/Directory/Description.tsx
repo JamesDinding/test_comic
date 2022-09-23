@@ -1,7 +1,6 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { useState, useEffect, useRef } from "preact/hooks";
 import IconCollect from "../../resources/img/dir-collect.svg";
-import { useWorker } from "../../context/worker";
 import Image from "../_Image/image";
 
 interface DesData {

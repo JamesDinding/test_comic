@@ -1,6 +1,5 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect } from "preact/hooks";
-import { useWorker } from "../../context/worker";
 import BookList from "../_Book/List";
 import EndBottom from "../EndBottom";
 
@@ -25,25 +24,23 @@ const recommendationBlocksItemPerRow: {
 
 // props 應該要傳入 url
 const SearchResult = () => {
-  const { send } = useWorker();
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
 
   useEffect(() => {
-    (async () => {
-      let res = await send({
-        action: "Get",
-        data: {
-          url:
-            "/api/v1/content/recommendations?blkID=" +
-            recommendationBlocks.join(","),
-        },
-      });
-
-      if (res.blocks !== undefined) {
-        setBlocks(res.blocks);
-      }
-    })();
-  }, [send]);
+    // (async () => {
+    //   let res = await send({
+    //     action: "Get",
+    //     data: {
+    //       url:
+    //         "/api/v1/content/recommendations?blkID=" +
+    //         recommendationBlocks.join(","),
+    //     },
+    //   });
+    //   if (res.blocks !== undefined) {
+    //     setBlocks(res.blocks);
+    //   }
+    // })();
+  }, []);
 
   return (
     <div class="my-2 bg-white">

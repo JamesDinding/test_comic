@@ -1,12 +1,10 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import ChapterItem from "./ChapterItem";
-import { useWorker } from "../../context/worker";
 
 const ChapterList = () => {
   const [fakeData, setFakeData] = useState<Array<ChapterData> | null>(null);
   const [isPending, setIsPending] = useState(true);
-  const { send } = useWorker();
 
   useEffect(() => {
     const fakePromise = new Promise<Array<ChapterData>>((resolve, reject) => {

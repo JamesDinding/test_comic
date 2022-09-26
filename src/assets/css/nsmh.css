@@ -533,6 +533,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: .8rem;
 }
 
+.right-4 {
+  right: 1rem;
+}
+
+.right-8 {
+  right: 2rem;
+}
+
 .z-\[5\] {
   z-index: 5;
 }
@@ -1765,6 +1773,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .\!px-0 {
   padding-left: 0px !important;
   padding-right: 0px !important;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .pt-2 {

@@ -36,32 +36,34 @@ const CollectPage: FunctionalComponent = () => {
   return (
     <F>
       <ReturnBar title="我的收藏" />
+      <SelectionBar
+        tabArr={temp_tab_arr}
+        curSelect={curSelect}
+        setCurSelect={setCurSelect}
+      />
       <div
-        class="relative grow flex flex-col bg-white overflow-y-auto no-scollbar"
+        class="grow relative bg-white overflow-y-auto no-scrollbar flex flex-col"
         ref={containerRef}
       >
         <ObserverProvider rootElement={containerRef}>
-          <SelectionBar
-            tabArr={temp_tab_arr}
-            curSelect={curSelect}
-            setCurSelect={setCurSelect}
-          />
           {curSelect === 0 &&
             (temp_collect_arr.length ? (
-              <div
-                className="grow items-box grid grid-cols-3 gap-2.5 py-4 px-5 bg-[#fffbf6]"
-                onClick={unPressHandler}
-              >
-                {temp_collect_arr.map((collect, i, arr) => {
-                  return (
-                    <CollectItem
-                      Data={{ ID: 12345, Cover: "", Name: "test" }}
-                      index_temp={i}
-                      curPress={curPress}
-                      setCurPress={setCurPress}
-                    />
-                  );
-                })}
+              <div className="grow bg-[#fffbf6]">
+                <div
+                  className=" items-box grid grid-cols-3 gap-2.5 py-4 px-5"
+                  onClick={unPressHandler}
+                >
+                  {temp_collect_arr.map((collect, i, arr) => {
+                    return (
+                      <CollectItem
+                        Data={{ ID: 12345, Cover: "", Name: "test" }}
+                        index_temp={i}
+                        curPress={curPress}
+                        setCurPress={setCurPress}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             ) : (
               <F>
@@ -87,17 +89,19 @@ const CollectPage: FunctionalComponent = () => {
             ))}
           {curSelect === 1 &&
             (temp_purchase_arr.length ? (
-              <div className="grow items-box grid grid-cols-3 gap-2.5 py-4 px-5 bg-[#fffbf6]">
-                {temp_purchase_arr.map((purchase, i, arr) => {
-                  return (
-                    <CollectItem
-                      Data={{ ID: 12345, Cover: "", Name: "test" }}
-                      index_temp={i}
-                      curPress={curPress}
-                      setCurPress={setCurPress}
-                    />
-                  );
-                })}
+              <div className="grow bg-[#fffbf6]">
+                <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
+                  {temp_purchase_arr.map((purchase, i, arr) => {
+                    return (
+                      <CollectItem
+                        Data={{ ID: 12345, Cover: "", Name: "test" }}
+                        index_temp={i}
+                        curPress={curPress}
+                        setCurPress={setCurPress}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             ) : (
               <F>

@@ -182,6 +182,7 @@ const Swiper: FunctionalComponent = () => {
   return (
     <div className="w-full min-h-[190px]">
       <div
+        id="carousel"
         className="w-full min-h-[190px] relative overflow-hidden whitespace-nowrap"
         onTouchStart={touchStartHandler}
         onTouchEnd={touchEndHandler}

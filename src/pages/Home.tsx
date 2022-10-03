@@ -13,20 +13,6 @@ const HomePage: FunctionalComponent = () => {
   const [currentCategory, setCurrentCategory] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null!);
 
-  useEffect(() => {
-    fetch("/api/v1/contents/all")
-      .then((res) => {
-        if (!res.ok) throw new Error("no good");
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err.message || "error happened when fetch banner");
-      });
-  }, []);
-
   return (
     <>
       <div class="grow overflow-hidden overflow-y-auto" ref={containerRef}>

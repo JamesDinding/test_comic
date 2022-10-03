@@ -51,6 +51,25 @@ const HomeRecommend: FunctionalComponent = () => {
     { ID: 10080, Name: "私人收藏", Items: [{ ID: 123, Cover: "", Name: "" }] },
   ]);
 
+  const [tempBanner, setTempBanner] = useState<{ Cover: string; ID: number }[]>(
+    []
+  );
+
+  useEffect(() => {
+    fetch("/api/v1/contents/all")
+      .then((res) => {
+        if (!res.ok) throw new Error("no good");
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data.banners);
+        setTempBanner(data.banners);
+      })
+      .catch((err) => {
+        console.log(err.message || "error happened when fetch banner");
+      });
+  }, []);
+
   useEffect(() => {
     // (async () => {
     //   let res = await send({
@@ -67,10 +86,12 @@ const HomeRecommend: FunctionalComponent = () => {
     // })();
   }, []);
 
+  console.log(tempBanner, "tempBanners");
+
   return (
     <div>
       {tempBlocks.map((blk) => {
-        if (blk.ID == 0) return <Swiper />;
+        if (blk.ID == 0) return <Swiper banners={tempBanner} />;
         return (
           <>
             <RecommendBlock

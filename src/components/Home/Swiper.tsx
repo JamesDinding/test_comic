@@ -5,6 +5,10 @@ import Image from "../_Image/image";
 
 type slider = null | undefined | HTMLElement;
 
+interface SwiperProps {
+  banners: { Cover: string; ID: number }[];
+}
+
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
 ];
@@ -42,7 +46,7 @@ let prev: slider = null;
 // let touchOffset = 0;
 let cur_test = 0;
 
-const Swiper: FunctionalComponent = () => {
+const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   // blocks[0]，可以拿到輪播要用的圖片
   const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
   const [showPending, setPending] = useState(true);
@@ -54,28 +58,28 @@ const Swiper: FunctionalComponent = () => {
   ]);
 
   useEffect(() => {
-    // (async () => {
-    //   let res = await send({
-    //     action: "Get",
-    //     data: {
-    //       url:
-    //         "/api/v1/content/recommendations?blkID=" +
-    //         recommendationBlocks.join(","),
-    //     },
-    //   });
-    //   if (res.blocks !== undefined) {
-    //     setBlocks(res.blocks);
-    //     swiperLen = res.blocks[0].Items.length;
-    //     const temp = new Array(swiperLen).fill(
-    //       "translate-x-[100%] ",
-    //       1,
-    //       swiperLen - 1
-    //     );
-    //     temp[swiperLen - 1] = "translate-x-[-100%] ";
-    //     temp[0] = "translate-x-[0%] ";
-    //     setTransList(temp);
-    //   }
-    // })();
+    (() => {
+      // (async () => {
+      // let res = await send({
+      //   action: "Get",
+      //   data: {
+      //     url:
+      //       "/api/v1/content/recommendations?blkID=" +
+      //       recommendationBlocks.join(","),
+      //   },
+      // });
+      if (banners) {
+        swiperLen = banners.length;
+        const temp = new Array(swiperLen).fill(
+          "translate-x-[100%] ",
+          1,
+          swiperLen - 1
+        );
+        temp[swiperLen - 1] = "translate-x-[-100%] ";
+        temp[0] = "translate-x-[0%] ";
+        setTransList(temp);
+      }
+    })();
   }, []);
 
   // 輪播圖
@@ -178,6 +182,7 @@ const Swiper: FunctionalComponent = () => {
     if (target - 1 === -1) tempList[swiperLen - 1] = positionList[0] + "prev";
     setTransList(tempList);
   }
+  console.log(banners);
 
   return (
     <div className="w-full min-h-[190px]">
@@ -188,38 +193,36 @@ const Swiper: FunctionalComponent = () => {
         onTouchEnd={touchEndHandler}
         onTouchMove={touchMovingHandler}
       >
-        {blocks.map((blk) => {
-          if (blk.ID !== 1) return;
-          return blk.Items.map((b, i) => {
-            return (
-              <a
-                href={"/directory/" + b.ID}
-                className={`block w-full absolute ${transList[i]}`}
-              >
-                <div>
-                  <Image
-                    path={b.Cover}
-                    alt={b.Name}
-                    setParentPending={setPending}
-                  />
-                </div>
-              </a>
-            );
-          });
+        {banners.map((banner, i) => {
+          // if (blk.ID !== 1) return;
+          // return blk.Items.map((b, i) => {
+          return (
+            <a
+              href={"/directory/" + banner.ID}
+              className={`block w-full absolute ${transList[i]}`}
+            >
+              <div>
+                <Image
+                  path={banner.Cover}
+                  alt={""}
+                  setParentPending={setPending}
+                />
+              </div>
+            </a>
+          );
         })}
         <ul className="absolute flex bottom-4 left-1/2 translate-x-[-50%] min-w-1/2 z-10">
-          {blocks.map((blk) => {
-            if (blk.ID !== 1) return;
-            return blk.Items.map((_, i) => {
-              const bgColor = curSlide === i ? "bg-amber-300" : "bg-slate-300";
-              return (
-                <li>
-                  <div
-                    className={`h-2.5 w-2.5 mx-1 rounded-full ${bgColor}`}
-                  ></div>
-                </li>
-              );
-            });
+          {banners?.map((b, i) => {
+            // if (blk.ID !== 1) return;
+            // return blk.Items.map((_, i) => {
+            const bgColor = curSlide === i ? "bg-amber-300" : "bg-slate-300";
+            return (
+              <li>
+                <div
+                  className={`h-2.5 w-2.5 mx-1 rounded-full ${bgColor}`}
+                ></div>
+              </li>
+            );
           })}
         </ul>
       </div>

@@ -5,7 +5,7 @@ declare type User = {
 
 declare interface UserContextType {
   user: User;
-  login: () => void;
+  login: (account: string, password: string) => void;
   logout: () => void;
   bindPhone: () => void;
 }

@@ -7,8 +7,24 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   const [ID, setID] = useState<number>(null!);
   const [token, setToken] = useState<string>("");
 
-  const loginHandler = () => {
-    setToken("");
+  const loginHandler = (account: string, password: string) => {
+    fetch("/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "same-origin",
+      body: JSON.stringify({ username: "test", password: "test" }),
+    })
+      .then((res) => {
+        console.log(res);
+        if (!res) throw new Error("failed");
+
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   const logoutHandler = () => {

@@ -19,7 +19,22 @@ const Test: FunctionComponent = () => {
 
   return (
     <F>
-      <div className="overflow-y-scroll no-scrollbar" ref={containerRef}>
+      <form
+        onSubmit={(e) => {
+          console.log(e);
+        }}
+      >
+        <div class="bg-amber-200">
+          <label for="i_1">input 1:</label>
+          <input name="i_1" />
+        </div>
+        <div class="bg-amber-400">
+          <label for="i_2">input 2:</label>
+          <input name="i_2" />
+        </div>
+        <button type="submit">submit</button>
+      </form>
+      {/* <div className="overflow-y-scroll no-scrollbar" ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>
           <div className="mt-5">
             <RecommendTitleBar BlockID={124} BlockName="舊品下市" />
@@ -75,7 +90,7 @@ const Test: FunctionComponent = () => {
             </div>
           </div>
         </ObserverProvider>
-      </div>
+      </div> */}
     </F>
   );
 };

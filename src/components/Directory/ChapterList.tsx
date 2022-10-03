@@ -1,6 +1,6 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect } from "preact/hooks";
-import ChapterItem from "./ChapterItem";
+import ChapterItem from "../_Book/ChapterItem";
 
 const ChapterList = () => {
   const [fakeData, setFakeData] = useState<Array<ChapterData> | null>(null);

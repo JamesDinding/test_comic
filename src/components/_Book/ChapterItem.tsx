@@ -16,7 +16,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
       <div
         className={
           "cursor-pointer relative overflow-hidden rounded-lg " +
-          (smallSize ? "w-[76px] h-[115px]" : "w-[105px] h-[157px]")
+          (smallSize ? "w-[76px] h-[115px]" : "min-w-[105px] h-[157px]")
         }
         onClick={() => {
           if (chapter.isLocked) {

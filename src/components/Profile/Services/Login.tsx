@@ -1,6 +1,7 @@
 import { h, FunctionComponent, Fragment as F } from "preact";
 import { route } from "preact-router";
 import { useState, useRef, StateUpdater } from "preact/hooks";
+import { useUser } from "../../../context/user";
 import InputField from "./InputField";
 import Btn from "../../UI/Btn";
 import IconLogo from "../../../resources/img/logo-text.svg";
@@ -12,6 +13,7 @@ let timer: ReturnType<typeof setTimeout> | undefined;
 
 const Login: FunctionComponent<LoginProps> = ({}) => {
   // const { login } = useAuth();
+  const { login } = useUser();
 
   const accountRef = useRef<HTMLInputElement>(null!);
   const psRef = useRef<HTMLInputElement>(null!);
@@ -106,6 +108,8 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         <Btn
           title="立即登入"
           cb={() => {
+            // for test
+            login(accountRef.current.value, psRef.current.value);
             const errorTextAll = document.querySelectorAll(
               ".text-input-warning"
             );
@@ -123,7 +127,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
 
             if (!isInputCorrect()) return;
             // login(accountRef.current.value, psRef.current.value);
-            route("/member");
+            // route( "/member");
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">

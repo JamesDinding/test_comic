@@ -1,7 +1,7 @@
 import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
-import ChapterItem from "../Directory/ChapterItem";
+import ChapterItem from "../_Book/ChapterItem";
 import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconCross from "../../resources/img/icon-cross.svg";
 import IconSort from "../../resources/img/icon-sort.svg";

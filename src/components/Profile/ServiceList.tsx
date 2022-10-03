@@ -69,7 +69,7 @@ const ServiceList: FunctionalComponent = (
           </div>
         </div>
         <Link
-          className="bg-white pt-2.5 pb-12 px-5 text-[#9e7654] text-sm"
+          className="bg-white py-2.5 px-5 text-[#9e7654] text-sm"
           href="/login"
         >
           登錄

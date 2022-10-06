@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useState, useRef } from "preact/hooks";
+import { useState, useRef, useEffect } from "preact/hooks";
 import ReturnBar from "../components/ReturnBar";
 import SelectionBar from "../components/SelectionBar";
 import Empty from "../components/Collect/Empty";
@@ -8,6 +8,7 @@ import CollectItem from "../components/_Book/CollectItem";
 import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
 import RecommendTitleBar from "../components/Home/RecommendTitleBar";
+import { getOrders } from "../lib/api";
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
 //col-span-full
@@ -32,6 +33,17 @@ const CollectPage: FunctionalComponent = () => {
     const target = e.target as HTMLDivElement | HTMLImageElement;
     target.nodeName !== "IMG" && setCurPress(-1);
   };
+
+  useEffect(() => {
+    try {
+      (async () => {
+        const data = await getOrders();
+        console.log(data);
+      })();
+    } catch {
+      console.log("failed");
+    }
+  });
 
   return (
     <F>

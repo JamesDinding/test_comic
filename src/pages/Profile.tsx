@@ -1,12 +1,24 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import UserSection from "../components/Profile/UserSection";
 import ServiceList from "../components/Profile/ServiceList";
 import ReturnBar from "../components/ReturnBar";
 import FooterBar from "../components/FooterBar";
 
+import { useUser } from "../context/user";
+
 const ProfilePage: FunctionalComponent = () => {
   // const [isPopBinding, setIsPopBinding] = useState(false);
+  const { isLogIn, getUserStatus } = useUser();
+
+  useEffect(() => {
+    if (!isLogIn) return;
+    try {
+      getUserStatus();
+    } catch {
+      console.log("failed to get user data");
+    }
+  });
 
   return (
     <>

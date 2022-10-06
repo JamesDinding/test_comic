@@ -1,6 +1,7 @@
 import { FunctionalComponent, h, Fragment as F } from "preact";
 import { StateUpdater, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
+import { useUser } from "../../context/user";
 import { Link } from "preact-router";
 import { route } from "preact-router";
 import BindPhone from "./Services/BindPhone";
@@ -26,6 +27,7 @@ const ServiceList: FunctionalComponent = (
     // setIsPopBinding,
   }
 ) => {
+  const { isLogIn, logout } = useUser();
   const [isPopBinding, setIsPopBinding] = useState(false);
 
   return (
@@ -68,12 +70,37 @@ const ServiceList: FunctionalComponent = (
             </ul>
           </div>
         </div>
-        <Link
-          className="bg-white py-2.5 px-5 text-[#9e7654] text-sm"
-          href="/login"
-        >
-          登錄
-        </Link>
+        {isLogIn ? (
+          <div
+            className="bg-white py-2.5 px-5 text-[#9e7654] text-sm"
+            onClick={() => {
+              fetch("/api/v1/auth/logout", {
+                method: "POST",
+              })
+                .then((res) => {
+                  console.log("logout", res);
+                  if (!res.ok) throw new Error("failed");
+                  return res.json();
+                })
+                .then((data) => {
+                  console.log(data);
+                  logout();
+                })
+                .catch((err) => {
+                  console.log(err.message || "failed");
+                });
+            }}
+          >
+            登出
+          </div>
+        ) : (
+          <Link
+            className="bg-white py-2.5 px-5 text-[#9e7654] text-sm"
+            href="/login"
+          >
+            登錄
+          </Link>
+        )}
       </div>
     </F>
   );

@@ -1,6 +1,8 @@
 import { h, FunctionalComponent } from "preact";
 import { route } from "preact-router";
 import { useReadingModal } from "../../context/reading";
+import { useUser } from "../../context/user";
+import { createOrder } from "../../lib/api";
 import Btn from "../UI/Btn";
 import IconCross from "../../resources/img/icon-cross.svg";
 
@@ -8,6 +10,7 @@ const ModalBuy: FunctionalComponent = ({}) => {
   const { isPopBuy, reset } = useReadingModal();
   let layerCss = isPopBuy ? "" : "translate-y-[120%]";
   // probably has: const {user} = useUser
+  const { userStatus } = useUser();
   const user = { coins: 59 };
 
   return (
@@ -22,7 +25,7 @@ const ModalBuy: FunctionalComponent = ({}) => {
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
       </div>
-      {user.coins < 60 && (
+      {userStatus.coins < 60 && (
         <div className="m-5">
           <Btn
             title="金幣不足，充值去"
@@ -34,12 +37,17 @@ const ModalBuy: FunctionalComponent = ({}) => {
           </div>
         </div>
       )}
-      {user.coins > 60 && (
+      {userStatus.coins > 60 && (
         <div className="m-5">
           <Btn
             title="繼續閱讀"
             bgColor="bg-[#d19463]"
-            cb={() => route("/reading/1235")}
+            cb={async () => {
+              // call api
+              const data = await createOrder("名稱最長五-1", 60);
+              console.log(data);
+              // route("/reading/1235");
+            }}
           />
           <div className="mt-2.5 text-center text-[rgba(158,118,84,0.6)]">
             繼續閱讀將消耗 <span className="text-[#ff978d]">60</span> 金幣

@@ -17,23 +17,23 @@ const adArr = ["fxck_me"];
 const Test: FunctionComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
 
+  useEffect(() => {
+    fetch(
+      "//bbh1w7.heyingx.top/4682/coverba658621760039d79eed365098351a46.js"
+    ).then(async (res) => {
+      const data = await res.text();
+      console.log(data);
+    });
+  });
+
   return (
     <F>
-      <form
-        onSubmit={(e) => {
-          console.log(e);
-        }}
-      >
-        <div class="bg-amber-200">
-          <label for="i_1">input 1:</label>
-          <input name="i_1" />
-        </div>
-        <div class="bg-amber-400">
-          <label for="i_2">input 2:</label>
-          <input name="i_2" />
-        </div>
-        <button type="submit">submit</button>
-      </form>
+      <div>
+        <div
+          className="bg-amber-400 pt-[56.25%]"
+          style={{ backgroundImage: "url('/assets/img/test/Image.png')" }}
+        ></div>
+      </div>
       {/* <div className="overflow-y-scroll no-scrollbar" ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>
           <div className="mt-5">

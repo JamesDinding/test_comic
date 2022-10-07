@@ -12,7 +12,6 @@ interface LoginProps {}
 let timer: ReturnType<typeof setTimeout> | undefined;
 
 const Login: FunctionComponent<LoginProps> = ({}) => {
-  // const { login } = useAuth();
   const { login } = useUser();
 
   const accountRef = useRef<HTMLInputElement>(null!);

@@ -53,7 +53,6 @@ const ServiceList: FunctionalComponent = (
                       }
                       route(service.url);
                     }}
-                    href={service.url}
                   >
                     <div className="text-[#9e7654] text-sm">
                       {service.title}
@@ -72,7 +71,7 @@ const ServiceList: FunctionalComponent = (
         </div>
         {isLogIn ? (
           <div
-            className="bg-white py-2.5 px-5 text-[#9e7654] text-sm"
+            className="bg-white mb-5 py-2.5 px-5 text-[#9e7654] text-sm"
             onClick={() => {
               fetch("/api/v1/auth/logout", {
                 method: "POST",
@@ -95,7 +94,7 @@ const ServiceList: FunctionalComponent = (
           </div>
         ) : (
           <Link
-            className="bg-white py-2.5 px-5 text-[#9e7654] text-sm"
+            className="bg-white mb-5 py-2.5 px-5 text-[#9e7654] text-sm"
             href="/login"
           >
             登錄

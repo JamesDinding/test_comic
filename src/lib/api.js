@@ -38,3 +38,11 @@ export async function getOrders() {
 
   return data;
 }
+
+export async function getDomains(type) {
+  const response = await fetch("/test/v1/domain?type=" + type.toString());
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message || "could not get Domain");
+
+  return data;
+}

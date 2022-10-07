@@ -10,11 +10,11 @@ module.exports = (config, env, helpers) => {
     config.devServer.proxy = [
       {
         path: "/wapi/**/*",
-        target: "http://192.168.1.122:7777",
+        target: "http://10.4.17.43:7777",
       },
       {
         path: "/api/**/*",
-        target: "http://192.168.1.122:7777",
+        target: "http://10.4.17.43:7777",
       },
     ];
   }

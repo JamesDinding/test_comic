@@ -40,9 +40,32 @@ export async function getOrders() {
 }
 
 export async function getDomains(type) {
+  // const
   const response = await fetch("/test/v1/domain?type=" + type.toString());
   const data = await response.json();
   if (!response.ok) throw new Error(data.message || "could not get Domain");
 
   return data;
+}
+
+export async function getImageSource(encSrc) {
+  const sourceDomain = "";
+  const controller = new AbortController();
+
+  let timer = setTimeout(() => {
+    controller.abort();
+  }, 6000);
+
+  return await fetch("//" + sourceDomain[0] + "/" + encSrc, {
+    signal: controller.signal,
+  })
+    .then(async (res) => {
+      let b64 = await res.text();
+      b64 = b64.replace(/\+/g, "*").replace(/\//g, "+").replace(/\*/g, "/");
+      clearTimeout(timer);
+      return b64;
+    })
+    .catch((err) => {
+      console.log(err.message || "src not found!");
+    });
 }

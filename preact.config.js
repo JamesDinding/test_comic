@@ -9,7 +9,7 @@ module.exports = (config, env, helpers) => {
   if (!env.isProd) {
     config.devServer.proxy = [
       {
-        path: "/wapi/**/*",
+        path: "/test/**/*",
         target: "http://10.4.17.43:7777",
       },
       {

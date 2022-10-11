@@ -1,4 +1,3 @@
-import { h, FunctionalComponent } from "preact";
 import {
   useState,
   useReducer,
@@ -27,7 +26,7 @@ function useRequest(requestFunction: any, startWithPending = false) {
     error: null,
   });
 
-  const sendReq = async (resquestData: any) => {
+  const sendReq = async (resquestData?: any) => {
     dispatch({ type: "SEND" });
     try {
       const responseData = await requestFunction(resquestData);

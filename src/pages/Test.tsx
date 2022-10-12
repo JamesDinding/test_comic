@@ -6,6 +6,7 @@ import { ObserverProvider } from "../context/observer";
 import IconCoin from "../resources/img/icon-coin.svg";
 import ModalBuy from "../components/Modal/ModalBuy";
 import { useDomain } from "../context/domain";
+import Image from "../components/_Image/image";
 
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
@@ -19,6 +20,7 @@ const Test: FunctionComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const { srcDomain } = useDomain();
   const [src, setSrc] = useState("");
+  const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
     if (!srcDomain) return;
@@ -27,21 +29,20 @@ const Test: FunctionComponent = () => {
     ).then(async (res) => {
       let b64 = await res.text();
       b64 = b64.replace(/\+/g, "*").replace(/\//g, "+").replace(/\*/g, "/");
-      console.log(b64);
       setSrc(b64);
     });
   }, [srcDomain]);
 
   return (
     <F>
-      <div>
-        <img src={src} />
-      </div>
-      <div>
-        <div
-          className="bg-amber-400 pt-[56.25%]"
-          style={{ backgroundImage: "url('/assets/img/test/Image.png')" }}
-        ></div>
+      <div ref={containerRef}>
+        <ObserverProvider rootElement={containerRef}>
+          <Image
+            alt=""
+            path="/4682/coverba658621760039d79eed365098351a46.js"
+            setParentPending={setIsPending}
+          />
+        </ObserverProvider>
       </div>
       {/* <div className="overflow-y-scroll no-scrollbar" ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>

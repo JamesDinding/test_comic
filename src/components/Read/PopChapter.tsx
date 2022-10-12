@@ -33,9 +33,9 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({ chapterList }) => {
           <IconSort class="w-4 h-4" />
         </span>
       </div>
-      <div className="grid grid-cols-4 gap-2.5 px-5 py-2.5">
+      <div className="grid grid-cols-3 gap-2.5 px-5 py-2.5">
         {chapterList.map((c, i, arr) => {
-          return <ChapterItem chapter={c} smallSize={true} />;
+          return <ChapterItem chapter={c} smallSize={false} />;
         })}
       </div>
     </div>

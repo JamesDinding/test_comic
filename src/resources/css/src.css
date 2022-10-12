@@ -388,6 +388,10 @@ input[type="number"] {
   @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-black rounded-b-lg absolute bottom-0 left-0 w-full h-28;
 }
 
+.item-overlay-chapter {
+  @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-black rounded-b-lg absolute bottom-0 left-0 w-full h-[28px];
+}
+
 .item .title {
   @apply absolute bottom-7 px-2.5 text-ellipsis whitespace-nowrap text-white block w-full overflow-hidden;
 }

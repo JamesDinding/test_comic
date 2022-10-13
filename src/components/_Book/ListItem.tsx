@@ -2,7 +2,7 @@ import { h, FunctionalComponent } from "preact";
 import { useState } from "preact/hooks";
 
 import { Link } from "preact-router";
-import Image from "./../_Image/image";
+import Image from "../_Image/Image";
 
 interface BookListItemProps {
   Data: Book;

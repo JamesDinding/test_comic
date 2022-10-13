@@ -14,7 +14,7 @@ module.exports = (config, env, helpers) => {
       },
       {
         path: "/api/**/*",
-        target: "http://10.4.17.43:7777",
+        target: "https://nsmhapi.xjun.tw",
       },
     ];
   }

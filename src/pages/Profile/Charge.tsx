@@ -1,6 +1,5 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import ReturnBar from "../../components/ReturnBar";
-// import User from "../../components/Profile/User";
 import UserSection from "../../components/Profile/UserSection";
 import Charge from "../../components/Profile/Services/Charge/Charge";
 

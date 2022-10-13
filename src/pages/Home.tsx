@@ -18,11 +18,9 @@ const HomePage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
-    console.log(srcDomain);
     fetch("/api/v1/contents?target=2&category=3D专区&category=新书上架")
       .then(async (res) => {
         const data = await res.json();
-        console.log(data);
       })
       .catch((err) => {
         console.error(err.message || "failed");

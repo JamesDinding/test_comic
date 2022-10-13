@@ -9,9 +9,7 @@ import IconCross from "../../resources/img/icon-cross.svg";
 const ModalBuy: FunctionalComponent = ({}) => {
   const { isPopBuy, reset } = useReadingModal();
   let layerCss = isPopBuy ? "" : "translate-y-[120%]";
-  // probably has: const {user} = useUser
   const { userStatus } = useUser();
-  const user = { coins: 59 };
 
   return (
     <div

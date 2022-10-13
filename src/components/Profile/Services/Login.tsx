@@ -13,6 +13,7 @@ let timer: ReturnType<typeof setTimeout> | undefined;
 
 const Login: FunctionComponent<LoginProps> = ({}) => {
   const { login } = useUser();
+  const [isPending, setIsPending] = useState(false);
 
   const accountRef = useRef<HTMLInputElement>(null!);
   const psRef = useRef<HTMLInputElement>(null!);
@@ -106,9 +107,15 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         </div>
         <Btn
           title="立即登入"
-          cb={() => {
+          cb={async () => {
             // for test
-            login(accountRef.current.value, psRef.current.value);
+            const response = await login(
+              accountRef.current.value,
+              psRef.current.value
+            );
+
+            console.log("login btn response", response);
+
             const errorTextAll = document.querySelectorAll(
               ".text-input-warning"
             );

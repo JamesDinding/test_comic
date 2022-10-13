@@ -56,7 +56,7 @@ const App: FunctionalComponent = () => {
 
                 <ChargePage path="/charge" />
                 <RecordPage path="/record" />
-                <RecoveryPage path="/recovery" />
+                {/* <RecoveryPage path="/recovery" /> */}
 
                 <CustomerPage path="/service" />
                 <SearchPage path="/search" />

@@ -4,6 +4,7 @@ import { createPortal } from "preact/compat";
 import { useUser } from "../../context/user";
 import { Link } from "preact-router";
 import { route } from "preact-router";
+import ServiceRow from "./ServiceRow";
 import BindPhone from "./Services/BindPhone";
 import BackDrop from "../BackDrop";
 
@@ -42,28 +43,20 @@ const ServiceList: FunctionalComponent = (
         <div className="mb-2 rounded-2xl">
           <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
             <ul>
-              {serviceList.map((service, i, arr) => {
+              {serviceList.map(({ title, url, msg }, i, arr) => {
                 return (
-                  <li
-                    className="cursor-pointer flex items-center bg-white py-4 px-5"
-                    onClick={() => {
-                      if (service.url === "bind") {
+                  <ServiceRow
+                    url={url}
+                    title={title}
+                    msg={msg}
+                    clickCb={() => {
+                      if (url === "bind") {
                         setIsPopBinding(true);
                         return;
                       }
-                      route(service.url);
+                      route(url);
                     }}
-                  >
-                    <div className="text-[#9e7654] text-sm">
-                      {service.title}
-                    </div>
-                    <div className="ml-5 grow text-left text-[#ff978d] text-xs">
-                      {service.msg}
-                    </div>
-                    <div>
-                      <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#9e765499] rounded-sm"></div>
-                    </div>
-                  </li>
+                  />
                 );
               })}
             </ul>

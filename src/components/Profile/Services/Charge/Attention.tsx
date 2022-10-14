@@ -15,7 +15,7 @@ const Attention: FunctionalComponent = () => {
         {att.map((a, i, arr) => {
           return (
             <li className="flex text-xs font-light leading-relaxed tracing-wider">
-              <span>{i + 1}.&nbsp;</span>
+              <span className="w-[.8rem] shrink-0">{i + 1}.&nbsp;</span>
               <span>{a}</span>
             </li>
           );

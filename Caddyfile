@@ -1,3 +1,2 @@
-:8080{
- root ./build
-}
+:8080
+root ./build

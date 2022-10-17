@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useRef, useState } from "preact/hooks";
+import { useRef, useState, useEffect } from "preact/hooks";
 import { route } from "preact-router";
 import Description from "./Description";
 import ChapterList from "./ChapterList";
@@ -11,6 +11,31 @@ import { ObserverProvider } from "../../context/observer";
 import ModalBuy from "../Modal/ModalBuy";
 import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
+import { getSpecifiedBook } from "../../lib/api";
+
+type ChapterInfo = {
+  id: number;
+  covers: {
+    thumb: string;
+    thumbx: string;
+  };
+  position: number;
+  status: boolean;
+  price: number;
+};
+
+interface Content {
+  id: number;
+  creator: string;
+  title: string;
+  description: string;
+  status: string;
+  covers: {
+    thumb: string;
+    thumbx: string;
+  };
+  chapter: Array<ChapterInfo>;
+}
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
 //col-span-full
@@ -18,9 +43,21 @@ const adArr = ["fxck_me"];
 
 const DirectoryContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
+  const [content, setContent] = useState<Content>();
 
   // temp collection state
   const [isCollected, setIsCollected] = useState(false);
+
+  useEffect(() => {
+    try {
+      getSpecifiedBook("1").then(({ data }) => {
+        console.log(data);
+        setContent(data);
+      });
+    } catch (err: any) {
+      console.error(err.message || "failed");
+    }
+  }, []);
 
   return (
     <F>
@@ -28,11 +65,18 @@ const DirectoryContentPage: FunctionalComponent = () => {
       <ReturnBar title="test" />
       <div class="grow overflow-hidden overflow-y-auto px-5" ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>
-          <Description />
+          <Description
+            title={content?.title}
+            author={content?.creator}
+            description={content?.description}
+            cover={content?.covers.thumb}
+            views={2.2}
+            collections={3.5}
+          />
           <div className="flex mb-5">
             <button
               className="w-full py-2.5 text-center text-white text-lg bg-[#d19463] rounded-xl"
-              onClick={() => route("/read/1234")}
+              onClick={() => route("/read/1/chapter/1")}
             >
               開始閱讀
             </button>
@@ -51,7 +95,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </button>
           </div>
           <div className="pb-10">
-            <ChapterList />
+            <ChapterList chap />
           </div>
           <div>
             <RecommendTitleBar BlockID={124} BlockName="舊品下市" />

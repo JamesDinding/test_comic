@@ -23,7 +23,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
             popBuy();
             return;
           }
-          route("/read/1234");
+          route("/read/1");
         }}
       >
         {chapter.isLocked && <div className="chapter-item-backdrop"></div>}

@@ -1,4 +1,17 @@
-// /api/v1/auth
+function curryFetch_GET(route) {
+  return async function (dynamic = "") {
+    const isDynamic = !!dynamic;
+    const response = await fetch(
+      "/api/v1" + route + (isDynamic ? `/${dynamic.toString()}` : "")
+    );
+    const data = await response.json();
+    if (data.error) throw new Error(data.message || route + " failed");
+
+    return data;
+  };
+}
+
+/******  AUTH ******/
 export async function login(acc, pw) {
   const res = await fetch("/api/v1/auth/login", {
     method: "POST",
@@ -31,69 +44,52 @@ export async function logout() {
   return data.error;
 }
 
-// /api/v1/my
+/****** MY ******/
 // 取得用戶資訊
-export async function getProfile() {
-  const response = await fetch("/api/v1/my/profile");
-  const data = await response.json();
-  if (data.error) throw new Error(data.message || "could not get User data");
-
-  return data;
-}
+export const getProfile = curryFetch_GET("/my/profile");
 
 // 取得用戶收藏清單
-export async function getMyBookmarks() {
-  const response = await fetch("/api/v1/my/bookmarks");
-  const data = await response.json();
-  if (data.error) throw new Error(data.message || "could not get User data");
-
-  return data;
-}
+export const getMyBookmarks = curryFetch_GET("/my/bookmarks");
 
 // 取得用戶購買清單
-export async function getMyAcquisitions() {
-  const response = await fetch("/api/v1/my/acquisitions");
-  const data = await response.json();
-  if (data.error) throw new Error(data.message || "could not get User data");
-
-  return data;
-}
+export const getMyAcquisitions = curryFetch_GET("/my/acquisitions");
 
 // 取得充值紀錄
-export async function getMyOrders() {
-  const response = await fetch("/api/v1/my/orders");
-  const data = await response.json();
-  if (data.error) throw new Error(data.message || "could not get User data");
-
-  return data;
-}
+export const getMyOrders = curryFetch_GET("/my/orders");
 
 // 取得內購紀錄
-export async function getMyTransactions() {
-  const response = await fetch("/api/v1/my/transactions");
-  const data = await response.json();
-  if (data.error) throw new Error(data.message || "could not get User data");
-
-  return data;
-}
+export const getMyTransactions = curryFetch_GET("/my/transactions");
 
 // 註冊帳號
-export async function postRegister() {
-  const response = await fetch("/api/v1/my/register");
-  const data = await response.json();
-  if (data.error) throw new Error(data.message || "could not get User data");
+export async function postRegister() {}
 
-  return data;
-}
+/****** CONTENT  ******/
+// 取得分類清單
+export const getCategories = curryFetch_GET("/contents/categories");
 
-// /api/v1/block
-export async function getAllBlock() {
-  const response = await fetch("/api/all/block");
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.message || "could not get block data");
+// 取得指定分類
+export const getSpecifiedCategory = curryFetch_GET("/contents/categories");
 
-  return data;
-}
+// 取得區塊內容
+export const getAllBlock = curryFetch_GET("/contents/block");
+
+// 取得指定書本
+export const getSpecifiedBook = curryFetch_GET("/contents/items");
+
+// 取得指定書本章節清單
+export const getSpecifiedBookChapterList = () => {};
+
+// 取得指定書本敘述
+export const getSpecifiedBookDescription = () => {};
+
+// 取得指定書本章節順序內容
+export const getSpecifiedBookContext = () => {};
+
+// 取得指定書本章節ID內容
+export const getSpecifiedBookIdContent = () => {};
+
+// 搜尋
+export const getSearch = () => {};
 
 export async function createOrder(title, price) {
   const response = await fetch("/api/v1/orders/create", {
@@ -112,6 +108,7 @@ export async function createOrder(title, price) {
   return data;
 }
 
+// /api/v1/domain  RESOURCE
 export async function getDomains(type) {
   // const
   const response = await fetch("/test/v1/domain?type=" + type.toString());

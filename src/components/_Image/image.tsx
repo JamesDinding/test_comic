@@ -21,8 +21,7 @@ const Image: FunctionalComponent<ImageProps> = ({
   const { ref, isShown } = observer.observe();
 
   useEffect(() => {
-    console.log(isShown, srcDomain);
-    if (isShown || !srcDomain) return;
+    if (!path || isShown || !srcDomain) return;
     (async () => {
       try {
         const res = await fetch("//" + srcDomain + "/" + path);
@@ -52,7 +51,7 @@ const Image: FunctionalComponent<ImageProps> = ({
     //     setParentPending(false);
     //   }
     // })();
-  }, [isShown, srcDomain]);
+  }, [path, isShown, srcDomain]);
 
   return <img src={imageBlob} alt={alt} ref={ref} />;
 };

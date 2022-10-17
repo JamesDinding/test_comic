@@ -11,7 +11,7 @@ module.exports = (config, env, helpers) => {
     config.devServer.proxy = [
       {
         path: "/api/**/*",
-        target: "http://nsmhapi.xjun.tw",
+        target: "http://nsmhweb.xjun.tw",
         changeOrigin: true,
         changeHost: true,
       },

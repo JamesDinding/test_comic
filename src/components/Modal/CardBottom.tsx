@@ -9,7 +9,13 @@ const CardBottom: FunctionalComponent<CardBottomProps> = ({
   children,
   customCss = "",
 }) => {
-  return <div className={customCss + " modal-bottom bg-white"}>{children}</div>;
+  return (
+    <div
+      className={customCss + " modal-bottom modal-bottom-animation bg-white"}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default CardBottom;

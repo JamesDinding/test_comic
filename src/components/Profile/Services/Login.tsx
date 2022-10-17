@@ -109,12 +109,6 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           title="立即登入"
           cb={async () => {
             // for test
-            const response = await login(
-              accountRef.current.value,
-              psRef.current.value
-            );
-
-            console.log("login btn response", response);
 
             const errorTextAll = document.querySelectorAll(
               ".text-input-warning"
@@ -132,8 +126,12 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             }, 1000);
 
             if (!isInputCorrect()) return;
-            // login(accountRef.current.value, psRef.current.value);
-            // route( "/member");
+            const isSuccess = await login(
+              accountRef.current.value,
+              psRef.current.value
+            );
+
+            isSuccess && route("/member");
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">

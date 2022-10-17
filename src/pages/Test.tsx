@@ -14,7 +14,7 @@ const recommendationBlocks = [
 
 const comicArr = ["123", "234", "345", "456"];
 //col-span-full
-const adArr = ["fxck_me"];
+const adArr = ["ad_me"];
 
 const Test: FunctionComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);

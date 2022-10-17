@@ -521,8 +521,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   bottom: 0px;
 }
 
-.bottom-\[\.2rem\] {
-  bottom: .2rem;
+.bottom-\[\.25rem\] {
+  bottom: .25rem;
 }
 
 .left-\[12px\] {
@@ -531,10 +531,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .top-\[\.8rem\] {
   top: .8rem;
-}
-
-.bottom-\[\.25rem\] {
-  bottom: .25rem;
 }
 
 .z-\[5\] {
@@ -1080,6 +1076,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 70px;
 }
 
+.w-\[\.8rem\] {
+  width: .8rem;
+}
+
 .w-4\/5 {
   width: 80%;
 }
@@ -1100,24 +1100,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 40%;
 }
 
-.w-\[\.75rem\] {
-  width: .75rem;
-}
-
-.w-\[\.8rem\] {
-  width: .8rem;
-}
-
 .min-w-\[161px\] {
   min-width: 161px;
 }
 
 .min-w-\[105px\] {
   min-width: 105px;
-}
-
-.min-w-\[\.75rem\] {
-  min-width: .75rem;
 }
 
 .max-w-\[420px\] {
@@ -1235,12 +1223,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1803,6 +1791,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.5rem;
 }
 
+.pt-\[1\.125rem\] {
+  padding-top: 1.125rem;
+}
+
 .pt-5 {
   padding-top: 1.25rem;
 }
@@ -1845,10 +1837,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-10 {
   padding-top: 2.5rem;
-}
-
-.pt-\[1\.125rem\] {
-  padding-top: 1.125rem;
 }
 
 .text-left {
@@ -3165,6 +3153,21 @@ footer .active span {
   40%,
   60% {
     transform: translate3d(4px, 0, 0);
+  }
+}
+
+.modal-bottom-animation {
+  animation: pop-up 0.5s forwards;
+  transform: translateY(0%);
+}
+
+@keyframes pop-up {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: tranlsateY(0%);
   }
 }
 

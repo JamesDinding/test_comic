@@ -7,14 +7,13 @@ module.exports = (config, env, helpers) => {
 
   // 測試主機
   if (!env.isProd) {
+    console.log("proxy work?");
     config.devServer.proxy = [
       {
-        path: "/test/**/*",
-        target: "http://10.4.17.43:7777",
-      },
-      {
         path: "/api/**/*",
-        target: "https://nsmhapi.xjun.tw",
+        target: "http://nsmhapi.xjun.tw",
+        changeOrigin: true,
+        changeHost: true,
       },
     ];
   }

@@ -8,7 +8,7 @@ import CollectItem from "../components/_Book/CollectItem";
 import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
 import RecommendTitleBar from "../components/Home/RecommendTitleBar";
-import { getOrders } from "../lib/api";
+import { getMyOrders } from "../lib/api";
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
 //col-span-full
@@ -37,7 +37,7 @@ const CollectPage: FunctionalComponent = () => {
   useEffect(() => {
     try {
       (async () => {
-        const data = await getOrders();
+        const data = await getMyOrders();
         console.log(data);
       })();
     } catch {

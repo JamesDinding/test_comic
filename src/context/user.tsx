@@ -1,6 +1,6 @@
 import { h, FunctionalComponent, createContext } from "preact";
 import { useState, useEffect, useContext } from "preact/hooks";
-import { getUser } from "../lib/api";
+import { getProfile, logout as apiLogout, login as apiLogin } from "../lib/api";
 
 const UserContext = createContext<UserContextType>(null!);
 
@@ -17,36 +17,37 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
   async function loginHandler(account: string, password: string) {
     try {
-      const res = await fetch("/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "same-origin",
-        body: JSON.stringify({ username: "test", password: "test" }),
-      });
+      const data = await apiLogin(account, password);
 
-      if (!res.ok) throw new Error("login failed");
+      if (!data.error) {
+        localStorage.setItem("nsmh_log_status", "true");
+        setIsLogIn(true);
+      }
 
-      const data = await res.json();
-      localStorage.setItem("nsmh_log_status", "true");
-      setIsLogIn(true);
-
+      // 應該是要return data.message
       return !!data;
-    } catch (err) {
-      console.error("login failed");
+    } catch (err: any) {
+      console.error(err.message || "login failed");
       return false;
     }
   }
 
-  function logoutHandler() {
-    localStorage.removeItem("nsmh_log_status");
-    setToken("");
-    setIsLogIn(false);
+  async function logoutHandler() {
+    try {
+      const isError = await apiLogout();
+
+      if (!isError) {
+        localStorage.removeItem("nsmh_log_status");
+        setToken("");
+        setIsLogIn(false);
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   }
 
   async function getUserStatusHandler() {
-    const { data } = await getUser();
+    const { data } = await getProfile();
     setCoins(data?.coins || 0);
     setVip(data?.vip_time || null);
   }

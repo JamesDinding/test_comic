@@ -68,19 +68,17 @@ const ServiceList: FunctionalComponent = (
             onClick={() => {
               fetch("/api/v1/auth/logout", {
                 method: "POST",
+                credentials: "same-origin",
               })
-                .then((res) => {
+                .then(async (res) => {
                   console.log("logout", res);
-                  if (!res.ok) throw new Error("failed");
-                  return res.json();
-                })
-                .then((data) => {
+                  const data = await res.json();
                   console.log(data);
-                  logout();
                 })
                 .catch((err) => {
                   console.log(err.message || "failed");
-                });
+                })
+                .finally(() => logout());
             }}
           >
             登出

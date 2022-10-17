@@ -68,12 +68,12 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
           <div
             className={showPending ? "z-[20]  h-[157px] overflow-hidden" : ""}
           >
-            {/* <Image
+            <Image
               path={Data.Cover}
               alt={Data.Name}
               setParentPending={setPending}
-            /> */}
-            <img src="/assets/img/test/Image.png" className="" />
+            />
+            {/* <img src="/assets/img/test/Image.png" className="" /> */}
           </div>
           <div className="z-[30] bg-[#ff978d] text-center text-white text-sm font-light h-[30px] leading-[30px]">
             移除

@@ -25,7 +25,7 @@ const Image: FunctionalComponent<ImageProps> = ({
     if (isShown || !srcDomain) return;
     (async () => {
       try {
-        const res = await fetch("//" + srcDomain + path);
+        const res = await fetch("//" + srcDomain + "/" + path);
 
         if (!res.ok) throw new Error("fail to fetch");
 

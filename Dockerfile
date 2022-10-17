@@ -14,3 +14,5 @@ COPY Caddyfile /etc/caddy/Caddyfile
 
 COPY --from=summary-ui-builder /app/build ./build
 
+EXPOSE 8080
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

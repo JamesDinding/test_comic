@@ -1,3 +1,17 @@
 node_modules
 /build
 /*.log
+
+# 不存入產生出的 binary
+/api
+
+# 本地的環境變數
+.env
+
+# editor configuration
+.vscode
+**/.idea
+
+# OS generated files
+.DS_Store
+.DS_Store?

@@ -1,9 +1,10 @@
 import { h, FunctionComponent, Fragment as F, Fragment } from "preact";
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import PurchaseItem from "./PurchaseItem";
 import Empty from "./Empty";
+import { getMyTransactions } from "../../../../lib/api";
 
-interface PurchaseProps {
+interface PurchaseList {
   purchaseList: Array<{
     title: string;
     date: string;
@@ -12,7 +13,20 @@ interface PurchaseProps {
   }>;
 }
 
-const PurchaseList: FunctionComponent<PurchaseProps> = ({ purchaseList }) => {
+const PurchaseList: FunctionComponent = () => {
+  const [purchaseList, setPurchaseList] = useState([]);
+
+  useEffect(() => {
+    try {
+      getMyTransactions().then(({ data }) => {
+        console.log(data);
+        setPurchaseList(data);
+      });
+    } catch (err: any) {
+      console.error(err.message || "failed");
+    }
+  }, [getMyTransactions]);
+
   return (
     <>
       {purchaseList.length === 0 ? (

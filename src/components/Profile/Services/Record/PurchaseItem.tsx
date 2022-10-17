@@ -2,10 +2,11 @@ import { h, FunctionComponent, Fragment as F } from "preact";
 import { useState } from "preact/hooks";
 
 type PurchaseItem = {
-  title: string;
-  date: string;
-  coinsCost: number;
-  coinsRemained: number;
+  amount: number;
+  balance: number;
+  item_title: string;
+  chapter_position: number;
+  created_at: string;
 };
 
 interface PurchaseItemProps {
@@ -28,11 +29,9 @@ const PurchaseItem: FunctionComponent<PurchaseItemProps> = ({
         onClick={() => setIsDrop((prev) => !prev)}
       >
         <div className="w-2/5 text-center text-[#4fa7dd] font-semibold whitespace-nowrap">
-          - {purchaseObj.coinsCost} 金幣
+          - {purchaseObj.amount} 金幣
         </div>
-        <div className="grow text-center">
-          餘 {purchaseObj.coinsRemained} 金幣
-        </div>
+        <div className="grow text-center">餘 {purchaseObj.balance} 金幣</div>
         <div className="flex items-center justify-end">
           <div
             className={
@@ -45,8 +44,8 @@ const PurchaseItem: FunctionComponent<PurchaseItemProps> = ({
       <div
         className={`w-full px-5 text-sm text-[#666666] flex flex-col justify-center tracking-wide border-solid border-b-[1px] border-[#9e765466] duration-300 overflow-hidden ${dropCss}`}
       >
-        <div className="mt-2 mb-1">購買項目 : {purchaseObj.title}</div>
-        <div className="mb-2">時間 : {purchaseObj.date}</div>
+        <div className="mt-2 mb-1">購買項目 : {purchaseObj.item_title}</div>
+        <div className="mb-2">時間 : {purchaseObj.created_at}</div>
       </div>
     </F>
   );

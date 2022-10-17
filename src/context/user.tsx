@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, createContext } from "preact";
-import { useState, useEffect, useContext } from "preact/hooks";
+import { useState, useEffect, useContext, useCallback } from "preact/hooks";
 import { getProfile, logout as apiLogout, login as apiLogin } from "../lib/api";
 
 const UserContext = createContext<UserContextType>(null!);
@@ -51,6 +51,15 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     setCoins(data?.coins || 0);
     setVip(data?.vip_time || null);
   }
+
+  useEffect(() => {
+    if (!isLogIn) return;
+    try {
+      getUserStatusHandler();
+    } catch (err: any) {
+      console.error(err.message || "Cant get user profile.");
+    }
+  }, [isLogIn]);
 
   const value = {
     isLogIn,

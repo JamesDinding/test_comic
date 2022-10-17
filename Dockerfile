@@ -12,7 +12,7 @@ FROM caddy:alpine
 COPY Caddyfile /etc/caddy/Caddyfile
 #COPY build/* ./build
 
-COPY --from=summary-ui-builder /app/build ./build
+COPY --from=summary-ui-builder /app/build /build
 
 EXPOSE 8080
 CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

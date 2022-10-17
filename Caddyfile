@@ -1,2 +1,4 @@
 :8080
-root ./build
+root * /build
+file_server
+try_files {path} /index.html

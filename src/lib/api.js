@@ -42,7 +42,7 @@ export async function getProfile() {
 }
 
 // 取得用戶收藏清單
-export async function getBookmarks() {
+export async function getMyBookmarks() {
   const response = await fetch("/api/v1/my/bookmarks");
   const data = await response.json();
   if (data.error) throw new Error(data.message || "could not get User data");
@@ -51,7 +51,7 @@ export async function getBookmarks() {
 }
 
 // 取得用戶購買清單
-export async function getAcquisitions() {
+export async function getMyAcquisitions() {
   const response = await fetch("/api/v1/my/acquisitions");
   const data = await response.json();
   if (data.error) throw new Error(data.message || "could not get User data");
@@ -69,7 +69,7 @@ export async function getMyOrders() {
 }
 
 // 取得內購紀錄
-export async function getTransactions() {
+export async function getMyTransactions() {
   const response = await fetch("/api/v1/my/transactions");
   const data = await response.json();
   if (data.error) throw new Error(data.message || "could not get User data");

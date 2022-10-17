@@ -1,6 +1,6 @@
 # generate summary-ui
 FROM node:alpine AS summary-ui-builder
-RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add ca-certificates openssl
 
 WORKDIR /app
 COPY . .

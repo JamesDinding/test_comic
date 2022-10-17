@@ -1,9 +1,10 @@
 name: build
+
 on:
   push:
-    branches:
-      - xiaojun_dev
-  pull_request:
+    branches: [ xiaojun_dev ]
+env:
+  IMAGE_TAG: v1.1.1-${{ github.run_number }}
 
 jobs:
   build:

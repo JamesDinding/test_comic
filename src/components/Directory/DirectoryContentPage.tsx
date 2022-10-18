@@ -23,7 +23,6 @@ const DirectoryContentPage: FunctionalComponent = () => {
   // temp collection state
   const [isCollected, setIsCollected] = useState(false);
 
-  console.log("content page");
   useEffect(() => {
     try {
       getSpecifiedBook(cur_url).then(({ data }) => {

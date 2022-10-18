@@ -21,8 +21,11 @@ const ReadContentPage: FunctionalComponent = () => {
 
   useEffect(() => {
     try {
+      // 暫時先這樣寫
+      const cur_path = window.location.pathname;
+      const cur_path_arr = cur_path.split('/');
       (async () => {
-        const { data } = await getSpecifiedBookIdContent(1, 1);
+        const { data } = await getSpecifiedBookIdContent(cur_path_arr[2], cur_path_arr[4]);
         setPageList(data.contents.images);
       })();
     } catch (err: any) {
@@ -60,13 +63,11 @@ const ReadContentPage: FunctionalComponent = () => {
       >
         <PopReturn isPop={isPopControl} />
         <ObserverProvider rootElement={containerRef}>
-          <div>
             {pageList?.map((page, i, arr) => {
               return (
                 <Image path={page} alt="" setParentPending={setParentPending} />
               );
             })}
-          </div>
         </ObserverProvider>
       </div>
     </F>

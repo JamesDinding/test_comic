@@ -7,6 +7,7 @@ declare type UserStatus = {
   coins: number;
   vip: string | null;
 };
+
 declare interface UserContextType {
   isLogIn: boolean;
   user: User;

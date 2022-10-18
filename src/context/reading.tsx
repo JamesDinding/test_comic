@@ -20,7 +20,7 @@ const ReadingReducer = (state: ReadingState, action: ReadingReducerAction) => {
 };
 
 export const ReadingProvider: FunctionalComponent = ({ children }) => {
-  const [stuffInfo, setStuffInfo] = useState({comic_id:0, price:0})
+  const [stuff, setStuff] = useState<ChapterData>()
   const [state, dispatch] = useReducer(ReadingReducer, {
     isPopControl: false,
     isPopChapter: false,
@@ -34,7 +34,8 @@ export const ReadingProvider: FunctionalComponent = ({ children }) => {
 
   const value = {
     ...state,
-    stuffInfo: stuffInfo,
+    stuffInfo: stuff,
+    setStuffInfo: setStuff,
     popControl: popControlHandler,
     popChapter: popChapterHandler,
     popBuy: popBuyHandler,

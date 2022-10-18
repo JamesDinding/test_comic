@@ -11,7 +11,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
   chapter,
   smallSize = false,
 }) => {
-  const { popBuy } = useReadingModal();
+  const { popBuy,setStuffInfo } = useReadingModal();
   const [isPending, setIsPending] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -25,6 +25,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
         }
         onClick={() => {
           if (!chapter.status) {
+            setStuffInfo(chapter)
             popBuy();
             return;
           }

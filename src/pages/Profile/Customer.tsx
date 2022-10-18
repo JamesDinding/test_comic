@@ -16,7 +16,7 @@ localStorage.setItem("room-id", JSON.stringify({ id: "111206" }));
 const retrieveObj = JSON.parse(localStorage.getItem("room-id")!);
 const ID_LOCAL_STORAGE = retrieveObj.id;
 
-console.log("ID_LOCAL_STORAGE: ", ID_LOCAL_STORAGE);
+// console.log("ID_LOCAL_STORAGE: ", ID_LOCAL_STORAGE);
 
 type MessageResponse = {
   type: string;

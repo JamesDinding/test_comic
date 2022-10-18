@@ -18,26 +18,31 @@ const ReadContentPage: FunctionalComponent = () => {
   const [parentPending, setParentPending] = useState(true);
   const [pageList, setPageList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
+  // 暫時先這樣寫
+  const cur_path = window.location.pathname;
+  // [ _, _, comicId, _, chapterId ]
+  const cur_path_arr = cur_path.split('/');
 
   useEffect(() => {
     try {
-      // 暫時先這樣寫
-      const cur_path = window.location.pathname;
-      const cur_path_arr = cur_path.split('/');
+
       (async () => {
         const { data } = await getSpecifiedBookIdContent(cur_path_arr[2], cur_path_arr[4]);
         setPageList(data.contents.images);
       })();
+
     } catch (err: any) {
       console.error(err.message);
     }
   }, []);
+
   useEffect(() => {
     try {
       (async () => {
-        const { data } = await getSpecifiedBookChapterList(1);
+        const { data } = await getSpecifiedBookChapterList(cur_path_arr[2]);
         setChapterList(data);
       })();
+
     } catch (err: any) {
       console.error(err.message);
     }
@@ -61,7 +66,7 @@ const ReadContentPage: FunctionalComponent = () => {
         }}
         ref={containerRef}
       >
-        <PopReturn isPop={isPopControl} />
+        <PopReturn />
         <ObserverProvider rootElement={containerRef}>
             {pageList?.map((page, i, arr) => {
               return (

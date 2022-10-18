@@ -39,7 +39,6 @@ const DirectoryContentPage: FunctionalComponent = () => {
       (async () => {
         const { data } = await getAllBlock("type=吸睛首選");
         setRecommendBlock(data);
-        console.log(data);
       })();
     } catch (err: any) {
       console.log(err.message || "failed");
@@ -50,7 +49,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
     <F>
       <ObserverProvider rootElement={containerRef}>
         <ModalBuy />
-        <ReturnBar title="test" />
+        <ReturnBar title={content?.title || ''} />
         <div
           class="grow overflow-hidden overflow-y-auto px-5"
           ref={containerRef}

@@ -1,18 +1,20 @@
 import { h, FunctionalComponent } from "preact";
 import { Link } from "preact-router";
+import { useReadingModal } from "../../context/reading";
 import IconCoin from "../../resources/img/icon-coin.svg";
 import IconArrow from "../../resources/img/icon-arrow.svg";
 
 interface PopReturnProps {
-  isPop: boolean;
 }
 
-const PopReturn: FunctionalComponent<PopReturnProps> = ({ isPop }) => {
+const PopReturn: FunctionalComponent<PopReturnProps> = ({  }) => {
+  const {isPopControl} = useReadingModal();
+
   return (
     <div
       className={
-        "absolute flex items-center justify-between w-full h-[50px] min-h-[50px] px-5 bg-[rgba(0,0,0,.6)] duration-300 " +
-        (isPop ? "" : "translate-y-[-100%] opacity-0 z-[-999]")
+        "fixed flex items-center justify-between w-full h-[50px] min-h-[50px] px-5 bg-[rgba(0,0,0,.6)] duration-300 " +
+        (isPopControl ? "" : "translate-y-[-100%] opacity-0 z-[-999]")
       }
     >
       <div

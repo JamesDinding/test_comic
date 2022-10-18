@@ -17,7 +17,7 @@ const PopControl: FunctionalComponent = ({}) => {
     <F>
       <div
         className={
-          "absolute z-[30] bottom-0 left-1/2 translate-x-[-50%] h-[50px] max-w-[420px] w-full bg-[rgba(0,0,0,.7)] duration-300 " +
+          "fixed z-[30] bottom-0 left-1/2 translate-x-[-50%] h-[50px] max-w-[420px] w-full bg-[rgba(0,0,0,.7)] duration-300 " +
           (isPopControl ? "" : "translate-y-[120%]")
         }
       >

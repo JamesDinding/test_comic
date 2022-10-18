@@ -1,7 +1,7 @@
 import { imgFactory } from "./components/_Image/ImageFactory";
 
 (() => {
-  console.log(imgFactory);
+  // console.log(imgFactory);
 })();
 
 // 網頁的進入點

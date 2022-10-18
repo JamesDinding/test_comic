@@ -11,8 +11,9 @@
   --pink-light: #ffbcbc;
 }
 
-img {
+.Image-component {
   height: 100%;
+  width: 100%;
 }
 
 a {

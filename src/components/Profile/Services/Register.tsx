@@ -11,8 +11,6 @@ interface LoginProps {}
 let timer: ReturnType<typeof setTimeout> | undefined;
 
 const Register: FunctionComponent<LoginProps> = ({}) => {
-  // const { login } = useAuth();
-
   const accountRef = useRef<HTMLInputElement>(null!);
   const psRef = useRef<HTMLInputElement>(null!);
   const psCheckRef = useRef<HTMLInputElement>(null!);

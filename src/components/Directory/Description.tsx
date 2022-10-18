@@ -3,55 +3,46 @@ import { useState, useEffect, useRef } from "preact/hooks";
 import IconCollect from "../../resources/img/dir-collect.svg";
 import Image from "../_Image/image";
 
-interface DesData {
-  title: string;
-  author: string;
-  description: string;
-  views: number;
-  collections: number;
+interface DescriptionProps {
+  title?: string;
+  author?: string;
+  description?: string;
+  views?: number;
+  collections?: number;
+  cover?: string;
 }
 
-const Description = () => {
+const Description: FunctionalComponent<DescriptionProps> = ({
+  title,
+  author,
+  description,
+  cover,
+  views = 2.2,
+  collections = 3.3,
+}) => {
   const [showPending, setPending] = useState(true);
-  const [fakeData, setFakeData] = useState<DesData | null>(null);
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    const fakePromise = new Promise<DesData>((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          title: "測試漫畫名字",
-          author: "xiaojun",
-          description:
-            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. In dolores odit, enim tempora nesciunt, hic sunt pariatur quis eaque laborum minima possimus eum suscipit cumque, ullam harum molestias expedita. Repellendus!",
-          views: 2.3,
-          collections: 22,
-        });
-      }, 2000);
-    });
+    //
+  });
 
-    fakePromise.then((res) => {
-      setFakeData(res);
-      setIsPending(false);
-    });
-  }, []);
-
+  console.log(cover);
   return (
     <>
       <div className="flex py-4">
         <div className="w-[161px] min-w-[161px] h-[242px] bg-[#a8a8a8] rounded-lg overflow-hidden mr-5">
-          {/* <Image alt="image" path="" setParentPending={setPending} /> */}
-          <img src="/assets/img/test/Image.png" className="h-full w-full" />
+          <Image alt="image" path={cover || ""} setParentPending={setPending} />
         </div>
         <div className="flex flex-col grow items-start">
           <div className="text-[#666666] text-xl font-semibold book-oneline">
-            {fakeData?.title}
+            {title}
           </div>
           <div className="text-[#999999] text-xs mt-2 book-oneline">
-            <span className="mr-2">作者:{fakeData?.author}</span>
+            <span className="mr-2">作者:{author}</span>
           </div>
 
-          <p className="book-description">{fakeData?.description}</p>
+          <p className="book-description">{description}</p>
           <div className="grow"></div>
           <div className="leading-3">
             {new Array(6).fill("test").map((tag, i, arr) => {
@@ -64,10 +55,10 @@ const Description = () => {
           </div>
           <div className="flex items-center w-full mt-1 text-[#a8a8a8]">
             <span className="mr-2 text-[.6rem] book-oneline">
-              <span>★&nbsp;{fakeData?.views}</span>
+              <span>★&nbsp;{views}</span>
             </span>
             <span className="mr-2 text-[.6rem] book-oneline">
-              <span>◉&nbsp;{fakeData?.collections}</span>
+              <span>◉&nbsp;{collections}</span>
             </span>
           </div>
         </div>

@@ -7,6 +7,7 @@ import IconCoin from "../resources/img/icon-coin.svg";
 import ModalBuy from "../components/Modal/ModalBuy";
 import { useDomain } from "../context/domain";
 import Image from "../components/_Image/image";
+import { getSpecifiedCategory } from "../lib/api";
 
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
@@ -32,6 +33,12 @@ const Test: FunctionComponent = () => {
       setSrc(b64);
     });
   }, [srcDomain]);
+
+  useEffect(() => {
+    getSpecifiedCategory("1").then((data) => {
+      console.log(data);
+    });
+  });
 
   return (
     <F>

@@ -3,7 +3,7 @@ import { Link } from "preact-router";
 import BookListItem from "./ListItem";
 
 interface BookListProps {
-  Items: Array<Book>;
+  Items: Array<Book> | undefined;
   ItemPerRow: number;
   Rows?: number;
   type?: "separate" | "stack" | "original";
@@ -19,32 +19,26 @@ const BookList: FunctionalComponent<BookListProps> = ({
   type = "original",
   isTemp,
 }) => {
-  if (isTemp) {
-    return (
-      <div className={`items-box grid grid-cols-${ItemPerRow} gap-2.5 py-4`}>
-        {comicArr.map((el, i, arr) => {
-          return (
-            <BookListItem
-              Data={{ ID: 12345, Cover: "", Name: "test" }}
-              type={type}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-
+  //  if(isTemp)
   return (
-    <div
-      class={"items-box grid grid-cols-" + ItemPerRow + " gap-2.5 py-4 px-5"}
-    >
-      {Items.sort(() => Math.random() - 0.5)
-        .slice(0, ItemPerRow * Rows)
-        .map((i) => (
-          <BookListItem Data={i} type={type} />
-        ))}
+    <div className={`items-box grid grid-cols-${ItemPerRow} gap-2.5 py-4`}>
+      {Items?.map((el, i, arr) => {
+        return <BookListItem key={i} Data={el} type={type} />;
+      })}
     </div>
   );
+
+  // return (
+  //   <div
+  //     class={"items-box grid grid-cols-" + ItemPerRow + " gap-2.5 py-4 px-5"}
+  //   >
+  //     {Items?.sort(() => Math.random() - 0.5)
+  //       .slice(0, ItemPerRow * Rows)
+  //       .map((i, index) => (
+  //         <BookListItem Data={i} type={type} key={index} />
+  //       ))}
+  //   </div>
+  // );
 };
 
 export default BookList;

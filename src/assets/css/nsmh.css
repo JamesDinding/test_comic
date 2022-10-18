@@ -812,6 +812,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: grid;
 }
 
+.contents {
+  display: contents;
+}
+
 .hidden {
   display: none;
 }
@@ -2221,6 +2225,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --pink-light: #ffbcbc;
 }
 
+img {
+  height: 100%;
+}
+
 a {
   text-decoration: none;
 }
@@ -2857,12 +2865,12 @@ input[type="number"] {
 }
 
 .item img {
-  height: auto;
+  height: 100%;
   width: 100%;
 }
 
 .item-separate img {
-  height: auto;
+  height: 100%;
   width: 100%;
 }
 

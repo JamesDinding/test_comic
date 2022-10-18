@@ -6,12 +6,8 @@ import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconCross from "../../resources/img/icon-cross.svg";
 import IconSort from "../../resources/img/icon-sort.svg";
 
-interface PopChapterProps {
-  chapterList: Array<{ cover: string; episode: number; isLocked: boolean }>;
-}
-
 let layerCss = "translate-y-full";
-const PopChapter: FunctionalComponent<PopChapterProps> = ({ chapterList }) => {
+const PopChapter: FunctionalComponent<ChapterList> = ({ chapterList }) => {
   const { isPopChapter, reset } = useReadingModal();
   layerCss = isPopChapter ? "" : "translate-y-[120%]";
 

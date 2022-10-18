@@ -49,7 +49,7 @@ const App: FunctionalComponent = () => {
                 <ProfilePage path="/profile" />
 
                 <DirectoryPage path="/directory/:cid" />
-                <ReadPage path="/read/:id" />
+                <ReadPage path="/read/:directoryId/chapter/:id" />
 
                 <RegisterPage path="/register" />
                 <LoginPage path="/login" />

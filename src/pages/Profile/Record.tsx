@@ -54,8 +54,8 @@ const RecordPage: FunctionalComponent = () => {
           setCurSelect={setCurSelect}
         />
         <div className="bg-white mt-1 grow">
-          {curSelect === 0 && <ChargeList chargeList={temp_charge_empty} />}
-          {curSelect === 1 && <PurchaseList purchaseList={temp_purchase} />}
+          {curSelect === 0 && <ChargeList />}
+          {curSelect === 1 && <PurchaseList />}
         </div>
       </div>
       <FooterBar />

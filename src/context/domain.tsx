@@ -9,15 +9,15 @@ export const DomainProvider: FunctionalComponent = ({ children }) => {
   const [srcDomain, setSrcDomain] = useState("");
 
   useEffect(() => {
-    // fetch("https://nsmhapi.xjun.tw/api/v1/domains?type=src")
-    //   .then(async (res) => {
-    //     if (!res.ok) throw new Error("failed to fetch");
-    //     const { domains } = await res.json();
-    //     setSrcDomain(domains.src[0]);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message || "Something wrong!");
-    //   });
+    fetch("/api/keyv1/domains?type=RESOURCE")
+      .then(async (res) => {
+        if (!res.ok) throw new Error("failed to fetch");
+        const { data } = await res.json();
+        setSrcDomain(data.RESOURCE[0]);
+      })
+      .catch((err) => {
+        console.error(err.message || "Something wrong!");
+      });
   }, []);
 
   const value = {

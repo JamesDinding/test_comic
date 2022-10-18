@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, createContext } from "preact";
-import { useState, useEffect, useContext } from "preact/hooks";
+import { useState, useEffect, useContext, useCallback } from "preact/hooks";
 import { getProfile, logout as apiLogout, login as apiLogin } from "../lib/api";
 
 const UserContext = createContext<UserContextType>(null!);
@@ -15,24 +15,27 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   const [coins, setCoins] = useState<number>(null!);
   const [vip, setVip] = useState<string | null>(null);
 
-  async function loginHandler(account: string, password: string) {
-    try {
-      const data = await apiLogin(account, password);
+  const loginHandler = useCallback(
+    async (account: string, password: string) => {
+      try {
+        const hasError = await apiLogin(account, password);
 
-      if (!data.error) {
-        localStorage.setItem("nsmh_log_status", "true");
-        setIsLogIn(true);
+        if (!hasError) {
+          localStorage.setItem("nsmh_log_status", "true");
+          setIsLogIn(true);
+        }
+
+        // 應該是要return data.message
+        return !!hasError;
+      } catch (err: any) {
+        console.error(err.message || "login failed");
+        return false;
       }
+    },
+    [setIsLogIn, apiLogin]
+  );
 
-      // 應該是要return data.message
-      return !!data;
-    } catch (err: any) {
-      console.error(err.message || "login failed");
-      return false;
-    }
-  }
-
-  async function logoutHandler() {
+  const logoutHandler = useCallback(async () => {
     try {
       const isError = await apiLogout();
 
@@ -43,14 +46,26 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
       }
     } catch (err: any) {
       console.error(err.message);
+      localStorage.removeItem("nsmh_log_status");
+      setToken("");
+      setIsLogIn(false);
     }
-  }
+  }, [setToken, setIsLogIn, apiLogout]);
 
-  async function getUserStatusHandler() {
+  const getUserStatusHandler = useCallback(async () => {
     const { data } = await getProfile();
     setCoins(data?.coins || 0);
     setVip(data?.vip_time || null);
-  }
+  }, []);
+
+  useEffect(() => {
+    if (!isLogIn) return;
+    try {
+      getUserStatusHandler();
+    } catch (err: any) {
+      // console.error(err.message || "Cant get user profile.");
+    }
+  }, [isLogIn]);
 
   const value = {
     isLogIn,

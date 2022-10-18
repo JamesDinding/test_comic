@@ -8,7 +8,7 @@ import CollectItem from "../components/_Book/CollectItem";
 import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
 import RecommendTitleBar from "../components/Home/RecommendTitleBar";
-import { getMyBookmarks } from "../lib/api";
+import { getMyBookmarks, getMyAcquisitions } from "../lib/api";
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
 //col-span-full
@@ -26,6 +26,7 @@ const temp_collect_arr = [
 
 const CollectPage: FunctionalComponent = () => {
   const [collectList, setCollectList] = useState([]);
+  const [acquisitions, setAcquisitions] = useState([]);
   const [curSelect, setCurSelect] = useState(0);
   const [curPress, setCurPress] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null!);
@@ -37,15 +38,21 @@ const CollectPage: FunctionalComponent = () => {
 
   useEffect(() => {
     try {
-      (async () => {
-        const { data } = await getMyBookmarks();
-        setCollectList(data);
-        console.log(data);
-      })();
+      if (curSelect === 0)
+        (async () => {
+          const { data } = await getMyBookmarks();
+          setCollectList(data);
+        })();
+      if (curSelect === 1)
+        (async () => {
+          const { data } = await getMyAcquisitions();
+          console.log(data);
+          setAcquisitions(data);
+        })();
     } catch {
       console.log("failed");
     }
-  }, []);
+  }, [curSelect]);
 
   return (
     <F>
@@ -67,10 +74,14 @@ const CollectPage: FunctionalComponent = () => {
                   className=" items-box grid grid-cols-3 gap-2.5 py-4 px-5"
                   onClick={unPressHandler}
                 >
-                  {collectList.map((collect, i, arr) => {
+                  {collectList.map((collect: any, i, arr) => {
                     return (
                       <CollectItem
-                        Data={{ ID: 12345, Cover: "", Name: "test" }}
+                        Data={{
+                          ID: collect.id,
+                          Cover: collect.covers?.thumb,
+                          Name: collect.title,
+                        }}
                         index_temp={i}
                         curPress={curPress}
                         setCurPress={setCurPress}
@@ -102,13 +113,17 @@ const CollectPage: FunctionalComponent = () => {
               </F>
             ))}
           {curSelect === 1 &&
-            (temp_purchase_arr.length ? (
+            (acquisitions.length ? (
               <div className="grow bg-[#fffbf6]">
                 <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
-                  {temp_purchase_arr.map((purchase, i, arr) => {
+                  {acquisitions.map((purchase: any, i, arr) => {
                     return (
                       <CollectItem
-                        Data={{ ID: 12345, Cover: "", Name: "test" }}
+                        Data={{
+                          ID: purchase.id,
+                          Cover: purchase.covers.thumb,
+                          Name: purchase.title,
+                        }}
                         index_temp={i}
                         curPress={curPress}
                         setCurPress={setCurPress}

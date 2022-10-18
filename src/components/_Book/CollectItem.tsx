@@ -25,11 +25,14 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
   }, [curPress, index_temp]);
 
   return (
-    <div id={Data.ID.toString()} class={"cursor-pointer item-separate "}>
+    <div
+      id={(Data.ID || Data.id || "").toString()}
+      class={"cursor-pointer item-separate "}
+    >
       <div class="relative h-[157px] rounded-lg overflow-hidden">
         <div
           className={
-            "duration-300 " + (isLongPress ? "translate-y-[-30px]" : '"')
+            "duration-300 h-full " + (isLongPress ? "translate-y-[-30px]" : '"')
           }
           onMouseDown={(e) => {
             e.preventDefault();
@@ -66,14 +69,16 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
         >
           {/* <div className={showPending ? "z-[20] pending h-[157px]" : ""}> */}
           <div
-            className={showPending ? "z-[20]  h-[157px] overflow-hidden" : ""}
+            className={
+              showPending ? "z-[20] h-full h-[157px] overflow-hidden" : "h-full"
+            }
           >
-            {/* <Image
-              path={Data.Cover}
-              alt={Data.Name}
+            <Image
+              path={Data.Cover || Data.covers?.thumb || ""}
+              alt={Data.Name || Data.title || ""}
               setParentPending={setPending}
-            /> */}
-            <img src="/assets/img/test/Image.png" className="" />
+            />
+            {/* <img src="/assets/img/test/Image.png" className="" /> */}
           </div>
           <div className="z-[30] bg-[#ff978d] text-center text-white text-sm font-light h-[30px] leading-[30px]">
             移除

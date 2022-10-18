@@ -3,10 +3,20 @@ import { route } from "preact-router";
 import { useEffect, useState } from "preact/hooks";
 import RecommendBlock from "./RecommendBlock";
 import Swiper from "./Swiper";
+import { getAllBlock } from "../../lib/api";
 
-const recommendationBlocks = [
-  1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
-];
+interface BlockNameType {
+  ID: number;
+  numPerRow: number;
+  name:
+    | "banner"
+    | "吸睛首選"
+    | "新書強推"
+    | "本週更新"
+    | "3D主打"
+    | "熱門Cosplay"
+    | "私人收藏";
+}
 
 const recommendationBlocksItemPerRow: {
   [index: number]: number;
@@ -25,17 +35,24 @@ const recommendationBlocksItemPerRow: {
 };
 
 // temp_book name
-const temp_book_name = [
-  "吸睛首選",
-  "新書強推",
-  "本週更新",
-  "3D主打",
-  "熱門Cosplay",
-  "私人收藏",
+const block_name: Array<BlockNameType> = [
+  { ID: 1234, numPerRow: 1, name: "banner" },
+  { ID: 1234, numPerRow: 3, name: "吸睛首選" },
+  { ID: 1234, numPerRow: 2, name: "新書強推" },
+  { ID: 1234, numPerRow: 3, name: "本週更新" },
+  { ID: 1234, numPerRow: 2, name: "3D主打" },
+  { ID: 1234, numPerRow: 3, name: "熱門Cosplay" },
+  { ID: 1234, numPerRow: 2, name: "私人收藏" },
 ];
 
+const queryString = block_name.map((b, i, a) => {
+  return "type=" + b.name;
+});
+
+const qeury_block = queryString.join("&");
+
 const HomeRecommend: FunctionalComponent = () => {
-  const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
+  const [blocks, setBlocks] = useState<RecommendationBlock>({});
   // temp
   const [tempBlocks, setTempBlocks] = useState([
     { ID: 0, Name: "論波圖", Items: [{ ID: 123, Cover: "", Name: "" }] },
@@ -56,51 +73,29 @@ const HomeRecommend: FunctionalComponent = () => {
   );
 
   useEffect(() => {
-    // fetch("/api/v1/contents/all")
-    //   .then((res) => {
-    //     if (!res.ok) throw new Error("no good");
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data.banners);
-    //     setTempBanner(data.banners);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message || "error happened when fetch banner");
-    //   });
+    try {
+      (async () => {
+        const { data } = await getAllBlock(qeury_block);
+        console.log("block", data);
+        setBlocks(data);
+      })();
+    } catch (err: any) {
+      console.log(err.message || "failed to get block contents");
+    }
   }, []);
-
-  useEffect(() => {
-    // (async () => {
-    //   let res = await send({
-    //     action: "Get",
-    //     data: {
-    //       url:
-    //         "/api/v1/content/recommendations?blkID=" +
-    //         recommendationBlocks.join(","),
-    //     },
-    //   });
-    //   if (res.blocks !== undefined) {
-    //     setBlocks(res.blocks);
-    //   }
-    // })();
-  }, []);
-
-  console.log(tempBanner, "tempBanners");
 
   return (
     <div>
-      {tempBlocks.map((blk) => {
-        if (blk.ID == 0) return <Swiper banners={tempBanner} />;
+      {block_name.map((bn, i, arr) => {
+        if (bn.name === "banner") return <Swiper banners={blocks[bn.name]} />;
+
         return (
-          <>
-            <RecommendBlock
-              BlockID={blk.ID}
-              BlockName={blk.Name}
-              Items={blk.Items}
-              ItemPerRow={recommendationBlocksItemPerRow[blk.ID]}
-            />
-          </>
+          <RecommendBlock
+            BlockID={bn.ID}
+            BlockName={bn.name}
+            Items={blocks[bn.name]}
+            ItemPerRow={bn.numPerRow}
+          />
         );
       })}
     </div>

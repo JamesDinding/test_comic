@@ -11,6 +11,10 @@
   --pink-light: #ffbcbc;
 }
 
+img {
+  height: 100%;
+}
+
 a {
   text-decoration: none;
 }
@@ -369,11 +373,11 @@ input[type="number"] {
 }
 
 .item img {
-  @apply w-full h-auto;
+  @apply w-full h-full;
 }
 
 .item-separate img {
-  @apply w-full h-auto;
+  @apply w-full h-full;
 }
 
 .tag {

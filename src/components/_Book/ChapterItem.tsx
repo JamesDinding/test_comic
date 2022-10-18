@@ -23,7 +23,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
             popBuy();
             return;
           }
-          route("/read/1/chapter/1");
+          route("/read/" + chapter.id + "/chapter/" + chapter.position);
         }}
       >
         {!chapter.status && <div className="chapter-item-backdrop"></div>}

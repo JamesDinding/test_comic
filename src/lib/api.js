@@ -130,7 +130,14 @@ export const getAllBlock = curryFetch_GET_QUERY("/contents/blocks");
 export const getSpecifiedBook = curryFetch_GET("/contents/items");
 
 // 取得指定書本章節清單
-export const getSpecifiedBookChapterList = () => {};
+export const getSpecifiedBookChapterList = async (item) => {
+  const response = await fetch("/api/v1/contents/items/" + item + "/chapters");
+  const data = await response.json();
+
+  if (data.error) throw new Error(data.message || "failed");
+
+  return data;
+};
 
 // 取得指定書本敘述
 export const getSpecifiedBookDescription = () => {};

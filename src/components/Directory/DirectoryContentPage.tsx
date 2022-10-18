@@ -14,22 +14,19 @@ import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
 import { getAllBlock, getSpecifiedBook } from "../../lib/api";
 
-const comicArr = ["123", "234", "345", "456", "567", "678"];
-//col-span-full
-const adArr = ["fxck_me"];
-
 const DirectoryContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
   const [recommendBlock, setRecommendBlock] = useState();
 
+  const cur_url = window.location.href.split("/").pop();
   // temp collection state
   const [isCollected, setIsCollected] = useState(false);
 
   console.log("content page");
   useEffect(() => {
     try {
-      getSpecifiedBook("1").then(({ data }) => {
+      getSpecifiedBook(cur_url).then(({ data }) => {
         console.log("content", data);
         setContent(data);
       });
@@ -71,7 +68,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
           <div className="flex mb-5">
             <button
               className="w-full py-2.5 text-center text-white text-lg bg-[#d19463] rounded-xl"
-              onClick={() => route("/read/1/chapter/1")}
+              onClick={() => route("/read/" + cur_url + "/chapter/1")}
             >
               開始閱讀
             </button>

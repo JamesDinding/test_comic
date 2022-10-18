@@ -4,6 +4,10 @@ import { useReadingModal } from "../../context/reading";
 import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconMenu from "../../resources/img/icon-menu.svg";
 
+interface PopControlProps {
+  curChapter: number;
+}
+
 const maxPage = 30;
 const PopControl: FunctionalComponent = ({}) => {
   const { isPopControl, popChapter, reset } = useReadingModal();

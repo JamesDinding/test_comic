@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useRef, useEffect } from "preact/hooks";
+import { useRef, useEffect, useState } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
 import { ObserverProvider } from "../../context/observer";
 import PopControl from "./PopControl";
@@ -15,15 +15,15 @@ import {
 const ReadContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const { isPopControl, popControl, reset } = useReadingModal();
-  // const [isPopControl, setIsPopControl] = useState(false);
-
-  console.log("popContentpage");
+  const [parentPending, setParentPending] = useState(true);
+  const [pageList, setPageList] = useState([]);
+  const [chapterList, setChapterList] = useState([]);
 
   useEffect(() => {
     try {
       (async () => {
         const { data } = await getSpecifiedBookIdContent(1, 1);
-        console.log(data);
+        setPageList(data.contents.images);
       })();
     } catch (err: any) {
       console.error(err.message);
@@ -31,7 +31,10 @@ const ReadContentPage: FunctionalComponent = () => {
   }, []);
   useEffect(() => {
     try {
-      getSpecifiedBookChapterList();
+      (async () => {
+        const { data } = await getSpecifiedBookChapterList(1);
+        setChapterList(data);
+      })();
     } catch (err: any) {
       console.error(err.message);
     }
@@ -39,7 +42,7 @@ const ReadContentPage: FunctionalComponent = () => {
 
   return (
     <F>
-      <PopChapter chapterList={[]} />
+      <PopChapter chapterList={chapterList} />
       <PopControl />
       <ModalBuy />
       <div
@@ -57,7 +60,13 @@ const ReadContentPage: FunctionalComponent = () => {
       >
         <PopReturn isPop={isPopControl} />
         <ObserverProvider rootElement={containerRef}>
-          <div>尚未串接api</div>
+          <div>
+            {pageList?.map((page, i, arr) => {
+              return (
+                <Image path={page} alt="" setParentPending={setParentPending} />
+              );
+            })}
+          </div>
         </ObserverProvider>
       </div>
     </F>

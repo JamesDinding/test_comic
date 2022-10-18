@@ -20,7 +20,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   if (type === "separate")
     return (
       <Link
-        href={"/directory/" + Data.ID}
+        href={"/directory/" + Data.id}
         class={"item-separate flex flex-col "}
       >
         <div class="relative rounded-lg grow">

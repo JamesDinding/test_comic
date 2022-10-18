@@ -13,8 +13,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   Data,
   type = "original",
 }) => {
-  console.log(Data.Cover || Data.covers?.thumb);
   const [showPending, setPending] = useState(true);
+
+  console.log(Data.Cover || Data.covers?.thumb || "")
 
   // cover and title is separated
   if (type === "separate")
@@ -75,6 +76,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         </div>
       </Link>
     );
+
 
   // default return
   return (

@@ -21,7 +21,7 @@ const Image: FunctionalComponent<ImageProps> = ({
   const { ref, isShown } = observer.observe();
 
   useEffect(() => {
-    if (!path || !srcDomain || !isShown) return;
+    if (!path || !srcDomain ) return;
     (async () => {
       try {
         const res = await fetch("//" + srcDomain + "/" + path);

@@ -235,6 +235,7 @@ export const postOrdersCharge = async (product_id, product_method_id, amount, cl
   return data;
 }
 
+
 // /api/v1/domain  RESOURCE
 export async function getDomains(type) {
   // const

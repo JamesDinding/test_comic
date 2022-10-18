@@ -7,7 +7,7 @@ import IconCoin from "../resources/img/icon-coin.svg";
 import ModalBuy from "../components/Modal/ModalBuy";
 import { useDomain } from "../context/domain";
 import Image from "../components/_Image/image";
-import { getSpecifiedCategory, postOrderPurchase } from "../lib/api";
+import { getSpecifiedCategory, postOrdersCharge } from "../lib/api";
 
 const recommendationBlocks = [
   1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
@@ -35,7 +35,7 @@ const Test: FunctionComponent = () => {
   }, [srcDomain]);
 
   useEffect(() => {
-    postOrderPurchase(100).then(data=>{
+    postOrdersCharge().then(data=>{
       console.log(data)
     })
   });

@@ -1,15 +1,18 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useState } from "preact/hooks";
+import { route } from "preact-router";
+import { StateUpdater, useState } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
 import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconMenu from "../../resources/img/icon-menu.svg";
 
 interface PopControlProps {
   curChapter: number;
+  curComic: number;
+  pageNum:number;
+  changeChapter: StateUpdater<number>;
 }
 
-const maxPage = 30;
-const PopControl: FunctionalComponent = ({}) => {
+const PopControl: FunctionalComponent<PopControlProps> = ({pageNum,curChapter, curComic, changeChapter}) => {
   const { isPopControl, popChapter, reset } = useReadingModal();
   const [curPage, setCurPage] = useState(1);
 
@@ -26,25 +29,31 @@ const PopControl: FunctionalComponent = ({}) => {
             <IconMenu class="h-10 w-10" />
           </button>
           <div className="grow"></div>
-          <button className="mr-2">
+          <button className="mr-2" onClick={()=>{
+            if(curChapter>0) {
+              changeChapter(prev=>prev-1);
+              route(`/read/${curComic}/chapter/${curChapter-1}`);
+            }
+
+          }}>
             <IconChevron class="h-10 w-10 text-white rotate-180" />
           </button>
           <div className="flex items-center justify-between font-light text-white text-sm text-center w-[60px]">
             <span className="text-[#9e7654] w-[25px]">{curPage}</span>
             <span className="text-lg">&nbsp;/&nbsp;</span>
-            <span className="w-[25px]">{maxPage}</span>
+            <span className="w-[25px]">{pageNum}</span>
           </div>
 
           <input
             type="range"
             id="page"
             min="1"
-            max="30"
+            max={pageNum}
             value={curPage}
             step="1"
             className="ml-4 w-[150px] input-range-page"
             style={{
-              backgroundSize: `${(curPage / maxPage) * 100}% 100%`,
+              backgroundSize: `${(curPage / pageNum) * 100}% 100%`,
             }}
             onChange={(e) => {
               const target = e.target as HTMLInputElement;
@@ -52,7 +61,10 @@ const PopControl: FunctionalComponent = ({}) => {
             }}
           />
 
-          <button className="ml-4">
+          <button className="ml-4" onClick={()=>{
+            changeChapter(prev=>prev+1);
+            route(`/read/${curComic}/chapter/${curChapter+1}`)
+          }}>
             <IconChevron class="h-10 w-10 text-white" />
           </button>
         </div>

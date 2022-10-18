@@ -1,8 +1,10 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { route } from "preact-router";
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useRef } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
 import IconLock from "../../resources/img/icon-lock.svg";
+import Image from "../_Image/image";
+import { ObserverProvider } from "../../context/observer";
 import ModalBuy from "../Modal/ModalBuy";
 
 const ChapterItem: FunctionalComponent<ChapterItem> = ({

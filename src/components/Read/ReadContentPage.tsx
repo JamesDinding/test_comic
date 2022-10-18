@@ -22,36 +22,40 @@ const ReadContentPage: FunctionalComponent = () => {
   const cur_path = window.location.pathname;
   // [ _, _, comicId, _, chapterId ]
   const cur_path_arr = cur_path.split('/');
+  const [curComic, setCurComic] = useState(parseInt(window.location.pathname.split('/')[2], 10));
+  const [curChapter, setCurChapter] = useState(parseInt(window.location.pathname.split('/')[4], 10));
+
+  console.log(curChapter)
 
   useEffect(() => {
     try {
 
       (async () => {
-        const { data } = await getSpecifiedBookIdContent(cur_path_arr[2], cur_path_arr[4]);
+        const { data } = await getSpecifiedBookIdContent(curComic, curChapter);
         setPageList(data.contents.images);
       })();
 
     } catch (err: any) {
       console.error(err.message);
     }
-  }, []);
+  }, [curComic, curChapter]);
 
   useEffect(() => {
     try {
       (async () => {
-        const { data } = await getSpecifiedBookChapterList(cur_path_arr[2]);
+        const { data } = await getSpecifiedBookChapterList(curComic);
         setChapterList(data);
       })();
 
     } catch (err: any) {
       console.error(err.message);
     }
-  }, []);
+  }, [curComic]);
 
   return (
     <F>
       <PopChapter chapterList={chapterList} />
-      <PopControl />
+      <PopControl pageNum={pageList.length} curChapter={curChapter} curComic={curComic} changeChapter={setCurChapter} />
       <ModalBuy />
       <div
         className="relative grow overflow-hidden overflow-y-auto no-scollbar"

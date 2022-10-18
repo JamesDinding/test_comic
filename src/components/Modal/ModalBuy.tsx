@@ -2,7 +2,7 @@ import { h, FunctionalComponent } from "preact";
 import { route } from "preact-router";
 import { useReadingModal } from "../../context/reading";
 import { useUser } from "../../context/user";
-import { createOrder, postOrderPurchase } from "../../lib/api";
+import { createOrder, postOrdersPurchase } from "../../lib/api";
 import Btn from "../UI/Btn";
 import IconCross from "../../resources/img/icon-cross.svg";
 
@@ -41,9 +41,7 @@ const ModalBuy: FunctionalComponent = ({}) => {
             title="繼續閱讀"
             bgColor="bg-[#d19463]"
             cb={() => {
-              console.log(stuffInfo)
-              console.log(stuffInfo?.id)
-              postOrderPurchase(stuffInfo?.id).then(response=>{
+              postOrdersPurchase(stuffInfo?.id).then(response=>{
                 console.log(response);
                 route(`/read/${stuffInfo?.id}/chapter/${stuffInfo?.position}`)
               }).catch(err=>{

@@ -196,7 +196,8 @@ export async function createOrder(title, price) {
 }
 
 // orders
-export const postOrderPurchase = async (id) => {
+// 內購
+export const postOrdersPurchase = async (id) => {
   const response = await fetch('/api/v1/orders/purchase', {
     method:"POST",
     headers:{
@@ -204,6 +205,27 @@ export const postOrderPurchase = async (id) => {
     },
     body:JSON.stringify({
       chapter_id: id
+    })
+  })
+  const data = await response.json();
+
+  if(data.error) throw new Error(data.message || 'failed');
+
+  return data;
+}
+
+// 衝直
+export const postOrdersCharge = async (product_id, product_method_id, amount, client_ip) => {
+  const response = await fetch('/api/v1/orders/charge', {
+    method:"POST",
+    headers:{
+      "Content-Type" :"application/json"
+    },
+    body:JSON.stringify({
+      product_id,
+      product_method_id,
+      amount,
+      client_ip
     })
   })
   const data = await response.json();

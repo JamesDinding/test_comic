@@ -53,7 +53,9 @@ const Image: FunctionalComponent<ImageProps> = ({
     // })();
   }, [path, isShown, srcDomain]);
 
-  return <img src={imageBlob} alt={alt} ref={ref} />;
+  return (
+    <img src={imageBlob} className="Image-component" alt={alt} ref={ref} />
+  );
 };
 
 export default Image;

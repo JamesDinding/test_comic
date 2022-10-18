@@ -38,7 +38,7 @@ export async function login(acc, pw) {
 
   console.log();
 
-  return !data.error;
+  return data.error;
 }
 
 export async function logout() {

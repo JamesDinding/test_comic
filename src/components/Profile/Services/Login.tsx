@@ -126,13 +126,13 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             }, 1000);
 
             if (!isInputCorrect()) return;
-            const isSuccess = await login(
+            const hasError = await login(
               accountRef.current.value,
               psRef.current.value
             );
 
-            console.log("login success?", isSuccess);
-            isSuccess && route("/member");
+            console.log("login has error?", hasError);
+            !hasError && route("/member");
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">

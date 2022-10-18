@@ -21,12 +21,13 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
         const hasError = await apiLogin(account, password);
 
         if (!hasError) {
+          console.log("no error happen when login");
           localStorage.setItem("nsmh_log_status", "true");
           setIsLogIn(true);
         }
+        console.log(hasError);
 
-        // 應該是要return data.message
-        return !hasError;
+        return !!hasError;
       } catch (err: any) {
         console.error(err.message || "login failed");
         return false;

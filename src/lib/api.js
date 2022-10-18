@@ -116,6 +116,24 @@ export async function postMyProfile(phone, mail, name) {
   return data;
 }
 
+export async function postMyBookmarks(id, action){
+  const response = await fetch('/api/v1/my/bookmarks', {
+    method: "POST",
+    headers: {
+      "Content-Type" :"application/json"
+    },
+    body: JSON.stringify({
+      item_id: id,
+      action: action
+    })
+  });
+  const data = await response.json();
+
+  if(data.error) throw new Error(data.message || 'failed');
+
+  return data;
+}
+
 /****** CONTENT  ******/
 // 取得分類清單
 export const getCategories = curryFetch_GET("/contents/categories");

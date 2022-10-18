@@ -48,7 +48,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
               e.stopPropagation();
               return;
             }
-            route("/directory/1234");
+            route("/directory/"+(Data.id||Data.ID));
           }}
           onTouchStart={(e) => {
             e.preventDefault();
@@ -64,7 +64,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
               e.stopPropagation();
               return;
             }
-            route("/directory/1234");
+            route("/directory/"+(Data.id||Data.ID));
           }}
         >
           {/* <div className={showPending ? "z-[20] pending h-[157px]" : ""}> */}

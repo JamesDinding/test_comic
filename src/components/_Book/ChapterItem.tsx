@@ -12,10 +12,13 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
   smallSize = false,
 }) => {
   const { popBuy } = useReadingModal();
+  const [isPending, setIsPending] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <F>
       <div
+      ref={containerRef}
         className={
           "cursor-pointer relative overflow-hidden rounded-lg " +
           (smallSize ? "w-[76px] h-[115px]" : "min-w-[105px] h-[72px]")
@@ -34,11 +37,9 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
             <IconLock class="w-5 h-5" />
           </div>
         )}
-        <img
-          src="/assets/img/test/Image.png"
-          className="w-full h-full"
-          alt=""
-        />
+        <ObserverProvider rootElement={containerRef}>
+        <Image path={chapter.covers.thumb} alt='' setParentPending={setIsPending} />
+        </ObserverProvider>
         <div className="item-overlay-chapter"></div>
         <div className="absolute left-1/2 bottom-[.25rem] translate-x-[-50%] whitespace-nowrap text-sm text-white text-center w-[70px] h-[20px] leading-[20px]">
           名稱最長五

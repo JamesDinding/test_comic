@@ -12,7 +12,7 @@ import { ObserverProvider } from "../../context/observer";
 import ModalBuy from "../Modal/ModalBuy";
 import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
-import { getAllBlock, getSpecifiedBook } from "../../lib/api";
+import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
 
 const DirectoryContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
@@ -72,7 +72,12 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </button>
             <button
               className="flex flex-col items-center ml-5 w-12"
-              onClick={() => setIsCollected((prev) => !prev)}
+              onClick={ () => {
+                setIsCollected((prev) => !prev);
+                postMyBookmarks(content?.id, isCollected?'remove':'add').then(data=>{
+                  console.log('req response data:', data);
+                })
+              }}
             >
               {isCollected ? (
                 <IconBookmark class="w-8 h-8" />

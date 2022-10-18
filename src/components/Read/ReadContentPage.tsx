@@ -1,17 +1,12 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useRef } from "preact/hooks";
+import { useRef, useEffect } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
 import { ObserverProvider } from "../../context/observer";
 import PopControl from "./PopControl";
 import ModalBuy from "../Modal/ModalBuy";
 import PopReturn from "./PopReturn";
 import PopChapter from "./PopChapter";
-
-const fakeList = [{ cover: "", episode: 1, isLocked: false }];
-
-for (let i = 0; i < 25; i++) {
-  fakeList.push({ cover: "", episode: 1, isLocked: true });
-}
+import { getSpecifiedBookChapterList } from "../../lib/api";
 
 const ReadContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
@@ -20,9 +15,17 @@ const ReadContentPage: FunctionalComponent = () => {
 
   console.log("popContentpage");
 
+  useEffect(() => {
+    try {
+      getSpecifiedBookChapterList();
+    } catch (err: any) {
+      console.error(err.message);
+    }
+  }, []);
+
   return (
     <F>
-      <PopChapter chapterList={fakeList} />
+      <PopChapter chapterList={[]} />
       <PopControl />
       <ModalBuy />
       <div

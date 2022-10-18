@@ -11,6 +11,16 @@ function curryFetch_GET(route) {
   };
 }
 
+function curryFetch_GET_QUERY(route) {
+  return async function (query = "") {
+    const response = await fetch("/api/v1" + route + `?${query.toString()}`);
+    const data = await response.json();
+    if (data.error) throw new Error(data.message || route + " failed");
+
+    return data;
+  };
+}
+
 /******  AUTH ******/
 export async function login(acc, pw) {
   const res = await fetch("/api/v1/auth/login", {
@@ -26,7 +36,9 @@ export async function login(acc, pw) {
 
   if (data.error) throw new Error(data.message);
 
-  return data;
+  console.log();
+
+  return !data.error;
 }
 
 export async function logout() {
@@ -61,7 +73,43 @@ export const getMyOrders = curryFetch_GET("/my/orders");
 export const getMyTransactions = curryFetch_GET("/my/transactions");
 
 // 註冊帳號
-export async function postRegister() {}
+export async function postMyRegister(acc, ps) {
+  const response = await fetch("/my/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      acc: acc,
+      ps: ps,
+    }),
+  });
+  const data = await response.json();
+
+  if (data.error) throw new Error(data.error || route + " failed");
+
+  return data;
+}
+
+// 更新綁定資訊
+export async function postMyProfile(phone, mail, name) {
+  const response = await fetch("/my/profile", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      mobile: phone,
+      mail: mail,
+      name: name,
+    }),
+  });
+  const data = await response.json();
+
+  if (data.error) throw new Error(data.message || route + " failed");
+
+  return data;
+}
 
 /****** CONTENT  ******/
 // 取得分類清單
@@ -71,7 +119,7 @@ export const getCategories = curryFetch_GET("/contents/categories");
 export const getSpecifiedCategory = curryFetch_GET("/contents/categories");
 
 // 取得區塊內容
-export const getAllBlock = curryFetch_GET("/contents/block");
+export const getAllBlock = curryFetch_GET_QUERY("/contents/blocks");
 
 // 取得指定書本
 export const getSpecifiedBook = curryFetch_GET("/contents/items");

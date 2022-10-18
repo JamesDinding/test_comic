@@ -66,19 +66,7 @@ const ServiceList: FunctionalComponent = (
           <div
             className="bg-white mb-5 py-2.5 px-5 text-[#9e7654] text-sm"
             onClick={() => {
-              fetch("/api/v1/auth/logout", {
-                method: "POST",
-                credentials: "same-origin",
-              })
-                .then(async (res) => {
-                  console.log("logout", res);
-                  const data = await res.json();
-                  console.log(data);
-                })
-                .catch((err) => {
-                  console.log(err.message || "failed");
-                })
-                .finally(() => logout());
+              logout();
             }}
           >
             登出

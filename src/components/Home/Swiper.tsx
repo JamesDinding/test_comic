@@ -6,7 +6,7 @@ import Image from "../_Image/image";
 type slider = null | undefined | HTMLElement;
 
 interface SwiperProps {
-  banners: { Cover: string; ID: number }[];
+  banners: Array<Book> | undefined;
 }
 
 const recommendationBlocks = [
@@ -193,7 +193,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
         onTouchEnd={touchEndHandler}
         onTouchMove={touchMovingHandler}
       >
-        {banners.map((banner, i) => {
+        {banners?.map((banner, i) => {
           // if (blk.ID !== 1) return;
           // return blk.Items.map((b, i) => {
           return (
@@ -203,7 +203,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
             >
               <div>
                 <Image
-                  path={banner.Cover}
+                  path={banner.Cover || banner.covers?.thumb || ""}
                   alt={""}
                   setParentPending={setPending}
                 />

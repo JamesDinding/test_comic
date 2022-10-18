@@ -9,7 +9,7 @@ export const DomainProvider: FunctionalComponent = ({ children }) => {
   const [srcDomain, setSrcDomain] = useState("");
 
   useEffect(() => {
-    fetch("/api/v1/domains?type=RESOURCE")
+    fetch("/api/keyv1/domains?type=RESOURCE")
       .then(async (res) => {
         if (!res.ok) throw new Error("failed to fetch");
         const { data } = await res.json();

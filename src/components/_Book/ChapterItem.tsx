@@ -19,15 +19,15 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
           (smallSize ? "w-[76px] h-[115px]" : "min-w-[105px] h-[72px]")
         }
         onClick={() => {
-          if (chapter.isLocked) {
+          if (!chapter.status) {
             popBuy();
             return;
           }
           route("/read/1");
         }}
       >
-        {chapter.isLocked && <div className="chapter-item-backdrop"></div>}
-        {chapter.isLocked && (
+        {!chapter.status && <div className="chapter-item-backdrop"></div>}
+        {!chapter.status && (
           <div className="absolute left-1/2 translate-x-[-50%] pt-[1.125rem]">
             <IconLock class="w-5 h-5" />
           </div>

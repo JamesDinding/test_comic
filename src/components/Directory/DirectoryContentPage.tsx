@@ -5,37 +5,14 @@ import Description from "./Description";
 import ChapterList from "./ChapterList";
 import ReturnBar from "../ReturnBar";
 import FooterBar from "../FooterBar";
+import RecommendBlock from "../Home/RecommendBlock";
 import BookListItem from "../_Book/ListItem";
 import RecommendTitleBar from "../Home/RecommendTitleBar";
 import { ObserverProvider } from "../../context/observer";
 import ModalBuy from "../Modal/ModalBuy";
 import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
-import { getSpecifiedBook } from "../../lib/api";
-
-type ChapterInfo = {
-  id: number;
-  covers: {
-    thumb: string;
-    thumbx: string;
-  };
-  position: number;
-  status: boolean;
-  price: number;
-};
-
-interface Content {
-  id: number;
-  creator: string;
-  title: string;
-  description: string;
-  status: string;
-  covers: {
-    thumb: string;
-    thumbx: string;
-  };
-  chapter: Array<ChapterInfo>;
-}
+import { getAllBlock, getSpecifiedBook } from "../../lib/api";
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
 //col-span-full
@@ -44,14 +21,16 @@ const adArr = ["fxck_me"];
 const DirectoryContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
+  const [recommendBlock, setRecommendBlock] = useState();
 
   // temp collection state
   const [isCollected, setIsCollected] = useState(false);
 
+  console.log("content page");
   useEffect(() => {
     try {
       getSpecifiedBook("1").then(({ data }) => {
-        console.log(data);
+        console.log("content", data);
         setContent(data);
       });
     } catch (err: any) {
@@ -59,13 +38,29 @@ const DirectoryContentPage: FunctionalComponent = () => {
     }
   }, []);
 
+  useEffect(() => {
+    try {
+      (async () => {
+        const { data } = await getAllBlock("type=吸睛首選");
+        setRecommendBlock(data);
+        console.log(data);
+      })();
+    } catch (err: any) {
+      console.log(err.message || "failed");
+    }
+  }, []);
+
   return (
     <F>
-      <ModalBuy />
-      <ReturnBar title="test" />
-      <div class="grow overflow-hidden overflow-y-auto px-5" ref={containerRef}>
-        <ObserverProvider rootElement={containerRef}>
+      <ObserverProvider rootElement={containerRef}>
+        <ModalBuy />
+        <ReturnBar title="test" />
+        <div
+          class="grow overflow-hidden overflow-y-auto px-5"
+          ref={containerRef}
+        >
           <Description
+            key={content?.covers.thumb}
             title={content?.title}
             author={content?.creator}
             description={content?.description}
@@ -95,27 +90,28 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </button>
           </div>
           <div className="pb-10">
-            <ChapterList chap />
+            <ChapterList chapterList={content?.chapter || []} />
           </div>
-          <div>
-            <RecommendTitleBar BlockID={124} BlockName="舊品下市" />
+
+          {/* <RecommendTitleBar BlockID={124} BlockName="舊品下市" />
             <div className="items-box grid grid-cols-3 gap-2.5 py-4">
-              {comicArr.concat(adArr).map((el, i, arr) => {
-                return i === 0 ? (
-                  <div className="min-h-[100px] rounded bg-[#ff978d] col-span-full">
-                    <span class="text-white">ad</span>
-                  </div>
-                ) : (
+              {comicArr.map((el, i, arr) => {
+                return (
                   <BookListItem
                     Data={{ ID: 12345, Cover: "", Name: "test" }}
                     type="separate"
                   />
                 );
               })}
-            </div>
-          </div>
-        </ObserverProvider>
-      </div>
+            </div> */}
+        </div>
+        <RecommendBlock
+          BlockID={1236}
+          BlockName={"吸睛首選"}
+          Items={recommendBlock}
+          ItemPerRow={3}
+        />
+      </ObserverProvider>
       <FooterBar />
     </F>
   );

@@ -131,6 +131,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
               psRef.current.value
             );
 
+            console.log("login success?", isSuccess);
             isSuccess && route("/member");
           }}
         />

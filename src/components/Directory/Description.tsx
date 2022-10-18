@@ -25,9 +25,9 @@ const Description: FunctionalComponent<DescriptionProps> = ({
 
   useEffect(() => {
     //
-    console.log(cover);
   });
 
+  console.log(cover);
   return (
     <>
       <div className="flex py-4">

@@ -8,7 +8,7 @@ interface RecommendBlockProps {
   BlockID: number;
   BlockName: string;
   ItemPerRow: number;
-  Items: Array<Book>;
+  Items: Array<Book> | undefined;
 }
 
 const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({

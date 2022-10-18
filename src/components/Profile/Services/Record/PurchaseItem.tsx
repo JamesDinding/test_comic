@@ -4,8 +4,7 @@ import { useState } from "preact/hooks";
 type PurchaseItem = {
   amount: number;
   balance: number;
-  item_title: string;
-  chapter_position: number;
+  description: string;
   created_at: string;
 };
 
@@ -29,7 +28,7 @@ const PurchaseItem: FunctionComponent<PurchaseItemProps> = ({
         onClick={() => setIsDrop((prev) => !prev)}
       >
         <div className="w-2/5 text-center text-[#4fa7dd] font-semibold whitespace-nowrap">
-          - {purchaseObj.amount} 金幣
+          {purchaseObj.amount} 金幣
         </div>
         <div className="grow text-center">餘 {purchaseObj.balance} 金幣</div>
         <div className="flex items-center justify-end">
@@ -44,7 +43,7 @@ const PurchaseItem: FunctionComponent<PurchaseItemProps> = ({
       <div
         className={`w-full px-5 text-sm text-[#666666] flex flex-col justify-center tracking-wide border-solid border-b-[1px] border-[#9e765466] duration-300 overflow-hidden ${dropCss}`}
       >
-        <div className="mt-2 mb-1">購買項目 : {purchaseObj.item_title}</div>
+        <div className="mt-2 mb-1">購買項目 : {purchaseObj.description}</div>
         <div className="mb-2">時間 : {purchaseObj.created_at}</div>
       </div>
     </F>

@@ -42,18 +42,23 @@ export async function login(acc, pw) {
 }
 
 export async function logout() {
-  const res = await fetch("/api/v1/auth/logout", {
-    method: "POST",
-    credentials: "same-origin",
-  });
+  try {
+    const res = await fetch("/api/v1/auth/logout", {
+      method: "POST",
+      credentials: "same-origin",
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (!data.error) {
-    throw new Error("Failed to loggout.");
+    if (!data.error) {
+      throw new Error("Failed to loggout.");
+    }
+
+    return data.error;
+  } catch (err) {
+    console.log(err.message);
+    throw new Error(err);
   }
-
-  return data.error;
 }
 
 /****** MY ******/
@@ -134,7 +139,16 @@ export const getSpecifiedBookDescription = () => {};
 export const getSpecifiedBookContext = () => {};
 
 // 取得指定書本章節ID內容
-export const getSpecifiedBookIdContent = () => {};
+export const getSpecifiedBookIdContent = async (item, chapter) => {
+  const response = await fetch(
+    "/api/v1/contents/items/" + item + "/positions/" + chapter
+  );
+  const data = await response.json();
+
+  if (data.error) throw new Error(data.message || "failed");
+
+  return data;
+};
 
 // 搜尋
 export const getSearch = () => {};

@@ -24,7 +24,7 @@ const recommendationBlocksItemPerRow: {
 
 // props 應該要傳入 url
 const SearchResult = () => {
-  const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
+  const [blocks, setBlocks] = useState<Array<Book>>([]);
 
   useEffect(() => {
     // (async () => {
@@ -44,27 +44,8 @@ const SearchResult = () => {
 
   return (
     <div class="my-2 bg-white">
-      {/* <BookList Items={blocks.slice(0, 4)} ItemPerRow={2} Rows={2} />
-      <BookList
-        Items={blocks.slice(4)}
-        ItemPerRow={3} />
-        Rows={Math.ceil((blocks.length - 4) / 3)} */}
-      {/* 先用其他api頂替，寫法先改為下方 */}
-      {blocks.map((block) => {
-        if (block.ID !== 2) return;
-        const firstSlice = block.Items.slice(0, 4);
-        const restSlice = block.Items.slice(4);
-        return (
-          <>
-            <BookList ItemPerRow={2} Rows={2} Items={firstSlice} />
-            <BookList
-              Items={restSlice}
-              ItemPerRow={3}
-              Rows={Math.ceil(restSlice.length / 3)}
-            />
-          </>
-        );
-      })}
+      {/* <BookList Items={blocks.slice(0, 4)} ItemPerRow={2} Rows={2} /> */}
+      <BookList Items={blocks} ItemPerRow={3} />
       <EndBottom />
     </div>
   );

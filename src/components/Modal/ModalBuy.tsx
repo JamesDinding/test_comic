@@ -2,7 +2,7 @@ import { h, FunctionalComponent } from "preact";
 import { route } from "preact-router";
 import { useReadingModal } from "../../context/reading";
 import { useUser } from "../../context/user";
-import { createOrder } from "../../lib/api";
+import { createOrder, postOrderPurchase } from "../../lib/api";
 import Btn from "../UI/Btn";
 import IconCross from "../../resources/img/icon-cross.svg";
 
@@ -19,7 +19,10 @@ const ModalBuy: FunctionalComponent = ({}) => {
     >
       <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[rgba(158,118,84,.4)]">
         解锁確認
-        <div onClick={reset}>
+        <div onClick={()=>{
+          postOrderPurchase()
+          reset()
+        }}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
       </div>

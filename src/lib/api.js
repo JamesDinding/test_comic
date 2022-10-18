@@ -195,6 +195,24 @@ export async function createOrder(title, price) {
   return data;
 }
 
+// orders
+export const postOrderPurchase = async (id) => {
+  const response = await fetch('/api/v1/orders/purchase', {
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+      chapter_id: id
+    })
+  })
+  const data = await response.json();
+
+  if(data.error) throw new Error(data.message || 'failed');
+
+  return data;
+}
+
 // /api/v1/domain  RESOURCE
 export async function getDomains(type) {
   // const

@@ -105,7 +105,7 @@ export async function postMyProfile(phone, mail, name) {
     },
     body: JSON.stringify({
       mobile: phone,
-      mail: mail,
+      email: mail,
       name: name,
     }),
   });

@@ -98,7 +98,7 @@ export async function postMyRegister(acc, ps) {
 
 // 更新綁定資訊
 export async function postMyProfile(phone, mail, name) {
-  const response = await fetch("/my/profile", {
+  const response = await fetch("/api/v1/my/profile", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useState, useEffect, useRef } from "preact/hooks";
+import { postMyProfile } from "../../../lib/api";
 import InputField from "./InputField";
 import CardBottom from "../../Modal/CardBottom";
 import IconCross from "../../../resources/img/icon-cross.svg";
@@ -91,7 +92,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
           isWrong={isMailWrong}
           inputSetting={{
             placeHolder: "輸入郵箱",
-            type: "number",
+            type: "text",
             minLen: 10,
             maxLen: 12,
           }}
@@ -115,7 +116,12 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
           onClick={(e) => {
             if (!verifyInput()) return;
             console.log("binding gogo");
-            onClose();
+            postMyProfile(phoneRef.current.value, mailRef.current.value, nameRef.current.value).then(response=>{
+              console.log(response)
+              onClose();
+            }).catch(err=>{
+              console.log(err)
+            })
           }}
         >
           提交

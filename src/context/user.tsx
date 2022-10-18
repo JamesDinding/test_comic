@@ -26,7 +26,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
         }
 
         // 應該是要return data.message
-        return !!hasError;
+        return !hasError;
       } catch (err: any) {
         console.error(err.message || "login failed");
         return false;

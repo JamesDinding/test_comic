@@ -79,14 +79,14 @@ export const getMyTransactions = curryFetch_GET("/my/transactions");
 
 // 註冊帳號
 export async function postMyRegister(acc, ps) {
-  const response = await fetch("/my/register", {
+  const response = await fetch("/api/v1/my/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      acc: acc,
-      ps: ps,
+      username: acc,
+      password: ps,
     }),
   });
   const data = await response.json();

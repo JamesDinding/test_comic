@@ -10,17 +10,24 @@ import { ObserverProvider } from "../context/observer";
 import { useDomain } from "../context/domain";
 import useRequest from "../hooks/use-request";
 
+import SmartBanner from "../components/SmartBanner";
+
 import FooterBar from "../components/FooterBar";
 
 const HomePage: FunctionalComponent = () => {
   const { srcDomain } = useDomain();
   const [currentCategory, setCurrentCategory] = useState(0);
+  const [showSmartBanner, setShowSmartBanner] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null!);
-
-  useEffect(() => {});
 
   return (
     <>
+     {showSmartBanner ? (
+                <SmartBanner SetSmartBannerVisiblity={setShowSmartBanner} />
+              ) : (
+                <></>
+              )}
+
       <div class="grow overflow-hidden overflow-y-auto" ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>
           <BrandBar />

@@ -36,11 +36,11 @@ const App: FunctionalComponent = () => {
         <ChargeProvider>
           <div id="root" class="w-full max-w-[420px] h-full">
             <div id="container" class="bg-white w-full h-full flex flex-col">
-              {showSmartBanner ? (
+              {/* {showSmartBanner ? (
                 <SmartBanner SetSmartBannerVisiblity={setShowSmartBanner} />
               ) : (
                 <></>
-              )}
+              )} */}
 
               <Router>
                 <HomePage path="/home" />

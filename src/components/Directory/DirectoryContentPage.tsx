@@ -92,8 +92,8 @@ const DirectoryContentPage: FunctionalComponent = () => {
           <div className="pb-10">
             <ChapterList chapterList={content?.chapter || []} />
           </div>
-
-          {/* <RecommendTitleBar BlockID={124} BlockName="舊品下市" />
+        </div>
+        {/* <RecommendTitleBar BlockID={124} BlockName="新品上市" />
             <div className="items-box grid grid-cols-3 gap-2.5 py-4">
               {comicArr.map((el, i, arr) => {
                 return (
@@ -104,13 +104,12 @@ const DirectoryContentPage: FunctionalComponent = () => {
                 );
               })}
             </div> */}
-        </div>
-        <RecommendBlock
+        {/* <RecommendBlock
           BlockID={1236}
           BlockName={"吸睛首選"}
-          Items={recommendBlock}
+          Items={recommendBlock['吸睛首選']}
           ItemPerRow={3}
-        />
+        /> */}
       </ObserverProvider>
       <FooterBar />
     </F>

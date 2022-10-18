@@ -6,7 +6,11 @@ import PopControl from "./PopControl";
 import ModalBuy from "../Modal/ModalBuy";
 import PopReturn from "./PopReturn";
 import PopChapter from "./PopChapter";
-import { getSpecifiedBookChapterList } from "../../lib/api";
+import Image from "../_Image/image";
+import {
+  getSpecifiedBookChapterList,
+  getSpecifiedBookIdContent,
+} from "../../lib/api";
 
 const ReadContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
@@ -15,6 +19,16 @@ const ReadContentPage: FunctionalComponent = () => {
 
   console.log("popContentpage");
 
+  useEffect(() => {
+    try {
+      (async () => {
+        const { data } = await getSpecifiedBookIdContent(1, 1);
+        console.log(data);
+      })();
+    } catch (err: any) {
+      console.error(err.message);
+    }
+  }, []);
   useEffect(() => {
     try {
       getSpecifiedBookChapterList();

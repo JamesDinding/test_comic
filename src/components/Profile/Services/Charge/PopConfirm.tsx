@@ -124,14 +124,10 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
           className="w-full py-4 mt-[3.625rem] bg-[#ff978d] rounded-lg text-center text-xl text-white"
           onClick={()=>{
             console.log("id: ",userSelect.id, " cash_amount: ",userSelect.cash_amount)
-            postOrdersCharge(userSelect.id, userSelect.cash_amount, ip).then(response=>{
+            postOrdersCharge(payment?.id, userSelect.cash_amount, ip).then(response=>{
               const {data} = response;
               console.log(data)
-              getOrdersRedirectOrderNum(''+data.order_num).then(response=>{
-                console.log(response)
-              }).catch(err=>{
-                throw new Error(err)
-              })
+              window.location.href = '/api/v1/orders/redirect/'+data.order_num
             }).catch(err=>{
               console.log(err.message || 'failed')
             })

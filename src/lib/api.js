@@ -176,7 +176,7 @@ export const getSpecifiedBookIdContent = async (item, chapter) => {
 };
 
 // 搜尋
-export const getSearch = () => {};
+export const getSearch = curryFetch_GET_QUERY('/contents/search');
 
 export async function createOrder(title, price) {
   const response = await fetch("/api/v1/orders/create", {

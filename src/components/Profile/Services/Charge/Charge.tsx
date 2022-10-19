@@ -27,9 +27,8 @@ const Charge = () => {
   const [isPopPayment, setIsPopPayment] = useState(false);
   const [isPopConfirm, setIsPopConfirm] = useState(false);
   const [salesList, setSalesList] = useState<SalesItem[]>([])
-  const popPaymentHandler = (sale: { title: string; cost: string }) => {
-    console.log(sale);
-    selectCoins(sale.title, parseInt(sale.cost, 10));
+  const popPaymentHandler = (sale:any) => {
+    selectCoins(sale);
     setIsPopPayment(true);
   };
 
@@ -37,12 +36,14 @@ const Charge = () => {
     getOrdersProducts().then(response=>{
       console.log(response.data)
       setSalesList(response.data)
+    }).catch(err=>{
+      console.log(err.message || 'failed');
     })
   }, [])
 
   return (
     <>
-      {isPopPayment &&
+      {(isPopPayment) &&
         createPortal(
           <BackDrop onClose={setIsPopPayment} />,
           document.getElementById("back-drop")!
@@ -72,10 +73,7 @@ const Charge = () => {
             return (
               <div
                 className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(248,200,137,0.2)] rounded-xl"
-                onClick={popPaymentHandler.bind(this, {
-                  title: '',
-                  cost: '100',
-                })}
+                onClick={popPaymentHandler.bind(this, sale)}
                 key={index}
               >
                 <div className="charge-discount-container">

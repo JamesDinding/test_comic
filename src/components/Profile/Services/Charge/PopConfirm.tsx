@@ -4,6 +4,7 @@ import { useCharge } from "../../../../context/charge";
 import ModalTitle from "../../../UI/ModalTitle";
 import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
+import {getOrdersRedirectOrderNum, postOrdersCharge} from '../../../../lib/api';
 
 interface PopConfirmProps {
   onClose: () => void;
@@ -12,11 +13,25 @@ interface PopConfirmProps {
 let timer: ReturnType<typeof setTimeout>;
 
 const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
-  const { payments, userSelect } = useCharge();
+  const { payment, userSelect } = useCharge();
   const [countDown, setCountDown] = useState(300);
+  const [ip, setIp] = useState<string>()
   const [validationCode, setValidationCode] = useState<Array<number | null>>(
     new Array(4).fill(null)
   );
+
+  useEffect(()=>{
+    fetch('http://www.cloudflare.com/cdn-cgi/trace').then(res=>{
+      return res.text()
+    }).then(data=>{
+      const temp = data.split('ip=').pop()
+      const temp2 = temp?.split('ts=')[0].trim()
+      setIp(temp2)
+    }).catch(err=>{
+      console.log(err.message || "failed")
+    })
+  }, [])
+
 
   useEffect(() => {
     if (countDown === 0) {
@@ -38,21 +53,21 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
       <div className="relative overflow-auto no-scrollbar text-[#9e7654] flex flex-col items-center h-full p-5">
         <ModalTitle title="訂單確認" onClose={onClose} />
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 mt-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
-          <div>方案 :</div>
+          <div>方案 : </div>
           <div>
             金幣充值 -{" "}
-            <span className="text-[#dc6060]">{userSelect.coins}</span> 枚
+            <span className="text-[#dc6060]">{userSelect.token_amount}</span> 枚
           </div>
         </div>
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>支付方式 :</div>
           <div>
-            {userSelect.pay}支付 - 线路{userSelect.p_way}
+            {payment?.type} - {payment?.name}
           </div>
         </div>
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>金額 :</div>
-          <div className="text-[#dc6060]">&#165; {userSelect.cost}</div>
+          <div className="text-[#dc6060]">&#165; {userSelect.cash_amount}</div>
         </div>
         <div className="w-full pt-2.5 pb-1.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div className="flex items-center justify-between w-full px-2.5 ">
@@ -107,6 +122,20 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
           id="validation-4"
           tabIndex={5}
           className="w-full py-4 mt-[3.625rem] bg-[#ff978d] rounded-lg text-center text-xl text-white"
+          onClick={()=>{
+            console.log("id: ",userSelect.id, " cash_amount: ",userSelect.cash_amount)
+            postOrdersCharge(userSelect.id, userSelect.cash_amount, ip).then(response=>{
+              const {data} = response;
+              console.log(data)
+              getOrdersRedirectOrderNum(''+data.order_num).then(response=>{
+                console.log(response)
+              }).catch(err=>{
+                throw new Error(err)
+              })
+            }).catch(err=>{
+              console.log(err.message || 'failed')
+            })
+          }}
         >
           確認充值
         </button>

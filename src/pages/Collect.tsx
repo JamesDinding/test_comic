@@ -9,6 +9,7 @@ import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
 import RecommendTitleBar from "../components/Home/RecommendTitleBar";
 import { getMyBookmarks, getMyAcquisitions } from "../lib/api";
+import { useDomain } from "../context/domain";
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
 //col-span-full
@@ -25,6 +26,7 @@ const temp_collect_arr = [
 ];
 
 const CollectPage: FunctionalComponent = () => {
+  const { setDomain } = useDomain()
   const [collectList, setCollectList] = useState([]);
   const [acquisitions, setAcquisitions] = useState([]);
   const [curSelect, setCurSelect] = useState(0);
@@ -40,13 +42,14 @@ const CollectPage: FunctionalComponent = () => {
     try {
       if (curSelect === 0)
         (async () => {
-          const { data } = await getMyBookmarks();
+          const { data, domain } = await getMyBookmarks();
+          setDomain(domain);
           setCollectList(data);
         })();
       if (curSelect === 1)
         (async () => {
-          const { data } = await getMyAcquisitions();
-          console.log(data);
+          const { data, domain } = await getMyAcquisitions();
+          setDomain(domain);
           setAcquisitions(data);
         })();
     } catch {

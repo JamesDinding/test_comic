@@ -4,6 +4,7 @@ import { useEffect, useState } from "preact/hooks";
 import RecommendBlock from "./RecommendBlock";
 import Swiper from "./Swiper";
 import { getAllBlock } from "../../lib/api";
+import { useDomain } from '../../context/domain'
 
 interface BlockNameType {
   ID: number;
@@ -52,6 +53,7 @@ const queryString = block_name.map((b, i, a) => {
 const qeury_block = queryString.join("&");
 
 const HomeRecommend: FunctionalComponent = () => {
+  const {setDomain} = useDomain();
   const [blocks, setBlocks] = useState<RecommendationBlock>({});
   // temp
   const [tempBlocks, setTempBlocks] = useState([
@@ -75,8 +77,8 @@ const HomeRecommend: FunctionalComponent = () => {
   useEffect(() => {
     try {
       (async () => {
-        const { data } = await getAllBlock(qeury_block);
-        console.log("block", data);
+        const { data, domain } = await getAllBlock(qeury_block);
+        setDomain(domain)
         setBlocks(data);
       })();
     } catch (err: any) {

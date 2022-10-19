@@ -11,8 +11,10 @@ import {
   getSpecifiedBookChapterList,
   getSpecifiedBookIdContent,
 } from "../../lib/api";
+import { useDomain } from "../../context/domain";
 
 const ReadContentPage: FunctionalComponent = () => {
+  const { setDomain } = useDomain()
   const containerRef = useRef<HTMLDivElement>(null!);
   const { isPopControl, popControl, reset } = useReadingModal();
   const [parentPending, setParentPending] = useState(true);
@@ -25,13 +27,11 @@ const ReadContentPage: FunctionalComponent = () => {
   const [curComic, setCurComic] = useState(parseInt(window.location.pathname.split('/')[2], 10));
   const [curChapter, setCurChapter] = useState(parseInt(window.location.pathname.split('/')[4], 10));
 
-  console.log(curChapter)
-
   useEffect(() => {
     try {
-
       (async () => {
-        const { data } = await getSpecifiedBookIdContent(curComic, curChapter);
+        const { data, domain } = await getSpecifiedBookIdContent(curComic, curChapter);
+        setDomain(domain);
         setPageList(data.contents.images);
       })();
 

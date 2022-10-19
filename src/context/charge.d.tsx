@@ -1,24 +1,28 @@
-declare type UserSelectType = {
-  pay: string;
-  p_id: string;
-  p_way: string;
-  coins: string;
-  cost: number;
-};
-
 declare type PaymentType = {
-  pay: string;
-  p_id: string;
-  p_way: Array<string>;
+ id:number;
+ name:string;
+ type:string;
 };
 
 declare interface AllPaymentType {
-  payments: Array<PaymentType>;
+  payment: Array<PaymentType>;
+}
+
+declare interface SalesItem {
+  id: number;
+  name: string;
+  options?: {
+    body: string;
+    title: string;
+    type:string;
+  };
+  cash_amount: number;
+  token_amount: number;
 }
 
 declare interface ChargeContextType {
-  payments: Array<PaymentType> | null;
-  userSelect: UserSelectType;
-  selectCoins: (coins: string, cost: number) => void;
-  selectPay: (pay: string, p_id: string, p_way: string) => void;
+  payment: PaymentType | null;
+  userSelect: SalesItem;
+  selectCoins: (obj:any) => void;
+  selectPay: (obj:any) => void;
 }

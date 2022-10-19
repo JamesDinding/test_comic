@@ -215,15 +215,14 @@ export const postOrdersPurchase = async (id) => {
 }
 
 // 衝直
-export const postOrdersCharge = async (product_id, product_method_id, amount, client_ip) => {
+export const postOrdersCharge = async (product_payment_method_id, amount, client_ip) => {
   const response = await fetch('/api/v1/orders/charge', {
     method:"POST",
     headers:{
       "Content-Type" :"application/json"
     },
     body:JSON.stringify({
-      product_id,
-      product_method_id,
+      product_payment_method_id,
       amount,
       client_ip
     })

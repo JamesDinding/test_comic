@@ -5,6 +5,7 @@ import ModalTitle from "../../../UI/ModalTitle";
 import PaySelection from "./PaySelection";
 import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
+import { getOrdersProductsId } from "../../../../lib/api";
 
 type Payment = {
   name: string;
@@ -23,8 +24,20 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   onClose,
   onNextConfirm,
 }) => {
-  const { selectPay, payments, userSelect } = useCharge();
+  const { selectPay, userSelect } = useCharge();
   const [curExpand, setCurExpand] = useState(-1);
+  const [payments, setPayments] = useState<any>([])
+  const [way, setWay] = useState<any>([])
+
+  useEffect(()=>{
+    getOrdersProductsId(userSelect.id.toString()).then(response=>{
+      const {data} = response;
+      setWay(Object.keys(data))
+      setPayments(data)
+    }).catch(err=>{
+      console.log(err.message || 'failed')
+    })
+  }, [])
 
   return (
     <Card>
@@ -36,10 +49,11 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         <div className="relative w-full h-2/3">
           <div className="payment-shadow"></div>
           <div className="h-full px-1 overflow-y-auto no-scollbar bg-[#fffbf6]">
-            {payments?.map((payment, i) => {
+            {way?.map((way :any, i :any) => {
               const isNowExpand = curExpand === i;
               return (
                 <div
+                key={i}
                   className="w-full mt-2.5"
                   onClick={(e) => {
                     // if (curExpand === i) {
@@ -50,7 +64,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
                     setCurExpand(i);
                   }}
                 >
-                  <PaySelection payInfo={payment} isExpand={isNowExpand} />
+                  <PaySelection payInfo={payments[way]} isExpand={isNowExpand} />
                 </div>
               );
             })}

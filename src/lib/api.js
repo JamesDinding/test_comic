@@ -235,7 +235,17 @@ export const postOrdersCharge = async (product_id, product_method_id, amount, cl
   return data;
 }
 
+// 取得充值產品
+export const getOrdersProducts = curryFetch_GET('/orders/products');
 
+// 取得充值產品支付方式
+export const getOrdersProductsId = curryFetch_GET('/orders/products');
+
+// 跳轉支付位置
+export const getOrdersRedirectOrderNum = curryFetch_GET('/orders/redirect');
+
+
+// domain 已經被棄用
 // /api/v1/domain  RESOURCE
 export async function getDomains(type) {
   // const

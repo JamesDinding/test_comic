@@ -13,8 +13,10 @@ import ModalBuy from "../Modal/ModalBuy";
 import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
 import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
+import { useDomain } from "../../context/domain";
 
 const DirectoryContentPage: FunctionalComponent = () => {
+  const {setDomain} = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
   const [recommendBlock, setRecommendBlock] = useState();
@@ -25,9 +27,10 @@ const DirectoryContentPage: FunctionalComponent = () => {
 
   useEffect(() => {
     try {
-      getSpecifiedBook(cur_url).then(({ data }) => {
-        console.log("content", data);
+      getSpecifiedBook(cur_url).then((response) => {
+        const {data, domain} = response
         setContent(data);
+        setDomain(domain);
       });
     } catch (err: any) {
       console.error(err.message || "failed");

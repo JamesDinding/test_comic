@@ -1,27 +1,20 @@
 import { h, FunctionalComponent, createContext } from "preact";
-import { useState, useEffect, useContext } from "preact/hooks";
+import { useState, useEffect, useContext, StateUpdater } from "preact/hooks";
 
 const DomainContext = createContext({
   srcDomain: "",
+  setDomain:(src: string)=>{}
 });
+
 
 export const DomainProvider: FunctionalComponent = ({ children }) => {
   const [srcDomain, setSrcDomain] = useState("");
 
-  useEffect(() => {
-    fetch("/api/keyv1/domains?type=RESOURCE")
-      .then(async (res) => {
-        if (!res.ok) throw new Error("failed to fetch");
-        const { data } = await res.json();
-        setSrcDomain(data.RESOURCE[0]);
-      })
-      .catch((err) => {
-        console.error(err.message || "Something wrong!");
-      });
-  }, []);
-
   const value = {
     srcDomain,
+    setDomain: (src: string)=>{
+      setSrcDomain(src)
+    }
   };
 
   return (

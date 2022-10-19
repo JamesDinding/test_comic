@@ -948,6 +948,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-height: 0px;
 }
 
+.max-h-\[calc\(100\%-170px\)\] {
+  max-height: calc(100% - 170px);
+}
+
 .min-h-\[100px\] {
   min-height: 100px;
 }

@@ -41,9 +41,10 @@ const ModalBuy: FunctionalComponent = ({}) => {
             title="繼續閱讀"
             bgColor="bg-[#d19463]"
             cb={() => {
+              console.log(stuffInfo);
               postOrdersPurchase(stuffInfo?.id).then(response=>{
                 console.log(response);
-                route(`/read/${stuffInfo?.id}/chapter/${stuffInfo?.position}`)
+                route(`/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`)
               }).catch(err=>{
                 console.log(err)
               })

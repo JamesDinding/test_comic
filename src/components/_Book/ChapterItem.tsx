@@ -10,6 +10,7 @@ import ModalBuy from "../Modal/ModalBuy";
 const ChapterItem: FunctionalComponent<ChapterItem> = ({
   chapter,
   smallSize = false,
+  bookId = 0
 }) => {
   const { popBuy,setStuffInfo } = useReadingModal();
   const [isPending, setIsPending] = useState(false)
@@ -25,11 +26,11 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
         }
         onClick={() => {
           if (!chapter.status) {
-            setStuffInfo(chapter)
+            setStuffInfo({...chapter, bookId})
             popBuy();
             return;
           }
-          route("/read/" + chapter.id + "/chapter/" + chapter.position);
+          route("/read/" + bookId + "/chapter/" + chapter.position);
         }}
       >
         {!chapter.status && <div className="chapter-item-backdrop"></div>}

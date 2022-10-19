@@ -90,7 +90,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </button>
           </div>
           <div className="pb-10">
-            <ChapterList chapterList={content?.chapter || []} />
+            <ChapterList chapterList={content?.chapter || []} bookId={content?.id} />
           </div>
         </div>
         {/* <RecommendTitleBar BlockID={124} BlockName="新品上市" />

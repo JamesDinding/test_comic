@@ -10,14 +10,12 @@ interface BookListProps {
   isTemp?: boolean;
 }
 // temp
-const comicArr = ["123", "234", "345", "456", "567", "678"];
 
 const BookList: FunctionalComponent<BookListProps> = ({
   Rows = 3,
   ItemPerRow,
   Items,
   type = "original",
-  isTemp,
 }) => {
   return (
     <div className={`items-box grid grid-cols-${ItemPerRow} gap-2.5 py-4`}>

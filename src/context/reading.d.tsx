@@ -1,14 +1,22 @@
-interface ReadingContextType {
+
+declare type Stuff = {
+  comic_id:number;
+  price:number;
+}
+
+declare interface ReadingContextType {
   isPopControl: boolean;
   isPopChapter: boolean;
   isPopBuy: boolean;
+  stuffInfo?: ChapterData;
+  setStuffInfo: any;
   popControl: () => void;
   popChapter: () => void;
   popBuy: () => void;
   reset: () => void;
 }
 
-interface ReadingState {
+declare interface ReadingState {
   isPopControl: boolean;
   isPopChapter: boolean;
   isPopBuy: boolean;
@@ -16,6 +24,6 @@ interface ReadingState {
 
 type ReadingActionType = "onControl" | "onChapter" | "onBuy" | "reset";
 
-interface ReadingReducerAction {
+declare interface ReadingReducerAction {
   type: ReadingActionType;
 }

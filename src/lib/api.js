@@ -79,14 +79,14 @@ export const getMyTransactions = curryFetch_GET("/my/transactions");
 
 // 註冊帳號
 export async function postMyRegister(acc, ps) {
-  const response = await fetch("/my/register", {
+  const response = await fetch("/api/v1/my/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      acc: acc,
-      ps: ps,
+      username: acc,
+      password: ps,
     }),
   });
   const data = await response.json();
@@ -98,20 +98,38 @@ export async function postMyRegister(acc, ps) {
 
 // 更新綁定資訊
 export async function postMyProfile(phone, mail, name) {
-  const response = await fetch("/my/profile", {
+  const response = await fetch("/api/v1/my/profile", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       mobile: phone,
-      mail: mail,
+      email: mail,
       name: name,
     }),
   });
   const data = await response.json();
 
   if (data.error) throw new Error(data.message || route + " failed");
+
+  return data;
+}
+
+export async function postMyBookmarks(id, action){
+  const response = await fetch('/api/v1/my/bookmarks', {
+    method: "POST",
+    headers: {
+      "Content-Type" :"application/json"
+    },
+    body: JSON.stringify({
+      item_id: id,
+      action: action
+    })
+  });
+  const data = await response.json();
+
+  if(data.error) throw new Error(data.message || 'failed');
 
   return data;
 }
@@ -130,7 +148,14 @@ export const getAllBlock = curryFetch_GET_QUERY("/contents/blocks");
 export const getSpecifiedBook = curryFetch_GET("/contents/items");
 
 // 取得指定書本章節清單
-export const getSpecifiedBookChapterList = () => {};
+export const getSpecifiedBookChapterList = async (item) => {
+  const response = await fetch("/api/v1/contents/items/" + item + "/chapters");
+  const data = await response.json();
+
+  if (data.error) throw new Error(data.message || "failed");
+
+  return data;
+};
 
 // 取得指定書本敘述
 export const getSpecifiedBookDescription = () => {};
@@ -169,6 +194,47 @@ export async function createOrder(title, price) {
 
   return data;
 }
+
+// orders
+// 內購
+export const postOrdersPurchase = async (id) => {
+  const response = await fetch('/api/v1/orders/purchase', {
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+      chapter_id: id
+    })
+  })
+  const data = await response.json();
+
+  if(data.error) throw new Error(data.message || 'failed');
+
+  return data;
+}
+
+// 衝直
+export const postOrdersCharge = async (product_id, product_method_id, amount, client_ip) => {
+  const response = await fetch('/api/v1/orders/charge', {
+    method:"POST",
+    headers:{
+      "Content-Type" :"application/json"
+    },
+    body:JSON.stringify({
+      product_id,
+      product_method_id,
+      amount,
+      client_ip
+    })
+  })
+  const data = await response.json();
+
+  if(data.error) throw new Error(data.message || 'failed');
+
+  return data;
+}
+
 
 // /api/v1/domain  RESOURCE
 export async function getDomains(type) {

@@ -3,6 +3,7 @@ import { route } from "preact-router";
 import { useState, useRef, StateUpdater } from "preact/hooks";
 import InputField from "./InputField";
 import Btn from "../../UI/Btn";
+import { postMyRegister } from "../../../lib/api";
 import IconLogo from "../../../resources/img/logo-text.svg";
 
 interface LoginProps {}
@@ -120,7 +121,6 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
         <Btn
           title="註冊"
           cb={() => {
-            console.log("rehister");
             const errorTextAll = document.querySelectorAll(
               ".text-input-warning"
             );
@@ -137,8 +137,10 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
             }, 1000);
 
             if (!isInputCorrect()) return;
-            // login(accountRef.current.value, psRef.current.value);
-            route("/member");
+            postMyRegister(accountRef.current.value, psRef.current.value).then(data=>{
+              console.log('register resopnse data:', data)
+              route("/member");
+            })
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">

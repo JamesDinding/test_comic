@@ -2,12 +2,12 @@ import { h, FunctionalComponent } from "preact";
 import { route } from "preact-router";
 import { useReadingModal } from "../../context/reading";
 import { useUser } from "../../context/user";
-import { createOrder } from "../../lib/api";
+import { createOrder, postOrdersPurchase } from "../../lib/api";
 import Btn from "../UI/Btn";
 import IconCross from "../../resources/img/icon-cross.svg";
 
 const ModalBuy: FunctionalComponent = ({}) => {
-  const { isPopBuy, reset } = useReadingModal();
+  const { isPopBuy, stuffInfo, reset } = useReadingModal();
   let layerCss = isPopBuy ? "" : "translate-y-[120%]";
   const { userStatus } = useUser();
 
@@ -40,11 +40,13 @@ const ModalBuy: FunctionalComponent = ({}) => {
           <Btn
             title="繼續閱讀"
             bgColor="bg-[#d19463]"
-            cb={async () => {
-              // call api
-              const data = await createOrder("名稱最長五-1", 60);
-              console.log(data);
-              // route("/reading/1235");
+            cb={() => {
+              postOrdersPurchase(stuffInfo?.id).then(response=>{
+                console.log(response);
+                route(`/read/${stuffInfo?.id}/chapter/${stuffInfo?.position}`)
+              }).catch(err=>{
+                console.log(err)
+              })
             }}
           />
           <div className="mt-2.5 text-center text-[rgba(158,118,84,0.6)]">

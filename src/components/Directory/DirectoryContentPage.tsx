@@ -12,24 +12,20 @@ import { ObserverProvider } from "../../context/observer";
 import ModalBuy from "../Modal/ModalBuy";
 import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
-import { getAllBlock, getSpecifiedBook } from "../../lib/api";
-
-const comicArr = ["123", "234", "345", "456", "567", "678"];
-//col-span-full
-const adArr = ["fxck_me"];
+import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
 
 const DirectoryContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
   const [recommendBlock, setRecommendBlock] = useState();
 
+  const cur_url = window.location.href.split("/").pop();
   // temp collection state
   const [isCollected, setIsCollected] = useState(false);
 
-  console.log("content page");
   useEffect(() => {
     try {
-      getSpecifiedBook("1").then(({ data }) => {
+      getSpecifiedBook(cur_url).then(({ data }) => {
         console.log("content", data);
         setContent(data);
       });
@@ -43,7 +39,6 @@ const DirectoryContentPage: FunctionalComponent = () => {
       (async () => {
         const { data } = await getAllBlock("type=吸睛首選");
         setRecommendBlock(data);
-        console.log(data);
       })();
     } catch (err: any) {
       console.log(err.message || "failed");
@@ -54,7 +49,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
     <F>
       <ObserverProvider rootElement={containerRef}>
         <ModalBuy />
-        <ReturnBar title="test" />
+        <ReturnBar title={content?.title || ''} />
         <div
           class="grow overflow-hidden overflow-y-auto px-5"
           ref={containerRef}
@@ -71,13 +66,18 @@ const DirectoryContentPage: FunctionalComponent = () => {
           <div className="flex mb-5">
             <button
               className="w-full py-2.5 text-center text-white text-lg bg-[#d19463] rounded-xl"
-              onClick={() => route("/read/1/chapter/1")}
+              onClick={() => route("/read/" + cur_url + "/chapter/1")}
             >
               開始閱讀
             </button>
             <button
               className="flex flex-col items-center ml-5 w-12"
-              onClick={() => setIsCollected((prev) => !prev)}
+              onClick={ () => {
+                setIsCollected((prev) => !prev);
+                postMyBookmarks(content?.id, isCollected?'remove':'add').then(data=>{
+                  console.log('req response data:', data);
+                })
+              }}
             >
               {isCollected ? (
                 <IconBookmark class="w-8 h-8" />

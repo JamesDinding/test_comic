@@ -15,8 +15,6 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
 }) => {
   const [showPending, setPending] = useState(true);
 
-  console.log(Data.Cover || Data.covers?.thumb || "")
-
   // cover and title is separated
   if (type === "separate")
     return (

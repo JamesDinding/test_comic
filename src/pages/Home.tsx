@@ -5,6 +5,7 @@ import CategoryListBar from "../components/Home/CategoryListBar";
 import BrandBar from "../components/Home/BrandBar";
 import Recommend from "../components/Home/Recommend";
 import CategoryItemList from "../components/Home/CategoryItemList";
+import BookList from "../components/_Book/List";
 import { getDomains } from "../lib/api";
 import { ObserverProvider } from "../context/observer";
 import { useDomain } from "../context/domain";
@@ -20,6 +21,8 @@ const HomePage: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null!);
   const [categories, setCategories] = useState<Array<{name:string, id:number}>>([])
+  const [showSearch, setShowSearch] = useState(false)
+  const [searchResult, setSearchResult] = useState<Book[]>([])
 
     useEffect(()=>{
         try{
@@ -42,12 +45,19 @@ const HomePage: FunctionalComponent = () => {
 
       <div class="grow overflow-hidden overflow-y-auto" ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>
-          <BrandBar />
-          <CategoryListBar onCategoryChanged={setCurrentCategory} categories={categories} />
+          <BrandBar onShowSearch={setShowSearch} onSearchResult={setSearchResult} />
+          <CategoryListBar onCategoryChanged={setCurrentCategory} categories={[{name:'首頁', id:0}].concat(categories)} />
 
           <PullToRefresh containerElement={containerRef}>
             {currentCategory == 0 ? (
-              <Recommend />
+              showSearch ? <div className="mx-5">
+              <BookList
+                Items={searchResult}
+                ItemPerRow={3}
+                type={"separate"}
+                isTemp={true}
+              />
+            </div> : <Recommend />
             ) : (
               <CategoryItemList catID={categories[currentCategory].id} />
             )}

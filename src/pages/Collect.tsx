@@ -73,7 +73,7 @@ const CollectPage: FunctionalComponent = () => {
         setCurSelect={setCurSelect}
       />
       <div
-        class="grow relative bg-white overflow-y-auto no-scrollbar flex flex-col"
+        class="relative bg-white overflow-y-auto no-scrollbar flex flex-col"
         ref={containerRef}
       >
         <ObserverProvider rootElement={containerRef}>
@@ -147,6 +147,7 @@ const CollectPage: FunctionalComponent = () => {
               </F>
             ))}
         </ObserverProvider>
+        <div className="grow"></div>
       </div>
       <FooterBar />
     </F>

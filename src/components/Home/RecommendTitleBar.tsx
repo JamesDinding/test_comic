@@ -20,7 +20,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
 }) => {
   const pic = blockTitle.get(BlockName) || "crown";
   return (
-    <div class="flex items-center item-header item-header-bg select-none text-lg font-semibold leading-8 text-[#9e7654] h-8 tracking-widest">
+    <div class="flex items-center item-header item-header-bg select-none text-lg font-semibold leading-8 text-[#6d5694] h-8 tracking-widest">
       <div className="w-[60px]">
         <img
           src={`/assets/img/title/${pic}@3x.png`}

@@ -16,7 +16,7 @@ import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 
 const DirectoryContentPage: FunctionalComponent = () => {
-  const {setDomain} = useDomain();
+  const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
   const [recommendBlock, setRecommendBlock] = useState();
@@ -28,8 +28,9 @@ const DirectoryContentPage: FunctionalComponent = () => {
   useEffect(() => {
     try {
       getSpecifiedBook(cur_url).then((response) => {
-        const {data, domain} = response
+        const { data, domain } = response;
         setContent(data);
+        setIsCollected(data.bookmark_status);
         setDomain(domain);
       });
     } catch (err: any) {
@@ -52,7 +53,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
     <F>
       <ObserverProvider rootElement={containerRef}>
         <ModalBuy />
-        <ReturnBar title={content?.title || ''} />
+        <ReturnBar title={content?.title || ""} />
         <div
           class="grow overflow-hidden overflow-y-auto px-5"
           ref={containerRef}
@@ -63,8 +64,8 @@ const DirectoryContentPage: FunctionalComponent = () => {
             author={content?.creator}
             description={content?.description}
             cover={content?.covers.thumb}
-            views={2.2}
-            collections={3.5}
+            views={content?.views}
+            hot={content?.hot}
           />
           <div className="flex mb-5">
             <button
@@ -75,11 +76,14 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </button>
             <button
               className="flex flex-col items-center ml-5 w-12"
-              onClick={ () => {
+              onClick={() => {
                 setIsCollected((prev) => !prev);
-                postMyBookmarks(content?.id, isCollected?'remove':'add').then(data=>{
-                  console.log('req response data:', data);
-                })
+                postMyBookmarks(
+                  content?.id,
+                  isCollected ? "remove" : "add"
+                ).then((data) => {
+                  console.log("req response data:", data);
+                });
               }}
             >
               {isCollected ? (
@@ -93,7 +97,10 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </button>
           </div>
           <div className="pb-10">
-            <ChapterList chapterList={content?.chapter || []} bookId={content?.id} />
+            <ChapterList
+              chapterList={content?.chapter || []}
+              bookId={content?.id}
+            />
           </div>
         </div>
         {/* <RecommendTitleBar BlockID={124} BlockName="新品上市" />

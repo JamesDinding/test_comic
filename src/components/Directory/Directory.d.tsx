@@ -30,5 +30,8 @@ declare interface Content {
     thumb: string;
     thumbx: string;
   };
+  bookmark_status: boolean;
+  hot: string;
+  views: string;
   chapter: Array<ChapterData>;
 }

@@ -81,7 +81,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
     <F>
       <div className="grow flex flex-col items-center py-5 px-12 w-full text-[#9e7654] bg-cartoon bg-[length:100%_100%] bg-no-repeat">
         <IconLogo class="w-[150px] h-[44px] mt-12 mb-4" />
-        <div className="text-xs text-[#d29a6a] tracking-[10px] mb-5">
+        <div className="text-xs text-[#8d6d9f] tracking-[10px] mb-5">
           |最多精彩二次元动漫|
         </div>
         <InputField

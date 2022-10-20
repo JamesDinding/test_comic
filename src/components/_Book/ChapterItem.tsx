@@ -49,7 +49,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
         </ObserverProvider>
         <div className="item-overlay-chapter"></div>
         <div className="absolute left-1/2 bottom-[.25rem] translate-x-[-50%] whitespace-nowrap text-sm text-white text-center w-[70px] h-[20px] leading-[20px]">
-          名稱最長五
+          第 {chapter.position} 章
         </div>
       </div>
     </F>

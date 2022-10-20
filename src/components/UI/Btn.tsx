@@ -9,7 +9,7 @@ interface BtnProps {
 const Btn: FunctionalComponent<BtnProps> = ({
   title,
   cb,
-  bgColor = "bg-[#d19463]",
+  bgColor = "bg-[#8d6d9f]",
 }) => {
   return (
     <button

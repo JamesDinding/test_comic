@@ -7,8 +7,8 @@ interface DescriptionProps {
   title?: string;
   author?: string;
   description?: string;
-  views?: number;
-  collections?: number;
+  views?: string;
+  hot?: string;
   cover?: string;
 }
 
@@ -17,8 +17,8 @@ const Description: FunctionalComponent<DescriptionProps> = ({
   author,
   description,
   cover,
-  views = 2.2,
-  collections = 3.3,
+  views,
+  hot,
 }) => {
   const [showPending, setPending] = useState(true);
   const [isPending, setIsPending] = useState(true);
@@ -55,10 +55,10 @@ const Description: FunctionalComponent<DescriptionProps> = ({
           </div>
           <div className="flex items-center w-full mt-1 text-[#a8a8a8]">
             <span className="mr-2 text-[.6rem] book-oneline">
-              <span>★&nbsp;{views}</span>
+              <span>★&nbsp;{hot}</span>
             </span>
             <span className="mr-2 text-[.6rem] book-oneline">
-              <span>◉&nbsp;{collections}</span>
+              <span>◉&nbsp;{views}</span>
             </span>
           </div>
         </div>

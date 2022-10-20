@@ -55,24 +55,7 @@ const qeury_block = queryString.join("&");
 const HomeRecommend: FunctionalComponent = () => {
   const {setDomain} = useDomain();
   const [blocks, setBlocks] = useState<RecommendationBlock>({});
-  // temp
-  const [tempBlocks, setTempBlocks] = useState([
-    { ID: 0, Name: "論波圖", Items: [{ ID: 123, Cover: "", Name: "" }] },
-    { ID: 1, Name: "吸睛首選", Items: [{ ID: 123, Cover: "", Name: "" }] },
-    { ID: 2, Name: "新書強推", Items: [{ ID: 123, Cover: "", Name: "" }] },
-    { ID: 10077, Name: "本週更新", Items: [{ ID: 123, Cover: "", Name: "" }] },
-    { ID: 10078, Name: "3D主打", Items: [{ ID: 123, Cover: "", Name: "" }] },
-    {
-      ID: 10079,
-      Name: "熱門Cosplay",
-      Items: [{ ID: 123, Cover: "", Name: "" }],
-    },
-    { ID: 10080, Name: "私人收藏", Items: [{ ID: 123, Cover: "", Name: "" }] },
-  ]);
 
-  const [tempBanner, setTempBanner] = useState<{ Cover: string; ID: number }[]>(
-    []
-  );
 
   useEffect(() => {
     try {

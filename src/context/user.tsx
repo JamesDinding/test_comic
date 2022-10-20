@@ -68,6 +68,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
   const getUserStatusHandler = useCallback(async () => {
     const { data } = await getProfile();
+    setID(data?.id || 0);
     setCoins(data?.coins || 0);
     setVip(data?.vip_time || null);
   }, []);

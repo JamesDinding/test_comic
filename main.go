@@ -14,8 +14,7 @@ func main() {
 
 	app.Use(filesystem.New(filesystem.Config{
 		Root:         http.FS(dw.Files),
-		Browse:       true,
-		Index:        "1index.html",
+		Index:        "index.html",
 		NotFoundFile: "index.html",
 	}))
 

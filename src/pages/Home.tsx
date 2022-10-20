@@ -24,6 +24,7 @@ const HomePage: FunctionalComponent = () => {
   const [searchResult, setSearchResult] = useState<Book[]>([]);
 
   useEffect(() => {
+    if (categories.length !== 0) return;
     try {
       (async () => {
         const { data } = await getCategories();
@@ -32,7 +33,7 @@ const HomePage: FunctionalComponent = () => {
     } catch (err: any) {
       console.log(err.message || "failed");
     }
-  }, []);
+  }, [categories]);
 
   return (
     <>

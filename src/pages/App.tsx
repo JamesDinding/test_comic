@@ -3,7 +3,7 @@ import "preact/debug";
 
 import { FunctionalComponent, h, Fragment } from "preact";
 import Router from "preact-router";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 import { ChargeProvider } from "../context/charge";
 import { UserProvider } from "../context/user";
@@ -28,9 +28,41 @@ import SearchPage from "./Search";
 import TestPage from "./Test";
 
 const App: FunctionalComponent = () => {
-  const [showSmartBanner, setShowSmartBanner] = useState(true);
+  // const [showSmartBanner, setShowSmartBanner] = useState(true);
+  const [hadSendTC, setHadSendTC] = useState(true);
 
-  return (
+  useEffect(() => {
+    if (hadSendTC) return;
+    function getQueryVariable(variable: string) {
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (decodeURIComponent(pair[0]) == variable) {
+          return decodeURIComponent(pair[1]);
+        }
+      }
+      console.log("Query variable %s not found", variable);
+      return null;
+    }
+    const tt = getQueryVariable("tt") || "";
+    const tc = getQueryVariable("tc") || "";
+    fetch(`/api/v1/init?tt=${tt}&tc=${tc}`)
+      .then((res) => {
+        console.log(res);
+        if (!res.ok) throw new Error("referrer no response");
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setHadSendTC(true);
+      })
+      .catch((err) => {
+        console.error(err.message || "referrer error");
+      });
+  }, [hadSendTC]);
+
+  return hadSendTC ? (
     <DomainProvider>
       <UserProvider>
         <ChargeProvider>
@@ -75,6 +107,8 @@ const App: FunctionalComponent = () => {
         </ChargeProvider>
       </UserProvider>
     </DomainProvider>
+  ) : (
+    <div></div>
   );
 };
 

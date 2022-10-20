@@ -29,8 +29,8 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
           返回
         </div>
       </div>
-      <div className="grow">
-        <div className="text-center text-[#666666] text-ellipsis whitespace-nowrap text-x overflow-hidden">
+      <div className="grow overflow-hidden mx-4">
+        <div className="text-center text-[#666666] book-oneline whitespace-nowrap text-xs">
           {title}
         </div>
       </div>

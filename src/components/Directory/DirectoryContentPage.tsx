@@ -30,6 +30,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
       getSpecifiedBook(cur_url).then((response) => {
         const { data, domain } = response;
         setContent(data);
+        setIsCollected(data.bookmark_status);
         setDomain(domain);
       });
     } catch (err: any) {
@@ -63,8 +64,8 @@ const DirectoryContentPage: FunctionalComponent = () => {
             author={content?.creator}
             description={content?.description}
             cover={content?.covers.thumb}
-            views={2.2}
-            collections={3.5}
+            views={content?.views}
+            hot={content?.hot}
           />
           <div className="flex mb-5">
             <button
@@ -79,19 +80,19 @@ const DirectoryContentPage: FunctionalComponent = () => {
                 setIsCollected((prev) => !prev);
                 postMyBookmarks(
                   content?.id,
-                  content?.bookmark_status ? "remove" : "add"
+                  isCollected ? "remove" : "add"
                 ).then((data) => {
                   console.log("req response data:", data);
                 });
               }}
             >
-              {content?.bookmark_status ? (
+              {isCollected ? (
                 <IconBookmark class="w-8 h-8" />
               ) : (
                 <IconBookmarkGray class="w-8 h-8" />
               )}
               <span className="text-xs text-[#666666] text-center whitespace-nowrap">
-                {content?.bookmark_status ? "已收藏" : "收藏"}
+                {isCollected ? "已收藏" : "收藏"}
               </span>
             </button>
           </div>

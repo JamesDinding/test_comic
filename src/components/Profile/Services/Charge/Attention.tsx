@@ -9,7 +9,7 @@ const att = [
 
 const Attention: FunctionalComponent = () => {
   return (
-    <div className="text-[#9e7654]">
+    <div className="text-[#6d5694]">
       <div className="charge-attention-title">注意事项</div>
       <ul className="py-2.5">
         {att.map((a, i, arr) => {

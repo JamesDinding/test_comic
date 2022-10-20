@@ -50,7 +50,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         <ModalTitle title="選擇支付方案" onClose={onClose} />
         <div className="relative w-full h-2/3">
           <div className="payment-shadow"></div>
-          <div className="h-full px-1 overflow-y-auto no-scollbar bg-[#fffbf6]">
+          <div className="h-full px-1 overflow-y-auto no-scollbar bg-[#fcf6ff]">
             {way?.map((way: any, i: any) => {
               const isNowExpand = curExpand === i;
               return (
@@ -77,7 +77,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         </div>
         <div className="grow"></div>
         <button
-          className="w-full py-4 text-center text-white text-lg bg-[#d19463] rounded-xl"
+          className="w-full py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
           onClick={() => {
             console.log(payment);
             if (!payment) return;

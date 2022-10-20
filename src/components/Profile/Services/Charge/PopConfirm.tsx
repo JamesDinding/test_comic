@@ -50,18 +50,18 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
 
   return (
     <Card>
-      <div className="relative overflow-auto no-scrollbar text-[#9e7654] flex flex-col items-center h-full p-5">
+      <div className="relative overflow-auto no-scrollbar text-[#6d5694] flex flex-col items-center h-full p-5">
         <ModalTitle title="訂單確認" onClose={onClose} />
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 mt-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>方案 : </div>
-          <div>
+          <div className="text-[#666666]">
             金幣充值 -{" "}
             <span className="text-[#dc6060]">{userSelect.token_amount}</span> 枚
           </div>
         </div>
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>支付方式 :</div>
-          <div>
+          <div className="text-[#666666]">
             {payment?.type} - {payment?.name}
           </div>
         </div>
@@ -121,7 +121,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
         <button
           id="validation-4"
           tabIndex={5}
-          className="w-full py-4 mt-[3.625rem] bg-[#ff978d] rounded-lg text-center text-xl text-white"
+          className="w-full py-4 mt-[3.625rem] bg-[#eb6f6f] rounded-lg text-center text-xl text-white"
           onClick={()=>{
             console.log("id: ",userSelect.id, " cash_amount: ",userSelect.cash_amount)
             postOrdersCharge(payment?.id, userSelect.cash_amount, ip).then(response=>{

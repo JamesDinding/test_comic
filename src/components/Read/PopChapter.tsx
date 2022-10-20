@@ -6,8 +6,16 @@ import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconCross from "../../resources/img/icon-cross.svg";
 import IconSort from "../../resources/img/icon-sort.svg";
 
+interface PopChapterProps extends ChapterList {
+  changeChapter: StateUpdater<number>;
+}
+
 let layerCss = "translate-y-full";
-const PopChapter: FunctionalComponent<ChapterList> = ({ chapterList }) => {
+const PopChapter: FunctionalComponent<PopChapterProps> = ({
+  chapterList,
+  bookId,
+  changeChapter,
+}) => {
   const { isPopChapter, reset } = useReadingModal();
   layerCss = isPopChapter ? "" : "translate-y-[120%]";
 
@@ -31,7 +39,16 @@ const PopChapter: FunctionalComponent<ChapterList> = ({ chapterList }) => {
       </div>
       <div className="grid grid-cols-3 gap-2.5 px-5 py-2.5">
         {chapterList.map((c, i, arr) => {
-          return <ChapterItem chapter={c} smallSize={false} />;
+          return (
+            <div
+              onClick={() => {
+                // event bubbling, 所以會觸發
+                changeChapter(c.position);
+              }}
+            >
+              <ChapterItem chapter={c} bookId={bookId} smallSize={false} />
+            </div>
+          );
         })}
       </div>
     </div>

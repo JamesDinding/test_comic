@@ -7,18 +7,17 @@ declare type ChapterData = {
   status: boolean;
   price: number;
   position: number;
-  
 };
 
 declare type ChapterItem = {
   chapter: ChapterData;
   smallSize?: boolean;
-  bookId?:number;
+  bookId?: number;
 };
 
 declare interface ChapterList {
   chapterList: Array<ChapterData>;
-  bookId?:number;
+  bookId?: number;
 }
 
 declare interface Content {

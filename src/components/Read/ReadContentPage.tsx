@@ -21,9 +21,7 @@ const ReadContentPage: FunctionalComponent = () => {
   const [pageList, setPageList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
   // 暫時先這樣寫
-  const cur_path = window.location.pathname;
   // [ _, _, comicId, _, chapterId ]
-  const cur_path_arr = cur_path.split("/");
   const [curComic, setCurComic] = useState(
     parseInt(window.location.pathname.split("/")[2], 10)
   );
@@ -59,7 +57,11 @@ const ReadContentPage: FunctionalComponent = () => {
 
   return (
     <F>
-      <PopChapter chapterList={chapterList} />
+      <PopChapter
+        chapterList={chapterList}
+        bookId={curComic}
+        changeChapter={setCurChapter}
+      />
       <PopControl
         pageNum={pageList.length}
         curChapter={curChapter}
@@ -80,7 +82,7 @@ const ReadContentPage: FunctionalComponent = () => {
         }}
         ref={containerRef}
       >
-        <PopReturn />
+        <PopReturn bookId={curComic} />
         <ObserverProvider rootElement={containerRef}>
           {pageList?.map((page, i, arr) => {
             return (

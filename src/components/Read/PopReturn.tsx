@@ -1,14 +1,16 @@
 import { h, FunctionalComponent } from "preact";
+import { route } from "preact-router";
 import { Link } from "preact-router";
 import { useReadingModal } from "../../context/reading";
 import IconCoin from "../../resources/img/icon-coin.svg";
 import IconArrow from "../../resources/img/icon-arrow.svg";
 
 interface PopReturnProps {
+  bookId: number;
 }
 
-const PopReturn: FunctionalComponent<PopReturnProps> = ({  }) => {
-  const {isPopControl} = useReadingModal();
+const PopReturn: FunctionalComponent<PopReturnProps> = ({ bookId }) => {
+  const { isPopControl } = useReadingModal();
 
   return (
     <div
@@ -19,7 +21,7 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({  }) => {
     >
       <div
         className="flex flex-col items-center text-white cursor-pointer"
-        onClick={() => history.back()}
+        onClick={() => route(`/directory/${bookId}`)}
       >
         <span className="mb-[.125rem]">
           <IconArrow class="w-[1.125rem] text-white" />

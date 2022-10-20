@@ -22,7 +22,7 @@ const ChargeList: FunctionComponent = () => {
     try {
       getMyOrders().then(({ data }) => {
         console.log(data);
-        setChargeList([]);
+        setChargeList(data);
       });
     } catch (err: any) {
       console.error(err.message);

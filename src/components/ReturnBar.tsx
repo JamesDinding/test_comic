@@ -30,7 +30,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
         </div>
       </div>
       <div className="grow overflow-hidden mx-4">
-        <div className="text-center text-[#666666] book-oneline whitespace-nowrap text-xs">
+        <div className="text-center text-[#666666] book-oneline whitespace-nowrap">
           {title}
         </div>
       </div>

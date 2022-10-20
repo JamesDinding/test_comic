@@ -56,7 +56,7 @@ const ServiceList: FunctionalComponent = () => {
         </div>
         {isLogIn ? (
           <div
-            className="bg-white mb-5 py-2.5 px-5 text-[#9e7654] text-sm"
+            className="bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
             onClick={() => {
               logout();
             }}
@@ -65,7 +65,7 @@ const ServiceList: FunctionalComponent = () => {
           </div>
         ) : (
           <Link
-            className="bg-white mb-5 py-2.5 px-5 text-[#9e7654] text-sm"
+            className="bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
             href="/login"
           >
             登錄

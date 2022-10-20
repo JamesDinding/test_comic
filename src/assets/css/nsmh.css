@@ -593,6 +593,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin: 2rem;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -631,11 +636,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-}
-
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 
 .my-10 {
@@ -1331,10 +1331,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow-y: scroll;
 }
 
-.text-ellipsis {
-  text-overflow: ellipsis;
-}
-
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -1504,12 +1500,25 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(244 244 244 / var(--tw-border-opacity));
 }
 
+.border-\[rgba\(109\2c 86\2c 148\2c 0\.4\)\] {
+  border-color: rgba(109,86,148,0.4);
+}
+
+.border-\[\#6d5694\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(109 86 148 / var(--tw-border-opacity));
+}
+
 .border-l-\[\#9e765499\] {
   border-left-color: #9e765499;
 }
 
 .border-t-\[\#9e765499\] {
   border-top-color: #9e765499;
+}
+
+.border-l-\[\#6d569499\] {
+  border-left-color: #6d569499;
 }
 
 .bg-gray-200 {
@@ -1641,6 +1650,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#a186af\] {
   --tw-bg-opacity: 1;
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#8d6d9f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(141 109 159 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#fcf6ff\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 246 255 / var(--tw-bg-opacity));
 }
 
 .bg-userSection {
@@ -1900,11 +1919,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 12px;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1917,6 +1931,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .text-\[\.6rem\] {
@@ -2194,6 +2213,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(149 118 84 / var(--tw-text-opacity));
 }
 
+.text-\[\#6d5694\] {
+  --tw-text-opacity: 1;
+  color: rgb(109 86 148 / var(--tw-text-opacity));
+}
+
+.text-\[\#8d6d9f\] {
+  --tw-text-opacity: 1;
+  color: rgb(141 109 159 / var(--tw-text-opacity));
+}
+
 .opacity-60 {
   opacity: 0.6;
 }
@@ -2246,7 +2275,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 :root {
   --brown: #d19463;
-  --brown-text: #9e7654;
+  --brown-text: #6d5694;
   --brown-light: #f8c889;
   --brown-heavy: #9f7b5d;
   --pink: #ff978d;
@@ -2394,7 +2423,7 @@ input[type="number"] {
   line-height: 1.75rem;
   letter-spacing: 0.05em;
   --tw-text-opacity: 1;
-  color: rgb(158 118 84 / var(--tw-text-opacity));
+  color: rgb(109 86 148 / var(--tw-text-opacity));
 }
 
 .modal-cross {
@@ -2642,7 +2671,7 @@ input[type="number"] {
   border-width: 1px;
   border-style: solid;
   --tw-border-opacity: 1;
-  border-color: rgb(158 118 84 / var(--tw-border-opacity));
+  border-color: rgb(109 86 148 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   padding-top: 0.625rem;
@@ -2652,7 +2681,7 @@ input[type="number"] {
   font-size: 0.875rem;
   line-height: 1.25rem;
   --tw-text-opacity: 1;
-  color: rgb(158 118 84 / var(--tw-text-opacity));
+  color: rgb(109 86 148 / var(--tw-text-opacity));
 }
 
 .charge-item {
@@ -2776,7 +2805,7 @@ input[type="number"] {
   font-size: 1.125rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
-  color: rgb(158 118 84 / var(--tw-text-opacity));
+  color: rgb(109 86 148 / var(--tw-text-opacity));
   border-color: rgba(158, 118, 84, 0.4);
 }
 
@@ -2844,7 +2873,7 @@ input[type="number"] {
   font-weight: 700;
   --tw-text-opacity: 1 !important;
   color: rgb(55 65 81 / var(--tw-text-opacity)) !important;
-  background: linear-gradient(to bottom, #ffffff80, #ffdacb80);
+  background: linear-gradient(to bottom, #ffffff80, #c7b5e680);
 }
 
 /* recovery頁面 */
@@ -2859,24 +2888,24 @@ input[type="number"] {
   border-width: .2rem;
   border-style: solid;
   --tw-border-opacity: 1;
-  border-color: rgb(158 118 84 / var(--tw-border-opacity));
+  border-color: rgb(109 86 148 / var(--tw-border-opacity));
   font-weight: 600;
   --tw-text-opacity: 1;
-  color: rgb(158 118 84 / var(--tw-text-opacity));
+  color: rgb(109 86 148 / var(--tw-text-opacity));
 }
 
 .recovery-phase-dash {
   height: .2rem;
   flex-grow: 1;
   --tw-bg-opacity: 1;
-  background-color: rgb(158 118 84 / var(--tw-bg-opacity));
+  background-color: rgb(109 86 148 / var(--tw-bg-opacity));
 }
 
 /* 首頁區塊 */
 
 .item-header-bg {
   border-radius: 0.25rem;
-  background: linear-gradient(to right, #ffdacb -89%, #ffffff80);
+  background: linear-gradient(to right, #c7b5e6 -89%, #ffffff80);
 }
 
 .item {
@@ -3130,7 +3159,7 @@ footer .active span {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   background-repeat: no-repeat;
-  background-image: linear-gradient(#9e7654, #9e7654);
+  background-image: linear-gradient(#6d5694, #6d5694);
   background-size: 0% 100%;
 }
 

@@ -23,7 +23,7 @@ const ProfilePage: FunctionalComponent = () => {
   return (
     <>
       <ReturnBar title="會員中心" />
-      <div class="relative grow bg-[#fffbf6] overflow-y-auto no-scrollbar">
+      <div class="relative grow bg-[#fcf6ff] overflow-y-auto no-scrollbar">
         <div className="px-5 mb-1 bg-white">
           <UserSection showVIP={true} />
         </div>

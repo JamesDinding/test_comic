@@ -4,7 +4,7 @@
 
 :root {
   --brown: #d19463;
-  --brown-text: #9e7654;
+  --brown-text: #6d5694;
   --brown-light: #f8c889;
   --brown-heavy: #9f7b5d;
   --pink: #ff978d;
@@ -91,7 +91,7 @@ input[type="number"] {
 }
 
 .modal-title {
-  @apply w-full mt-6 pb-2.5 text-center text-[#9e7654] text-lg tracking-wider border-b-[1px] border-solid border-[rgba(158,118,84,.4)];
+  @apply w-full mt-6 pb-2.5 text-center text-[#6d5694] text-lg tracking-wider border-b-[1px] border-solid border-[rgba(158,118,84,.4)];
 }
 
 .modal-cross {
@@ -246,7 +246,7 @@ input[type="number"] {
 
 /* 充值頁面 */
 .charge-input-container {
-  @apply w-full py-2.5 px-5 bg-white rounded-lg border-solid border-[1px] border-[#9e7654] text-[#9e7654] text-sm;
+  @apply w-full py-2.5 px-5 bg-white rounded-lg border-solid border-[1px] border-[#6d5694] text-[#6d5694] text-sm;
 }
 
 .charge-item {
@@ -311,7 +311,7 @@ input[type="number"] {
 
 /* 章節目錄 */
 .chapter-title {
-  @apply text-lg text-[#9e7654] border-b-2 pb-2;
+  @apply text-lg text-[#6d5694] border-b-2 pb-2;
   border-color: rgba(158, 118, 84, 0.4);
 }
 
@@ -345,23 +345,23 @@ input[type="number"] {
 
 .category-item.active {
   @apply !px-2 !text-gray-700 font-bold;
-  background: linear-gradient(to bottom, #ffffff80, #ffdacb80);
+  background: linear-gradient(to bottom, #ffffff80, #c7b5e680);
 }
 
 /* recovery頁面 */
 .recovery-phase-circle {
-  @apply flex items-center justify-center w-10 h-10 border-[.2rem] border-solid border-[#9e7654] rounded-full text-[#9e7654] font-semibold;
+  @apply flex items-center justify-center w-10 h-10 border-[.2rem] border-solid border-[#6d5694] rounded-full text-[#6d5694] font-semibold;
 }
 
 .recovery-phase-dash {
-  @apply grow h-[.2rem] bg-[#9e7654];
+  @apply grow h-[.2rem] bg-[#6d5694];
 }
 
 /* 首頁區塊 */
 
 .item-header-bg {
   @apply rounded;
-  background: linear-gradient(to right, #ffdacb -89%, #ffffff80);
+  background: linear-gradient(to right, #c7b5e6 -89%, #ffffff80);
 }
 
 .item {
@@ -496,7 +496,7 @@ footer .active span {
 /* Reading page range input bar */
 .input-range-page {
   @apply h-[.15rem] appearance-none bg-white bg-no-repeat;
-  background-image: linear-gradient(#9e7654, #9e7654);
+  background-image: linear-gradient(#6d5694, #6d5694);
   background-size: 0% 100%;
 }
 

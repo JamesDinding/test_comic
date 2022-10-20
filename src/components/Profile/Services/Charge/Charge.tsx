@@ -2,6 +2,7 @@ import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect } from "preact/compat";
 import { createPortal } from "preact/compat";
 import { useCharge } from "../../../../context/charge";
+import { useUser } from "../../../../context/user";
 import BackDrop from "../../../BackDrop";
 import PopPayment from "./PopPayment";
 import PopConfirm from "./PopConfirm";
@@ -9,6 +10,7 @@ import Attention from "./Attention";
 import IconDiscountCoins from "../../../../resources/img/icon-discount-coins.svg";
 import IconDiscountVip from "../../../../resources/img/icon-discount-vip.svg";
 import { getOrdersProducts } from "../../../../lib/api";
+import { route } from "preact-router";
 
 declare interface SalesItem {
   id: number;
@@ -16,7 +18,7 @@ declare interface SalesItem {
   options?: {
     body: string;
     title: string;
-    type:string;
+    type: string;
   };
   cash_amount: number;
   token_amount: number;
@@ -24,26 +26,29 @@ declare interface SalesItem {
 
 const Charge = () => {
   const { selectCoins } = useCharge();
+  const { isLogIn } = useUser();
   const [isPopPayment, setIsPopPayment] = useState(false);
   const [isPopConfirm, setIsPopConfirm] = useState(false);
-  const [salesList, setSalesList] = useState<SalesItem[]>([])
-  const popPaymentHandler = (sale:any) => {
+  const [salesList, setSalesList] = useState<SalesItem[]>([]);
+  const popPaymentHandler = (sale: any) => {
     selectCoins(sale);
     setIsPopPayment(true);
   };
 
-  useEffect(()=>{
-    getOrdersProducts().then(response=>{
-      console.log(response.data)
-      setSalesList(response.data)
-    }).catch(err=>{
-      console.log(err.message || 'failed');
-    })
-  }, [])
+  useEffect(() => {
+    getOrdersProducts()
+      .then((response) => {
+        console.log(response.data);
+        setSalesList(response.data);
+      })
+      .catch((err) => {
+        console.log(err.message || "failed");
+      });
+  }, []);
 
   return (
     <>
-      {(isPopPayment) &&
+      {isPopPayment &&
         createPortal(
           <BackDrop onClose={setIsPopPayment} />,
           document.getElementById("back-drop")!
@@ -73,14 +78,13 @@ const Charge = () => {
             return (
               <div
                 className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(248,200,137,0.2)] rounded-xl"
-                onClick={popPaymentHandler.bind(this, sale)}
                 key={index}
               >
                 <div className="charge-discount-container">
                   <IconDiscountCoins class="h-[40px]" />
                   <div className="charge-discount-text">
                     <span>省</span>
-                    <span>{sale.options?.title.split('省')[1]}</span>
+                    <span>{sale.options?.title.split("省")[1]}</span>
                   </div>
                 </div>
                 <div className="flex w-full pl-3">
@@ -93,12 +97,22 @@ const Charge = () => {
                   </div>
                   <div className="pl-2.5">
                     <div className="text-sm">金幣</div>
-                    <div className="text-lg font-semibold">{sale.token_amount}</div>
-                    <div className="text-sm opacity-60">{sale.options?.body}</div>
+                    <div className="text-lg font-semibold">
+                      {sale.token_amount}
+                    </div>
+                    <div className="text-sm opacity-60">
+                      {sale.options?.body}
+                    </div>
                   </div>
                 </div>
 
-                <button className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#d19463]">
+                <button
+                  className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#d19463]"
+                  onClick={() => {
+                    if (!isLogIn) route("/login");
+                    popPaymentHandler(sale);
+                  }}
+                >
                   &#165;&nbsp;{sale.cash_amount}
                 </button>
               </div>

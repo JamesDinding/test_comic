@@ -24,20 +24,22 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   onClose,
   onNextConfirm,
 }) => {
-  const { selectPay, userSelect } = useCharge();
+  const { payment, userSelect } = useCharge();
   const [curExpand, setCurExpand] = useState(-1);
-  const [payments, setPayments] = useState<any>([])
-  const [way, setWay] = useState<any>([])
+  const [payments, setPayments] = useState<any>([]);
+  const [way, setWay] = useState<any>([]);
 
-  useEffect(()=>{
-    getOrdersProductsId(userSelect.id.toString()).then(response=>{
-      const {data} = response;
-      setWay(Object.keys(data))
-      setPayments(data)
-    }).catch(err=>{
-      console.log(err.message || 'failed')
-    })
-  }, [])
+  useEffect(() => {
+    getOrdersProductsId(userSelect.id.toString())
+      .then((response) => {
+        const { data } = response;
+        setWay(Object.keys(data));
+        setPayments(data);
+      })
+      .catch((err) => {
+        console.log(err.message || "failed");
+      });
+  }, []);
 
   return (
     <Card>
@@ -49,11 +51,11 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         <div className="relative w-full h-2/3">
           <div className="payment-shadow"></div>
           <div className="h-full px-1 overflow-y-auto no-scollbar bg-[#fffbf6]">
-            {way?.map((way :any, i :any) => {
+            {way?.map((way: any, i: any) => {
               const isNowExpand = curExpand === i;
               return (
                 <div
-                key={i}
+                  key={i}
                   className="w-full mt-2.5"
                   onClick={(e) => {
                     // if (curExpand === i) {
@@ -64,7 +66,10 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
                     setCurExpand(i);
                   }}
                 >
-                  <PaySelection payInfo={payments[way]} isExpand={isNowExpand} />
+                  <PaySelection
+                    payInfo={payments[way]}
+                    isExpand={isNowExpand}
+                  />
                 </div>
               );
             })}
@@ -74,6 +79,8 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         <button
           className="w-full py-4 text-center text-white text-lg bg-[#d19463] rounded-xl"
           onClick={() => {
+            console.log(payment);
+            if (!payment) return;
             onClose();
             onNextConfirm();
           }}

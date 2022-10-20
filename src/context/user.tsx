@@ -15,6 +15,12 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   const [coins, setCoins] = useState<number>(null!);
   const [vip, setVip] = useState<string | null>(null);
 
+  function resetUserInfo() {
+    setID(0);
+    setCoins(0);
+    setVip("");
+  }
+
   const loginHandler = useCallback(
     async (account: string, password: string) => {
       try {
@@ -43,16 +49,19 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
       if (!isError) {
         localStorage.removeItem("nsmh_log_status");
         setToken("");
+        resetUserInfo();
         setIsLogIn(false);
       }
     } catch (err: any) {
       console.error("logout gogo");
       localStorage.removeItem("nsmh_log_status");
       setToken("");
+      resetUserInfo();
       setIsLogIn(false);
     } finally {
       localStorage.removeItem("nsmh_log_status");
       setToken("");
+      resetUserInfo();
       setIsLogIn(false);
     }
   }, [setToken, setIsLogIn, apiLogout]);

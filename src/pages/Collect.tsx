@@ -8,7 +8,7 @@ import CollectItem from "../components/_Book/CollectItem";
 import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
 import RecommendTitleBar from "../components/Home/RecommendTitleBar";
-import { getMyBookmarks, getMyAcquisitions } from "../lib/api";
+import { getMyBookmarks, getMyAcquisitions, getAllBlock } from "../lib/api";
 import { useDomain } from "../context/domain";
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
@@ -16,19 +16,13 @@ const comicArr = ["123", "234", "345", "456", "567", "678"];
 const adArr = ["fxck_me"];
 
 // temp data
-const temp_tab_arr = ["收藏紀錄", "購買記錄  "];
-const temp_purchase_arr: { Cover: string; ID: number; Name: string } | [] = [];
-const temp_collect_arr = [
-  { Cover: "123", ID: 1234, Name: "test_name" },
-  { Cover: "123", ID: 1234, Name: "test_name" },
-  { Cover: "123", ID: 1234, Name: "test_name" },
-  { Cover: "123", ID: 1234, Name: "test_name" },
-];
+const temp_tab_arr = ["收藏紀錄", "購買記錄"];
 
 const CollectPage: FunctionalComponent = () => {
-  const { setDomain } = useDomain()
+  const { setDomain } = useDomain();
   const [collectList, setCollectList] = useState([]);
   const [acquisitions, setAcquisitions] = useState([]);
+  const [recommendBlock, setRecommendBlock] = useState([]);
   const [curSelect, setCurSelect] = useState(0);
   const [curPress, setCurPress] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null!);
@@ -56,6 +50,19 @@ const CollectPage: FunctionalComponent = () => {
       console.log("failed");
     }
   }, [curSelect]);
+
+  useEffect(() => {
+    if (collectList.length === 0 || acquisitions.length === 0) {
+      getAllBlock("type=吸睛首選")
+        .then((response) => {
+          setRecommendBlock(response.data["吸睛首選"]);
+          setDomain(response.domain);
+        })
+        .catch((err) => {
+          console.log(err.message || "failed");
+        });
+    }
+  }, [collectList, curSelect]);
 
   return (
     <F>
@@ -97,19 +104,10 @@ const CollectPage: FunctionalComponent = () => {
               <F>
                 <Empty />
                 <div className="mx-5 mt-5">
-                  <RecommendTitleBar BlockID={124} BlockName="舊品下市" />
+                  <RecommendTitleBar BlockID={124} BlockName="新品上市" />
                   <div className="items-box grid grid-cols-3 gap-2.5 py-4">
-                    {comicArr.concat(adArr).map((el, i, arr) => {
-                      return i === 0 ? (
-                        <div className="min-h-[100px] rounded bg-[#ff978d] col-span-full">
-                          <span class="text-white">ad</span>
-                        </div>
-                      ) : (
-                        <BookListItem
-                          Data={{ ID: 12345, Cover: "", Name: "test" }}
-                          type="separate"
-                        />
-                      );
+                    {recommendBlock.map((el: Book, i, arr) => {
+                      return <BookListItem Data={el} type="separate" />;
                     })}
                   </div>
                 </div>
@@ -139,19 +137,10 @@ const CollectPage: FunctionalComponent = () => {
               <F>
                 <Empty />
                 <div className="mx-5 mt-5">
-                  <RecommendTitleBar BlockID={124} BlockName="舊品下市" />
+                  <RecommendTitleBar BlockID={124} BlockName="新品上市" />
                   <div className="items-box grid grid-cols-3 gap-2.5 py-4">
-                    {comicArr.concat(adArr).map((el, i, arr) => {
-                      return i === 0 ? (
-                        <div className="min-h-[100px] rounded bg-[#ff978d] col-span-full">
-                          <span class="text-white">ad</span>
-                        </div>
-                      ) : (
-                        <BookListItem
-                          Data={{ ID: 12345, Cover: "", Name: "test" }}
-                          type="separate"
-                        />
-                      );
+                    {recommendBlock.map((el: Book, i, arr) => {
+                      return <BookListItem Data={el} type="separate" />;
                     })}
                   </div>
                 </div>

@@ -3,18 +3,17 @@ import { useState, useEffect, useContext, StateUpdater } from "preact/hooks";
 
 const DomainContext = createContext({
   srcDomain: "",
-  setDomain:(src: string)=>{}
+  setDomain: (src: string) => {},
 });
-
 
 export const DomainProvider: FunctionalComponent = ({ children }) => {
   const [srcDomain, setSrcDomain] = useState("");
 
   const value = {
-    srcDomain,
-    setDomain: (src: string)=>{
-      setSrcDomain(src)
-    }
+    srcDomain: srcDomain,
+    setDomain: (src: string) => {
+      setSrcDomain(src);
+    },
   };
 
   return (

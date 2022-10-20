@@ -19,7 +19,7 @@ declare interface BlockContent {
   title?: string;
   creator?: string;
   description?: string;
-  status?: string;
+  status?: "連載" | "完结";
   covers?: {
     thumb: string;
     thumbx: string;

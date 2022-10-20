@@ -24,8 +24,20 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
       >
         <div class="relative rounded-lg grow">
           <div className="item-overlay z-[25] !h-[60px]"></div>
-          <div class="bottom-4 tag">{"連載"}</div>
-          <div class="bottom-4 tag-decoration"></div>
+          <div
+            class={
+              "bottom-4 tag " +
+              (Data.status === "完结" ? "bg-[#71b3d0]" : "bg-[#d0719a]")
+            }
+          >
+            {Data.status}
+          </div>
+          <div
+            class={
+              "bottom-4 tag-decoration " +
+              (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
+            }
+          ></div>
           <div className="rounded-lg overflow-hidden h-full">
             {/* <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}> */}
             <div
@@ -65,8 +77,20 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
           />
           {/* <img src="/assets/img/test/Image.png" className="" alt="" /> */}
         </div>
-        <div class="bottom-[3.25rem] tag">{"連載"}</div>
-        <div class="bottom-[3.25rem] tag-decoration"></div>
+        <div
+          class={
+            "bottom-[3.25rem] tag " +
+            (Data.status === "完结" ? "bg-[#71b3d0]" : "bg-[#d0719a]")
+          }
+        >
+          {Data.status}
+        </div>
+        <div
+          class={
+            "bottom-[3.25rem] tag-decoration " +
+            (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
+          }
+        ></div>
         <div class="item-overlay z-[5]">&nbsp;</div>
         <div className="item-overlay z-[25]">
           <span class="title z-30">{Data.Name || Data.title}</span>
@@ -74,7 +98,6 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         </div>
       </Link>
     );
-
 
   // default return
   return (

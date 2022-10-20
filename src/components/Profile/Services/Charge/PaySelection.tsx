@@ -19,7 +19,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   payInfo,
   isExpand,
 }) => {
-  const { payment, userSelect, selectPay } = useCharge();
+  const { selectPay } = useCharge();
 
   return (
     <div className={"charge-input-container overflow-y-auto duration-300 "}>

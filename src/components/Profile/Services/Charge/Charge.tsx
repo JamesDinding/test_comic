@@ -77,7 +77,7 @@ const Charge = () => {
           {salesList.map((sale, index) => {
             return (
               <div
-                className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(248,200,137,0.2)] rounded-xl"
+                className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#6d5694] bg-[rgba(186,155,240,0.2)] rounded-xl"
                 key={index}
               >
                 <div className="charge-discount-container">
@@ -107,7 +107,7 @@ const Charge = () => {
                 </div>
 
                 <button
-                  className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#d19463]"
+                  className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#8d6d9f]"
                   onClick={() => {
                     if (!isLogIn) route("/login");
                     popPaymentHandler(sale);

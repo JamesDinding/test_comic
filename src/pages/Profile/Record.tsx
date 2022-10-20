@@ -46,18 +46,17 @@ const RecordPage: FunctionalComponent = () => {
 
   return (
     <>
-      <div className="bg-[#fffbf6] grow flex flex-col max-h-full">
-        <ReturnBar title={"錢包紀錄"} />
-        <SelectionBar
-          tabArr={desArr}
-          curSelect={curSelect}
-          setCurSelect={setCurSelect}
-        />
-        <div className="bg-white mt-1 grow overflow-y-scroll no-scrollbar">
-          {curSelect === 0 && <ChargeList />}
-          {curSelect === 1 && <PurchaseList />}
-        </div>
+      <ReturnBar title={"錢包紀錄"} />
+      <SelectionBar
+        tabArr={desArr}
+        curSelect={curSelect}
+        setCurSelect={setCurSelect}
+      />
+      <div className="bg-white mt-1 overflow-y-scroll no-scrollbar">
+        {curSelect === 0 && <ChargeList />}
+        {curSelect === 1 && <PurchaseList />}
       </div>
+      <div className="grow bg-[#fffbf6]"></div>
       <FooterBar />
     </>
   );

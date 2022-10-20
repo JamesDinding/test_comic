@@ -6,12 +6,14 @@ import { useDomain } from "../../context/domain";
 interface ImageProps {
   alt: string;
   path: string;
+  isFullHeight?: boolean;
   setParentPending: StateUpdater<boolean>;
 }
 
 const Image: FunctionalComponent<ImageProps> = ({
   alt,
   path,
+  isFullHeight = true,
   setParentPending,
 }) => {
   const { srcDomain } = useDomain();
@@ -21,7 +23,7 @@ const Image: FunctionalComponent<ImageProps> = ({
   const { ref, isShown } = observer.observe();
 
   useEffect(() => {
-    if (!path || !srcDomain ) return;
+    if (!path || !srcDomain) return;
     (async () => {
       try {
         const res = await fetch("//" + srcDomain + "/" + path);
@@ -37,24 +39,15 @@ const Image: FunctionalComponent<ImageProps> = ({
         console.log(err);
       }
     })();
-
-    // (async () => {
-    //   if (!isShown) return;
-    //   let res = await send({
-    //     action: "GetResourceImage",
-    //     data: {
-    //       path: path,
-    //     },
-    //   });
-    //   if (res.imageblob !== undefined) {
-    //     setImageBlob(res.imageblob);
-    //     setParentPending(false);
-    //   }
-    // })();
   }, [path, isShown, srcDomain]);
 
   return (
-    <img src={imageBlob} className="Image-component" alt={alt} ref={ref} />
+    <img
+      src={imageBlob}
+      className={"Image-component " + (isFullHeight ? "h-full" : "h-auto")}
+      alt={alt}
+      ref={ref}
+    />
   );
 };
 

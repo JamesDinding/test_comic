@@ -32,12 +32,12 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       </div>
       {BlockName}
       <div class="grow"></div>
-      <a
+      {/* <a
         href={"/book-more/" + BlockID}
         class="block text-sm font-normal tracking-normal leading-[16px]"
       >
         更多 ▶
-      </a>
+      </a> */}
     </div>
   );
 };

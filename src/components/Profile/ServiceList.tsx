@@ -17,17 +17,7 @@ const serviceList = [
   { title: "客服中心", msg: "", url: "/profile" },
 ];
 
-// interface ServiceListProps {
-//   isPopBinding: boolean;
-//   setIsPopBinding: StateUpdater<boolean>;
-// }
-
-const ServiceList: FunctionalComponent = (
-  {
-    // isPopBinding,
-    // setIsPopBinding,
-  }
-) => {
+const ServiceList: FunctionalComponent = () => {
   const { isLogIn, logout } = useUser();
   const [isPopBinding, setIsPopBinding] = useState(false);
 
@@ -44,6 +34,8 @@ const ServiceList: FunctionalComponent = (
           <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
             <ul>
               {serviceList.map(({ title, url, msg }, i, arr) => {
+                if (!isLogIn && url === "bind") return;
+                if (isLogIn && url === "/register") return;
                 return (
                   <ServiceRow
                     url={url}

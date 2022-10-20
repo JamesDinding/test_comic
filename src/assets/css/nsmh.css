@@ -948,10 +948,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-height: 0px;
 }
 
-.min-h-\[100px\] {
-  min-height: 100px;
-}
-
 .min-h-\[153px\] {
   min-height: 153px;
 }
@@ -1532,14 +1528,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(255 251 246 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#ff978d\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 151 141 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#efefef\] {
   --tw-bg-opacity: 1;
   background-color: rgb(239 239 239 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#ff978d\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 151 141 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#a8a8a8\] {
@@ -1573,6 +1569,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-\[rgba\(0\2c 0\2c 0\2c \.6\)\] {
   background-color: rgba(0,0,0,.6);
+}
+
+.bg-\[\#71b3d0\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(113 179 208 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#d0719a\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(208 113 154 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#407389\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 115 137 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#ab4b74\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(171 75 116 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#e9f4ff\] {
@@ -2234,7 +2250,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .Image-component {
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
 }
 
@@ -2894,8 +2910,6 @@ input[type="number"] {
   border-bottom-right-radius: 0.25rem;
   border-top-left-radius: 0.125rem;
   border-bottom-left-radius: 0.125rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(208 113 154 / var(--tw-bg-opacity));
   padding-left: 7px;
   padding-right: 5px;
   font-size: 12px;
@@ -2914,8 +2928,6 @@ input[type="number"] {
   transform-origin: bottom left;
   --tw-rotate: 30deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  --tw-bg-opacity: 1;
-  background-color: rgb(171 75 116 / var(--tw-bg-opacity));
 }
 
 .item-overlay {

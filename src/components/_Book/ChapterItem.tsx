@@ -26,11 +26,12 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
         }
         onClick={() => {
           if (!chapter.status) {
+            console.log({ ...chapter, bookId });
             setStuffInfo({ ...chapter, bookId });
             popBuy();
             return;
           }
-          route(`/read/${bookId}/chapter/${chapter.position}`);
+          route(`/read/${bookId}/chapter/${chapter.position}`, true);
         }}
       >
         {!chapter.status && <div className="chapter-item-backdrop"></div>}

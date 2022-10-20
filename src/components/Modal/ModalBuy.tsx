@@ -5,8 +5,14 @@ import { useUser } from "../../context/user";
 import { createOrder, postOrdersPurchase } from "../../lib/api";
 import Btn from "../UI/Btn";
 import IconCross from "../../resources/img/icon-cross.svg";
+import { StateUpdater } from "preact/hooks";
+import CardBottom from "./CardBottom";
 
-const ModalBuy: FunctionalComponent = ({}) => {
+interface ModalBuyProps {
+  cb?: (arg: any) => any;
+}
+
+const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
   const { isPopBuy, stuffInfo, reset } = useReadingModal();
   let layerCss = isPopBuy ? "" : "translate-y-[120%]";
   const { userStatus } = useUser();
@@ -42,12 +48,21 @@ const ModalBuy: FunctionalComponent = ({}) => {
             bgColor="bg-[#d19463]"
             cb={() => {
               console.log(stuffInfo);
-              postOrdersPurchase(stuffInfo?.id).then(response=>{
-                console.log(response);
-                route(`/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`)
-              }).catch(err=>{
-                console.log(err)
-              })
+              postOrdersPurchase(stuffInfo?.id)
+                .then((response) => {
+                  console.log(response);
+                  cb && cb(stuffInfo?.position);
+
+                  reset();
+
+                  route(
+                    `/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`,
+                    true
+                  );
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             }}
           />
           <div className="mt-2.5 text-center text-[rgba(158,118,84,0.6)]">

@@ -2,16 +2,16 @@ import { h, FunctionComponent, Fragment as F } from "preact";
 import { useState } from "preact/hooks";
 
 const statusTable = new Map();
-statusTable.set("completed", "完成");
-statusTable.set("pending", "等待");
-statusTable.set("cancel", "失敗");
+statusTable.set("paid", "完成");
+// statusTable.set("unpaid", "等待");
+statusTable.set("unpaid", "未完成");
 
 type ChargeItem = {
-  id: string;
-  date: string;
-  coinsCharged: number;
-  cashPaid: number;
-  status: string;
+  cash_amount: number;
+  token_amount: number;
+  order_num: string;
+  status: "paid" | "unpaid";
+  created_at: string;
 };
 
 interface ChargeItemProps {
@@ -32,9 +32,9 @@ const ChargeItem: FunctionComponent<ChargeItemProps> = ({ chargeObj }) => {
         onClick={() => setIsDrop((prev) => !prev)}
       >
         <div className="w-1/3 text-center text-[#ecad1d] font-semibold tracking-wide">
-          +&nbsp;&nbsp;{chargeObj.coinsCharged} 金幣
+          +&nbsp;&nbsp;{chargeObj.token_amount} 金幣
         </div>
-        <div className="w-1/3 text-center">&#165; {chargeObj.cashPaid}</div>
+        <div className="w-1/3 text-center">&#165; {chargeObj.cash_amount}</div>
         <div className="w-1/3 flex items-center justify-between">
           <div className="grow text-center">
             {statusTable.get(chargeObj.status)}
@@ -50,8 +50,8 @@ const ChargeItem: FunctionComponent<ChargeItemProps> = ({ chargeObj }) => {
       <div
         className={`w-full px-5 text-sm text-[#666666] flex flex-col justify-center tracking-wide border-solid border-b-[1px] border-[#9e765466] duration-300 overflow-hidden ${dropCss}`}
       >
-        <div className="mt-2 mb-1">單號 : {chargeObj.id}</div>
-        <div className="mb-2">時間 : {chargeObj.date}</div>
+        <div className="mt-2 mb-1">單號 : {chargeObj.order_num}</div>
+        <div className="mb-2">時間 : {chargeObj.created_at}</div>
       </div>
     </F>
   );

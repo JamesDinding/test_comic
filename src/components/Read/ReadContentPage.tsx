@@ -68,7 +68,11 @@ const ReadContentPage: FunctionalComponent = () => {
         curComic={curComic}
         changeChapter={setCurChapter}
       />
-      <ModalBuy />
+      <ModalBuy
+        cb={(chapter: number) => {
+          setCurChapter(chapter);
+        }}
+      />
       <div
         className="relative grow overflow-hidden overflow-y-auto no-scollbar"
         onClick={(e) => {

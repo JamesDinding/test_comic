@@ -8,11 +8,17 @@ import IconMenu from "../../resources/img/icon-menu.svg";
 interface PopControlProps {
   curChapter: number;
   curComic: number;
-  pageNum:number;
+  pageNum: number;
   changeChapter: StateUpdater<number>;
 }
 
-const PopControl: FunctionalComponent<PopControlProps> = ({pageNum,curChapter, curComic, changeChapter}) => {
+// 傳chapter.position 取代curChapter會比較好
+const PopControl: FunctionalComponent<PopControlProps> = ({
+  pageNum,
+  curChapter,
+  curComic,
+  changeChapter,
+}) => {
   const { isPopControl, popChapter, reset } = useReadingModal();
   const [curPage, setCurPage] = useState(1);
 
@@ -29,13 +35,15 @@ const PopControl: FunctionalComponent<PopControlProps> = ({pageNum,curChapter, c
             <IconMenu class="h-10 w-10" />
           </button>
           <div className="grow"></div>
-          <button className="mr-2" onClick={()=>{
-            if(curChapter>0) {
-              changeChapter(prev=>prev-1);
-              route(`/read/${curComic}/chapter/${curChapter-1}`);
-            }
-
-          }}>
+          <button
+            className="mr-2"
+            onClick={() => {
+              if (curChapter > 0) {
+                changeChapter((prev) => prev - 1);
+                route(`/read/${curComic}/chapter/${curChapter - 1}`, true);
+              }
+            }}
+          >
             <IconChevron class="h-10 w-10 text-white rotate-180" />
           </button>
           <div className="flex items-center justify-between font-light text-white text-sm text-center w-[60px]">
@@ -61,10 +69,13 @@ const PopControl: FunctionalComponent<PopControlProps> = ({pageNum,curChapter, c
             }}
           />
 
-          <button className="ml-4" onClick={()=>{
-            changeChapter(prev=>prev+1);
-            route(`/read/${curComic}/chapter/${curChapter+1}`)
-          }}>
+          <button
+            className="ml-4"
+            onClick={() => {
+              changeChapter((prev) => prev + 1);
+              route(`/read/${curComic}/chapter/${curChapter + 1}`, true);
+            }}
+          >
             <IconChevron class="h-10 w-10 text-white" />
           </button>
         </div>

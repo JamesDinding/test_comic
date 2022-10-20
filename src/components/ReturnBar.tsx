@@ -25,12 +25,14 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
         <span className="mb-[.125rem]">
           <IconArrow class="w-[1.125rem] text-[#8f6e9f]" />
         </span>
-        <div className="pt-1 text-[#666666] text-[12px] leading-[12px]">
+        <div className="pt-1 text-[#666666] text-[12px] leading-[12px] whitespace-nowrap">
           返回
         </div>
       </div>
       <div className="grow">
-        <div className="text-center text-[#666666] text-xl">{title}</div>
+        <div className="text-center text-[#666666] text-ellipsis whitespace-nowrap text-x overflow-hidden">
+          {title}
+        </div>
       </div>
       {type === "service" && (
         <div className="h-[30px]">

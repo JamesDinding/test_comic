@@ -16,7 +16,7 @@ import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 
 const DirectoryContentPage: FunctionalComponent = () => {
-  const {setDomain} = useDomain();
+  const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
   const [recommendBlock, setRecommendBlock] = useState();
@@ -28,7 +28,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
   useEffect(() => {
     try {
       getSpecifiedBook(cur_url).then((response) => {
-        const {data, domain} = response
+        const { data, domain } = response;
         setContent(data);
         setDomain(domain);
       });
@@ -52,7 +52,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
     <F>
       <ObserverProvider rootElement={containerRef}>
         <ModalBuy />
-        <ReturnBar title={content?.title || ''} />
+        <ReturnBar title={content?.title || ""} />
         <div
           class="grow overflow-hidden overflow-y-auto px-5"
           ref={containerRef}
@@ -75,25 +75,31 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </button>
             <button
               className="flex flex-col items-center ml-5 w-12"
-              onClick={ () => {
+              onClick={() => {
                 setIsCollected((prev) => !prev);
-                postMyBookmarks(content?.id, isCollected?'remove':'add').then(data=>{
-                  console.log('req response data:', data);
-                })
+                postMyBookmarks(
+                  content?.id,
+                  content?.bookmark_status ? "remove" : "add"
+                ).then((data) => {
+                  console.log("req response data:", data);
+                });
               }}
             >
-              {isCollected ? (
+              {content?.bookmark_status ? (
                 <IconBookmark class="w-8 h-8" />
               ) : (
                 <IconBookmarkGray class="w-8 h-8" />
               )}
               <span className="text-xs text-[#666666] text-center whitespace-nowrap">
-                {isCollected ? "已收藏" : "收藏"}
+                {content?.bookmark_status ? "已收藏" : "收藏"}
               </span>
             </button>
           </div>
           <div className="pb-10">
-            <ChapterList chapterList={content?.chapter || []} bookId={content?.id} />
+            <ChapterList
+              chapterList={content?.chapter || []}
+              bookId={content?.id}
+            />
           </div>
         </div>
         {/* <RecommendTitleBar BlockID={124} BlockName="新品上市" />

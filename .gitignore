@@ -2,6 +2,8 @@ node_modules
 /build
 /*.log
 
+size-plugin.json
+
 # 不存入產生出的 binary
 /api
 

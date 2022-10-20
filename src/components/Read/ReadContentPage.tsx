@@ -14,7 +14,7 @@ import {
 import { useDomain } from "../../context/domain";
 
 const ReadContentPage: FunctionalComponent = () => {
-  const { setDomain } = useDomain()
+  const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const { isPopControl, popControl, reset } = useReadingModal();
   const [parentPending, setParentPending] = useState(true);
@@ -23,18 +23,24 @@ const ReadContentPage: FunctionalComponent = () => {
   // 暫時先這樣寫
   const cur_path = window.location.pathname;
   // [ _, _, comicId, _, chapterId ]
-  const cur_path_arr = cur_path.split('/');
-  const [curComic, setCurComic] = useState(parseInt(window.location.pathname.split('/')[2], 10));
-  const [curChapter, setCurChapter] = useState(parseInt(window.location.pathname.split('/')[4], 10));
+  const cur_path_arr = cur_path.split("/");
+  const [curComic, setCurComic] = useState(
+    parseInt(window.location.pathname.split("/")[2], 10)
+  );
+  const [curChapter, setCurChapter] = useState(
+    parseInt(window.location.pathname.split("/")[4], 10)
+  );
 
   useEffect(() => {
     try {
       (async () => {
-        const { data, domain } = await getSpecifiedBookIdContent(curComic, curChapter);
+        const { data, domain } = await getSpecifiedBookIdContent(
+          curComic,
+          curChapter
+        );
         setDomain(domain);
         setPageList(data.contents.images);
       })();
-
     } catch (err: any) {
       console.error(err.message);
     }
@@ -46,7 +52,6 @@ const ReadContentPage: FunctionalComponent = () => {
         const { data } = await getSpecifiedBookChapterList(curComic);
         setChapterList(data);
       })();
-
     } catch (err: any) {
       console.error(err.message);
     }
@@ -55,7 +60,12 @@ const ReadContentPage: FunctionalComponent = () => {
   return (
     <F>
       <PopChapter chapterList={chapterList} />
-      <PopControl pageNum={pageList.length} curChapter={curChapter} curComic={curComic} changeChapter={setCurChapter} />
+      <PopControl
+        pageNum={pageList.length}
+        curChapter={curChapter}
+        curComic={curComic}
+        changeChapter={setCurChapter}
+      />
       <ModalBuy />
       <div
         className="relative grow overflow-hidden overflow-y-auto no-scollbar"
@@ -72,11 +82,16 @@ const ReadContentPage: FunctionalComponent = () => {
       >
         <PopReturn />
         <ObserverProvider rootElement={containerRef}>
-            {pageList?.map((page, i, arr) => {
-              return (
-                <Image path={page} alt="" setParentPending={setParentPending} />
-              );
-            })}
+          {pageList?.map((page, i, arr) => {
+            return (
+              <Image
+                path={page}
+                alt=""
+                isFullHeight={false}
+                setParentPending={setParentPending}
+              />
+            );
+          })}
         </ObserverProvider>
       </div>
     </F>

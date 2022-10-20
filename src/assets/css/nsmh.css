@@ -1581,6 +1581,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(208 113 154 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#407389\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 115 137 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#ab4b74\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(171 75 116 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#e9f4ff\] {
   --tw-bg-opacity: 1;
   background-color: rgb(233 244 255 / var(--tw-bg-opacity));
@@ -1627,16 +1637,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#a186af\] {
   --tw-bg-opacity: 1;
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#ab4b74\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(171 75 116 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#407389\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(64 115 137 / var(--tw-bg-opacity));
 }
 
 .bg-userSection {
@@ -2250,7 +2250,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .Image-component {
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
 }
 

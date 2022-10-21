@@ -63,7 +63,8 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
   useEffect(() => {
     try {
       (async () => {
-        const { data, domain, referrer } = await getAllBlock(qeury_block);
+        // const { data, domain, referrer } = await getAllBlock(qeury_block);
+        const { data, domain, referrer } = await getAllBlock();
         setDomain(domain);
         setBlocks(data);
         setTc(referrer.toString() || "");

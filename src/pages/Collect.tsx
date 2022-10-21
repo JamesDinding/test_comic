@@ -8,7 +8,12 @@ import CollectItem from "../components/_Book/CollectItem";
 import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
 import RecommendTitleBar from "../components/Home/RecommendTitleBar";
-import { getMyBookmarks, getMyAcquisitions, getAllBlock } from "../lib/api";
+import {
+  getMyBookmarks,
+  getMyAcquisitions,
+  getAllBlock,
+  getRandomBlock,
+} from "../lib/api";
 import { useDomain } from "../context/domain";
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
@@ -53,7 +58,7 @@ const CollectPage: FunctionalComponent = () => {
 
   useEffect(() => {
     if (collectList.length === 0 || acquisitions.length === 0) {
-      getAllBlock("type=吸睛首选")
+      getRandomBlock(9)
         .then((response) => {
           setRecommendBlock(response.data["吸睛首选"]);
           setDomain(response.domain);

@@ -182,7 +182,6 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
     if (target - 1 === -1) tempList[swiperLen - 1] = positionList[0] + "prev";
     setTransList(tempList);
   }
-  console.log(banners);
 
   return (
     <div className="w-full min-h-[190px]">

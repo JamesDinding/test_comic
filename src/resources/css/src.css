@@ -79,11 +79,11 @@ input[type="number"] {
 }
 
 .modal {
-  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-30 rounded-lg bg-white min-w-[335px] min-h-[515px] h-[80%];
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px] min-h-[515px] h-[80%];
 }
 
 .modal-shrink {
-  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-30 rounded-lg bg-white min-w-[335px];
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px];
 }
 
 .pop-payment {
@@ -216,6 +216,10 @@ input[type="number"] {
 /* Return Bar */
 .return-bar {
   @apply flex items-center justify-between h-[60px] min-h-[60px];
+}
+
+.return-bar-shadow {
+  @apply shadow-md;
 }
 
 /* Selection Bar */

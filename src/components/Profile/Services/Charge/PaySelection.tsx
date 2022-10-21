@@ -4,12 +4,12 @@ import { useCharge } from "../../../../context/charge";
 import IconChevron from "../../../../resources/img/icon-chevron.svg";
 
 type PayInfo = {
-  id:number;
-  name:string;
-  type:string;
+  id: number;
+  name: string;
+  type: string;
 };
 
-//  支付/ID/線路
+//  支付/ID/线路
 interface PaySelectionProps {
   payInfo: PayInfo[];
   isExpand: boolean;

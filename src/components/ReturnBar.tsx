@@ -84,7 +84,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
               <IconCross class="w-8 text-[#8f6e9f]" />
             </span>
             <div className="text-[#666666] text-[12px] leading-[12px]">
-              關閉
+              关闭
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@ const ChargeItem: FunctionComponent<ChargeItemProps> = ({ chargeObj }) => {
         onClick={() => setIsDrop((prev) => !prev)}
       >
         <div className="w-1/3 text-center text-[#ecad1d] font-semibold tracking-wide">
-          +&nbsp;&nbsp;{chargeObj.token_amount} 金幣
+          +&nbsp;&nbsp;{chargeObj.token_amount} 金币
         </div>
         <div className="w-1/3 text-center">&#165; {chargeObj.cash_amount}</div>
         <div className="w-1/3 flex items-center justify-between">
@@ -50,8 +50,8 @@ const ChargeItem: FunctionComponent<ChargeItemProps> = ({ chargeObj }) => {
       <div
         className={`w-full px-5 text-sm text-[#666666] flex flex-col justify-center tracking-wide border-solid border-b-[1px] border-[#9e765466] duration-300 overflow-hidden ${dropCss}`}
       >
-        <div className="mt-2 mb-1">單號 : {chargeObj.order_num}</div>
-        <div className="mb-2">時間 : {chargeObj.created_at}</div>
+        <div className="mt-2 mb-1">单号 : {chargeObj.order_num}</div>
+        <div className="mb-2">时间 : {chargeObj.created_at}</div>
       </div>
     </F>
   );

@@ -21,8 +21,8 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
   const [isAccountWrong, setIsAccountWrong] = useState(false);
   const [isPsWrong, setIsPsWrong] = useState(false);
 
-  const [accWarning, setAccWarning] = useState("帳號輸入錯誤，請重新輸入");
-  const [psWarning, setPsWarning] = useState("密碼輸入錯誤，請重新輸入");
+  const [accWarning, setAccWarning] = useState("帐号输入错误，请重新输入");
+  const [psWarning, setPsWarning] = useState("密码输入错误，请重新输入");
 
   const isInputCorrect = () => {
     const acc = accountRef.current.value;
@@ -74,9 +74,9 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           |最多精彩二次元动漫|
         </div>
         <InputField
-          title="帳號"
+          title="帐号"
           inputSetting={{
-            placeHolder: "請輸入4-8位英文字母和數字組合帳號",
+            placeHolder: "请输入4-8位英文字母和数字组合帐号",
             type: "text",
             maxLen: 8,
           }}
@@ -85,9 +85,9 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           inputRef={accountRef}
         />
         <InputField
-          title="密碼"
+          title="密码"
           inputSetting={{
-            placeHolder: "請輸入4-8位英文字母和數字組合帳號",
+            placeHolder: "请输入4-8位英文字母和数字组合帐号",
             type: "password",
             maxLen: 8,
           }}
@@ -98,11 +98,11 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         <div className="flex items-center w-full mt-5 mb-20 text-sm">
           <input type="checkbox" name="memorize" className="cursor-pointer" />
           <label className="ml-2 text-[#666666]" for="memorize">
-            記住我的帳號密碼
+            记住我的帐号密码
           </label>
           <div className="grow"></div>
           <div className="cursor-pointer text-[#8d6d9f] btn-text">
-            忘記密碼？
+            忘记密码？
           </div>
         </div>
         <Btn
@@ -136,12 +136,12 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">
-          不是會員？
+          不是会员？
           <span
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
             onClick={() => route("/register")}
           >
-            免費註冊
+            免费注册
           </span>
         </div>
       </div>

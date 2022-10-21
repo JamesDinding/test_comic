@@ -59,7 +59,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
       </Link>
     );
 
-  // cover and title is stacked ，image 應該要 z-index: 5或6 ?
+  // cover and title is stacked ，image 应该要 z-index: 5或6 ?
   if (type === "stack")
     return (
       <Link

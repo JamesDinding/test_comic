@@ -20,7 +20,7 @@ const ReadContentPage: FunctionalComponent = () => {
   const [parentPending, setParentPending] = useState(true);
   const [pageList, setPageList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
-  // 暫時先這樣寫
+  // 暂时先这样写
   // [ _, _, comicId, _, chapterId ]
   const [curComic, setCurComic] = useState(
     parseInt(window.location.pathname.split("/")[2], 10)

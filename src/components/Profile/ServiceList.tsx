@@ -10,11 +10,11 @@ import PopLogout from "./Services/PopLogout";
 import BackDrop from "../BackDrop";
 
 const serviceList = [
-  { title: "註冊", msg: "完成註冊即贈送150金幣!", url: "/register" },
-  { title: "完善會員資料", msg: "完成即贈送150金幣!", url: "bind" },
-  { title: "充值服務", msg: "", url: "/charge" },
-  { title: "錢包紀錄", msg: "", url: "/record" },
-  // { title: "尋回帳戶", msg: "", url: "/recovery" },
+  { title: "注册", msg: "完成注册即赠送150金币!", url: "/register" },
+  { title: "完善会员资料", msg: "完成即赠送150金币!", url: "bind" },
+  { title: "充值服务", msg: "", url: "/charge" },
+  { title: "钱包纪录", msg: "", url: "/record" },
+  // { title: "寻回帐户", msg: "", url: "/recovery" },
   { title: "客服中心", msg: "", url: "/profile" },
 ];
 
@@ -76,7 +76,7 @@ const ServiceList: FunctionalComponent = () => {
             className="bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
             href="/login"
           >
-            登錄
+            登录
           </Link>
         )}
       </div>

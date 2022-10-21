@@ -52,7 +52,7 @@ const HomePage: FunctionalComponent = () => {
           />
           <CategoryListBar
             onCategoryChanged={setCurrentCategory}
-            categories={[{ name: "首頁", id: 0 }].concat(categories)}
+            categories={[{ name: "首页", id: 0 }].concat(categories)}
           />
 
           <PullToRefresh containerElement={containerRef}>

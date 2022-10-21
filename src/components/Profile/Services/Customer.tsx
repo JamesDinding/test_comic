@@ -8,13 +8,13 @@ const Customer = () => {
         <br />
         您可透过以下方式连系我们 :-)
       </p>
-      <h2 className="customer-section-title">在线即時客服</h2>
+      <h2 className="customer-section-title">在线即时客服</h2>
       <a
         href="https://direct.lc.chat/14046954/?paymode=1"
         className="customer-button bg-[#e9f4ff] border-[1px] border-solid border-[#369] text-[#369] hover:bg-white flex items-center"
       >
         <div className="align-middle">img</div>
-        <span className="ml-10">在線客服</span>
+        <span className="ml-10">在线客服</span>
       </a>
       <a
         href="https://t.me/mhmh_fun?paymode=1"

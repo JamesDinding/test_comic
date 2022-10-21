@@ -11,7 +11,6 @@ import { DomainProvider } from "../context/domain";
 import DefaultRouteHandler from "../components/DefaultRouteHandler";
 
 import HomePage from "./Home";
-import VideoPage from "./Video";
 import CollectPage from "./Collect";
 import ProfilePage from "./Profile";
 import DirectoryPage from "./Directory";
@@ -21,7 +20,6 @@ import LoginPage from "./Profile/Login";
 import ChargePage from "./Profile/Charge";
 import RecordPage from "./Profile/Record";
 import CustomerPage from "./Profile/Customer";
-import SearchPage from "./Search";
 
 const App: FunctionalComponent = () => {
   // const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -59,7 +57,6 @@ const App: FunctionalComponent = () => {
 
               <Router>
                 <HomePage path="/home" />
-                <VideoPage path="/video-home" />
                 <CollectPage path="/collect" />
                 <ProfilePage path="/profile" />
 
@@ -73,7 +70,6 @@ const App: FunctionalComponent = () => {
                 <RecordPage path="/record" />
 
                 <CustomerPage path="/service" />
-                <SearchPage path="/search" />
 
                 <DefaultRouteHandler default />
               </Router>

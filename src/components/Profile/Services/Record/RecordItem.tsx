@@ -1,13 +1,13 @@
 import { FunctionalComponent, h } from "preact";
 
-const weekTable = ["週一", "週二", "週三", "週四", "週五", "週六", "週日"];
+const weekTable = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
 
 interface RecordItemProps {
-  id?: number; // 每筆購買、充值應該會有流水號之類的？
+  id?: number; // 每笔购买、充值应该会有流水号之类的？
   date: string;
-  amount: number; // 交易金額
-  name: string; // 交易的項目名稱
-  chapter?: number; // if 購買章節
+  amount: number; // 交易金额
+  name: string; // 交易的项目名称
+  chapter?: number; // if 购买章节
 }
 
 const RecordItem: FunctionalComponent<RecordItemProps> = ({

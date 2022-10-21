@@ -7,7 +7,7 @@ import InputField from "../InputField";
 import Btn from "../../../UI/Btn";
 import IconQuestion from "../../../../resources/img/icon-question.svg";
 
-const phaseTitle = ["聯繫客服", "回填單號", "尋回帳戶"];
+const phaseTitle = ["联系客服", "回填单号", "寻回帐户"];
 
 const Recovery = () => {
   const serialNumRef = useRef<HTMLInputElement>(null!);
@@ -65,9 +65,9 @@ const Recovery = () => {
           <div id="phase-2">
             <div className="text-[#9e7654] px-12 pt-10">
               <InputField
-                title="商戶單號"
-                inputSetting={{ placeHolder: "請輸入廠商單號", type: "number" }}
-                warningMsg="單號格式錯誤，請重新確認"
+                title="商户单号"
+                inputSetting={{ placeHolder: "请输入厂商单号", type: "number" }}
+                warningMsg="单号格式错误，请重新确认"
                 isWrong={isSerialNumWrong}
                 inputRef={serialNumRef}
               />
@@ -76,7 +76,7 @@ const Recovery = () => {
               className="px-12 pt-2.5 w-full flex items-center justify-end text-[#d19463] text-sm font-light"
               onClick={() => setIsPop(true)}
             >
-              尋回帳戶說明
+              寻回帐户说明
               <div className="ml-1">
                 <IconQuestion class="h-4" />
               </div>
@@ -86,16 +86,16 @@ const Recovery = () => {
         {phase === 2 && (
           <div className="flex flex-col items-center text-[#d19463] text-sm">
             <div className="text-[24px] leading-[24px] font-bold tracking-wider mt-10 mb-3">
-              太棒了！已尋回帳戶
+              太棒了！已寻回帐户
             </div>
-            <div>- 以下是您的帳戶ID，請妥善保存 -</div>
+            <div>- 以下是您的帐户ID，请妥善保存 -</div>
             <div className="py-3 px-8 my-10 bg-white text-[40px] text-[#666666] leading-[40px] border-solid border-[1px] border-[rgba(158,118,84,0.4)] rounded-lg">
               1239020173
             </div>
             <div className="mb-4 text-[#ff978d]">
-              請綁定會員資料，避免帳戶再次遺失
+              请绑定会员资料，避免帐户再次遗失
             </div>
-            <div>點擊換帳戶，即可使用尋回的帳號登入</div>
+            <div>点击换帐户，即可使用寻回的帐号登入</div>
           </div>
         )}
         <div className="grow"></div>
@@ -109,7 +109,7 @@ const Recovery = () => {
             />
           ) : (
             <Btn
-              title="切換帳戶"
+              title="切换帐户"
               bgColor="bg-[#ff978d]"
               cb={() => {
                 console.log("route");

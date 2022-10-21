@@ -41,7 +41,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
   useEffect(() => {
     try {
       (async () => {
-        const { data } = await getAllBlock("type=吸睛首選");
+        const { data } = await getAllBlock("type=吸睛首选");
         setRecommendBlock(data);
       })();
     } catch (err: any) {
@@ -72,7 +72,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
               className="w-full py-2.5 text-center text-white text-lg bg-[#d19463] rounded-xl"
               onClick={() => route("/read/" + cur_url + "/chapter/1")}
             >
-              開始閱讀
+              开始阅读
             </button>
             <button
               className="flex flex-col items-center ml-5 w-12"
@@ -116,8 +116,8 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </div> */}
         {/* <RecommendBlock
           BlockID={1236}
-          BlockName={"吸睛首選"}
-          Items={recommendBlock['吸睛首選']}
+          BlockName={"吸睛首选"}
+          Items={recommendBlock['吸睛首选']}
           ItemPerRow={3}
         /> */}
       </ObserverProvider>

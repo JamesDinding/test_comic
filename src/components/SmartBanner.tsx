@@ -83,7 +83,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
         href={`/app/sjmh.${mobile}?tc=${tc}`}
         class="rounded-full border-2 border-[#f98d83] text-[#ff978d] p-2 text-xs font-bold mr-2 hover:bg-[#ffe2e0] hover:text-[#e66a5f] whitespace-nowrap"
       >
-        安裝 APP
+        安装 APP
         <img
           src="/assets/img/download.png"
           class="inline mx-1 h-4"

@@ -6,7 +6,7 @@ const LoginPage: FunctionalComponent = () => {
   return (
     <>
       <div class="grow flex flex-col min-h-screen bg-white">
-        <ReturnBar title="登錄" hasShadow={true} />
+        <ReturnBar title="登录" hasShadow={true} />
         <Login />
       </div>
     </>

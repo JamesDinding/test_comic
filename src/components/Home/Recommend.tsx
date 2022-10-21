@@ -11,11 +11,11 @@ interface BlockNameType {
   numPerRow: number;
   name:
     | "banner"
-    | "吸睛首選"
-    | "新書強推"
-    | "本週更新"
+    | "吸睛首选"
+    | "新书强推"
+    | "本周更新"
     | "3D主打"
-    | "熱門Cosplay"
+    | "热门Cosplay"
     | "私人收藏";
 }
 
@@ -42,11 +42,11 @@ const recommendationBlocksItemPerRow: {
 // temp_book name
 const block_name: Array<BlockNameType> = [
   { ID: 1234, numPerRow: 1, name: "banner" },
-  { ID: 1234, numPerRow: 3, name: "吸睛首選" },
-  { ID: 1234, numPerRow: 2, name: "新書強推" },
-  { ID: 1234, numPerRow: 3, name: "本週更新" },
+  { ID: 1234, numPerRow: 3, name: "吸睛首选" },
+  { ID: 1234, numPerRow: 2, name: "新书强推" },
+  { ID: 1234, numPerRow: 3, name: "本周更新" },
   { ID: 1234, numPerRow: 2, name: "3D主打" },
-  { ID: 1234, numPerRow: 3, name: "熱門Cosplay" },
+  { ID: 1234, numPerRow: 3, name: "热门Cosplay" },
   { ID: 1234, numPerRow: 2, name: "私人收藏" },
 ];
 

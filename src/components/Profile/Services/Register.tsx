@@ -20,10 +20,10 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
   const [isPsWrong, setIsPsWrong] = useState(false);
   const [isPsCheckWrong, setIsPsCheckWrong] = useState(false);
 
-  const [accWarning, setAccWarning] = useState("帳號輸入錯誤，請重新輸入");
-  const [psWarning, setPsWarning] = useState("密碼輸入錯誤，請重新輸入");
+  const [accWarning, setAccWarning] = useState("帐号输入错误，请重新输入");
+  const [psWarning, setPsWarning] = useState("密码输入错误，请重新输入");
   const [psCheckWarning, setPsCheckWarning] =
-    useState("密碼輸入錯誤，請重新輸入");
+    useState("密码输入错误，请重新输入");
 
   const isInputCorrect = () => {
     const acc = accountRef.current.value;
@@ -85,9 +85,9 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           |最多精彩二次元动漫|
         </div>
         <InputField
-          title="帳號"
+          title="帐号"
           inputSetting={{
-            placeHolder: "請輸入4-8位英文字母和數字組合帳號",
+            placeHolder: "请输入4-8位英文字母和数字组合帐号",
             type: "text",
             maxLen: 8,
           }}
@@ -96,9 +96,9 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           inputRef={accountRef}
         />
         <InputField
-          title="密碼"
+          title="密码"
           inputSetting={{
-            placeHolder: "請輸入4-8位英文字母和數字組合帳號",
+            placeHolder: "请输入4-8位英文字母和数字组合帐号",
             type: "password",
             maxLen: 8,
           }}
@@ -107,9 +107,9 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           inputRef={psRef}
         />
         <InputField
-          title="確認密碼"
+          title="确认密码"
           inputSetting={{
-            placeHolder: "請再次輸入碼",
+            placeHolder: "请再次输入码",
             type: "password",
             maxLen: 8,
           }}
@@ -119,7 +119,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
         />
         <div className="mb-[1.875rem]"></div>
         <Btn
-          title="註冊"
+          title="注册"
           cb={() => {
             const errorTextAll = document.querySelectorAll(
               ".text-input-warning"
@@ -146,12 +146,12 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">
-          已經是會員？
+          已经是会员？
           <span
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
             onClick={() => route("/login")}
           >
-            快速登錄
+            快速登录
           </span>
         </div>
       </div>

@@ -33,7 +33,7 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({ bookId }) => {
         </div>
       </div>
       <div className="grow">
-        <div className="text-center text-white text-xl">{"漫畫名稱"}</div>
+        <div className="text-center text-white text-xl">{"漫画名称"}</div>
       </div>
 
       <div className="w-6 text-white flex flex-col items-center">

@@ -6,7 +6,7 @@ import FooterBar from "../../components/FooterBar";
 const RecoveryPage: FunctionalComponent = () => {
   return (
     <div className="grow flex flex-col">
-      <ReturnBar title="尋回帳戶" />
+      <ReturnBar title="寻回帐户" />
       <Recovery />
       <FooterBar />
     </div>

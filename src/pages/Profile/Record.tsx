@@ -6,7 +6,7 @@ import ChargeList from "../../components/Profile/Services/Record/ChargeList";
 import ReturnBar from "../../components/ReturnBar";
 import FooterBar from "../../components/FooterBar";
 
-const desArr = ["充值記錄", "購買記錄"];
+const desArr = ["充值记录", "购买记录"];
 
 interface Charge {
   chargeList: Array<{
@@ -23,7 +23,7 @@ const RecordPage: FunctionalComponent = () => {
 
   return (
     <>
-      <ReturnBar title={"錢包紀錄"} />
+      <ReturnBar title={"钱包纪录"} />
       <SelectionBar
         tabArr={desArr}
         curSelect={curSelect}

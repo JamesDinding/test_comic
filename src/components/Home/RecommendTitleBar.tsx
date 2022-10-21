@@ -6,11 +6,11 @@ interface RecommendTitleBarProps {
 }
 
 const blockTitle = new Map([
-  ["吸睛首選", "crown"],
-  ["新書強推", "premium-quality"],
-  ["本週更新", "img-new"],
+  ["吸睛首选", "crown"],
+  ["新书强推", "premium-quality"],
+  ["本周更新", "img-new"],
   ["3D主打", "3-d-glasses"],
-  ["熱門Cosplay", "cosplayer"],
+  ["热门Cosplay", "cosplayer"],
   ["私人收藏", "gift-2"],
 ]);
 
@@ -26,7 +26,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
           src={`/assets/img/title/${pic}@3x.png`}
           class={
             "inline-block translate-y-[-10px] w-full px-2.5" +
-            (BlockName === "本週更新" ? "!px-0" : "")
+            (BlockName === "本周更新" ? "!px-0" : "")
           }
         />
       </div>

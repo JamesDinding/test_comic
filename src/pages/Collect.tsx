@@ -16,7 +16,7 @@ const comicArr = ["123", "234", "345", "456", "567", "678"];
 const adArr = ["fxck_me"];
 
 // temp data
-const temp_tab_arr = ["收藏紀錄", "購買記錄"];
+const temp_tab_arr = ["收藏纪录", "购买记录"];
 
 const CollectPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
@@ -53,9 +53,9 @@ const CollectPage: FunctionalComponent = () => {
 
   useEffect(() => {
     if (collectList.length === 0 || acquisitions.length === 0) {
-      getAllBlock("type=吸睛首選")
+      getAllBlock("type=吸睛首选")
         .then((response) => {
-          setRecommendBlock(response.data["吸睛首選"]);
+          setRecommendBlock(response.data["吸睛首选"]);
           setDomain(response.domain);
         })
         .catch((err) => {

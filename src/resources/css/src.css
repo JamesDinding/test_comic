@@ -365,7 +365,7 @@ input[type="number"] {
 
 .item {
   /* remove shadow-md */
-  @apply rounded-lg border border-gray-200 relative h-full;
+  @apply rounded-lg border border-gray-200 relative;
 }
 
 .item-separate {

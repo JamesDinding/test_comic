@@ -148,7 +148,6 @@ const CollectPage: FunctionalComponent = () => {
             ))}
         </ObserverProvider>
       </div>
-      <div className="grow bg-[#fffbf6]"></div>
       <FooterBar />
     </F>
   );

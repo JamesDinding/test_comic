@@ -74,7 +74,13 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (!isLogIn) return;
+    if (!isLogIn) {
+      localStorage.removeItem("nsmh_log_status");
+      setToken("");
+      resetUserInfo();
+      setIsLogIn(false);
+      return;
+    }
     try {
       getUserStatusHandler();
     } catch (err: any) {

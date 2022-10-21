@@ -30,17 +30,21 @@ const PurchaseList: FunctionComponent = () => {
   return (
     <>
       {purchaseList.length === 0 ? (
-        <Empty />
+        <F>
+          <Empty />
+        </F>
       ) : (
-        <div className="flex flex-col">
-          {purchaseList.map((purchaseObj, i) => {
-            return (
-              <div className={``} key={i}>
-                <PurchaseItem purchaseObj={purchaseObj} />
-              </div>
-            );
-          })}
-        </div>
+        <F>
+          <div className="flex flex-col bg-white">
+            {purchaseList.map((purchaseObj, i) => {
+              return (
+                <div className={``} key={i}>
+                  <PurchaseItem purchaseObj={purchaseObj} />
+                </div>
+              );
+            })}
+          </div>
+        </F>
       )}
     </>
   );

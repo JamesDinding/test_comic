@@ -1633,6 +1633,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(254 243 199 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#eb6f6f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(235 111 111 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#1e1e1e\] {
   --tw-bg-opacity: 1;
   background-color: rgb(30 30 30 / var(--tw-bg-opacity));
@@ -1653,9 +1658,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#eb6f6f\] {
+.bg-\[\#faf6ff\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(235 111 111 / var(--tw-bg-opacity));
+  background-color: rgb(250 246 255 / var(--tw-bg-opacity));
 }
 
 .bg-userSection {
@@ -2902,7 +2907,6 @@ input[type="number"] {
 .item {
   /* remove shadow-md */
   position: relative;
-  height: 100%;
   border-radius: 0.5rem;
   border-width: 1px;
   --tw-border-opacity: 1;

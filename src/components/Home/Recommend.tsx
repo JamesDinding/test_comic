@@ -1,10 +1,10 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { route } from "preact-router";
-import { useEffect, useState } from "preact/hooks";
+import { StateUpdater, useEffect, useState } from "preact/hooks";
 import RecommendBlock from "./RecommendBlock";
 import Swiper from "./Swiper";
 import { getAllBlock } from "../../lib/api";
-import { useDomain } from '../../context/domain'
+import { useDomain } from "../../context/domain";
 
 interface BlockNameType {
   ID: number;
@@ -17,6 +17,10 @@ interface BlockNameType {
     | "3D主打"
     | "熱門Cosplay"
     | "私人收藏";
+}
+
+interface RecommendProps {
+  setTc: StateUpdater<string>;
 }
 
 const recommendationBlocksItemPerRow: {
@@ -52,17 +56,17 @@ const queryString = block_name.map((b, i, a) => {
 
 const qeury_block = queryString.join("&");
 
-const HomeRecommend: FunctionalComponent = () => {
-  const {setDomain} = useDomain();
+const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
+  const { setDomain } = useDomain();
   const [blocks, setBlocks] = useState<RecommendationBlock>({});
-
 
   useEffect(() => {
     try {
       (async () => {
-        const { data, domain } = await getAllBlock(qeury_block);
-        setDomain(domain)
+        const { data, domain, referrer } = await getAllBlock(qeury_block);
+        setDomain(domain);
         setBlocks(data);
+        setTc(referrer.toString() || "");
       })();
     } catch (err: any) {
       console.log(err.message || "failed to get block contents");

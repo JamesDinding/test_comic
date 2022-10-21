@@ -16,6 +16,7 @@ import FooterBar from "../components/FooterBar";
 const HomePage: FunctionalComponent = () => {
   const [currentCategory, setCurrentCategory] = useState(0);
   const [showSmartBanner, setShowSmartBanner] = useState(true);
+  const [tc, setTc] = useState("");
   const containerRef = useRef<HTMLDivElement>(null!);
   const [categories, setCategories] = useState<
     Array<{ name: string; id: number }>
@@ -38,7 +39,7 @@ const HomePage: FunctionalComponent = () => {
   return (
     <>
       {showSmartBanner ? (
-        <SmartBanner SetSmartBannerVisiblity={setShowSmartBanner} />
+        <SmartBanner SetSmartBannerVisiblity={setShowSmartBanner} tc={tc} />
       ) : (
         <></>
       )}
@@ -66,7 +67,7 @@ const HomePage: FunctionalComponent = () => {
                   />
                 </div>
               ) : (
-                <Recommend />
+                <Recommend setTc={setTc} />
               )
             ) : (
               <CategoryItemList catID={categories[currentCategory - 1].id} />

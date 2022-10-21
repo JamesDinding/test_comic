@@ -8,7 +8,6 @@ import { useEffect, useState } from "preact/hooks";
 import { ChargeProvider } from "../context/charge";
 import { UserProvider } from "../context/user";
 import { DomainProvider } from "../context/domain";
-import SmartBanner from "../components/SmartBanner";
 import DefaultRouteHandler from "../components/DefaultRouteHandler";
 
 import HomePage from "./Home";
@@ -20,12 +19,9 @@ import ReadPage from "./Read";
 import RegisterPage from "./Profile/Register";
 import LoginPage from "./Profile/Login";
 import ChargePage from "./Profile/Charge";
-import RecoveryPage from "./Profile/Recovery";
 import RecordPage from "./Profile/Record";
 import CustomerPage from "./Profile/Customer";
 import SearchPage from "./Search";
-// Test page
-import TestPage from "./Test";
 
 const App: FunctionalComponent = () => {
   // const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -75,13 +71,9 @@ const App: FunctionalComponent = () => {
 
                 <ChargePage path="/charge" />
                 <RecordPage path="/record" />
-                {/* <RecoveryPage path="/recovery" /> */}
 
                 <CustomerPage path="/service" />
                 <SearchPage path="/search" />
-
-                {/* test page */}
-                <TestPage path="/test" />
 
                 <DefaultRouteHandler default />
               </Router>

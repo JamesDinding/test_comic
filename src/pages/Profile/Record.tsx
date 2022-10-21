@@ -17,29 +17,6 @@ interface Charge {
     status: string;
   }>;
 }
-// temp data
-const temp_charge = new Array(5).fill({
-  id: "1234543215",
-  date: "2021/10/27 12:51:59",
-  coinsCharged: 30,
-  cashPaid: 100,
-  status: "completed",
-});
-
-const temp_charge_empty: {
-  id: string;
-  date: string;
-  coinsCharged: number;
-  cashPaid: number;
-  status: string;
-}[] = [];
-
-const temp_purchase = new Array(5).fill({
-  title: "防色色柴犬 - 第1話",
-  date: "2021/10/12 12:12:13",
-  coinsCost: 100,
-  coinsRemained: 9900,
-});
 
 const RecordPage: FunctionalComponent = () => {
   const [curSelect, setCurSelect] = useState(0);
@@ -52,11 +29,10 @@ const RecordPage: FunctionalComponent = () => {
         curSelect={curSelect}
         setCurSelect={setCurSelect}
       />
-      <div className="bg-white mt-1 overflow-y-scroll no-scrollbar">
+      <div className="bg-[#faf6ff] mt-1 overflow-y-scroll no-scrollbar h-full">
         {curSelect === 0 && <ChargeList />}
         {curSelect === 1 && <PurchaseList />}
       </div>
-      <div className="grow bg-[#fffbf6]"></div>
       <FooterBar />
     </>
   );

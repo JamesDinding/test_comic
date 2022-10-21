@@ -38,12 +38,12 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
               (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
             }
           ></div>
-          <div className="rounded-lg overflow-hidden h-full">
+          <div className="rounded-lg overflow-hidden h-[157px]">
             {/* <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}> */}
             <div
               className={
                 "rounded-lg overflow-hidden h-full" +
-                (showPending ? "relative z-[20] min-h-[157px]" : "")
+                (showPending ? "relative z-[20]" : "")
               }
             >
               <Image
@@ -51,12 +51,10 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
                 alt={Data.Name || ""}
                 setParentPending={setPending}
               />
-              {/* <img src="/assets/img/test/Image.png" alt="" /> */}
             </div>
           </div>
         </div>
         <div class="title-separate">{Data.Name || Data.title}</div>
-
         <div class="rating-separate">★ 7.8&nbsp;&nbsp;◉ 103.5万</div>
       </Link>
     );
@@ -67,15 +65,14 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
       <Link
         href={"/directory/" + Data.id}
         // class={"relative item " + (showPending ? " pending min-h-[242px]" : "")}
-        class={"relative item " + (showPending ? " min-h-[242px]" : "")}
+        class={"item h-[242px] " + (showPending ? "" : "")}
       >
-        <div className="relative z-20 rounded-lg overflow-hidden">
+        <div className="relative z-20 rounded-lg overflow-hidden h-full">
           <Image
             path={Data.Cover || Data.covers?.thumb || ""}
             alt={Data.Name || ""}
             setParentPending={setPending}
           />
-          {/* <img src="/assets/img/test/Image.png" className="" alt="" /> */}
         </div>
         <div
           class={

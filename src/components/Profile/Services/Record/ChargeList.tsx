@@ -35,7 +35,7 @@ const ChargeList: FunctionComponent = () => {
         <Empty />
       ) : (
         <F>
-          <div className="flex flex-col">
+          <div className="flex flex-col bg-white">
             {chargeList.map((chargeObj, i) => {
               return (
                 <div className={``} key={i}>

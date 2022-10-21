@@ -66,7 +66,7 @@ const CollectPage: FunctionalComponent = () => {
 
   return (
     <F>
-      <ReturnBar title="我的收藏" />
+      <ReturnBar title="我的收藏" defaultDestination="/home" />
       <SelectionBar
         tabArr={temp_tab_arr}
         curSelect={curSelect}

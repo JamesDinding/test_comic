@@ -50,7 +50,7 @@ export async function logout() {
 
     const data = await res.json();
 
-    if (!data.error) {
+    if (data.error) {
       throw new Error("Failed to loggout.");
     }
 
@@ -116,20 +116,20 @@ export async function postMyProfile(phone, mail, name) {
   return data;
 }
 
-export async function postMyBookmarks(id, action){
-  const response = await fetch('/api/v1/my/bookmarks', {
+export async function postMyBookmarks(id, action) {
+  const response = await fetch("/api/v1/my/bookmarks", {
     method: "POST",
     headers: {
-      "Content-Type" :"application/json"
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       item_id: id,
-      action: action
-    })
+      action: action,
+    }),
   });
   const data = await response.json();
 
-  if(data.error) throw new Error(data.message || 'failed');
+  if (data.error) throw new Error(data.message || "failed");
 
   return data;
 }
@@ -176,7 +176,7 @@ export const getSpecifiedBookIdContent = async (item, chapter) => {
 };
 
 // 搜尋
-export const getSearch = curryFetch_GET_QUERY('/contents/search');
+export const getSearch = curryFetch_GET_QUERY("/contents/search");
 
 export async function createOrder(title, price) {
   const response = await fetch("/api/v1/orders/create", {
@@ -198,51 +198,54 @@ export async function createOrder(title, price) {
 // orders
 // 內購
 export const postOrdersPurchase = async (id) => {
-  const response = await fetch('/api/v1/orders/purchase', {
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
+  const response = await fetch("/api/v1/orders/purchase", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-    body:JSON.stringify({
-      chapter_id: id
-    })
-  })
+    body: JSON.stringify({
+      chapter_id: id,
+    }),
+  });
   const data = await response.json();
 
-  if(data.error) throw new Error(data.message || 'failed');
+  if (data.error) throw new Error(data.message || "failed");
 
   return data;
-}
+};
 
 // 衝直
-export const postOrdersCharge = async (product_payment_method_id, amount, client_ip) => {
-  const response = await fetch('/api/v1/orders/charge', {
-    method:"POST",
-    headers:{
-      "Content-Type" :"application/json"
+export const postOrdersCharge = async (
+  product_payment_method_id,
+  amount,
+  client_ip
+) => {
+  const response = await fetch("/api/v1/orders/charge", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-    body:JSON.stringify({
+    body: JSON.stringify({
       product_payment_method_id,
       amount,
-      client_ip
-    })
-  })
+      client_ip,
+    }),
+  });
   const data = await response.json();
 
-  if(data.error) throw new Error(data.message || 'failed');
+  if (data.error) throw new Error(data.message || "failed");
 
   return data;
-}
+};
 
 // 取得充值產品
-export const getOrdersProducts = curryFetch_GET('/orders/products');
+export const getOrdersProducts = curryFetch_GET("/orders/products");
 
 // 取得充值產品支付方式
-export const getOrdersProductsId = curryFetch_GET('/orders/products');
+export const getOrdersProductsId = curryFetch_GET("/orders/products");
 
 // 跳轉支付位置
-export const getOrdersRedirectOrderNum = curryFetch_GET('/orders/redirect');
-
+export const getOrdersRedirectOrderNum = curryFetch_GET("/orders/redirect");
 
 // domain 已經被棄用
 // /api/v1/domain  RESOURCE

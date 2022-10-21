@@ -3,24 +3,38 @@ import IconCs from "../resources/img/btn-cs.svg";
 import IconArrow from "../resources/img/icon-arrow.svg";
 import IconCross from "../resources/img/icon-cross.svg";
 import IconCoin from "../resources/img/icon-coin.svg";
-import { Link } from "preact-router";
+import { Link, route } from "preact-router";
 
 interface ReturnBarProps {
   title: string;
   type?: "service" | "charge" | "cross" | "reading";
+  defaultDestination?: string;
   bgColor?: string;
+  hasShadow?: boolean;
 }
 
 const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
   title,
   type = "service",
   bgColor = "bg-white",
+  hasShadow = false,
+  defaultDestination,
 }) => {
   return (
-    <div className={`return-bar px-5 ${bgColor}`}>
+    <div
+      className={
+        `return-bar px-5 ${bgColor} ` + (hasShadow ? "relative shadow-md " : "")
+      }
+    >
       <div
         className="h-[37px] flex flex-col justify-end items-center cursor-pointer"
-        onClick={() => history.back()}
+        onClick={() => {
+          if (defaultDestination) {
+            route(defaultDestination);
+          } else {
+            history.back();
+          }
+        }}
       >
         <span className="mb-[.125rem]">
           <IconArrow class="w-[1.125rem] text-[#8f6e9f]" />

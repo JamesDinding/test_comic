@@ -6,6 +6,7 @@ import { Link } from "preact-router";
 import { route } from "preact-router";
 import ServiceRow from "./ServiceRow";
 import BindPhone from "./Services/BindPhone";
+import PopLogout from "./Services/PopLogout";
 import BackDrop from "../BackDrop";
 
 const serviceList = [
@@ -20,15 +21,22 @@ const serviceList = [
 const ServiceList: FunctionalComponent = () => {
   const { isLogIn, logout } = useUser();
   const [isPopBinding, setIsPopBinding] = useState(false);
+  const [isPopLogout, setIsPopLogout] = useState(false);
 
   return (
     <F>
-      {isPopBinding &&
+      {(isPopBinding || isPopLogout) &&
         createPortal(
-          <BackDrop onClose={() => setIsPopBinding(false)} />,
+          <BackDrop
+            onClose={() => {
+              setIsPopBinding(false);
+              setIsPopLogout(false);
+            }}
+          />,
           document.getElementById("back-drop")!
         )}
       {isPopBinding && <BindPhone onClose={() => setIsPopBinding(false)} />}
+      {isPopLogout && <PopLogout onClose={() => setIsPopLogout(false)} />}
       <div className="flex flex-col overflow-auto">
         <div className="mb-2 rounded-2xl">
           <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
@@ -56,9 +64,9 @@ const ServiceList: FunctionalComponent = () => {
         </div>
         {isLogIn ? (
           <div
-            className="bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
+            className="cursor-pointer bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
             onClick={() => {
-              logout();
+              setIsPopLogout((prev) => !prev);
             }}
           >
             登出

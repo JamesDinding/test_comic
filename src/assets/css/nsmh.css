@@ -1625,6 +1625,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(255 244 244 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#eb6f6f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(235 111 111 / var(--tw-bg-opacity));
+}
+
 .bg-\[rgba\(186\2c 155\2c 240\2c 0\.2\)\] {
   background-color: rgba(186,155,240,0.2);
 }
@@ -1636,11 +1641,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-amber-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 243 199 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#eb6f6f\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(235 111 111 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#1e1e1e\] {
@@ -1667,24 +1667,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-image: url('../img/bg-user.png');
 }
 
-.bg-cartoon {
-  background-image: url('../img/bg-cartoon.png');
-}
-
 .bg-userIcon {
   background-image: url('../img/user-icon.png');
+}
+
+.bg-cartoon {
+  background-image: url('../img/bg-cartoon.png');
 }
 
 .bg-\[length\:100\%_50\%\] {
   background-size: 100% 50%;
 }
 
-.bg-\[length\:100\%_100\%\] {
-  background-size: 100% 100%;
-}
-
 .bg-cover {
   background-size: cover;
+}
+
+.bg-\[length\:100\%_100\%\] {
+  background-size: 100% 100%;
 }
 
 .bg-center {
@@ -2263,6 +2263,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-red-500 {
+  --tw-shadow-color: #ef4444;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -2380,7 +2391,7 @@ input[type="number"] {
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 30;
+  z-index: 999;
   height: 80%;
   min-height: 515px;
   min-width: 335px;
@@ -2396,7 +2407,7 @@ input[type="number"] {
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 30;
+  z-index: 999;
   min-width: 335px;
   --tw-translate-y: -50%;
   --tw-translate-x: -50%;
@@ -2618,6 +2629,12 @@ input[type="number"] {
   min-height: 60px;
   align-items: center;
   justify-content: space-between;
+}
+
+.return-bar-shadow {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 /* Selection Bar */

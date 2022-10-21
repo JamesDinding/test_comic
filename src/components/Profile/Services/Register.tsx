@@ -137,10 +137,12 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
             }, 1000);
 
             if (!isInputCorrect()) return;
-            postMyRegister(accountRef.current.value, psRef.current.value).then(data=>{
-              console.log('register resopnse data:', data)
-              route("/member");
-            })
+            postMyRegister(accountRef.current.value, psRef.current.value).then(
+              (data) => {
+                console.log("register resopnse data:", data);
+                route("/login");
+              }
+            );
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">

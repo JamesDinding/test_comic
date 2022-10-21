@@ -537,14 +537,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: .8rem;
 }
 
-.right-0 {
-  right: 0px;
-}
-
-.left-0 {
-  left: 0px;
-}
-
 .z-\[5\] {
   z-index: 5;
 }
@@ -1679,12 +1671,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-image: url('../img/bg-cartoon.png');
 }
 
+.bg-userIcon {
+  background-image: url('../img/user-icon.png');
+}
+
 .bg-\[length\:100\%_50\%\] {
   background-size: 100% 50%;
 }
 
 .bg-\[length\:100\%_100\%\] {
   background-size: 100% 100%;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
 }
 
 .bg-no-repeat {

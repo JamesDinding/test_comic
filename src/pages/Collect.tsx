@@ -84,7 +84,7 @@ const CollectPage: FunctionalComponent = () => {
         <ObserverProvider rootElement={containerRef}>
           {curSelect === 0 &&
             (collectList.length ? (
-              <div className="grow bg-[#fffbf6]">
+              <div className="grow bg-[#fcf6ff]">
                 <div
                   className=" items-box grid grid-cols-3 gap-2.5 py-4 px-5"
                   onClick={unPressHandler}
@@ -120,7 +120,7 @@ const CollectPage: FunctionalComponent = () => {
             ))}
           {curSelect === 1 &&
             (acquisitions.length ? (
-              <div className="grow bg-[#fffbf6]">
+              <div className="grow bg-[#fcf6ff]">
                 <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
                   {acquisitions.map((purchase: any, i, arr) => {
                     return (
@@ -153,6 +153,7 @@ const CollectPage: FunctionalComponent = () => {
             ))}
         </ObserverProvider>
       </div>
+      <div className="grow bg-[#fcf6ff]"></div>
       <FooterBar />
     </F>
   );

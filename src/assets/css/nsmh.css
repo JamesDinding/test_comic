@@ -1520,6 +1520,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgba(158,118,84,0.4);
 }
 
+.border-\[\#b5a7d0\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(181 167 208 / var(--tw-border-opacity));
+}
+
 .border-l-\[\#6d569499\] {
   border-left-color: #6d569499;
 }
@@ -2270,6 +2275,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-\[\#d19463\] {
   --tw-text-opacity: 1;
   color: rgb(209 148 99 / var(--tw-text-opacity));
+}
+
+.text-\[\#dfad6d\] {
+  --tw-text-opacity: 1;
+  color: rgb(223 173 109 / var(--tw-text-opacity));
 }
 
 .opacity-60 {
@@ -3375,6 +3385,11 @@ footer .active span {
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#fcf6ff\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 246 255 / var(--tw-bg-opacity));
 }
 
 .hover\:text-\[\#e66a5f\]:hover {

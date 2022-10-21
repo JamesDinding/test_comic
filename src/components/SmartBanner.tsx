@@ -74,14 +74,14 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
         <a href={`/app/sjmh.${mobile}?tc=${tc}`}>
           <Logo class="h-5 mt-1" alt="女神漫画" />
         </a>
-        <span class="text-[11px] text-[#f98d83] py-1 font-medium tracking-widest whitespace-nowrap">
+        <span class="text-[11px] text-[#dfad6d] py-1 font-medium tracking-widest whitespace-nowrap">
           最懂您需求的漫画网站
         </span>
       </div>
 
       <a
         href={`/app/sjmh.${mobile}?tc=${tc}`}
-        class="rounded-full border-2 border-[#f98d83] text-[#ff978d] p-2 text-xs font-bold mr-2 hover:bg-[#ffe2e0] hover:text-[#e66a5f] whitespace-nowrap"
+        class="rounded-full border-2 border-[#b5a7d0] text-[#6d5694] p-2 text-xs font-bold mr-2 hover:bg-[#fcf6ff] whitespace-nowrap"
       >
         安装 APP
         <img

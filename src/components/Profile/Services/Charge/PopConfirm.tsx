@@ -69,7 +69,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
           <div className="text-[#dc6060]">&#165; {userSelect.cash_amount}</div>
         </div>
         <div className="w-full pt-2.5 pb-1.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
-          <div className="w-2/3 pr-2.5 pb-4 pt-1.5 mr-0 ml-auto flex justify-between items-center">
+          <div className="w-2/3 pr-2.5 pb-5 pt-2.5 mr-0 ml-auto flex justify-between items-center">
             {checkCode.split("").map((c, i) => {
               return (
                 <div className="w-[40px] font-bold text-center text-[32px] text-[#666666]">

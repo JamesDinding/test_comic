@@ -26,7 +26,7 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
       onClick={(e) => e.stopPropagation()}
     >
       <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[rgba(158,118,84,.4)]">
-        章節選擇
+        章节选择
         <div onClick={reset}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
@@ -42,7 +42,7 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
           return (
             <div
               onClick={() => {
-                // event bubbling, 所以會觸發
+                // event bubbling, 所以会触发
                 if (!c.status) return;
                 changeChapter(c.position);
               }}

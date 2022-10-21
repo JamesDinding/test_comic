@@ -67,7 +67,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
   return (
     <CardBottom>
       <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[rgba(158,118,84,.4)]">
-        綁定會員資料
+        绑定会员资料
         <div onClick={(e) => onClose()}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
@@ -76,10 +76,10 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
         <InputField
           inputRef={phoneRef}
           title="手机号"
-          warningMsg="無效號碼，請重新輸入!"
+          warningMsg="无效号码，请重新输入!"
           isWrong={isPhoneWrong}
           inputSetting={{
-            placeHolder: "輸入手機號",
+            placeHolder: "输入手机号",
             type: "number",
             minLen: 10,
             maxLen: 12,
@@ -88,10 +88,10 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
         <InputField
           inputRef={mailRef}
           title="邮箱"
-          warningMsg="無效信箱，請重新輸入!"
+          warningMsg="无效信箱，请重新输入!"
           isWrong={isMailWrong}
           inputSetting={{
-            placeHolder: "輸入郵箱",
+            placeHolder: "输入邮箱",
             type: "text",
             minLen: 10,
             maxLen: 12,
@@ -100,10 +100,10 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
         <InputField
           inputRef={nameRef}
           title="昵称"
-          warningMsg="無效暱稱，請重新輸入!"
+          warningMsg="无效昵称，请重新输入!"
           isWrong={isNameWrong}
           inputSetting={{
-            placeHolder: "輸入暱稱",
+            placeHolder: "输入昵称",
             type: "text",
             minLen: 10,
             maxLen: 12,
@@ -116,12 +116,18 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
           onClick={(e) => {
             if (!verifyInput()) return;
             console.log("binding gogo");
-            postMyProfile(phoneRef.current.value, mailRef.current.value, nameRef.current.value).then(response=>{
-              console.log(response)
-              onClose();
-            }).catch(err=>{
-              console.log(err)
-            })
+            postMyProfile(
+              phoneRef.current.value,
+              mailRef.current.value,
+              nameRef.current.value
+            )
+              .then((response) => {
+                console.log(response);
+                onClose();
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           }}
         >
           提交

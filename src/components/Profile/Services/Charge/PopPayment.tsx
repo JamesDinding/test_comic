@@ -47,7 +47,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         <div className="modal-cross" onClick={() => onClose()}>
           <IconCross class="h-8" />
         </div>
-        <ModalTitle title="選擇支付方案" onClose={onClose} />
+        <ModalTitle title="选择支付方案" onClose={onClose} />
         <div className="relative w-full h-2/3">
           <div className="payment-shadow"></div>
           <div className="h-full px-1 overflow-y-auto no-scollbar bg-[#fcf6ff]">

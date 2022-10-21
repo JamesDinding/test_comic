@@ -34,8 +34,10 @@ export async function login(acc, pw) {
 
   const data = await res.json();
 
-  if (data.error) throw new Error(data.message);
-
+  if (data.error) {
+    if (data.message === "already logged") return false;
+    throw new Error(data.message);
+  }
   console.log();
 
   return data.error;
@@ -142,7 +144,18 @@ export const getCategories = curryFetch_GET("/contents/categories");
 export const getSpecifiedCategory = curryFetch_GET("/contents/categories");
 
 // 取得區塊內容
-export const getAllBlock = curryFetch_GET_QUERY("/contents/blocks");
+// export const getAllBlock = curryFetch_GET_QUERY("/contents/blocks");
+export const getAllBlock = curryFetch_GET("/contents/blocks");
+
+// random
+export const getRandomBlock = async (num) => {
+  const res = await fetch(
+    `/api/v1/contents/blocks/random/${num}?type=吸睛首选`
+  );
+  const data = await res.json();
+  if (data.error) throw new Error("failed");
+  return data;
+};
 
 // 取得指定書本
 export const getSpecifiedBook = curryFetch_GET("/contents/items");
@@ -158,7 +171,14 @@ export const getSpecifiedBookChapterList = async (item) => {
 };
 
 // 取得指定書本敘述
-export const getSpecifiedBookDescription = () => {};
+export const getSpecifiedBookDescription = async (comic_id) => {
+  const res = await fetch(`/api/v1/contents/items/${comic_id}/description`);
+  const data = await res.json();
+
+  if (data.error) throw new Error("failed");
+
+  return data;
+};
 
 // 取得指定書本章節順序內容
 export const getSpecifiedBookContext = () => {};

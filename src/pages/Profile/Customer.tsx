@@ -9,10 +9,10 @@ import ReturnBar from "../../components/ReturnBar";
 
 import { API_ROUTE } from "../../const";
 
-// 透過某個地方放
+// 透过某个地方放
 localStorage.setItem("room-id", JSON.stringify({ id: "111206" }));
 
-// 這個component拿
+// 这个component拿
 const retrieveObj = JSON.parse(localStorage.getItem("room-id")!);
 const ID_LOCAL_STORAGE = retrieveObj.id;
 
@@ -36,7 +36,7 @@ const CustomerPage: FunctionalComponent = () => {
 
   const bottomRef = useRef<HTMLDivElement>(null!);
 
-  // 可以被放到拿完先前聊天內容if(data.length === 0) 在給罐頭
+  // 可以被放到拿完先前聊天内容if(data.length === 0) 在给罐头
   useEffect(() => {
     if (msgList.length === 0) {
       setMsgList((prev) => {
@@ -54,7 +54,7 @@ const CustomerPage: FunctionalComponent = () => {
     bottomRef.current?.scrollIntoView();
   }, [msgList]);
 
-  // 讀取先前的聯天室內容
+  // 读取先前的联天室内容
   useEffect(() => {
     if (!isInitialLoad) return;
 
@@ -75,7 +75,7 @@ const CustomerPage: FunctionalComponent = () => {
     ws = new WebSocket("ws://192.168.1.247:3000");
     ws.onopen = () => {
       console.log("open connection");
-      // 建立連線後，先向server發送資料來匹配客服人員
+      // 建立连线后，先向server发送资料来匹配客服人员
       ws?.send(
         JSON.stringify({
           type: "initial",
@@ -84,8 +84,8 @@ const CustomerPage: FunctionalComponent = () => {
           content: "",
         })
       );
-      // initial 要順帶把使用者資料傳送過去
-      // 先寫死 使用者 測試傳送資料的api
+      // initial 要顺带把使用者资料传送过去
+      // 先写死 使用者 测试传送资料的api
       fetch(`${API_ROUTE}/user/profile/${ID_LOCAL_STORAGE}`, {
         method: "POST",
         headers: {
@@ -175,9 +175,9 @@ const CustomerPage: FunctionalComponent = () => {
 
   return (
     <div className="bg-[#fffbf6] w-full flex flex-col justify-between grow max-h-screen">
-      {/* <CharTitleBar userName={"用戶名稱"} ws={ws} userId={ID_LOCAL_STORAGE} /> */}
+      {/* <CharTitleBar userName={"用户名称"} ws={ws} userId={ID_LOCAL_STORAGE} /> */}
       <div className="bg-white">
-        <ReturnBar title="用戶名稱" type="cross" />
+        <ReturnBar title="用户名称" type="cross" />
       </div>
       {/* <audio className="hidden" preload="auto" id="audio-player"></audio> */}
       {haveService ? (
@@ -188,13 +188,13 @@ const CustomerPage: FunctionalComponent = () => {
             if (identity === "client")
               return <UserMessage msg={content} type={type} key={i} />;
           })}
-          {isTyping && <ServerMessage msg={"輸入中..."} type={"startTyping"} />}
+          {isTyping && <ServerMessage msg={"输入中..."} type={"startTyping"} />}
           <div id="bottom" className="min-h-[54px]" ref={bottomRef}></div>
         </div>
       ) : (
         <div className="text-center">
-          <div>使用者不在服務範圍內</div>
-          <div>請確認網路狀況或向ISP洽詢。</div>
+          <div>使用者不在服务范围内</div>
+          <div>请确认网路状况或向ISP洽询。</div>
         </div>
       )}
 

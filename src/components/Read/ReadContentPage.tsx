@@ -10,6 +10,7 @@ import Image from "../_Image/image";
 import {
   getSpecifiedBookChapterList,
   getSpecifiedBookIdContent,
+  getSpecifiedBookDescription,
 } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 
@@ -20,7 +21,7 @@ const ReadContentPage: FunctionalComponent = () => {
   const [parentPending, setParentPending] = useState(true);
   const [pageList, setPageList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
-  // 暫時先這樣寫
+  // 暂时先这样写
   // [ _, _, comicId, _, chapterId ]
   const [curComic, setCurComic] = useState(
     parseInt(window.location.pathname.split("/")[2], 10)
@@ -28,6 +29,7 @@ const ReadContentPage: FunctionalComponent = () => {
   const [curChapter, setCurChapter] = useState(
     parseInt(window.location.pathname.split("/")[4], 10)
   );
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     try {
@@ -54,6 +56,14 @@ const ReadContentPage: FunctionalComponent = () => {
       console.error(err.message);
     }
   }, [curComic]);
+
+  useEffect(() => {
+    if (title) return;
+    getSpecifiedBookDescription(curComic).then((response) => {
+      console.log(response);
+      setTitle(response.data.title);
+    });
+  }, [curComic, title]);
 
   return (
     <F>
@@ -86,7 +96,7 @@ const ReadContentPage: FunctionalComponent = () => {
         }}
         ref={containerRef}
       >
-        <PopReturn bookId={curComic} />
+        <PopReturn bookId={curComic} title={title} />
         <ObserverProvider rootElement={containerRef}>
           {pageList?.map((page, i, arr) => {
             return (

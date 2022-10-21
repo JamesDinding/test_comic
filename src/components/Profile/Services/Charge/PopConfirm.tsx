@@ -3,59 +3,58 @@ import { useState, useEffect, StateUpdater } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import ModalTitle from "../../../UI/ModalTitle";
 import Card from "../../../Modal/Card";
-import IconCross from "../../../../resources/img/icon-cross.svg";
-import {getOrdersRedirectOrderNum, postOrdersCharge} from '../../../../lib/api';
+import {
+  getOrdersRedirectOrderNum,
+  postOrdersCharge,
+} from "../../../../lib/api";
 
 interface PopConfirmProps {
   onClose: () => void;
 }
 
-let timer: ReturnType<typeof setTimeout>;
-
 const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
   const { payment, userSelect } = useCharge();
   const [countDown, setCountDown] = useState(300);
-  const [ip, setIp] = useState<string>()
+  const [ip, setIp] = useState<string>();
+  const [checkCode, setCheckCode] = useState("");
   const [validationCode, setValidationCode] = useState<Array<number | null>>(
     new Array(4).fill(null)
   );
-
-  useEffect(()=>{
-    fetch('http://www.cloudflare.com/cdn-cgi/trace').then(res=>{
-      return res.text()
-    }).then(data=>{
-      const temp = data.split('ip=').pop()
-      const temp2 = temp?.split('ts=')[0].trim()
-      setIp(temp2)
-    }).catch(err=>{
-      console.log(err.message || "failed")
-    })
-  }, [])
-
+  const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
-    if (countDown === 0) {
-      clearTimeout(timer);
-      onClose();
-    }
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      setCountDown((prev) => prev - 1);
-    }, 1000);
-  }, [timer, countDown]);
+    fetch("http://www.cloudflare.com/cdn-cgi/trace")
+      .then((res) => {
+        return res.text();
+      })
+      .then((data) => {
+        const temp = data.split("ip=").pop();
+        const temp2 = temp?.split("ts=")[0].trim();
+        setIp(temp2);
+      })
+      .catch((err) => {
+        console.log(err.message || "failed");
+      });
+  }, []);
 
-  function paddingZero(num: string, len: number): string {
-    return num.length >= len ? num : paddingZero("0" + num, len);
-  }
+  // generate check string
+  useEffect(() => {
+    if (checkCode) return;
+    let temp = "";
+    for (let i = 0; i < 4; i++) {
+      temp += Math.floor(Math.random() * 10);
+    }
+    setCheckCode(temp);
+  }, [checkCode]);
 
   return (
     <Card>
       <div className="relative overflow-auto no-scrollbar text-[#6d5694] flex flex-col items-center h-full p-5">
-        <ModalTitle title="訂單確認" onClose={onClose} />
+        <ModalTitle title="订单确认" onClose={onClose} />
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 mt-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>方案 : </div>
           <div className="text-[#666666]">
-            金幣充值 -{" "}
+            金币充值 -{" "}
             <span className="text-[#dc6060]">{userSelect.token_amount}</span> 枚
           </div>
         </div>
@@ -66,13 +65,22 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
           </div>
         </div>
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
-          <div>金額 :</div>
+          <div>金额 :</div>
           <div className="text-[#dc6060]">&#165; {userSelect.cash_amount}</div>
         </div>
         <div className="w-full pt-2.5 pb-1.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
+          <div className="w-2/3 pr-2.5 pb-5 pt-2.5 mr-0 ml-auto flex justify-between items-center">
+            {checkCode.split("").map((c, i) => {
+              return (
+                <div className="w-[40px] font-bold text-center text-[32px] text-[#666666]">
+                  {c}
+                </div>
+              );
+            })}
+          </div>
           <div className="flex items-center justify-between w-full px-2.5 ">
-            <div>驗證碼 :</div>
-            <div>
+            <div>验证码 :</div>
+            <div className="w-2/3 flex justify-between items-center">
               {new Array(4).fill(0).map((_, i) => {
                 return (
                   <input
@@ -83,7 +91,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                     max={9}
                     min={0}
                     value={validationCode[i]!}
-                    className="w-[40px] h-[50px] px-2 py-1.5 ml-2 border-solid border-2 rounded text-center text-lg"
+                    className="w-[40px] h-[50px] px-2 py-1.5 border-solid border-2 rounded text-center text-lg"
                     onInput={(e) => {
                       const target = e.target as HTMLInputElement;
                       setValidationCode((prev) => {
@@ -103,37 +111,58 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                   />
                 );
               })}
+              {/* <input
+                type="text"
+                value={validationCode!}
+                maxLength={4}
+                className="w-full h-[50px] px-2 py-1.5 border-solid border-2 rounded text-right text-lg"
+                onInput={(e) => {
+                  const target = e.target as HTMLInputElement;
+                  setValidationCode(target.value);
+                }}
+              /> */}
             </div>
           </div>
           <div className="flex items-center justify-between w-full px-2.5 mt-2">
             <div className="grow"></div>
-            <div className="mr-4 text-[#cccccc]">若訂單無誤，請輸入驗證碼</div>
-            <div className="text-logo-primary">
-              {Math.floor(countDown / 60) || "0"}:
-              {paddingZero((countDown % 60).toString(), 2)}
+            <div className="mr-4 text-[#cccccc]">
+              若订单无误，请输入上方验证码
             </div>
           </div>
         </div>
         <span className="mt-5 text-sm text-[#ff978d] whitespace-nowrap">
-          送出後將跳轉該官方授權網站，請安心使用
+          送出后将跳转该官方授权网站，请安心使用
         </span>
         <div className="grow"></div>
         <button
           id="validation-4"
           tabIndex={5}
           className="w-full py-4 mt-[3.625rem] bg-[#eb6f6f] rounded-lg text-center text-xl text-white"
-          onClick={()=>{
-            console.log("id: ",userSelect.id, " cash_amount: ",userSelect.cash_amount)
-            postOrdersCharge(payment?.id, userSelect.cash_amount, ip).then(response=>{
-              const {data} = response;
-              console.log(data)
-              window.location.href = '/api/v1/orders/redirect/'+data.order_num
-            }).catch(err=>{
-              console.log(err.message || 'failed')
-            })
+          onClick={() => {
+            console.log(
+              "id: ",
+              userSelect.id,
+              " cash_amount: ",
+              userSelect.cash_amount
+            );
+            const temp = checkCode.split("");
+            for (let i = 0; i < 4; i++) {
+              if (validationCode[i]?.toString() !== temp[i]) return;
+            }
+
+            postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
+              .then((response) => {
+                const { data } = response;
+                console.log(data);
+                window.location.href =
+                  "/api/v1/orders/redirect/" + data.order_num;
+              })
+              .catch((err) => {
+                console.log(err.message || "failed");
+              });
           }}
         >
-          確認充值
+          确认充值
         </button>
       </div>
     </Card>

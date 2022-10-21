@@ -96,7 +96,7 @@ const Charge = () => {
                     />
                   </div>
                   <div className="pl-2.5">
-                    <div className="text-sm">金幣</div>
+                    <div className="text-sm">金币</div>
                     <div className="text-lg font-semibold">
                       {sale.token_amount}
                     </div>
@@ -137,10 +137,10 @@ const Charge = () => {
                     />
                   </div>
                   <div className="pl-2.5">
-                    <div className="text-sm">金幣</div>
+                    <div className="text-sm">金币</div>
                     <div className="text-lg font-semibold">3,000</div>
                     {index !== 0 && (
-                      <div className="text-sm opacity-60">含贈送 3,000</div>
+                      <div className="text-sm opacity-60">含赠送 3,000</div>
                     )}
                   </div>
                 </div>

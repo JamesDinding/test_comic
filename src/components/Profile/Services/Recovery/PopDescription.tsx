@@ -15,9 +15,9 @@ const PopDescription: FunctionalComponent<PopDescriptionProps> = ({
   return (
     <Card heightShrink={true}>
       <div className="relative overflow-y-auto no-scrollbar flex flex-col items-center h-full p-5">
-        <ModalTitle title="寻回帳戶說明" onClose={onClose} />
+        <ModalTitle title="寻回帐户说明" onClose={onClose} />
         <div className="w-full text-sm text-[#ff978d] mt-5">
-          若您的帳戶遗失了，请别担心，请您提供下列完整信息，将由专人为您解决。
+          若您的帐户遗失了，请别担心，请您提供下列完整信息，将由专人为您解决。
         </div>
         <ul className="w-full text-sm text-[#666666] mt-5">
           <li>
@@ -34,11 +34,11 @@ const PopDescription: FunctionalComponent<PopDescriptionProps> = ({
           </li>
         </ul>
         <p className="w-full text-sm text-[#666666] mt-5">
-          以上信息准备完成后，请联系客服，客服人員将会协助您取得一组
+          以上信息准备完成后，请联系客服，客服人员将会协助您取得一组
           <strong>对应号码</strong>，请按照步骤回填资讯，即可寻回帐户。
         </p>
         <div className="w-full text-sm text-[#ff978d] mt-5 mb-10">
-          提醒您：綁定會員資料可避免帳戶遺失！
+          提醒您：绑定会员资料可避免帐户遗失！
         </div>
         <Btn
           title="联系客服"

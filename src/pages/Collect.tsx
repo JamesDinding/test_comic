@@ -8,7 +8,12 @@ import CollectItem from "../components/_Book/CollectItem";
 import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
 import RecommendTitleBar from "../components/Home/RecommendTitleBar";
-import { getMyBookmarks, getMyAcquisitions, getAllBlock } from "../lib/api";
+import {
+  getMyBookmarks,
+  getMyAcquisitions,
+  getAllBlock,
+  getRandomBlock,
+} from "../lib/api";
 import { useDomain } from "../context/domain";
 
 const comicArr = ["123", "234", "345", "456", "567", "678"];
@@ -16,7 +21,7 @@ const comicArr = ["123", "234", "345", "456", "567", "678"];
 const adArr = ["fxck_me"];
 
 // temp data
-const temp_tab_arr = ["收藏紀錄", "購買記錄"];
+const temp_tab_arr = ["收藏纪录", "购买记录"];
 
 const CollectPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
@@ -53,9 +58,9 @@ const CollectPage: FunctionalComponent = () => {
 
   useEffect(() => {
     if (collectList.length === 0 || acquisitions.length === 0) {
-      getAllBlock("type=吸睛首選")
+      getRandomBlock(9)
         .then((response) => {
-          setRecommendBlock(response.data["吸睛首選"]);
+          setRecommendBlock(response.data["吸睛首选"]);
           setDomain(response.domain);
         })
         .catch((err) => {
@@ -79,7 +84,7 @@ const CollectPage: FunctionalComponent = () => {
         <ObserverProvider rootElement={containerRef}>
           {curSelect === 0 &&
             (collectList.length ? (
-              <div className="grow bg-[#fffbf6]">
+              <div className="grow bg-[#fcf6ff]">
                 <div
                   className=" items-box grid grid-cols-3 gap-2.5 py-4 px-5"
                   onClick={unPressHandler}
@@ -115,7 +120,7 @@ const CollectPage: FunctionalComponent = () => {
             ))}
           {curSelect === 1 &&
             (acquisitions.length ? (
-              <div className="grow bg-[#fffbf6]">
+              <div className="grow bg-[#fcf6ff]">
                 <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
                   {acquisitions.map((purchase: any, i, arr) => {
                     return (
@@ -148,6 +153,7 @@ const CollectPage: FunctionalComponent = () => {
             ))}
         </ObserverProvider>
       </div>
+      <div className="grow bg-[#fcf6ff]"></div>
       <FooterBar />
     </F>
   );

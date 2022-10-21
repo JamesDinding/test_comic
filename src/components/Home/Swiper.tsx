@@ -210,7 +210,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
             </a>
           );
         })}
-        <ul className="absolute flex bottom-4 left-1/2 translate-x-[-50%] min-w-1/2 z-10">
+        {/* <ul className="absolute flex bottom-4 left-1/2 translate-x-[-50%] min-w-1/2 z-10">
           {banners?.map((b, i) => {
             // if (blk.ID !== 1) return;
             // return blk.Items.map((_, i) => {
@@ -223,7 +223,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

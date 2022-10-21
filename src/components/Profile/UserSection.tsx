@@ -21,16 +21,16 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
           <span className={showVIP ? "text-sm" : "text-lg"}>{user.ID}</span>
         </div>
         <div className="h-[17px] mt-[3px] flex items-center justify-between text-[#f7bc86]">
-          <span className="text-xs">剩餘金幣</span>
+          <span className="text-xs">剩余金币</span>
           <span className={showVIP ? "text-xs" : "text-lg"}>
             {userStatus.coins || 0}&nbsp;元
           </span>
         </div>
         {showVIP && (
           <div className="h-[17px] mt-[1px] flex items-center justify-between text-[#999999]">
-            <span className="text-xs">VIP 會員</span>
+            <span className="text-xs">VIP 会员</span>
             <span className="text-xs">
-              {userStatus.vip?.split(" ")[0] || "尚未開通"}
+              {userStatus.vip?.split(" ")[0] || "尚未开通"}
             </span>
           </div>
         )}

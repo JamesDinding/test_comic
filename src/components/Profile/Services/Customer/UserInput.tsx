@@ -32,7 +32,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
     const target = e.target as HTMLInputElement;
     onSetClientInput(target.value);
 
-    // 把使用者正在打字的內容傳送過去
+    // 把使用者正在打字的内容传送过去
     ws?.send(
       JSON.stringify({
         type: "isTyping",
@@ -47,7 +47,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
     const target = e.target as HTMLInputElement;
     if (e.keyCode !== 13 || !target.value) return;
 
-    // send msg to backend 發送訊息時，要包含自己的userId，這樣server回傳知道你誰
+    // send msg to backend 发送讯息时，要包含自己的userId，这样server回传知道你谁
     ws?.send(
       JSON.stringify({
         type: "msg",
@@ -123,7 +123,7 @@ const UserInput: FunctionalComponent<UserInputProps> = ({
         return temp;
       });
 
-      // 滾動功能未作用
+      // 滚动功能未作用
       bottomRef.current.scrollIntoView();
     };
 

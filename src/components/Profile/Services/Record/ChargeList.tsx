@@ -4,7 +4,6 @@ import ChargeItem from "./ChargeItem";
 import Empty from "./Empty";
 import { getMyOrders } from "../../../../lib/api";
 
-// Array<ChargeItem>  應該要把ChargeItem export 出來用
 interface ChargeList {
   chargeList: Array<{
     id: string;

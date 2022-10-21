@@ -14,10 +14,10 @@ const PopLogout: FunctionalComponent<popLogoutProps> = ({ onClose }) => {
   return (
     <Card heightShrink={true}>
       <div>
-        <ModalTitle title="登出確認" onClose={onClose} />
+        <ModalTitle title="登出确认" onClose={onClose} />
         <div className="m-5">
           <div className="my-10 text-sm text-center text-[#666666]">
-            確定要登出嗎?
+            确定要登出吗?
           </div>
           <Btn
             title="狠心登出"

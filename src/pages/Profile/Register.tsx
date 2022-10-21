@@ -6,7 +6,7 @@ const RegisterPage: FunctionalComponent = () => {
   return (
     <>
       <div class="grow flex flex-col min-h-screen bg-white">
-        <ReturnBar title="註冊" hasShadow={true} />
+        <ReturnBar title="注册" hasShadow={true} />
         <Register />
       </div>
     </>

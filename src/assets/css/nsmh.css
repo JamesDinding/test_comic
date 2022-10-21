@@ -1605,6 +1605,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(171 75 116 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#faf6ff\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 246 255 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#e9f4ff\] {
   --tw-bg-opacity: 1;
   background-color: rgb(233 244 255 / var(--tw-bg-opacity));
@@ -1658,11 +1663,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#faf6ff\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 246 255 / var(--tw-bg-opacity));
-}
-
 .bg-userSection {
   background-image: url('../img/bg-user.png');
 }
@@ -1671,12 +1671,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-image: url('../img/bg-cartoon.png');
 }
 
+.bg-userIcon {
+  background-image: url('../img/user-icon.png');
+}
+
 .bg-\[length\:100\%_50\%\] {
   background-size: 100% 50%;
 }
 
 .bg-\[length\:100\%_100\%\] {
   background-size: 100% 100%;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
 }
 
 .bg-no-repeat {

@@ -13,7 +13,7 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
   return (
     <div className="flex  w-full bg-no-repeat bg-userSection bg-[length:100%_50%] min-h-[120px]">
       <div className="mt-2.5 mx-2.5 p-3 bg-white rounded-full w-[90px] h-[90px]">
-        <div className="user-icon-shadow w-full h-full rounded-full bg-[#ff978d]"></div>
+        <div className="user-icon-shadow w-full h-full rounded-full bg-[#ff978d] bg-userIcon bg-center bg-cover"></div>
       </div>
       <div className="grow px-5 mt-[30px]">
         <div className="h-[30px] flex items-center justify-between text-white">

@@ -347,8 +347,11 @@ input[type="number"] {
 }
 
 .category-item.active {
-  @apply !px-2 !text-gray-700 font-bold;
-  background: linear-gradient(to bottom, #ffffff80, #c7b5e680);
+  @apply !px-1 !text-gray-700 font-bold;
+}
+
+.category-item-derocation {
+  @apply w-full h-1 bg-[#6d5694] rounded;
 }
 
 /* recovery頁面 */

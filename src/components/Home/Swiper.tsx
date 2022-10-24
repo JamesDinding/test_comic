@@ -58,7 +58,6 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   ]);
 
   useEffect(() => {
-    console.log('banners ', banners);
     (() => {
       // (async () => {
       // let res = await send({
@@ -185,7 +184,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   }
 
   return (
-    <div className="w-full min-h-[190px]">
+    <div className="w-full min-h-[190px] mb-5">
       <div
         id="carousel"
         className="w-full min-h-[190px] relative overflow-hidden whitespace-nowrap"

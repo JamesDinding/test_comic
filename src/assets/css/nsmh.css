@@ -3198,6 +3198,12 @@ footer .active span {
   transition: all 0.3s ease-in-out;
 }
 
+/* for Reading page */
+
+.page {
+  width: 100%;
+}
+
 /* Reading page range input bar */
 
 .input-range-page {

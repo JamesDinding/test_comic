@@ -20,6 +20,8 @@ const ReadContentPage: FunctionalComponent = () => {
   const { isPopControl, popControl, reset } = useReadingModal();
   const [parentPending, setParentPending] = useState(true);
   const [pageList, setPageList] = useState([]);
+  const [curPage, setCurPage] = useState(1);
+  const [observer, setObserver] = useState<IntersectionObserver>();
   const [chapterList, setChapterList] = useState([]);
   // 暂时先这样写
   // [ _, _, comicId, _, chapterId ]
@@ -31,6 +33,24 @@ const ReadContentPage: FunctionalComponent = () => {
   );
   const [title, setTitle] = useState("");
 
+  // setup intersection observer for detecting current page
+  useEffect(() => {
+    if (observer) return;
+    const opt: IntersectionObserverInit = {
+      root: containerRef.current,
+    };
+    const ob = new IntersectionObserver((entries, observer) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          console.log(e);
+        }
+      });
+    }, opt);
+    const targets = document.querySelectorAll(".page");
+    console.log("targets: ", targets);
+    setObserver(ob);
+  }, [observer, containerRef.current]);
+
   useEffect(() => {
     try {
       (async () => {
@@ -40,6 +60,8 @@ const ReadContentPage: FunctionalComponent = () => {
         );
         setDomain(domain);
         setPageList(data.contents.images);
+        const targets = document.querySelectorAll(".page");
+        console.log("targets: ", targets);
       })();
     } catch (err: any) {
       console.error(err.message);
@@ -100,12 +122,14 @@ const ReadContentPage: FunctionalComponent = () => {
         <ObserverProvider rootElement={containerRef}>
           {pageList?.map((page, i, arr) => {
             return (
-              <Image
-                path={page}
-                alt=""
-                isFullHeight={false}
-                setParentPending={setParentPending}
-              />
+              <div id={`page-${i}`} className="page">
+                <Image
+                  path={page}
+                  alt=""
+                  isFullHeight={false}
+                  setParentPending={setParentPending}
+                />
+              </div>
             );
           })}
         </ObserverProvider>

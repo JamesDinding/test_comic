@@ -988,6 +988,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 50px;
 }
 
+.min-h-\[200px\] {
+  min-height: 200px;
+}
+
 .min-h-\[54px\] {
   min-height: 54px;
 }
@@ -1006,6 +1010,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-h-\[60px\] {
   min-height: 60px;
+}
+
+.min-h-\[1000px\] {
+  min-height: 1000px;
 }
 
 .w-\[1\.125rem\] {
@@ -3196,6 +3204,12 @@ footer .active span {
 
 .test-duration {
   transition: all 0.3s ease-in-out;
+}
+
+/* for Reading page */
+
+.page {
+  width: 100%;
 }
 
 /* Reading page range input bar */

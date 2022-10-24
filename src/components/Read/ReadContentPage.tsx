@@ -20,6 +20,10 @@ const ReadContentPage: FunctionalComponent = () => {
   const { isPopControl, popControl, reset } = useReadingModal();
   const [parentPending, setParentPending] = useState(true);
   const [pageList, setPageList] = useState([]);
+  // 控制列的頁碼
+  const [isDrag, setIsDrag] = useState(false);
+  const [curPage, setCurPage] = useState(1);
+  const [observer, setObserver] = useState<IntersectionObserver>();
   const [chapterList, setChapterList] = useState([]);
   // 暂时先这样写
   // [ _, _, comicId, _, chapterId ]
@@ -30,6 +34,43 @@ const ReadContentPage: FunctionalComponent = () => {
     parseInt(window.location.pathname.split("/")[4], 10)
   );
   const [title, setTitle] = useState("");
+
+  // setup intersection observer for detecting current page
+  useEffect(() => {
+    if (pageList.length === 0) return;
+    if (observer) return;
+    const opt: IntersectionObserverInit = {
+      root: containerRef.current,
+      threshold: [0.8],
+    };
+
+    const targets = document.querySelectorAll(".page");
+    console.log(targets);
+
+    const ob = new IntersectionObserver((entries, observer) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          console.log("enter viewport: ", e.target);
+          const p = parseInt(e.target.id.split("-").pop()!, 10);
+          setCurPage(p);
+        }
+      });
+    }, opt);
+
+    targets.forEach((target, i) => {
+      // 一開始全部的圖片就會intersect 導致一開始頁碼會錯
+      // 暫時先這樣做
+      // hot fix 頁碼issue
+      i === 0 && ob.observe(target);
+      if (i !== 0) {
+        setTimeout(() => {
+          ob.observe(target);
+        }, 1000);
+      }
+    });
+
+    setObserver(ob);
+  }, [observer, containerRef.current, pageList.length]);
 
   useEffect(() => {
     try {
@@ -65,6 +106,15 @@ const ReadContentPage: FunctionalComponent = () => {
     });
   }, [curComic, title]);
 
+  // 隨頁碼條滾動
+  useEffect(() => {
+    if (!isDrag) return;
+    const target = document.querySelector("#page-" + curPage);
+
+    target?.scrollIntoView();
+    setIsDrag(false);
+  }, [curPage, isDrag]);
+
   return (
     <F>
       <PopChapter
@@ -76,6 +126,9 @@ const ReadContentPage: FunctionalComponent = () => {
         pageNum={pageList.length}
         curChapter={curChapter}
         curComic={curComic}
+        curPage={curPage}
+        setIsDrag={setIsDrag}
+        setCurPage={setCurPage}
         changeChapter={setCurChapter}
       />
       <ModalBuy
@@ -100,12 +153,17 @@ const ReadContentPage: FunctionalComponent = () => {
         <ObserverProvider rootElement={containerRef}>
           {pageList?.map((page, i, arr) => {
             return (
-              <Image
-                path={page}
-                alt=""
-                isFullHeight={false}
-                setParentPending={setParentPending}
-              />
+              <div
+                id={`page-${i + 1}`}
+                className={"page" + (parentPending ? " min-h-[200px]" : "")}
+              >
+                <Image
+                  path={page}
+                  alt=""
+                  isFullHeight={false}
+                  setParentPending={setParentPending}
+                />
+              </div>
             );
           })}
         </ObserverProvider>

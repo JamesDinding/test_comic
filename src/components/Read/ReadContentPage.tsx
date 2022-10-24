@@ -59,6 +59,7 @@ const ReadContentPage: FunctionalComponent = () => {
 
     targets.forEach((target, i) => {
       // 一開始全部的圖片就會intersect 導致一開始頁碼會錯
+      // 暫時先這樣做
       // hot fix 頁碼issue
       i === 0 && ob.observe(target);
       if (i !== 0) {

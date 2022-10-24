@@ -58,6 +58,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   ]);
 
   useEffect(() => {
+    console.log('banners ', banners);
     (() => {
       // (async () => {
       // let res = await send({
@@ -80,7 +81,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
         setTransList(temp);
       }
     })();
-  }, []);
+  }, [banners]);
 
   // 輪播圖
   useEffect(() => {
@@ -197,7 +198,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
           // return blk.Items.map((b, i) => {
           return (
             <a
-              href={"/directory/" + banner.ID}
+              href={"/directory/" + banner.id}
               className={`block w-full absolute ${transList[i]}`}
             >
               <div>

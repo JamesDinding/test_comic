@@ -9,6 +9,9 @@ interface PopControlProps {
   curChapter: number;
   curComic: number;
   pageNum: number;
+  curPage: number;
+  setIsDrag: StateUpdater<boolean>;
+  setCurPage: StateUpdater<number>;
   changeChapter: StateUpdater<number>;
 }
 
@@ -17,10 +20,12 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
   pageNum,
   curChapter,
   curComic,
+  curPage,
+  setIsDrag,
+  setCurPage,
   changeChapter,
 }) => {
   const { isPopControl, popChapter, reset } = useReadingModal();
-  const [curPage, setCurPage] = useState(1);
 
   return (
     <F>
@@ -65,6 +70,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
             }}
             onChange={(e) => {
               const target = e.target as HTMLInputElement;
+              setIsDrag(true);
               setCurPage(parseInt(target.value, 10));
             }}
           />

@@ -267,11 +267,10 @@ export const getOrdersProductsId = curryFetch_GET("/orders/products");
 // 跳轉支付位置
 export const getOrdersRedirectOrderNum = curryFetch_GET("/orders/redirect");
 
-// domain 已經被棄用
 // /api/v1/domain  RESOURCE
 export async function getDomains(type) {
   // const
-  const response = await fetch("/test/v1/domain?type=" + type.toString());
+  const response = await fetch("/test/v1/domain/types?type=" + type.toString());
   const data = await response.json();
   if (!response.ok) throw new Error(data.message || "could not get Domain");
 

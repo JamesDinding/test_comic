@@ -52,7 +52,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
             <IconChevron class="h-10 w-10 text-white rotate-180" />
           </button>
           <div className="flex items-center justify-between font-light text-white text-sm text-center w-[60px]">
-            <span className="text-[#9e7654] w-[25px]">{curPage}</span>
+            <span className="text-[#6d5694] w-[25px]">{curPage}</span>
             <span className="text-lg">&nbsp;/&nbsp;</span>
             <span className="w-[25px]">{pageNum}</span>
           </div>

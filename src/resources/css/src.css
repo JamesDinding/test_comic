@@ -314,8 +314,7 @@ input[type="number"] {
 
 /* 章節目錄 */
 .chapter-title {
-  @apply text-lg text-[#6d5694] border-b-2 pb-2;
-  border-color: rgba(158, 118, 84, 0.4);
+  @apply text-lg text-[#6d5694] border-b-2 pb-2 border-[#6d569466];
 }
 
 .chapter-item-backdrop {

@@ -23,7 +23,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
       className={`modal-bottom bg-white overflow-y-auto no-scollbar ${layerCss}`}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[rgba(158,118,84,.4)]">
+      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#8d6d9f] text-lg border-b-[1px] border-[#8d6d9f66]">
         解锁确认
         <div onClick={reset}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
@@ -33,10 +33,10 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
         <div className="m-5">
           <Btn
             title="金币不足，充值去"
-            bgColor="bg-[#ff978d]"
+            bgColor="bg-[#eb6f6f]"
             cb={() => route("/charge")}
           />
-          <div className="mt-2.5 text-center text-[rgba(158,118,84,0.6)]">
+          <div className="mt-2.5 text-center text-[#6d569466]">
             点击按钮后，将会前往充值服务页面
           </div>
         </div>
@@ -45,7 +45,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
         <div className="m-5">
           <Btn
             title="继续阅读"
-            bgColor="bg-[#d19463]"
+            bgColor="bg-[#8d6d9f]"
             cb={() => {
               console.log(stuffInfo);
               postOrdersPurchase(stuffInfo?.id)
@@ -65,8 +65,8 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
                 });
             }}
           />
-          <div className="mt-2.5 text-center text-[rgba(158,118,84,0.6)]">
-            继续阅读将消耗 <span className="text-[#ff978d]">60</span> 金币
+          <div className="mt-2.5 text-center text-[#6d569466]">
+            继续阅读将消耗 <span className="text-[#eb6f6f]">60</span> 金币
           </div>
         </div>
       )}

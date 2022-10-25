@@ -25,7 +25,7 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
       className={`modal-bottom bg-white overflow-y-auto no-scollbar ${layerCss}`}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[rgba(158,118,84,.4)]">
+      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#6d5694] text-lg border-b-[1px] border-[#6d569466]">
         章节选择
         <div onClick={reset}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />

@@ -22,11 +22,11 @@ const Description: FunctionalComponent<DescriptionProps> = ({
 }) => {
   const [showPending, setPending] = useState(true);
 
-  // 資料載入前
+  // 资料载入前
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // 之後應該會改寫成一個obj包含全部所需資料
+    // 之后应该会改写成一个obj包含全部所需资料
     if (title) {
       setIsLoading(false);
     }
@@ -50,23 +50,23 @@ const Description: FunctionalComponent<DescriptionProps> = ({
               (isLoading ? "blur-sm" : "")
             }
           >
-            {title || "Titile is loading..."}
+            {title || "标题载入中"}
           </div>
           <div className="text-[#999999] text-xs mt-2 book-oneline">
             <span
               className={"mr-2 duration-[1.5s] " + (isLoading ? "blur-sm" : "")}
             >
-              作者:{author || "loading..."}
+              作者:{author || "作者载入中"}
             </span>
           </div>
 
           <p
             className={
-              "book-description duraton-1000 " + (isLoading ? "blur-sm" : "")
+              "book-description duration-1000 " + (isLoading ? "blur-sm" : "")
             }
           >
             {description ||
-              "Description is now loading..., please hold on for a second. Thanks for your cooperation."}
+              "亲爱的使用者您好，现在正在载入资料，还请您稍等一会儿。若等待时间过久，请检查网络状况，皆无法解决时，请洽客服反映相关问题，谢谢您的配合。"}
           </p>
           <div className="grow"></div>
           {/* <div className="leading-3">
@@ -79,10 +79,10 @@ const Description: FunctionalComponent<DescriptionProps> = ({
             })}
           </div> */}
           <div className="flex items-center w-full mt-1 text-[#a8a8a8]">
-            <span className="mr-2 text-[.6rem] book-oneline">
+            <span className="mr-2 min-w-6 text-[.6rem] book-oneline">
               <span>★&nbsp;{hot}</span>
             </span>
-            <span className="mr-2 text-[.6rem] book-oneline">
+            <span className="mr-2 min-w-6 text-[.6rem] book-oneline">
               <span>◉&nbsp;{views}</span>
             </span>
           </div>

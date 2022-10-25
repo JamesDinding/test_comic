@@ -184,7 +184,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   }
 
   return (
-    <div className="w-full min-h-[190px] mb-5">
+    <div className="w-full min-h-[190px] mb-6">
       <div
         id="carousel"
         className="w-full min-h-[190px] relative overflow-hidden whitespace-nowrap"

@@ -1528,12 +1528,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgba(158,118,84,0.4);
 }
 
+.border-\[\#6d569419\] {
+  border-color: #6d569419;
+}
+
 .border-l-\[\#6d569499\] {
   border-left-color: #6d569499;
 }
 
 .border-t-\[\#9e765499\] {
   border-top-color: #9e765499;
+}
+
+.border-t-\[\#6d569499\] {
+  border-top-color: #6d569499;
 }
 
 .bg-gray-200 {

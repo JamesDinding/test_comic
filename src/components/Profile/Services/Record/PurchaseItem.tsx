@@ -23,7 +23,7 @@ const PurchaseItem: FunctionComponent<PurchaseItemProps> = ({
       <div
         className={
           "cursor-pointer w-full h-[49px] px-5 leading-[49px] flex items-center justify-between text-sm text-[#79727d] border-solid border-b-[1px] " +
-          (isDrop ? "border-[#9e765419]" : "border-[#9e765466]")
+          (isDrop ? "border-[#6d569419]" : "border-[#6d569466]")
         }
         onClick={() => setIsDrop((prev) => !prev)}
       >
@@ -34,7 +34,7 @@ const PurchaseItem: FunctionComponent<PurchaseItemProps> = ({
         <div className="flex items-center justify-end">
           <div
             className={
-              "w-0 h-0 border-t-[6px] border-[6px] border-transparent border-t-[#9e765499] translate-y-[3px] origin-[50%_25%] duration-300 " +
+              "w-0 h-0 border-t-[6px] border-[6px] border-transparent border-t-[#6d569499] translate-y-[3px] origin-[50%_25%] duration-300 " +
               (isDrop ? "rotate-[180deg]" : "")
             }
           />

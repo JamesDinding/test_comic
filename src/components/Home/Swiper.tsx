@@ -1,5 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
+import { useDomain } from "../../context/domain";
 import BookList from "../_Book/List";
 import Image from "../_Image/image";
 
@@ -8,25 +9,6 @@ type slider = null | undefined | HTMLElement;
 interface SwiperProps {
   banners: Array<Book> | undefined;
 }
-
-const recommendationBlocks = [
-  1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
-];
-
-const recommendationBlocksItemPerRow: {
-  [index: number]: number;
-} = {
-  1: 0,
-  2: 3,
-  10077: 2,
-  10078: 3,
-  10079: 2,
-  10080: 3,
-  10081: 2,
-  10082: 3,
-  10083: 2,
-  10084: 3,
-};
 
 const positionList = [
   "translate-x-[-100%] ",
@@ -43,13 +25,10 @@ let cur: slider = null;
 let next: slider = null;
 let prev: slider = null;
 
-// let touchOffset = 0;
-let cur_test = 0;
-
 const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
-  // blocks[0]，可以拿到輪播要用的圖片
-  const [blocks, setBlocks] = useState<Array<Book>>([]);
-  const [showPending, setPending] = useState(true);
+  const [imageBlob, setImageBlob] = useState<Array<string>>([]);
+  const [pending, setPending] = useState<Array<boolean>>([]);
+  const { srcDomain } = useDomain();
   const [isTouching, setIsTouching] = useState(false);
   const [touchOffset, setTouchOffset] = useState(0);
   const [curSlide, setCurSlide] = useState(0);
@@ -57,12 +36,39 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
     "translate-x-[0%] ",
   ]);
 
-  console.log(banners);
+  useEffect(() => {
+    if (!banners || imageBlob.length !== 0) return;
+    let temp = new Array(banners.length).fill("");
+    let temp_pending = new Array(banners.length).fill(true);
+    setPending(temp_pending);
+    banners?.map((banner, i) => {
+      fetch("//" + srcDomain + "/" + banner?.covers?.thumb)
+        .then((res) => {
+          if (!res.ok) throw new Error("fail to fecth");
+
+          return res.text();
+        })
+        .then((data) => {
+          const b64 = data
+            .replace(/\+/g, "*")
+            .replace(/\//g, "+")
+            .replace(/\*/g, "/");
+
+          temp[i] = b64;
+          temp_pending[i] = false;
+          setImageBlob(temp);
+          setPending(temp_pending);
+        })
+        .catch((err) => {
+          console.error(err.message || "failed");
+        });
+    });
+  }, [banners, srcDomain, imageBlob]);
 
   useEffect(() => {
     (() => {
-      if (banners && !blocks) {
-        setBlocks(banners);
+      if (banners) {
+        console.log(banners);
         swiperLen = banners.length;
         const temp = new Array(swiperLen).fill(
           "translate-x-[100%] ",
@@ -186,19 +192,24 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
         onTouchEnd={touchEndHandler}
         onTouchMove={touchMovingHandler}
       >
-        {blocks?.map((banner, i) => {
+        {banners?.map((banner, i) => {
           return (
             <a
               key={i}
               href={"/directory/" + banner.id}
               className={`block w-full absolute ${transList[i]}`}
             >
-              <div>
-                {!showPending && (
-                  <Image
-                    path={banner.Cover || banner.covers?.thumb || ""}
-                    alt={""}
-                    setParentPending={setPending}
+              <div className="relative">
+                {/* <Image
+                  path={banner.covers?.thumb || ""}
+                  alt={""}
+                  setParentPending={setPending}
+                /> */}
+                {imageBlob[i] && (
+                  <img
+                    src={imageBlob[i]}
+                    className={"Image-component h-full "}
+                    alt=""
                   />
                 )}
               </div>

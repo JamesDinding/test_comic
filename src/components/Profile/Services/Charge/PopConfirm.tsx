@@ -155,7 +155,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                 const { data } = response;
                 console.log(data);
                 window.location.href =
-                  "/api/v1/orders/redirect/" + data.order_num;
+                  "/api/v1/orders/redirect/" + data.order_num + "?paymode=1";
               })
               .catch((err) => {
                 console.log(err.message || "failed");

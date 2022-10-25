@@ -25,7 +25,7 @@ declare interface SalesItem {
 }
 
 const Charge = () => {
-  const { selectCoins } = useCharge();
+  const { selectCoins, selectPay } = useCharge();
   const { isLogIn } = useUser();
   const [isPopPayment, setIsPopPayment] = useState(false);
   const [isPopConfirm, setIsPopConfirm] = useState(false);
@@ -50,7 +50,13 @@ const Charge = () => {
     <>
       {isPopPayment &&
         createPortal(
-          <BackDrop onClose={setIsPopPayment} />,
+          <BackDrop
+            onClose={setIsPopPayment}
+            onReset={() => {
+              selectCoins(null);
+              selectPay(null);
+            }}
+          />,
           document.getElementById("back-drop")!
         )}
       {isPopPayment &&
@@ -63,7 +69,13 @@ const Charge = () => {
         )}
       {isPopConfirm &&
         createPortal(
-          <BackDrop onClose={setIsPopConfirm} />,
+          <BackDrop
+            onClose={setIsPopConfirm}
+            onReset={() => {
+              selectCoins(null);
+              selectPay(null);
+            }}
+          />,
           document.getElementById("back-drop")!
         )}
       {isPopConfirm &&

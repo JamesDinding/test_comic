@@ -24,7 +24,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   onClose,
   onNextConfirm,
 }) => {
-  const { payment, userSelect } = useCharge();
+  const { payment, userSelect, selectPay, selectCoins } = useCharge();
   const [curExpand, setCurExpand] = useState(-1);
   const [payments, setPayments] = useState<any>([]);
   const [way, setWay] = useState<any>([]);
@@ -44,10 +44,14 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   return (
     <Card>
       <div className="relative overflow-auto no-scrollbar flex flex-col items-center h-full p-5">
-        <div className="modal-cross" onClick={() => onClose()}>
-          <IconCross class="h-8" />
-        </div>
-        <ModalTitle title="选择支付方案" onClose={onClose} />
+        <ModalTitle
+          title="选择支付方案"
+          onClose={() => {
+            selectPay(null);
+            selectCoins(null);
+            onClose();
+          }}
+        />
         <div className="relative w-full h-2/3">
           <div className="payment-shadow"></div>
           <div className="h-full px-1 overflow-y-auto no-scollbar bg-[#fcf6ff]">

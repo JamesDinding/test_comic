@@ -77,10 +77,12 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
   return (
     <div>
       {block_name.map((bn, i, arr) => {
-        if (bn.name === "banner") return <Swiper banners={blocks[bn.name]} />;
+        if (bn.name === "banner")
+          return <Swiper key={i} banners={blocks[bn.name]} />;
 
         return (
           <RecommendBlock
+            key={i}
             BlockID={bn.ID}
             BlockName={bn.name}
             Items={blocks[bn.name]}

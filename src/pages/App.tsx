@@ -35,7 +35,6 @@ const App: FunctionalComponent = () => {
         return res.json();
       })
       .then((data) => {
-        console.log("init response data:", data);
         setHadSendTC(true);
       })
       .catch((err) => {

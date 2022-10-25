@@ -14,7 +14,7 @@ interface BookListProps {
 const BookList: FunctionalComponent<BookListProps> = ({
   Rows = 3,
   ItemPerRow,
-  Items,
+  Items = [{}, {}, {}, {}, {}, {}],
   type = "original",
 }) => {
   return (

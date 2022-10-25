@@ -12,7 +12,6 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
   categories,
 }) => {
   const [activeCategory, setActiveCategory] = useState(0);
-  console.log(categories);
 
   // min-h-[36px]
   return (
@@ -21,21 +20,26 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
         {categories.map((c) => {
           return (
             <div className="mx-1 first:ml-0">
-            <a
-              href="/home"
-              onClick={() => {
-                console.log(c);
-                setActiveCategory(c.id);
-                onCategoryChanged(c.id);
-              }}
-              class={
-                "category-item" +
-                (c.id == activeCategory ? " active" : "")
-              }
-            >
-              {c.name}
-            </a>
-              <div className={c.id == activeCategory ?"category-item-derocation":'invisible h-0'}></div>
+              <a
+                href="/home"
+                onClick={() => {
+                  console.log(c);
+                  setActiveCategory(c.id);
+                  onCategoryChanged(c.id);
+                }}
+                class={
+                  "category-item" + (c.id == activeCategory ? " active" : "")
+                }
+              >
+                {c.name}
+              </a>
+              <div
+                className={
+                  c.id == activeCategory
+                    ? "category-item-derocation"
+                    : "invisible h-0"
+                }
+              ></div>
             </div>
           );
         })}

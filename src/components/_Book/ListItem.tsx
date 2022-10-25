@@ -23,7 +23,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         class={"item-separate flex flex-col "}
       >
         <div class="relative rounded-lg grow">
-          <div className="item-overlay z-[25] !h-[60px]"></div>
+          {!showPending && (
+            <div className="item-overlay z-[25] !h-[60px]"></div>
+          )}
           <div
             class={
               "bottom-4 tag " +
@@ -42,8 +44,8 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
             {/* <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}> */}
             <div
               className={
-                "rounded-lg overflow-hidden h-full" +
-                (showPending ? "relative z-[20]" : "")
+                "rounded-lg overflow-hidden h-full " +
+                (showPending ? "pending" : "")
               }
             >
               <Image
@@ -65,7 +67,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
       <Link
         href={"/directory/" + Data.id}
         // class={"relative item " + (showPending ? " pending min-h-[242px]" : "")}
-        class={"item h-[242px] " + (showPending ? "" : "")}
+        class={"item h-[242px] " + (showPending ? "pending" : "")}
       >
         <div className="relative z-20 rounded-lg overflow-hidden h-full">
           <Image
@@ -88,7 +90,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
             (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
           }
         ></div>
-        <div class="item-overlay z-[5]">&nbsp;</div>
+        {!showPending && <div class="item-overlay z-[5]">&nbsp;</div>}
         <div className="item-overlay z-[25]">
           <span class="title z-30">{Data.Name || Data.title}</span>
           <span class="rating z-30">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>

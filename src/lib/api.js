@@ -38,7 +38,6 @@ export async function login(acc, pw) {
     if (data.message === "already logged") return false;
     throw new Error(data.message);
   }
-  console.log();
 
   return data.error;
 }

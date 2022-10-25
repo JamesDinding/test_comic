@@ -37,8 +37,6 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
     }
     const os = getMobileOperatingSystem();
 
-    console.log(os);
-
     if (os === "iOS") {
       setMobile("mobileconfig");
     } else {
@@ -64,7 +62,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
 
       <a href={`/app/sjmh.${mobile}?tc=${tc}`}>
         <img
-          src="/assets/img/logo.png"
+          src="/assets/favicon.svg"
           class="rounded-lg shadow-md h-12"
           alt="女神漫画"
         />

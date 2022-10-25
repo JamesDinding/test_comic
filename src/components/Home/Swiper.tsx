@@ -48,7 +48,7 @@ let cur_test = 0;
 
 const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   // blocks[0]，可以拿到輪播要用的圖片
-  const [blocks, setBlocks] = useState<Array<RecommendationBlock>>([]);
+  const [blocks, setBlocks] = useState<Array<Book>>([]);
   const [showPending, setPending] = useState(true);
   const [isTouching, setIsTouching] = useState(false);
   const [touchOffset, setTouchOffset] = useState(0);
@@ -57,18 +57,12 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
     "translate-x-[0%] ",
   ]);
 
+  console.log(banners);
+
   useEffect(() => {
     (() => {
-      // (async () => {
-      // let res = await send({
-      //   action: "Get",
-      //   data: {
-      //     url:
-      //       "/api/v1/content/recommendations?blkID=" +
-      //       recommendationBlocks.join(","),
-      //   },
-      // });
-      if (banners) {
+      if (banners && !blocks) {
+        setBlocks(banners);
         swiperLen = banners.length;
         const temp = new Array(swiperLen).fill(
           "translate-x-[100%] ",
@@ -192,20 +186,21 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
         onTouchEnd={touchEndHandler}
         onTouchMove={touchMovingHandler}
       >
-        {banners?.map((banner, i) => {
-          // if (blk.ID !== 1) return;
-          // return blk.Items.map((b, i) => {
+        {blocks?.map((banner, i) => {
           return (
             <a
+              key={i}
               href={"/directory/" + banner.id}
               className={`block w-full absolute ${transList[i]}`}
             >
               <div>
-                <Image
-                  path={banner.Cover || banner.covers?.thumb || ""}
-                  alt={""}
-                  setParentPending={setPending}
-                />
+                {!showPending && (
+                  <Image
+                    path={banner.Cover || banner.covers?.thumb || ""}
+                    alt={""}
+                    setParentPending={setPending}
+                  />
+                )}
               </div>
             </a>
           );

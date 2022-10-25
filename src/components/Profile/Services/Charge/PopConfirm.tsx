@@ -7,6 +7,7 @@ import {
   getOrdersRedirectOrderNum,
   postOrdersCharge,
 } from "../../../../lib/api";
+import ReturnBar from "../../../ReturnBar";
 
 interface PopConfirmProps {
   onClose: () => void;
@@ -14,7 +15,7 @@ interface PopConfirmProps {
 
 const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
   const { payment, userSelect } = useCharge();
-  const [countDown, setCountDown] = useState(300);
+  const [isPosting, setIsPosting] = useState(false);
   const [ip, setIp] = useState<string>();
   const [checkCode, setCheckCode] = useState("");
   const [validationCode, setValidationCode] = useState<Array<number | null>>(
@@ -35,6 +36,13 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
       .catch((err) => {
         console.log(err.message || "failed");
       });
+  }, []);
+
+  // auto focus
+  useEffect(() => {
+    const firstInput: HTMLInputElement =
+      document.querySelector("#validation-0")!;
+    firstInput?.focus();
   }, []);
 
   // generate check string
@@ -137,17 +145,19 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
         <button
           id="validation-4"
           tabIndex={5}
-          className="w-full py-4 mt-[3.625rem] bg-[#eb6f6f] rounded-lg text-center text-xl text-white"
+          className={
+            "w-full py-4 mt-[3.625rem] bg-[#eb6f6f] rounded-lg text-center text-xl text-white " +
+            (isPosting ? "opacity-20" : "")
+          }
           onClick={() => {
-            console.log(
-              "id: ",
-              userSelect.id,
-              " cash_amount: ",
-              userSelect.cash_amount
-            );
+            if (isPosting) return;
+            setIsPosting(true);
             const temp = checkCode.split("");
             for (let i = 0; i < 4; i++) {
-              if (validationCode[i]?.toString() !== temp[i]) return;
+              if (validationCode[i]?.toString() !== temp[i]) {
+                setIsPosting(false);
+                return;
+              }
             }
 
             postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
@@ -159,6 +169,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
               })
               .catch((err) => {
                 console.log(err.message || "failed");
+                setIsPosting(false);
               });
           }}
         >

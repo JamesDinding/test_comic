@@ -14,7 +14,7 @@ interface PopConfirmProps {
 }
 
 const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
-  const { payment, userSelect } = useCharge();
+  const { payment, userSelect, selectCoins, selectPay } = useCharge();
   const [isPosting, setIsPosting] = useState(false);
   const [ip, setIp] = useState<string>();
   const [checkCode, setCheckCode] = useState("");
@@ -58,7 +58,14 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
   return (
     <Card>
       <div className="relative overflow-auto no-scrollbar text-[#6d5694] flex flex-col items-center h-full p-5">
-        <ModalTitle title="订单确认" onClose={onClose} />
+        <ModalTitle
+          title="订单确认"
+          onClose={() => {
+            selectCoins(null);
+            selectPay(null);
+            onClose();
+          }}
+        />
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 mt-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>方案 : </div>
           <div className="text-[#666666]">

@@ -24,7 +24,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   onClose,
   onNextConfirm,
 }) => {
-  const { payment, userSelect, selectPay } = useCharge();
+  const { payment, userSelect, selectPay, selectCoins } = useCharge();
   const [curExpand, setCurExpand] = useState(-1);
   const [payments, setPayments] = useState<any>([]);
   const [way, setWay] = useState<any>([]);
@@ -48,6 +48,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
           title="选择支付方案"
           onClose={() => {
             selectPay(null);
+            selectCoins(null);
             onClose();
           }}
         />

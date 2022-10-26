@@ -14,6 +14,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   // UserStatus
   const [coins, setCoins] = useState<number>(null!);
   const [vip, setVip] = useState<string | null>(null);
+  const [status, setStatus] = useState("");
 
   function resetUserInfo() {
     setID(0);
@@ -36,7 +37,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
         return !!hasError;
       } catch (err: any) {
         console.error(err.message || "login failed");
-        return false;
+        return true;
       }
     },
     [setIsLogIn, apiLogin]
@@ -71,6 +72,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     setID(data?.uid || 0);
     setCoins(data?.coins || 0);
     setVip(data?.vip_time || null);
+    setStatus(data?.status || "");
   }, []);
 
   useEffect(() => {
@@ -91,7 +93,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   const value = {
     isLogIn,
     user: { ID, token },
-    userStatus: { coins, vip },
+    userStatus: { coins, vip, status },
     login: loginHandler,
     logout: logoutHandler,
     bindPhone: () => {},

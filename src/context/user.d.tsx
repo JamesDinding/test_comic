@@ -6,6 +6,7 @@ declare type User = {
 declare type UserStatus = {
   coins: number;
   vip: string | null;
+  status: string;
 };
 
 declare interface UserContextType {

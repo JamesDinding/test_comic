@@ -21,6 +21,8 @@ import ChargePage from "./Profile/Charge";
 import RecordPage from "./Profile/Record";
 import CustomerPage from "./Profile/Customer";
 
+import Test from "./Test";
+
 const App: FunctionalComponent = () => {
   // const [showSmartBanner, setShowSmartBanner] = useState(true);
   const [hadSendTC, setHadSendTC] = useState(false);
@@ -71,6 +73,7 @@ const App: FunctionalComponent = () => {
 
                 <CustomerPage path="/service" />
 
+                <Test path="/test" />
                 <DefaultRouteHandler default />
               </Router>
 

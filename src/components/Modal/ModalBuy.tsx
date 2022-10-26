@@ -15,7 +15,7 @@ interface ModalBuyProps {
 const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
   const { isPopBuy, stuffInfo, reset } = useReadingModal();
   let layerCss = isPopBuy ? "" : "translate-y-[120%]";
-  const { userStatus } = useUser();
+  const { userStatus, updateCoins } = useUser();
 
   return (
     <div
@@ -29,7 +29,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
       </div>
-      {userStatus.coins < 60 && (
+      {userStatus.coins < (stuffInfo?.price || 60) && (
         <div className="m-5">
           <Btn
             title="金币不足，充值去"
@@ -41,7 +41,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
           </div>
         </div>
       )}
-      {userStatus.coins > 60 && (
+      {userStatus.coins > (stuffInfo?.price || 60) && (
         <div className="m-5">
           <Btn
             title="继续阅读"
@@ -53,6 +53,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
                   console.log(response);
                   cb && cb(stuffInfo?.position);
 
+                  updateCoins(stuffInfo?.price || 60);
                   reset();
 
                   route(
@@ -66,7 +67,9 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
             }}
           />
           <div className="mt-2.5 text-center text-[#6d569466]">
-            继续阅读将消耗 <span className="text-[#eb6f6f]">60</span> 金币
+            继续阅读将消耗{" "}
+            <span className="text-[#eb6f6f]">{stuffInfo?.price || 60}</span>{" "}
+            金币
           </div>
         </div>
       )}

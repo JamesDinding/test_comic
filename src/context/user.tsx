@@ -75,6 +75,10 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     setStatus(data?.status || "");
   }, []);
 
+  const updateCoinsHandler = useCallback((cost: number) => {
+    setCoins((prev) => prev - cost);
+  }, []);
+
   useEffect(() => {
     if (!isLogIn) {
       localStorage.removeItem("nsmh_log_status");
@@ -97,6 +101,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     login: loginHandler,
     logout: logoutHandler,
     bindPhone: () => {},
+    updateCoins: updateCoinsHandler,
     getUserStatus: getUserStatusHandler,
     getUserRecords: () => {},
   };

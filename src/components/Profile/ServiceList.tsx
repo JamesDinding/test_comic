@@ -15,7 +15,7 @@ const serviceList = [
   { title: "充值服务", msg: "", url: "/charge" },
   { title: "钱包纪录", msg: "", url: "/record" },
   // { title: "寻回帐户", msg: "", url: "/recovery" },
-  { title: "客服中心", msg: "", url: "/profile" },
+  { title: "客服中心", msg: "", url: "https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi" },
 ];
 
 const ServiceList: FunctionalComponent = () => {
@@ -70,6 +70,9 @@ const ServiceList: FunctionalComponent = () => {
                       if (url === "bind") {
                         setIsPopBinding(true);
                         return;
+                      }
+                      if(url==='https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi'){
+                        window.location.href = 'https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi';
                       }
                       route(url);
                     }}

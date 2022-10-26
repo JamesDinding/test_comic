@@ -18,7 +18,7 @@ const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({
   ItemPerRow,
 }) => {
   return (
-    <div class="items my-3 mx-5">
+    <div class="items mt-[1.2rem] mx-5">
       <RecommendTitleBar BlockName={BlockName} BlockID={BlockID} />
       <BookList
         Items={Items}

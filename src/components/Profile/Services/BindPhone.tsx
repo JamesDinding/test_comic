@@ -66,7 +66,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
 
   return (
     <CardBottom>
-      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#9e7654] text-lg border-b-[1px] border-[rgba(158,118,84,.4)]">
+      <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#6d5694] text-lg border-b-[1px] border-[#6d569466]">
         绑定会员资料
         <div onClick={(e) => onClose()}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
@@ -112,7 +112,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
       </div>
       <div className="px-5 pb-5">
         <button
-          className="bg-[#d19463] w-full py-4 mt-8 rounded-lg text-white text-xl"
+          className="bg-[#8d6d9f] w-full py-4 mt-8 rounded-lg text-white text-xl"
           onClick={(e) => {
             if (!verifyInput()) return;
             console.log("binding gogo");

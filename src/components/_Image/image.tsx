@@ -43,7 +43,8 @@ const Image: FunctionalComponent<ImageProps> = ({
 
   return (
     <img
-      src={imageBlob}
+      draggable={false}
+      src={imageBlob || ""}
       className={"Image-component " + (isFullHeight ? "h-full" : "h-auto")}
       alt={alt}
       ref={ref}

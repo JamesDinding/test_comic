@@ -34,6 +34,8 @@ export async function login(acc, pw) {
 
   const data = await res.json();
 
+  console.log("login response data: ", data);
+
   if (data.error) {
     if (data.message === "already logged") return false;
     throw new Error(data.message);

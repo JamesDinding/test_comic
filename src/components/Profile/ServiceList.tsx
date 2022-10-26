@@ -19,7 +19,7 @@ const serviceList = [
 ];
 
 const ServiceList: FunctionalComponent = () => {
-  const { isLogIn, logout } = useUser();
+  const { isLogIn, logout, userStatus } = useUser();
   const [isPopBinding, setIsPopBinding] = useState(false);
   const [isPopLogout, setIsPopLogout] = useState(false);
 
@@ -44,6 +44,23 @@ const ServiceList: FunctionalComponent = () => {
               {serviceList.map(({ title, url, msg }, i, arr) => {
                 if (!isLogIn && url === "bind") return;
                 if (isLogIn && url === "/register") return;
+                if (userStatus.status === "active" && url === "bind") {
+                  return (
+                    <ServiceRow
+                      url={url}
+                      title={"修改會員資料"}
+                      msg=""
+                      clickCb={() => {
+                        if (url === "bind") {
+                          // setIsPopModify
+                          setIsPopBinding(true);
+                          return;
+                        }
+                        route(url);
+                      }}
+                    />
+                  );
+                }
                 return (
                   <ServiceRow
                     url={url}

@@ -9,14 +9,6 @@ import { useDomain } from "../context/domain";
 import Image from "../components/_Image/image";
 import { getSpecifiedCategory, postOrdersCharge } from "../lib/api";
 
-const recommendationBlocks = [
-  1, 2, 10077, 10078, 10079, 10080, 10081, 10082, 10083, 10084,
-];
-
-const comicArr = ["123", "234", "345", "456"];
-//col-span-full
-const adArr = ["ad_me"];
-
 const Test: FunctionComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const { srcDomain } = useDomain();
@@ -35,81 +27,12 @@ const Test: FunctionComponent = () => {
   }, [srcDomain]);
 
   useEffect(() => {
-    postOrdersCharge().then(data=>{
-      console.log(data)
-    })
+    postOrdersCharge().then((data) => {
+      console.log(data);
+    });
   });
 
-  return (
-    <F>
-      <div ref={containerRef}>
-        <ObserverProvider rootElement={containerRef}>
-          <Image
-            alt=""
-            path="/4682/coverba658621760039d79eed365098351a46.js"
-            setParentPending={setIsPending}
-          />
-        </ObserverProvider>
-      </div>
-      {/* <div className="overflow-y-scroll no-scrollbar" ref={containerRef}>
-        <ObserverProvider rootElement={containerRef}>
-          <div className="mt-5">
-            <RecommendTitleBar BlockID={124} BlockName="舊品下市" />
-            <div className="items-box grid grid-cols-2 gap-2.5 py-4 px-5">
-              {comicArr.concat(adArr).map((el, i, arr) => {
-                return arr.length === i + 1 ? (
-                  <div className="min-h-[153px] rounded bg-[#ff978d] col-span-full">
-                    <span class="text-white">ad</span>
-                  </div>
-                ) : (
-                  <BookListItem
-                    Data={{ ID: 12345, Cover: "", Name: "test" }}
-                    type="stack"
-                  />
-                  // <Link href={"/test"} class={"item min-h-[242px]"}>
-                  //   <img src={"imageBlob"} alt="" />
-                  //   <div class="bottom-[3.25rem] tag">連載</div>
-                  //   <div class="bottom-[3.25rem] tag-decoration"></div>
-                  //   <div class="item-overlay">&nbsp;</div>
-                  //   <span class="title">test name</span>
-                  //   <span class="rating">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>
-                  // </Link>
-                );
-              })}
-            </div>
-          </div>
-          <div className="mt-5">
-            <RecommendTitleBar BlockID={123} BlockName="新品上市" />
-            <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
-              {new Array(9).fill("").map((el, i, arr) => {
-                return (
-                  <BookListItem
-                    Data={{ ID: 12345, Cover: "", Name: "test" }}
-                    type="separate"
-                  />
-                  // <Link href="/test" class={"item-separate"}>
-                  //   <div class="relative">
-                  //     <div class="bottom-4 tag">連載</div>
-                  //     <div class="bottom-4 tag-decoration"></div>
-                  //     <img
-                  //       src="imageBlob"
-                  //       alt=""
-                  //       class="w-full h-auto z-[5] min-h-[157px] bg-[#ff978d] rounded-lg"
-                  //     />
-                  //   </div>
-                  //   <span class="title-separate">test name</span>
-                  //   <span class="rating-separate">
-                  //     ★ 7.8&nbsp;&nbsp;◉ 103.5万
-                  //   </span>
-                  // </Link>
-                );
-              })}
-            </div>
-          </div>
-        </ObserverProvider>
-      </div> */}
-    </F>
-  );
+  return <F></F>;
 };
 
 export default Test;

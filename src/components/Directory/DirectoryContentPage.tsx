@@ -69,7 +69,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
           />
           <div className="flex mb-5">
             <button
-              className="w-full py-2.5 text-center text-white text-lg bg-[#d19463] rounded-xl"
+              className="w-full py-2.5 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
               onClick={() => route("/read/" + cur_url + "/chapter/1")}
             >
               开始阅读

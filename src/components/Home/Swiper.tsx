@@ -26,7 +26,8 @@ let next: slider = null;
 let prev: slider = null;
 
 const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
-  const [imageBlob, setImageBlob] = useState<Array<string>>([]);
+  // prettier-ignore
+  const [imageBlobList, setImageBlobList] = useState<Array<string>>(JSON.parse(localStorage.getItem("swiper") || '{"temp":[]}')?.temp || []);
   const [pending, setPending] = useState<Array<boolean>>([]);
   const { srcDomain } = useDomain();
   const [isTouching, setIsTouching] = useState(false);
@@ -34,14 +35,29 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   const [curSlide, setCurSlide] = useState(0);
   const [transList, setTransList] = useState<Array<string>>([
     "translate-x-[0%] ",
+    "translate-x-[100%] ",
+    "translate-x-[100%] ",
+    "translate-x-[100%] ",
+    "translate-x-[-100%] ",
   ]);
 
   useEffect(() => {
-    if (!banners || imageBlob.length !== 0) return;
+    console.log(imageBlobList);
+
+    if (!banners || imageBlobList.length !== 0) return;
+
+    const local = localStorage.getItem("swiper");
+    if (local) {
+      const { temp } = JSON.parse(local);
+      console.log(temp);
+      setImageBlobList(temp);
+      return;
+    }
+
     let temp = new Array(banners.length).fill("");
     let temp_pending = new Array(banners.length).fill(true);
     setPending(temp_pending);
-    banners?.map((banner, i) => {
+    banners?.map((banner, i, arr) => {
       fetch("//" + srcDomain + "/" + banner?.covers?.thumb)
         .then((res) => {
           if (!res.ok) throw new Error("fail to fecth");
@@ -56,19 +72,25 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
 
           temp[i] = b64;
           temp_pending[i] = false;
-          setImageBlob(temp);
+
+          // local storage test
+          localStorage.setItem(
+            "swiper",
+            JSON.stringify({ temp, banners: arr })
+          );
+
+          setImageBlobList(temp);
           setPending(temp_pending);
         })
         .catch((err) => {
           console.error(err.message || "failed");
         });
     });
-  }, [banners, srcDomain, imageBlob]);
+  }, [banners, srcDomain, imageBlobList]);
 
   useEffect(() => {
     (() => {
       if (banners) {
-        console.log(banners);
         swiperLen = banners.length;
         const temp = new Array(swiperLen).fill(
           "translate-x-[100%] ",
@@ -184,7 +206,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   }
 
   return (
-    <div className="w-full min-h-[190px] mb-6">
+    <div className="w-full min-h-[190px] pb-[.8rem]">
       <div
         id="carousel"
         className="w-full min-h-[190px] relative overflow-hidden whitespace-nowrap"
@@ -192,7 +214,11 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
         onTouchEnd={touchEndHandler}
         onTouchMove={touchMovingHandler}
       >
-        {banners?.map((banner, i) => {
+        {(
+          banners ||
+          JSON.parse(localStorage.getItem("swiper") || '{"banners":[]}')
+            ?.banners
+        )?.map((banner: any, i: number) => {
           return (
             <a
               key={i}
@@ -205,13 +231,14 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
                   alt={""}
                   setParentPending={setPending}
                 /> */}
-                {imageBlob[i] && (
+                {
                   <img
-                    src={imageBlob[i]}
-                    className={"Image-component h-full "}
+                    draggable={false}
+                    src={imageBlobList[i]}
+                    className={"Image-component "}
                     alt=""
                   />
-                )}
+                }
               </div>
             </a>
           );

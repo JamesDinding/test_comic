@@ -18,7 +18,7 @@ const BookList: FunctionalComponent<BookListProps> = ({
   type = "original",
 }) => {
   return (
-    <div className={`items-box grid grid-cols-${ItemPerRow} gap-2.5 py-4`}>
+    <div className={`grid grid-cols-${ItemPerRow} gap-2.5 pt-4 pb-[.8rem]`}>
       {Items?.slice(0, 6).map((el, i, arr) => {
         return <BookListItem key={i} Data={el} type={type} />;
       })}

@@ -20,6 +20,8 @@ declare interface BlockContent {
   creator?: string;
   description?: string;
   status?: "连载" | "完结";
+  hot?: string;
+  views?: string;
   covers?: {
     thumb: string;
     thumbx: string;

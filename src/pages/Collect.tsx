@@ -92,11 +92,7 @@ const CollectPage: FunctionalComponent = () => {
                   {collectList.map((collect: any, i, arr) => {
                     return (
                       <CollectItem
-                        Data={{
-                          ID: collect.id,
-                          Cover: collect.covers?.thumb,
-                          Name: collect.title,
-                        }}
+                        Data={collect}
                         index_temp={i}
                         curPress={curPress}
                         setCurPress={setCurPress}
@@ -125,11 +121,7 @@ const CollectPage: FunctionalComponent = () => {
                   {acquisitions.map((purchase: any, i, arr) => {
                     return (
                       <CollectItem
-                        Data={{
-                          ID: purchase.id,
-                          Cover: purchase.covers.thumb,
-                          Name: purchase.title,
-                        }}
+                        Data={purchase}
                         index_temp={i}
                         curPress={curPress}
                         setCurPress={setCurPress}

@@ -57,7 +57,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
           </div>
         </div>
         <div class="title-separate">{Data.Name || Data.title}</div>
-        <div class="rating-separate">★ 7.8&nbsp;&nbsp;◉ 103.5万</div>
+        <div class="rating-separate">
+          ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
+        </div>
       </Link>
     );
 
@@ -93,7 +95,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         {!showPending && <div class="item-overlay z-[5]">&nbsp;</div>}
         <div className="item-overlay z-[25]">
           <span class="title z-30">{Data.Name || Data.title}</span>
-          <span class="rating z-30">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>
+          <span class="rating z-30">
+            ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
+          </span>
         </div>
       </Link>
     );
@@ -111,7 +115,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
       />
       <div class="item-overlay">&nbsp;</div>
       <span class="title">{Data.Name || Data.title}</span>
-      <span class="rating">★ 7.8&nbsp;&nbsp;◉ 103.5万</span>
+      <span class="rating">
+        ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
+      </span>
     </Link>
   );
 };

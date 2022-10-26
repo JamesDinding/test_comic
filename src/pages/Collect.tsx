@@ -115,15 +115,7 @@ const CollectPage: FunctionalComponent = () => {
               <div className="grow bg-[#fcf6ff]">
                 <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
                   {acquisitions.map((purchase: any, i, arr) => {
-                    return (
-                      <CollectItem
-                        Data={purchase}
-                        index_temp={i}
-                        curPress={curPress}
-                        setCurPress={setCurPress}
-                        updateList={setAcquisitions}
-                      />
-                    );
+                    return <BookListItem Data={purchase} type="separate" />;
                   })}
                 </div>
               </div>

@@ -27,11 +27,11 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
     >
       <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#6d5694] text-lg border-b-[1px] border-[#6d569466]">
         章节选择
-        <div onClick={reset}>
-          <IconCross class="w-8 h-8 text-black cursor-pointer" />
+        <div className="overflow-hidden w-8 h-8" onClick={reset}>
+          <IconCross class="w-full text-black cursor-pointer" />
         </div>
       </div>
-      <div className="flex items-center justify-end mr-8 mt-2.5 text-[#666666]">
+      <div className="flex items-center justify-end mr-5 mt-2.5 text-[#666666]">
         排序
         <span>
           <IconSort class="w-4 h-4" />

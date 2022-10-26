@@ -2,12 +2,14 @@ import { h, FunctionalComponent } from "preact";
 import { StateUpdater, useState, useEffect } from "preact/hooks";
 import { Link, route } from "preact-router";
 import Image from "../_Image/image";
+import { postMyBookmarks } from "../../lib/api";
 
 interface CollectItemProps {
   Data: Book;
   index_temp: number;
   curPress: number;
   setCurPress: StateUpdater<number>;
+  updateList: StateUpdater<Array<Book>>;
 }
 
 let timer: ReturnType<typeof setTimeout>;
@@ -16,6 +18,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
   index_temp,
   curPress,
   setCurPress,
+  updateList,
 }) => {
   const [showPending, setPending] = useState(true);
   const [isLongPress, setIsLongPress] = useState(false);
@@ -80,7 +83,21 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
             />
             {/* <img src="/assets/img/test/Image.png" className="" /> */}
           </div>
-          <div className="z-[30] bg-[#ff978d] text-center text-white text-sm font-light h-[30px] leading-[30px]">
+          <div
+            className="z-[30] bg-[#ff978d] text-center text-white text-sm font-light h-[30px] leading-[30px]"
+            onClick={() => {
+              postMyBookmarks(Data.id, "remove")
+                .then((response) => {
+                  console.log(response);
+                  updateList((prev) => {
+                    return prev.filter((p) => p.id !== Data.id);
+                  });
+                })
+                .catch((err) => {
+                  console.error(err.message || "failed");
+                });
+            }}
+          >
             移除
           </div>
         </div>

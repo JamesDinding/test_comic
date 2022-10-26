@@ -16,17 +16,12 @@ import {
 } from "../lib/api";
 import { useDomain } from "../context/domain";
 
-const comicArr = ["123", "234", "345", "456", "567", "678"];
-//col-span-full
-const adArr = ["fxck_me"];
-
-// temp data
 const temp_tab_arr = ["收藏纪录", "购买记录"];
 
 const CollectPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
-  const [collectList, setCollectList] = useState([]);
-  const [acquisitions, setAcquisitions] = useState([]);
+  const [collectList, setCollectList] = useState<Array<Book>>([]);
+  const [acquisitions, setAcquisitions] = useState<Array<Book>>([]);
   const [recommendBlock, setRecommendBlock] = useState([]);
   const [curSelect, setCurSelect] = useState(0);
   const [curPress, setCurPress] = useState(-1);
@@ -96,6 +91,7 @@ const CollectPage: FunctionalComponent = () => {
                         index_temp={i}
                         curPress={curPress}
                         setCurPress={setCurPress}
+                        updateList={setCollectList}
                       />
                     );
                   })}
@@ -119,14 +115,7 @@ const CollectPage: FunctionalComponent = () => {
               <div className="grow bg-[#fcf6ff]">
                 <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
                   {acquisitions.map((purchase: any, i, arr) => {
-                    return (
-                      <CollectItem
-                        Data={purchase}
-                        index_temp={i}
-                        curPress={curPress}
-                        setCurPress={setCurPress}
-                      />
-                    );
+                    return <BookListItem Data={purchase} type="separate" />;
                   })}
                 </div>
               </div>

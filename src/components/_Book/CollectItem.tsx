@@ -85,8 +85,10 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
           </div>
         </div>
       </div>
-      <div class="title-separate">{Data.Name}</div>
-      <div class="rating-separate">★ 7.8&nbsp;&nbsp;◉ 103.5万</div>
+      <div class="title-separate">{Data.Name || Data.title}</div>
+      <div class="rating-separate">
+        ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
+      </div>
     </div>
   );
 };

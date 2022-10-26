@@ -707,10 +707,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1px;
 }
 
-.mr-8 {
-  margin-right: 2rem;
-}
-
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -2271,6 +2267,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .grayscale {
   --tw-grayscale: grayscale(100%);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 

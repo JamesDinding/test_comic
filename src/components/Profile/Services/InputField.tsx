@@ -57,7 +57,7 @@ const InputField: FunctionComponent<InputProps> = ({
         type={inputSetting.type}
         placeholder={inputSetting.placeHolder}
         className={
-          "w-full h-[50px] py-3 px-5 text-sm border-[1px] border-solid rounded-lg placeholder:text-[#bbbbbb] " +
+          "text-[#6d5694] w-full h-[50px] py-3 px-5 text-sm border-[1px] border-solid rounded-lg placeholder:text-[#bbbbbb] " +
           (isWrong ? "border-[#ff978d]" : "border-[rgba(109,86,148,0.4)]")
         }
         ref={inputRef}

@@ -57,7 +57,6 @@ export async function logout() {
 
     return data.error;
   } catch (err) {
-    console.log(err.message);
     throw new Error(err);
   }
 }
@@ -294,6 +293,6 @@ export async function getImageSource(encSrc) {
       return b64;
     })
     .catch((err) => {
-      console.log(err.message || "src not found!");
+      console.error(err.message || "src not found!");
     });
 }

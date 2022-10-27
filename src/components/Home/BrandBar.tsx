@@ -32,7 +32,6 @@ const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({
             if (query === "") return;
             if (e.key == "Enter" || e.keyCode === 13) {
               getSearch("keyword=" + query).then((response) => {
-                console.log(response);
                 onSearchResult(response.data);
                 onShowSearch(true);
               });
@@ -45,7 +44,6 @@ const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({
             const query = searchRef.current.value;
             if (query === "") return;
             getSearch("keyword=" + query).then((response) => {
-              console.log(response);
               onSearchResult(response.data);
               onShowSearch(true);
             });

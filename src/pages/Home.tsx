@@ -39,7 +39,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
         setCategories(data);
       })();
     } catch (err: any) {
-      console.log(err.message || "failed");
+      console.error(err.message || "failed");
     }
   }, [categories]);
 

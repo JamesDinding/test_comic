@@ -16,7 +16,7 @@ const ProfilePage: FunctionalComponent = () => {
     try {
       getUserStatus();
     } catch {
-      console.log("failed to get user data");
+      console.error("failed to get user data");
     }
   });
 

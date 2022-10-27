@@ -23,7 +23,6 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
               <a
                 href="/home"
                 onClick={() => {
-                  console.log(c);
                   setActiveCategory(i);
                   onCategoryChanged(i);
                 }}

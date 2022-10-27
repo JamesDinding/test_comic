@@ -15,11 +15,13 @@ import {
   getRandomBlock,
 } from "../lib/api";
 import { useDomain } from "../context/domain";
+import { useUser } from "../context/user";
 
 const temp_tab_arr = ["收藏纪录", "购买记录"];
 
 const CollectPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
+  const { isLogIn } = useUser();
   const [collectList, setCollectList] = useState<Array<Book>>([]);
   const [acquisitions, setAcquisitions] = useState<Array<Book>>([]);
   const [recommendBlock, setRecommendBlock] = useState([]);
@@ -33,6 +35,7 @@ const CollectPage: FunctionalComponent = () => {
   };
 
   useEffect(() => {
+    if (!isLogIn) return;
     try {
       if (curSelect === 0)
         (async () => {
@@ -47,19 +50,19 @@ const CollectPage: FunctionalComponent = () => {
           setAcquisitions(data);
         })();
     } catch {
-      console.log("failed");
+      console.error("failed");
     }
-  }, [curSelect]);
+  }, [curSelect, isLogIn]);
 
   useEffect(() => {
     if (collectList.length === 0 || acquisitions.length === 0) {
       getRandomBlock(9)
         .then((response) => {
-          setRecommendBlock(response.data["吸睛首选"]);
+          setRecommendBlock(response.data["吸精首选"]);
           setDomain(response.domain);
         })
         .catch((err) => {
-          console.log(err.message || "failed");
+          console.error(err.message || "failed");
         });
     }
   }, [collectList, curSelect]);

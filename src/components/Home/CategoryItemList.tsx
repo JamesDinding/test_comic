@@ -17,11 +17,10 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     try {
       (async () => {
         const { data } = await getSpecifiedCategory(catID.toString());
-        console.log(data);
         setContent(data);
       })();
     } catch (err: any) {
-      console.log(err.message || "failed");
+      console.error(err.message || "failed");
     }
   }, [catID]);
 

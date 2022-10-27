@@ -17,25 +17,23 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
   return (
     <div class="category_list_box shrink-0">
       <div class="relative flex overflow-x-scroll no-scrollbar overflow-y-hidden">
-        {categories.map((c) => {
+        {categories.map((c, i) => {
           return (
             <div className="mx-1 first:ml-0">
               <a
                 href="/home"
                 onClick={() => {
                   console.log(c);
-                  setActiveCategory(c.id);
-                  onCategoryChanged(c.id);
+                  setActiveCategory(i);
+                  onCategoryChanged(i);
                 }}
-                class={
-                  "category-item" + (c.id == activeCategory ? " active" : "")
-                }
+                class={"category-item" + (i == activeCategory ? " active" : "")}
               >
                 {c.name}
               </a>
               <div
                 className={
-                  c.id == activeCategory
+                  i == activeCategory
                     ? "category-item-derocation"
                     : "invisible h-0"
                 }

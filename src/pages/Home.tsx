@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { useState, useRef, useEffect } from "preact/hooks";
+import { useState, useRef, useEffect, StateUpdater } from "preact/hooks";
 import PullToRefresh from "../components/Home/PullToRefresh";
 import CategoryListBar from "../components/Home/CategoryListBar";
 import BrandBar from "../components/Home/BrandBar";
@@ -13,9 +13,16 @@ import SmartBanner from "../components/SmartBanner";
 
 import FooterBar from "../components/FooterBar";
 
-const HomePage: FunctionalComponent = () => {
+interface HomePageProps {
+  showBanner: boolean;
+  setShowBanner: StateUpdater<boolean>;
+}
+
+const HomePage: FunctionalComponent<HomePageProps> = ({
+  showBanner,
+  setShowBanner,
+}) => {
   const [currentCategory, setCurrentCategory] = useState(0);
-  const [showSmartBanner, setShowSmartBanner] = useState(true);
   const [tc, setTc] = useState("");
   const containerRef = useRef<HTMLDivElement>(null!);
   const [categories, setCategories] = useState<
@@ -38,8 +45,8 @@ const HomePage: FunctionalComponent = () => {
 
   return (
     <>
-      {showSmartBanner ? (
-        <SmartBanner SetSmartBannerVisiblity={setShowSmartBanner} tc={tc} />
+      {showBanner ? (
+        <SmartBanner SetSmartBannerVisiblity={setShowBanner} tc={tc} />
       ) : (
         <></>
       )}
@@ -70,7 +77,7 @@ const HomePage: FunctionalComponent = () => {
                 <Recommend setTc={setTc} />
               )
             ) : (
-              <CategoryItemList catID={categories[currentCategory - 1].id} />
+              <CategoryItemList catID={categories[currentCategory].id} />
             )}
           </PullToRefresh>
         </ObserverProvider>

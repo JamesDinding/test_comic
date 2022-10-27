@@ -13,7 +13,7 @@ declare interface UserContextType {
   isLogIn: boolean;
   user: User;
   userStatus: UserStatus;
-  login: (account: string, password: string) => Promise<boolean>;
+  login: (account: string, password: string) => Promise<any>;
   logout: () => void;
   bindPhone: () => void;
   updateCoins: (cost: number) => void;

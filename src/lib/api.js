@@ -41,7 +41,7 @@ export async function login(acc, pw) {
     throw new Error(data.message);
   }
 
-  return data.error;
+  return data;
 }
 
 export async function logout() {

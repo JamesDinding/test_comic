@@ -25,19 +25,19 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   const loginHandler = useCallback(
     async (account: string, password: string) => {
       try {
-        const hasError = await apiLogin(account, password);
+        const data = await apiLogin(account, password);
 
-        if (!hasError) {
+        if (!data.error) {
           console.log("no error happen when login");
           localStorage.setItem("nsmh_log_status", "true");
           setIsLogIn(true);
         }
-        console.log(hasError);
+        console.log(data.error);
 
-        return !!hasError;
+        return data;
       } catch (err: any) {
         console.error(err.message || "login failed");
-        return true;
+        return err.message;
       }
     },
     [setIsLogIn, apiLogin]

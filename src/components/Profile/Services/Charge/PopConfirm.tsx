@@ -7,7 +7,6 @@ import {
   getOrdersRedirectOrderNum,
   postOrdersCharge,
 } from "../../../../lib/api";
-import ReturnBar from "../../../ReturnBar";
 
 interface PopConfirmProps {
   onClose: () => void;
@@ -21,7 +20,8 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
   const [validationCode, setValidationCode] = useState<Array<number | null>>(
     new Array(4).fill(null)
   );
-  const [errMsg, setErrMsg] = useState("");
+  const [errMsg, setErrMsg] = useState("若订单无误，请输入上方验证码");
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     fetch("http://www.cloudflare.com/cdn-cgi/trace")
@@ -106,7 +106,10 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                     max={9}
                     min={0}
                     value={validationCode[i]!}
-                    className="w-[40px] h-[50px] px-2 py-1.5 border-solid border-2 rounded text-center text-lg"
+                    className={
+                      "w-[40px] h-[50px] px-2 py-1.5 border-solid border-2 rounded text-center text-lg " +
+                      (isError ? "border-[#ff978d]" : "")
+                    }
                     onInput={(e) => {
                       const target = e.target as HTMLInputElement;
                       setValidationCode((prev) => {
@@ -140,8 +143,12 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
           </div>
           <div className="flex items-center justify-between w-full px-2.5 mt-2">
             <div className="grow"></div>
-            <div className="mr-4 text-[#cccccc]">
-              若订单无误，请输入上方验证码
+            <div
+              className={
+                isError ? "error-shaking text-[#ff978d]" : "text-[#cccccc]"
+              }
+            >
+              {errMsg}
             </div>
           </div>
         </div>
@@ -163,6 +170,8 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
             for (let i = 0; i < 4; i++) {
               if (validationCode[i]?.toString() !== temp[i]) {
                 setIsPosting(false);
+                setIsError(true);
+                setErrMsg("驗證碼錯誤，請確認後重新輸入");
                 return;
               }
             }
@@ -177,6 +186,8 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
               .catch((err) => {
                 console.log(err.message || "failed");
                 setIsPosting(false);
+                setIsError(true);
+                setErrMsg("請求發出失敗，請確認網絡狀況");
               });
           }}
         >

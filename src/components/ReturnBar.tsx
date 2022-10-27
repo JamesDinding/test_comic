@@ -4,6 +4,7 @@ import IconArrow from "../resources/img/icon-arrow.svg";
 import IconCross from "../resources/img/icon-cross.svg";
 import IconCoin from "../resources/img/icon-coin.svg";
 import { Link, route } from "preact-router";
+import { CUSTOMER_SERVICE_URL } from "../const";
 
 interface ReturnBarProps {
   title: string;
@@ -50,9 +51,9 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
       </div>
       {type === "service" && (
         <div className="h-[30px]">
-          <Link href="/profile">
+          <a href={`${CUSTOMER_SERVICE_URL}?paymode=1`} target="_blank">
             <IconCs class="h-[37px]" />
-          </Link>
+          </a>
         </div>
       )}
       {type === "charge" && (

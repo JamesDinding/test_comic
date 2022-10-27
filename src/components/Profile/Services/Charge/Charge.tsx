@@ -38,11 +38,10 @@ const Charge = () => {
   useEffect(() => {
     getOrdersProducts()
       .then((response) => {
-        console.log(response.data);
         setSalesList(response.data);
       })
       .catch((err) => {
-        console.log(err.message || "failed");
+        console.error(err.message || "failed");
       });
   }, []);
 
@@ -92,13 +91,15 @@ const Charge = () => {
                 className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#6d5694] bg-[rgba(186,155,240,0.2)] rounded-xl"
                 key={index}
               >
-                <div className="charge-discount-container">
-                  <IconDiscountCoins class="h-[40px]" />
-                  <div className="charge-discount-text">
-                    <span>省</span>
-                    <span>{sale.options?.title.split("省")[1]}</span>
+                {sale.options?.title && (
+                  <div className="charge-discount-container">
+                    <IconDiscountCoins class="h-[40px]" />
+                    <div className="charge-discount-text">
+                      <span>省</span>
+                      <span>{sale.options?.title.split("省")[1]}</span>
+                    </div>
                   </div>
-                </div>
+                )}
                 <div className="flex w-full pl-3">
                   <div>
                     <img

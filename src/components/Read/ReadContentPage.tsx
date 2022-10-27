@@ -41,7 +41,8 @@ const ReadContentPage: FunctionalComponent = () => {
     if (observer) return;
     const opt: IntersectionObserverInit = {
       root: containerRef.current,
-      threshold: [0, 0.8],
+      threshold: [0, 1],
+      rootMargin: "",
     };
 
     const targets = document.querySelectorAll(".page");
@@ -144,7 +145,7 @@ const ReadContentPage: FunctionalComponent = () => {
             return (
               <div
                 id={`page-${i + 1}`}
-                className={"page" + (parentPending ? " min-h-[200px]" : "")}
+                className={"page" + (parentPending ? " min-h-[100px]" : "")}
               >
                 <Image
                   path={page}

@@ -36,7 +36,7 @@ const Image: FunctionalComponent<ImageProps> = ({
         setImageBlob(b64);
         setParentPending(false);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     })();
   }, [path, isShown, srcDomain]);

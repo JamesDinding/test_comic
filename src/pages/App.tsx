@@ -59,14 +59,15 @@ const App: FunctionalComponent = () => {
   useEffect(() => {
     if (hadSendTC) return;
     const query = window.location.search;
-    const _query = query.slice(1);
-    const queryList = _query.split("&");
-    let queryObj = {};
+    const queryList = query.slice(1).split("&");
+    let queryObj: any = {};
     queryList.map((query, i) => {
-      const temp = query.split("=");
-      query;
+      const temp: string[] = query.split("=");
+      queryObj[temp[0]] = temp[1];
     });
-    console.log(queryList);
+
+    if (queryObj.app) setShowSmartBanner(false);
+
     fetch(`/api/v1/auth/init${query}`)
       .then((res) => {
         if (!res.ok) throw new Error("referrer no response");

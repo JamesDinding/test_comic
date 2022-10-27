@@ -37,7 +37,6 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
       (async () => {
         const { data } = await getCategories();
         setCategories(data);
-        console.log("get category list: ", data);
       })();
     } catch (err: any) {
       console.log(err.message || "failed");

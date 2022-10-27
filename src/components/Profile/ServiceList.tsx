@@ -15,7 +15,11 @@ const serviceList = [
   { title: "充值服务", msg: "", url: "/charge" },
   { title: "钱包纪录", msg: "", url: "/record" },
   // { title: "寻回帐户", msg: "", url: "/recovery" },
-  { title: "客服中心", msg: "", url: "https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi" },
+  {
+    title: "客服中心",
+    msg: "",
+    url: "https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi",
+  },
 ];
 
 const ServiceList: FunctionalComponent = () => {
@@ -52,7 +56,6 @@ const ServiceList: FunctionalComponent = () => {
                       msg=""
                       clickCb={() => {
                         if (url === "bind") {
-                          // setIsPopModify
                           setIsPopBinding(true);
                           return;
                         }
@@ -61,6 +64,26 @@ const ServiceList: FunctionalComponent = () => {
                     />
                   );
                 }
+
+                if (
+                  url ===
+                  "https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi"
+                ) {
+                  return (
+                    <a href={`${url}?paymode=1`} target="_blank">
+                      <li className="cursor-pointer flex items-center bg-white py-4 px-5">
+                        <div className="text-[#6d5694] text-sm">{title}</div>
+                        <div className="ml-5 grow text-left text-[#ff978d] text-xs">
+                          {msg}
+                        </div>
+                        <div>
+                          <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>
+                        </div>
+                      </li>
+                    </a>
+                  );
+                }
+
                 return (
                   <ServiceRow
                     url={url}
@@ -70,9 +93,6 @@ const ServiceList: FunctionalComponent = () => {
                       if (url === "bind") {
                         setIsPopBinding(true);
                         return;
-                      }
-                      if(url==='https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi'){
-                        window.location.href = 'https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi';
                       }
                       route(url);
                     }}

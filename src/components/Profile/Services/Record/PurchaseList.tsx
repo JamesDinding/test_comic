@@ -19,7 +19,6 @@ const PurchaseList: FunctionComponent = () => {
   useEffect(() => {
     try {
       getMyTransactions().then(({ data }) => {
-        console.log(data);
         setPurchaseList(data);
       });
     } catch (err: any) {

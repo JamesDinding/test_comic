@@ -139,7 +139,6 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
             if (!isInputCorrect()) return;
             postMyRegister(accountRef.current.value, psRef.current.value).then(
               (data) => {
-                console.log("register resopnse data:", data);
                 route("/login");
               }
             );

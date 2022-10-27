@@ -108,13 +108,7 @@ const Recovery = () => {
               }}
             />
           ) : (
-            <Btn
-              title="切换帐户"
-              bgColor="bg-[#ff978d]"
-              cb={() => {
-                console.log("route");
-              }}
-            />
+            <Btn title="切换帐户" bgColor="bg-[#ff978d]" />
           )}
         </div>
       </div>

@@ -60,7 +60,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
         <IconClose class="text-gray-500 m-2 ml-3 h-4" />
       </a>
 
-      <a href={`/app/sjmh.${mobile}?tc=${tc}`}>
+      <a href={`/app/sjmh.${mobile}?tc=${tc}`} target="_blank">
         <img
           src="/assets/favicon.svg"
           class="rounded-lg shadow-md h-12"
@@ -69,7 +69,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
       </a>
 
       <div class="flex flex-col justify-start items-start mt-1 ml-1 grow">
-        <a href={`/app/sjmh.${mobile}?tc=${tc}`}>
+        <a href={`/app/sjmh.${mobile}?tc=${tc}`} target="_blank">
           <Logo class="h-5 mt-1" alt="女神漫画" />
         </a>
         <span class="text-[11px] text-[#dfad6d] py-1 font-medium tracking-widest whitespace-nowrap">
@@ -79,6 +79,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
 
       <a
         href={`/app/sjmh.${mobile}?tc=${tc}`}
+        target="_blank"
         class="rounded-full border-2 border-[#b5a7d0] text-[#6d5694] p-2 text-xs font-bold mr-2 hover:bg-[#fcf6ff] whitespace-nowrap"
       >
         安装 APP

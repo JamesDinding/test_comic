@@ -1,5 +1,8 @@
 export const API_ROUTE = "http://192.168.1.247:3000";
 
+export const CUSTOMER_SERVICE_URL =
+  "https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi";
+
 export const BLOCK_MAP = {
   banner: 0,
   吸睛首选: 1,

@@ -8,6 +8,7 @@ import ServiceRow from "./ServiceRow";
 import BindPhone from "./Services/BindPhone";
 import PopLogout from "./Services/PopLogout";
 import BackDrop from "../BackDrop";
+import { CUSTOMER_SERVICE_URL } from "../../const";
 
 const serviceList = [
   { title: "注册", msg: "完成注册即赠送150金币!", url: "/register" },
@@ -18,7 +19,7 @@ const serviceList = [
   {
     title: "客服中心",
     msg: "",
-    url: "https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi",
+    url: CUSTOMER_SERVICE_URL,
   },
 ];
 
@@ -65,10 +66,7 @@ const ServiceList: FunctionalComponent = () => {
                   );
                 }
 
-                if (
-                  url ===
-                  "https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi"
-                ) {
+                if (url === CUSTOMER_SERVICE_URL) {
                   return (
                     <a href={`${url}?paymode=1`} target="_blank">
                       <li className="cursor-pointer flex items-center bg-white py-4 px-5">

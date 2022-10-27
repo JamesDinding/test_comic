@@ -21,7 +21,6 @@ export const ObserverProvider: FunctionComponent<ObserverProviderProps> = ({
     (entries, observer) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          console.log("isIntersecting, ", e.target);
           observer.unobserve(e.target);
           refStorage.get(e.target)?.(true);
         }

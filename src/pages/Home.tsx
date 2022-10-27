@@ -51,13 +51,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
       )}
 
       {/* <div class={"grow overflow-hidden overflow-y-auto"} ref={containerRef}> */}
-      <div
-        class={
-          "grow overflow-hidden " +
-          (currentCategory === 0 ? "overflow-y-auto" : "")
-        }
-        ref={containerRef}
-      >
+      <div class={"grow overflow-hidden overflow-y-auto"} ref={containerRef}>
         <ObserverProvider rootElement={containerRef}>
           <BrandBar
             onShowSearch={setShowSearch}

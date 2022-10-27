@@ -31,7 +31,8 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     if (observer) return;
     const opt: IntersectionObserverInit = {
       root: document.querySelector("#category-section"),
-      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      threshold: [0, 1],
+      rootMargin: "-30px 0px 0px 0px",
     };
 
     const ob = new IntersectionObserver((entries, observer) => {
@@ -45,16 +46,11 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     setObserver(ob);
 
     ob.observe(bottomRef.current!);
-    const temp = document.querySelector("#category-section");
-
-    temp?.addEventListener("scroll", (e) => {
-      console.log(e);
-    });
   }, [observer]);
 
   return (
     <Fragment>
-      <div id="category-section" className="mx-5">
+      <div id="category-section relative" className="mx-5">
         <BookList
           Items={content}
           ItemPerRow={3}
@@ -62,7 +58,10 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           isTemp={true}
           itemNum={currentNum}
         />
-        <div ref={bottomRef} className="w-[100px] h-[100px] invisible"></div>
+        <div
+          ref={bottomRef}
+          className="w-[1px] h-[100px] absolute invisible"
+        ></div>
       </div>
     </Fragment>
   );

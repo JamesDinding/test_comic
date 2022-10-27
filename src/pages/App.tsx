@@ -1,7 +1,7 @@
 // DEBUG, make sure that this import is the first import in your whole app
 import "preact/debug";
 
-import { FunctionalComponent, h, Fragment } from "preact";
+import { FunctionalComponent, h } from "preact";
 import Router from "preact-router";
 import { useEffect, useState } from "preact/hooks";
 
@@ -21,16 +21,52 @@ import ChargePage from "./Profile/Charge";
 import RecordPage from "./Profile/Record";
 import CustomerPage from "./Profile/Customer";
 
-import Test from "./Test";
-
 const App: FunctionalComponent = () => {
-  // const [showSmartBanner, setShowSmartBanner] = useState(true);
+  const [showSmartBanner, setShowSmartBanner] = useState(true);
   const [hadSendTC, setHadSendTC] = useState(false);
+  const [mobile, setMobile] = useState("");
+
+  useEffect(() => {
+    if (mobile !== "") return;
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent;
+
+      // Windows Phone must come first because its UA also contains "Android"
+      if (/windows phone/i.test(userAgent)) {
+        return "Windows Phone";
+      }
+
+      if (/android/i.test(userAgent)) {
+        return "Android";
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent)) {
+        return "iOS";
+      }
+
+      return "unknown";
+    }
+    const os = getMobileOperatingSystem();
+
+    if (os === "iOS") {
+      setMobile("mobileconfig");
+    } else {
+      setMobile("apk");
+    }
+  }, [mobile]);
 
   useEffect(() => {
     if (hadSendTC) return;
     const query = window.location.search;
-
+    const _query = query.slice(1);
+    const queryList = _query.split("&");
+    let queryObj = {};
+    queryList.map((query, i) => {
+      const temp = query.split("=");
+      query;
+    });
+    console.log(queryList);
     fetch(`/api/v1/auth/init${query}`)
       .then((res) => {
         if (!res.ok) throw new Error("referrer no response");
@@ -51,14 +87,12 @@ const App: FunctionalComponent = () => {
         <ChargeProvider>
           <div id="root" class="w-full max-w-[420px] h-full">
             <div id="container" class="bg-white w-full h-full flex flex-col">
-              {/* {showSmartBanner ? (
-                <SmartBanner SetSmartBannerVisiblity={setShowSmartBanner} />
-              ) : (
-                <></>
-              )} */}
-
               <Router>
-                <HomePage path="/home" />
+                <HomePage
+                  path="/home"
+                  showBanner={showSmartBanner}
+                  setShowBanner={setShowSmartBanner}
+                />
                 <CollectPage path="/collect" />
                 <ProfilePage path="/profile" />
 
@@ -72,12 +106,8 @@ const App: FunctionalComponent = () => {
                 <RecordPage path="/record" />
 
                 <CustomerPage path="/service" />
-
-                <Test path="/test" />
                 <DefaultRouteHandler default />
               </Router>
-
-              {/* <FooterBar /> */}
             </div>
           </div>
           <div id="back-drop"></div>

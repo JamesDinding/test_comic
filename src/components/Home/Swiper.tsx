@@ -42,8 +42,6 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   ]);
 
   useEffect(() => {
-    console.log(imageBlobList);
-
     if (!banners || imageBlobList.length !== 0) return;
 
     const local = localStorage.getItem("swiper");

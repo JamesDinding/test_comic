@@ -2,6 +2,21 @@ import { h, FunctionalComponent } from "preact";
 import { useState, useEffect, useRef } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import IconChevron from "../../../../resources/img/icon-chevron.svg";
+import IconAlipay from "../../../../resources/img/payway/alipay.svg";
+import IconUnionpay from "../../../../resources/img/payway/unionpay.svg";
+import IconUsdt from "../../../../resources/img/payway/usdt.svg";
+import IconWechat from "../../../../resources/img/payway/wechat.svg";
+
+const iconMap: Map<any, { title: string; element: h.JSX.Element }> = new Map();
+iconMap.set("ALIPAY", {
+  title: "支付寶",
+  element: <IconAlipay class="h-5 w-5" />,
+});
+iconMap.set("USDT", { title: "USDT", element: <IconUsdt class="h-5 w-5" /> });
+iconMap.set("WECHAT", {
+  title: "微信",
+  element: <IconWechat class="h-5 w-5" />,
+});
 
 type PayInfo = {
   id: number;
@@ -24,13 +39,10 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   return (
     <div className={"charge-input-container overflow-y-auto duration-300 "}>
       <div className="flex items-center">
-        <div className="mr-2.5">
-          <img
-            src={`/assets/img/payment/pay${payInfo[0].type}.png`}
-            className="h-5 w-5"
-          />
+        <div className="mr-2.5 w-5">
+          {iconMap.get(payInfo[0].type)?.element}
         </div>
-        {payInfo[0].type}
+        {iconMap.get(payInfo[0].type)?.title}
         <div className="grow"></div>
         <div>
           <IconChevron

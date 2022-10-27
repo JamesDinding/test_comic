@@ -148,7 +148,7 @@ export const getAllBlock = curryFetch_GET("/contents/blocks");
 // random
 export const getRandomBlock = async (num) => {
   const res = await fetch(
-    `/api/v1/contents/blocks/random/${num}?type=吸睛首选`
+    `/api/v1/contents/blocks/random/${num}?type=新书上架`
   );
   const data = await res.json();
   if (data.error) throw new Error("failed");

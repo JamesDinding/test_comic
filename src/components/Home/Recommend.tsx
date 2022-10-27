@@ -38,19 +38,20 @@ const queryString = block_name.map((b, i, a) => {
   return "type=" + b.name;
 });
 
-const qeury_block = queryString.join("&");
-
 const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
   const { setDomain } = useDomain();
   const [blocks, setBlocks] = useState<RecommendationBlock>({});
+  const [blockOrder, setBlockOrder] = useState<
+    { name: string; count: number }[]
+  >([]);
 
   useEffect(() => {
     try {
       (async () => {
-        // const { data, domain, referrer } = await getAllBlock(qeury_block);
-        const { data, domain, referrer } = await getAllBlock();
+        const { data, domain, referrer, ordering } = await getAllBlock();
         setDomain(domain);
         setBlocks(data);
+        setBlockOrder(ordering);
         setTc(referrer.toString() || "");
       })();
     } catch (err: any) {
@@ -60,17 +61,16 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
 
   return (
     <div>
-      {block_name.map((bn, i, arr) => {
+      {blockOrder.map((bn, i, arr) => {
         if (bn.name === "banner")
           return <Swiper key={i} banners={blocks[bn.name]} />;
 
         return (
           <RecommendBlock
             key={i}
-            BlockID={bn.ID}
             BlockName={bn.name}
-            Items={blocks[bn.name]}
-            ItemPerRow={bn.numPerRow}
+            Items={blocks[bn.name as keyof typeof blocks]}
+            ItemPerRow={bn.count}
           />
         );
       })}

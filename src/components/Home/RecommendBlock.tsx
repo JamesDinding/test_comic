@@ -5,21 +5,20 @@ import RecommendTitleBar from "./RecommendTitleBar";
 import BookList from "../_Book/List";
 
 interface RecommendBlockProps {
-  BlockID: number;
+  BlockID?: number;
   BlockName: string;
   ItemPerRow: number;
   Items: Array<Book> | undefined;
 }
 
 const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({
-  BlockID,
   BlockName,
   Items,
   ItemPerRow,
 }) => {
   return (
     <div class="items mt-[1.2rem] mx-5">
-      <RecommendTitleBar BlockName={BlockName} BlockID={BlockID} />
+      <RecommendTitleBar BlockName={BlockName} />
       <BookList
         Items={Items}
         ItemPerRow={ItemPerRow}

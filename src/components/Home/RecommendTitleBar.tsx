@@ -2,7 +2,7 @@ import { FunctionalComponent, h } from "preact";
 
 interface RecommendTitleBarProps {
   BlockName: string;
-  BlockID: number;
+  BlockID?: number;
 }
 
 const blockTitle = new Map([
@@ -16,7 +16,6 @@ const blockTitle = new Map([
 
 const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockName,
-  BlockID,
 }) => {
   const pic = blockTitle.get(BlockName) || "crown";
   return (

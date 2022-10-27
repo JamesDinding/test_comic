@@ -50,7 +50,6 @@ const ReadContentPage: FunctionalComponent = () => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
           const p = parseInt(e.target.id.split("-").pop()!, 10);
-          console.log("intesection page, ", p);
           setCurPage(p);
         }
       });

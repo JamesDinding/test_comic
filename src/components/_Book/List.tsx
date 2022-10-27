@@ -8,6 +8,7 @@ interface BookListProps {
   Rows?: number;
   type?: "separate" | "stack" | "original";
   isTemp?: boolean;
+  itemNum?: number;
 }
 
 const BookList: FunctionalComponent<BookListProps> = ({
@@ -15,10 +16,11 @@ const BookList: FunctionalComponent<BookListProps> = ({
   ItemPerRow,
   Items = [{}, {}, {}, {}, {}, {}],
   type = "original",
+  itemNum = 6,
 }) => {
   return (
     <div className={`grid grid-cols-${ItemPerRow} gap-2.5 pt-4 pb-[.8rem]`}>
-      {Items?.slice(0, 6).map((el, i, arr) => {
+      {Items?.slice(0, itemNum).map((el, i, arr) => {
         return <BookListItem key={i} Data={el} type={type} />;
       })}
     </div>

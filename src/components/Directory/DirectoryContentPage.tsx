@@ -38,17 +38,6 @@ const DirectoryContentPage: FunctionalComponent = () => {
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      (async () => {
-        const { data } = await getAllBlock("type=吸睛首选");
-        setRecommendBlock(data);
-      })();
-    } catch (err: any) {
-      console.log(err.message || "failed");
-    }
-  }, []);
-
   return (
     <F>
       <ObserverProvider rootElement={containerRef}>

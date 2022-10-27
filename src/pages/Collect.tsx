@@ -7,13 +7,7 @@ import BookListItem from "../components/_Book/ListItem";
 import CollectItem from "../components/_Book/CollectItem";
 import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
-import RecommendTitleBar from "../components/Home/RecommendTitleBar";
-import {
-  getMyBookmarks,
-  getMyAcquisitions,
-  getAllBlock,
-  getRandomBlock,
-} from "../lib/api";
+import { getMyBookmarks, getMyAcquisitions, getRandomBlock } from "../lib/api";
 import { useDomain } from "../context/domain";
 import { useUser } from "../context/user";
 
@@ -58,7 +52,7 @@ const CollectPage: FunctionalComponent = () => {
     if (collectList.length === 0 || acquisitions.length === 0) {
       getRandomBlock(9)
         .then((response) => {
-          setRecommendBlock(response.data["吸精首选"]);
+          setRecommendBlock(response.data["新书上架"]);
           setDomain(response.domain);
         })
         .catch((err) => {
@@ -103,14 +97,14 @@ const CollectPage: FunctionalComponent = () => {
             ) : (
               <F>
                 <Empty />
-                <div className="mx-5 mt-5">
-                  <RecommendTitleBar BlockID={124} BlockName="新品上市" />
+                {/* <div className="mx-5 mt-5">
+                  <RecommendTitleBar BlockID={124} BlockName="新书上架" />
                   <div className="items-box grid grid-cols-3 gap-2.5 py-4">
                     {recommendBlock.map((el: Book, i, arr) => {
                       return <BookListItem Data={el} type="separate" />;
                     })}
                   </div>
-                </div>
+                </div> */}
               </F>
             ))}
           {curSelect === 1 &&
@@ -125,14 +119,14 @@ const CollectPage: FunctionalComponent = () => {
             ) : (
               <F>
                 <Empty />
-                <div className="mx-5 mt-5">
-                  <RecommendTitleBar BlockID={124} BlockName="新品上市" />
+                {/* <div className="mx-5 mt-5">
+                  <RecommendTitleBar BlockID={124} BlockName="新书上架" />
                   <div className="items-box grid grid-cols-3 gap-2.5 py-4">
                     {recommendBlock.map((el: Book, i, arr) => {
                       return <BookListItem Data={el} type="separate" />;
                     })}
                   </div>
-                </div>
+                </div> */}
               </F>
             ))}
         </ObserverProvider>

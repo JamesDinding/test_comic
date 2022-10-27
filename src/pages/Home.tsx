@@ -7,7 +7,6 @@ import Recommend from "../components/Home/Recommend";
 import CategoryItemList from "../components/Home/CategoryItemList";
 import BookList from "../components/_Book/List";
 import { ObserverProvider } from "../context/observer";
-import useRequest from "../hooks/use-request";
 import { getCategories } from "../lib/api";
 import SmartBanner from "../components/SmartBanner";
 

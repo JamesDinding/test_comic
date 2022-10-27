@@ -27,6 +27,7 @@ const Image: FunctionalComponent<ImageProps> = ({
     (async () => {
       try {
         const res = await fetch("//" + srcDomain + "/" + path);
+        console.log(res);
 
         if (!res.ok) throw new Error("fail to fetch");
 
@@ -36,7 +37,7 @@ const Image: FunctionalComponent<ImageProps> = ({
         setImageBlob(b64);
         setParentPending(false);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     })();
   }, [path, isShown, srcDomain]);

@@ -47,7 +47,7 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
 
     if (overScrollOffset < 80) return;
 
-    console.log("trigger Refresh");
+    // console.log("trigger Refresh");
   };
   return (
     <div

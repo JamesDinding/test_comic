@@ -45,6 +45,11 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     setObserver(ob);
 
     ob.observe(bottomRef.current!);
+    const temp = document.querySelector("#category-section");
+
+    temp?.addEventListener("scroll", (e) => {
+      console.log(e);
+    });
   }, [observer]);
 
   return (
@@ -57,7 +62,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           isTemp={true}
           itemNum={currentNum}
         />
-        <div ref={bottomRef} className="w-[1px] h-[1px] invisible"></div>
+        <div ref={bottomRef} className="w-[100px] h-[100px] invisible"></div>
       </div>
     </Fragment>
   );

@@ -126,13 +126,38 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             }, 1000);
 
             if (!isInputCorrect()) return;
-            const hasError = await login(
+            const response = await login(
               accountRef.current.value,
               psRef.current.value
             );
 
-            console.log("login has error?", hasError);
-            !hasError && route("/member");
+            const hasError = response.error;
+
+            console.log("Login page login response:", response);
+
+            switch (response.message) {
+              case "cannot parse request":
+              case "given credential matches no record":
+                setIsAccountWrong(true);
+                setAccWarning("無效的帳號，請確認帳號是否正確。");
+                break;
+
+              case "given password matches failed":
+                setIsPsWrong(true);
+                setPsWarning("密碼輸入錯誤，請確認後重新輸入。");
+
+                break;
+
+              case "already logged":
+                console.log("route /profile");
+                route("/memeber");
+                break;
+
+              default:
+                break;
+            }
+
+            hasError && route("/profile");
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">

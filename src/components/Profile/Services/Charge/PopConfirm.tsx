@@ -171,7 +171,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
               if (validationCode[i]?.toString() !== temp[i]) {
                 setIsPosting(false);
                 setIsError(true);
-                setErrMsg("驗證碼錯誤，請確認後重新輸入");
+                setErrMsg("验证码错误，请确认后重新输入");
                 return;
               }
             }
@@ -187,7 +187,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                 console.log(err.message || "failed");
                 setIsPosting(false);
                 setIsError(true);
-                setErrMsg("請求發出失敗，請確認網絡狀況");
+                setErrMsg("请求发出失败，请确认网络状况");
               });
           }}
         >

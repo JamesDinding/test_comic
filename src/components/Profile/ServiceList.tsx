@@ -53,7 +53,7 @@ const ServiceList: FunctionalComponent = () => {
                   return (
                     <ServiceRow
                       url={url}
-                      title={"修改會員資料"}
+                      title={"修改会员资料"}
                       msg=""
                       clickCb={() => {
                         if (url === "bind") {

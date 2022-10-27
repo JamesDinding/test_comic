@@ -14,7 +14,6 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
 }) => {
   const [showPending, setPending] = useState(true);
 
-  // cover and title is separated
   if (type === "separate")
     return (
       <Link
@@ -62,12 +61,10 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
       </Link>
     );
 
-  // cover and title is stacked ，image 应该要 z-index: 5或6 ?
   if (type === "stack")
     return (
       <Link
         href={"/directory/" + Data.id}
-        // class={"relative item " + (showPending ? " pending min-h-[242px]" : "")}
         class={"item h-[242px] " + (showPending ? "pending" : "")}
       >
         <div className="relative z-20 rounded-lg overflow-hidden h-full">

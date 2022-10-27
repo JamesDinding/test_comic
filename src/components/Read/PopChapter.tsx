@@ -42,7 +42,6 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
           return (
             <div
               onClick={() => {
-                // event bubbling, 所以会触发
                 if (!c.status) return;
                 changeChapter(c.position);
               }}

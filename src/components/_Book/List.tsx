@@ -9,7 +9,6 @@ interface BookListProps {
   type?: "separate" | "stack" | "original";
   isTemp?: boolean;
 }
-// temp
 
 const BookList: FunctionalComponent<BookListProps> = ({
   Rows = 3,

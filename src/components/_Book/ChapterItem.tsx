@@ -13,7 +13,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
   bookId = 0,
 }) => {
   const { popBuy, setStuffInfo } = useReadingModal();
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -41,11 +41,12 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
           </div>
         )}
         <ObserverProvider rootElement={containerRef}>
+<div className={"overflow-hidden h-full "+(isPending?"pending":"")}>
           <Image
             path={chapter.covers.thumb}
             alt=""
             setParentPending={setIsPending}
-          />
+          /></div>
         </ObserverProvider>
         <div className="item-overlay-chapter"></div>
         <div className="absolute left-1/2 bottom-[.25rem] translate-x-[-50%] whitespace-nowrap text-sm text-white text-center w-[70px] h-[20px] leading-[20px]">

@@ -7,13 +7,7 @@ import BookListItem from "../components/_Book/ListItem";
 import CollectItem from "../components/_Book/CollectItem";
 import { ObserverProvider } from "../context/observer";
 import FooterBar from "../components/FooterBar";
-import RecommendTitleBar from "../components/Home/RecommendTitleBar";
-import {
-  getMyBookmarks,
-  getMyAcquisitions,
-  getAllBlock,
-  getRandomBlock,
-} from "../lib/api";
+import { getMyBookmarks, getMyAcquisitions, getRandomBlock } from "../lib/api";
 import { useDomain } from "../context/domain";
 import { useUser } from "../context/user";
 

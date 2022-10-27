@@ -34,7 +34,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
         setIp(temp2);
       })
       .catch((err) => {
-        console.log(err.message || "failed");
+        console.error(err.message || "failed");
       });
   }, []);
 
@@ -179,12 +179,11 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
             postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
               .then((response) => {
                 const { data } = response;
-                console.log(data);
                 window.location.href =
                   "/api/v1/orders/redirect/" + data.order_num + "?paymode=1";
               })
               .catch((err) => {
-                console.log(err.message || "failed");
+                console.error(err.message || "failed");
                 setIsPosting(false);
                 setIsError(true);
                 setErrMsg("请求发出失败，请确认网络状况");

@@ -1,8 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { useDomain } from "../../context/domain";
-import BookList from "../_Book/List";
-import Image from "../_Image/image";
 
 type slider = null | undefined | HTMLElement;
 
@@ -106,7 +104,6 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
     if (isTouching) return;
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
-    // gotoSlide(curSlide);
   });
 
   const touchStartHandler = (e: TouchEvent) => {
@@ -240,20 +237,6 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
             </a>
           );
         })}
-        {/* <ul className="absolute flex bottom-4 left-1/2 translate-x-[-50%] min-w-1/2 z-10">
-          {banners?.map((b, i) => {
-            // if (blk.ID !== 1) return;
-            // return blk.Items.map((_, i) => {
-            const bgColor = curSlide === i ? "bg-amber-300" : "bg-slate-300";
-            return (
-              <li>
-                <div
-                  className={`h-2.5 w-2.5 mx-1 rounded-full ${bgColor}`}
-                ></div>
-              </li>
-            );
-          })}
-        </ul> */}
       </div>
     </div>
   );

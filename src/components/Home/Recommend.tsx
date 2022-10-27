@@ -6,37 +6,9 @@ import Swiper from "./Swiper";
 import { getAllBlock } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 
-interface BlockNameType {
-  ID: number;
-  numPerRow: number;
-  name:
-    | "banner"
-    | "吸精首选"
-    | "新书强推"
-    | "本周更新"
-    | "3D主打"
-    | "热门cosplay"
-    | "私人收藏";
-}
-
 interface RecommendProps {
   setTc: StateUpdater<string>;
 }
-
-// temp_book name
-const block_name: Array<BlockNameType> = [
-  { ID: 1234, numPerRow: 1, name: "banner" },
-  { ID: 1234, numPerRow: 3, name: "吸精首选" },
-  { ID: 1234, numPerRow: 2, name: "新书强推" },
-  { ID: 1234, numPerRow: 3, name: "本周更新" },
-  { ID: 1234, numPerRow: 2, name: "3D主打" },
-  { ID: 1234, numPerRow: 3, name: "热门cosplay" },
-  { ID: 1234, numPerRow: 2, name: "私人收藏" },
-];
-
-const queryString = block_name.map((b, i, a) => {
-  return "type=" + b.name;
-});
 
 const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
   const { setDomain } = useDomain();

@@ -6,11 +6,11 @@
 
 declare interface RecommendationBlock {
   banner?: Array<BlockContent>;
-  吸睛首选?: Array<BlockContent>;
+  吸精首选?: Array<BlockContent>;
   新书强推?: Array<BlockContent>;
   本周更新?: Array<BlockContent>;
   "3D主打"?: Array<BlockContent>;
-  热门Cosplay?: Array<BlockContent>;
+  热门cosplay?: Array<BlockContent>;
   私人收藏?: Array<BlockContent>;
 }
 

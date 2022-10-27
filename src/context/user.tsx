@@ -28,16 +28,14 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
         const data = await apiLogin(account, password);
 
         if (!data.error) {
-          console.log("no error happen when login");
           localStorage.setItem("nsmh_log_status", "true");
           setIsLogIn(true);
         }
-        console.log(data.error);
 
         return data;
       } catch (err: any) {
         console.error(err.message || "login failed");
-        return err.message;
+        return err;
       }
     },
     [setIsLogIn, apiLogin]

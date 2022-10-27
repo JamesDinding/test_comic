@@ -61,8 +61,6 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
     isAccCorrect && setIsAccountWrong(false);
     isPwCorrect && setIsPsWrong(false);
 
-    console.log(isAccCorrect, isPwCorrect);
-
     return isAccCorrect && isPwCorrect;
   };
 
@@ -107,7 +105,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         </div>
         <Btn
           title="立即登入"
-          cb={async () => {
+          cb={() => {
             // for test
 
             const errorTextAll = document.querySelectorAll(
@@ -126,38 +124,37 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             }, 1000);
 
             if (!isInputCorrect()) return;
-            const response = await login(
-              accountRef.current.value,
-              psRef.current.value
-            );
+            login(accountRef.current.value, psRef.current.value)
+              .then((response) => {
+                let hasError = false;
 
-            const hasError = response.error;
+                switch (response.message) {
+                  case "cannot parse request":
+                  case "given credential matches no record":
+                    setIsAccountWrong(true);
+                    setAccWarning("無效的帳號，請確認帳號是否正確。");
+                    hasError = true;
+                    break;
 
-            console.log("Login page login response:", response);
+                  case "given password matches failed":
+                    setIsPsWrong(true);
+                    setPsWarning("密碼輸入錯誤，請確認後重新輸入。");
+                    hasError = true;
+                    break;
 
-            switch (response.message) {
-              case "cannot parse request":
-              case "given credential matches no record":
-                setIsAccountWrong(true);
-                setAccWarning("無效的帳號，請確認帳號是否正確。");
-                break;
+                  case "already logged":
+                    route("/memeber");
+                    break;
 
-              case "given password matches failed":
-                setIsPsWrong(true);
-                setPsWarning("密碼輸入錯誤，請確認後重新輸入。");
+                  default:
+                    break;
+                }
 
-                break;
-
-              case "already logged":
-                console.log("route /profile");
-                route("/memeber");
-                break;
-
-              default:
-                break;
-            }
-
-            hasError && route("/profile");
+                !hasError && route("/profile");
+              })
+              .catch((err) => {
+                console.error("err", err);
+              });
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">

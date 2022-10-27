@@ -11,11 +11,11 @@ interface BlockNameType {
   numPerRow: number;
   name:
     | "banner"
-    | "吸睛首选"
+    | "吸精首选"
     | "新书强推"
     | "本周更新"
     | "3D主打"
-    | "热门Cosplay"
+    | "热门cosplay"
     | "私人收藏";
 }
 
@@ -23,30 +23,14 @@ interface RecommendProps {
   setTc: StateUpdater<string>;
 }
 
-const recommendationBlocksItemPerRow: {
-  [index: number]: number;
-} = {
-  0: 0,
-  1: 3,
-  2: 2,
-  10077: 3,
-  10078: 2,
-  10079: 3,
-  10080: 2,
-  10081: 3,
-  10082: 2,
-  10083: 3,
-  10084: 2,
-};
-
 // temp_book name
 const block_name: Array<BlockNameType> = [
   { ID: 1234, numPerRow: 1, name: "banner" },
-  { ID: 1234, numPerRow: 3, name: "吸睛首选" },
+  { ID: 1234, numPerRow: 3, name: "吸精首选" },
   { ID: 1234, numPerRow: 2, name: "新书强推" },
   { ID: 1234, numPerRow: 3, name: "本周更新" },
   { ID: 1234, numPerRow: 2, name: "3D主打" },
-  { ID: 1234, numPerRow: 3, name: "热门Cosplay" },
+  { ID: 1234, numPerRow: 3, name: "热门cosplay" },
   { ID: 1234, numPerRow: 2, name: "私人收藏" },
 ];
 
@@ -70,7 +54,7 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
         setTc(referrer.toString() || "");
       })();
     } catch (err: any) {
-      console.log(err.message || "failed to get block contents");
+      console.error(err.message || "failed to get block contents");
     }
   }, []);
 

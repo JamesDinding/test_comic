@@ -45,12 +45,10 @@ const ReadContentPage: FunctionalComponent = () => {
     };
 
     const targets = document.querySelectorAll(".page");
-    console.log(targets);
 
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          console.log("enter viewport: ", e.target);
           const p = parseInt(e.target.id.split("-").pop()!, 10);
           setCurPage(p);
         }
@@ -101,7 +99,6 @@ const ReadContentPage: FunctionalComponent = () => {
   useEffect(() => {
     if (title) return;
     getSpecifiedBookDescription(curComic).then((response) => {
-      console.log(response);
       setTitle(response.data.title);
     });
   }, [curComic, title]);

@@ -37,7 +37,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         setPayments(data);
       })
       .catch((err) => {
-        console.log(err.message || "failed");
+        console.error(err.message || "failed");
       });
   }, []);
 
@@ -83,7 +83,6 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         <button
           className="w-full py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
           onClick={() => {
-            console.log(payment);
             if (!payment) return;
             onClose();
             onNextConfirm();

@@ -115,18 +115,16 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
           className="bg-[#8d6d9f] w-full py-4 mt-8 rounded-lg text-white text-xl"
           onClick={(e) => {
             if (!verifyInput()) return;
-            console.log("binding gogo");
             postMyProfile(
               phoneRef.current.value,
               mailRef.current.value,
               nameRef.current.value
             )
               .then((response) => {
-                console.log(response);
                 onClose();
               })
               .catch((err) => {
-                console.log(err);
+                console.error(err);
               });
           }}
         >

@@ -20,7 +20,6 @@ const ChargeList: FunctionComponent = () => {
   useEffect(() => {
     try {
       getMyOrders().then(({ data }) => {
-        console.log(data);
         setChargeList(data);
       });
     } catch (err: any) {

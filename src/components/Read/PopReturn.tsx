@@ -7,10 +7,13 @@ import IconArrow from "../../resources/img/icon-arrow.svg";
 
 interface PopReturnProps {
   bookId: number;
-  title: string;
+  chapterNum: number;
 }
 
-const PopReturn: FunctionalComponent<PopReturnProps> = ({ bookId, title }) => {
+const PopReturn: FunctionalComponent<PopReturnProps> = ({
+  bookId,
+  chapterNum,
+}) => {
   const { isPopControl } = useReadingModal();
 
   return (
@@ -35,7 +38,7 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({ bookId, title }) => {
       </div>
       <div className="grow">
         <div className="text-center text-white text-xl book-oneline mx-2">
-          {title}
+          第 {chapterNum} 章
         </div>
       </div>
 

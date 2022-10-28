@@ -139,7 +139,7 @@ const ReadContentPage: FunctionalComponent = () => {
         }}
         ref={containerRef}
       >
-        <PopReturn bookId={curComic} title={title} />
+        <PopReturn bookId={curComic} chapterNum={curChapter} />
         <ObserverProvider rootElement={containerRef}>
           {pageList?.map((page, i, arr) => {
             return (

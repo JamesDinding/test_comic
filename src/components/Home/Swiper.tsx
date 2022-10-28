@@ -53,7 +53,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
     let temp_pending = new Array(banners.length).fill(true);
     setPending(temp_pending);
     banners?.map((banner, i, arr) => {
-      fetch("//" + srcDomain + "/" + banner?.covers?.thumb)
+      fetch("//" + srcDomain + "/" + banner?.covers?.thumbx)
         .then((res) => {
           if (!res.ok) throw new Error("fail to fecth");
 

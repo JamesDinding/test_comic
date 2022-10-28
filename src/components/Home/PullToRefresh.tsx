@@ -16,7 +16,8 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
 }) => {
   const [dropCss, setDropCss] = useState("hidden");
   const [dropSpace, setDropSpace] = useState(0);
-  const [dropText, setDropText] = useState("下拉即可更新");
+  const [dropText, setDropText] = useState("");
+  // const [dropText, setDropText] = useState("下拉即可更新");
 
   const touchStartHandler = (e: TouchEvent) => {
     startClientY = e.touches[0].clientY;
@@ -33,10 +34,10 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
     } else {
       setDropCss("hidden");
     }
-    if (overScrollOffset > 30 && overScrollOffset < 100)
-      setDropText("下拉即可刷新...");
-    if (overScrollOffset > 100 && overScrollOffset < 150)
-      setDropText("释放即可刷新...");
+    if (overScrollOffset > 30 && overScrollOffset < 100) setDropText("");
+    // setDropText("下拉即可刷新...");
+    if (overScrollOffset > 100 && overScrollOffset < 150) setDropText("");
+    // setDropText("释放即可刷新...");
   };
 
   const touchEndHandler = (e: TouchEvent) => {

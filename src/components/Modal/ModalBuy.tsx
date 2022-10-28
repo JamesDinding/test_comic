@@ -47,10 +47,8 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
             title="继续阅读"
             bgColor="bg-[#8d6d9f]"
             cb={() => {
-              console.log(stuffInfo);
               postOrdersPurchase(stuffInfo?.id)
                 .then((response) => {
-                  console.log(response);
                   cb && cb(stuffInfo?.position);
 
                   updateCoins(stuffInfo?.price || 60);
@@ -62,7 +60,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
                   );
                 })
                 .catch((err) => {
-                  console.log(err);
+                  console.error(err);
                 });
             }}
           />

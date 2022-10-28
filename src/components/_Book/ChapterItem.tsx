@@ -26,7 +26,6 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
         }
         onClick={() => {
           if (!chapter.status) {
-            console.log({ ...chapter, bookId });
             setStuffInfo({ ...chapter, bookId });
             popBuy();
             return;
@@ -41,12 +40,15 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
           </div>
         )}
         <ObserverProvider rootElement={containerRef}>
-<div className={"overflow-hidden h-full "+(isPending?"pending":"")}>
-          <Image
-            path={chapter.covers.thumb}
-            alt=""
-            setParentPending={setIsPending}
-          /></div>
+          <div
+            className={"overflow-hidden h-full " + (isPending ? "pending" : "")}
+          >
+            <Image
+              path={chapter.covers.thumb}
+              alt=""
+              setParentPending={setIsPending}
+            />
+          </div>
         </ObserverProvider>
         <div className="item-overlay-chapter"></div>
         <div className="absolute left-1/2 bottom-[.25rem] translate-x-[-50%] whitespace-nowrap text-sm text-white text-center w-[70px] h-[20px] leading-[20px]">

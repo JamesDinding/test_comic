@@ -255,7 +255,7 @@ input[type="number"] {
 
 /* 充值頁面 */
 .charge-input-container {
-  @apply w-full py-2.5 px-5 bg-white rounded-lg border-solid border-[1px] border-[#6d5694] text-[#6d5694] text-sm;
+  @apply w-full py-2.5 px-5 bg-white rounded-lg border-solid border-[1px] border-[#6d569466] text-[#6d5694] text-sm;
 }
 
 .charge-item {
@@ -457,7 +457,7 @@ input[type="number"] {
 }
 
 .payment-shadow {
-  @apply absolute bottom-0 w-full h-[6px] opacity-10;
+  @apply absolute bottom-0 right-0 left-0 w-full h-[6px] opacity-10;
   background-image: linear-gradient(to bottom, rgba(158, 118, 84, 0), #3a2b1e);
 }
 

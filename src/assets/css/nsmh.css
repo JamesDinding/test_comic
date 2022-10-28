@@ -951,10 +951,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 50px;
 }
 
-.min-h-\[100px\] {
-  min-height: 100px;
-}
-
 .min-h-\[157px\] {
   min-height: 157px;
 }
@@ -2672,8 +2668,7 @@ input[type="number"] {
   border-radius: 0.5rem;
   border-width: 1px;
   border-style: solid;
-  --tw-border-opacity: 1;
-  border-color: rgb(109 86 148 / var(--tw-border-opacity));
+  border-color: #6d569466;
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   padding-top: 0.625rem;
@@ -3094,6 +3089,8 @@ input[type="number"] {
 .payment-shadow {
   position: absolute;
   bottom: 0px;
+  right: 0px;
+  left: 0px;
   height: 6px;
   width: 100%;
   opacity: 0.1;
@@ -3308,6 +3305,14 @@ footer .active span {
 
 .first\:ml-0:first-child {
   margin-left: 0px;
+}
+
+.first\:mt-2\.5:first-child {
+  margin-top: 0.625rem;
+}
+
+.first\:mt-2:first-child {
+  margin-top: 0.5rem;
 }
 
 .hover\:bg-\[\#fcf6ff\]:hover {

@@ -4,12 +4,20 @@ import { postMyProfile } from "../../../lib/api";
 import InputField from "./InputField";
 import CardBottom from "../../Modal/CardBottom";
 import IconCross from "../../../resources/img/icon-cross.svg";
+import { useUser } from "../../../context/user";
 
 interface BindPhone {
   onClose: () => void;
+  title?: string;
 }
 
-const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
+const BindPhone: FunctionalComponent<BindPhone> = ({
+  onClose,
+  title = "绑定会员资料",
+}) => {
+  const { getUserStatus } = useUser();
+  const [isPending, setIsPending] = useState(false);
+
   const phoneRef = useRef<HTMLInputElement>(null!);
   const mailRef = useRef<HTMLInputElement>(null!);
   const nameRef = useRef<HTMLInputElement>(null!);
@@ -67,7 +75,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
   return (
     <CardBottom>
       <div className="flex items-center justify-between w-full px-5 pt-4 pb-2.5 text-[#6d5694] text-lg border-b-[1px] border-[#6d569466]">
-        绑定会员资料
+        {title}
         <div onClick={(e) => onClose()}>
           <IconCross class="w-8 h-8 text-black cursor-pointer" />
         </div>
@@ -93,8 +101,8 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
           inputSetting={{
             placeHolder: "输入邮箱",
             type: "text",
-            minLen: 10,
-            maxLen: 12,
+            minLen: 6,
+            maxLen: 30,
           }}
         />
         <InputField
@@ -112,18 +120,30 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
       </div>
       <div className="px-5 pb-5">
         <button
-          className="bg-[#8d6d9f] w-full py-4 mt-8 rounded-lg text-white text-xl"
+          className={
+            "bg-[#8d6d9f] w-full py-4 mt-8 rounded-lg text-white text-xl " +
+            (isPending ? "opacity-20" : "")
+          }
           onClick={(e) => {
             if (!verifyInput()) return;
+            setIsPending(true);
             postMyProfile(
               phoneRef.current.value,
               mailRef.current.value,
               nameRef.current.value
             )
-              .then((response) => {
+              .then(async () => {
+                // Complete user state, fetch latest profile
+                await getUserStatus();
+                setIsPending(false);
                 onClose();
               })
               .catch((err) => {
+                setIsPending(false);
+                // when server error
+                setIsMailWrong(true);
+                setIsNameWrong(true);
+                setIsPhoneWrong(true);
                 console.error(err);
               });
           }}

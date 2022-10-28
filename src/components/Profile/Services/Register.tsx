@@ -23,7 +23,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
   const [accWarning, setAccWarning] = useState("帐号输入错误，请重新输入");
   const [psWarning, setPsWarning] = useState("密码输入错误，请重新输入");
   const [psCheckWarning, setPsCheckWarning] =
-    useState("密码输入错误，请重新输入");
+    useState("确认密码输入错误，请重新输入");
 
   const isInputCorrect = () => {
     const acc = accountRef.current.value;
@@ -40,12 +40,12 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
       return /^[A-Za-z0-9]*$/.test(str);
     }
 
-    if (accLen < 4 || accLen > 8) {
+    if (accLen < 4 || accLen > 12) {
       // acc len error
       setIsAccountWrong(true);
       isAccCorrect = false;
     }
-    if (pwLen < 4 || pwLen > 8) {
+    if (pwLen < 4 || pwLen > 12) {
       // pw len error
       setIsPsWrong(true);
       isPwCorrect = false;
@@ -60,10 +60,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
       setIsPsWrong(true);
       isPwCorrect = false;
     }
-    if (pwCheckLen < 4 || pwCheckLen > 8) {
-      setIsPsCheckWrong(true);
-      isPwCheckCorrect = false;
-    }
+
     if (pw !== pwCheck) {
       // pwCheck not match
       setIsPsCheckWrong(true);
@@ -87,9 +84,10 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="帐号"
           inputSetting={{
-            placeHolder: "请输入4-8位英文字母和数字组合帐号",
+            placeHolder: "请输入4-12位英文或数字组合帐号",
             type: "text",
-            maxLen: 8,
+            maxLen: 12,
+            minLen: 4,
           }}
           isWrong={isAccountWrong}
           warningMsg={accWarning}
@@ -98,9 +96,10 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="密码"
           inputSetting={{
-            placeHolder: "请输入4-8位英文字母和数字组合帐号",
+            placeHolder: "请输入4-12位英文或数字组合密码",
             type: "password",
-            maxLen: 8,
+            maxLen: 12,
+            minLen: 4,
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}
@@ -109,12 +108,13 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="确认密码"
           inputSetting={{
-            placeHolder: "请再次输入码",
+            placeHolder: "请再次输入密码",
             type: "password",
-            maxLen: 8,
+            maxLen: 12,
+            minLen: 4,
           }}
-          isWrong={isPsWrong}
-          warningMsg={psWarning}
+          isWrong={isPsCheckWrong}
+          warningMsg={psCheckWarning}
           inputRef={psCheckRef}
         />
         <div className="mb-[1.875rem]"></div>
@@ -137,11 +137,18 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
             }, 1000);
 
             if (!isInputCorrect()) return;
-            postMyRegister(accountRef.current.value, psRef.current.value).then(
-              (data) => {
+            postMyRegister(accountRef.current.value, psRef.current.value)
+              .then((data) => {
                 route("/login");
-              }
-            );
+              })
+              .catch((err) => {
+                if (err.message === "username already exists") {
+                  setAccWarning("该帐户已被注册，请重新输入");
+                  setIsAccountWrong(true);
+                } else {
+                  console.error(err);
+                }
+              });
           }}
         />
         <div className="mt-5 text-sm text-[#999999]">

@@ -20,7 +20,7 @@ const ReadContentPage: FunctionalComponent = () => {
   const { isPopControl, popControl, reset } = useReadingModal();
   const [parentPending, setParentPending] = useState(true);
   const [pageList, setPageList] = useState([]);
-  // 控制列的頁碼
+  // 控制列的页码
   const [isDrag, setIsDrag] = useState(false);
   const [curPage, setCurPage] = useState(1);
   const [observer, setObserver] = useState<IntersectionObserver>();
@@ -35,13 +35,22 @@ const ReadContentPage: FunctionalComponent = () => {
   );
   const [title, setTitle] = useState("");
 
+  // 进入页面显示bar，让使用者可以注意到，再来是滚动时消失
+  useEffect(() => {
+    const container = containerRef.current;
+    popControl();
+    container.addEventListener("scroll", (e) => {
+      reset();
+    });
+  }, [containerRef.current]);
+
   // setup intersection observer for detecting current page
   useEffect(() => {
     if (pageList.length === 0) return;
     if (observer) return;
     const opt: IntersectionObserverInit = {
       root: containerRef.current,
-      threshold: [0, 1],
+      threshold: [0.1, 1],
       rootMargin: "",
     };
 
@@ -96,7 +105,7 @@ const ReadContentPage: FunctionalComponent = () => {
     });
   }, [curComic, title]);
 
-  // 隨頁碼條滾動
+  // 随页码条滚动
   useEffect(() => {
     if (!isDrag) return;
     const target = document.querySelector("#page-" + curPage);
@@ -139,13 +148,13 @@ const ReadContentPage: FunctionalComponent = () => {
         }}
         ref={containerRef}
       >
-        <PopReturn bookId={curComic} title={title} />
+        <PopReturn bookId={curComic} chapterNum={curChapter} />
         <ObserverProvider rootElement={containerRef}>
           {pageList?.map((page, i, arr) => {
             return (
               <div
                 id={`page-${i + 1}`}
-                className={"page" + (parentPending ? " min-h-[100px]" : "")}
+                className={"page" + (parentPending ? " min-h-[50px]" : "")}
               >
                 <Image
                   path={page}

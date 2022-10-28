@@ -34,7 +34,8 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   payInfo,
   isExpand,
 }) => {
-  const { selectPay } = useCharge();
+  const { selectPay, payment } = useCharge();
+  const [selectName, setSelectName] = useState("");
 
   return (
     <div className={"charge-input-container overflow-y-auto duration-300 "}>
@@ -42,7 +43,10 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
         <div className="mr-2.5 w-5">
           {iconMap.get(payInfo[0].type)?.element}
         </div>
-        {iconMap.get(payInfo[0].type)?.title}
+        <div className="book-oneline">
+          {iconMap.get(payInfo[0].type)?.title +
+            (payment?.name === selectName ? "/" + selectName : "")}
+        </div>
         <div className="grow"></div>
         <div>
           <IconChevron
@@ -65,6 +69,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                 <label
                   className="cursor-pointer"
                   onClick={() => {
+                    setSelectName(p.name);
                     selectPay(p);
                   }}
                 >

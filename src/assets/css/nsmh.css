@@ -3089,6 +3089,8 @@ input[type="number"] {
 .payment-shadow {
   position: absolute;
   bottom: 0px;
+  right: 0px;
+  left: 0px;
   height: 6px;
   width: 100%;
   opacity: 0.1;
@@ -3303,6 +3305,14 @@ footer .active span {
 
 .first\:ml-0:first-child {
   margin-left: 0px;
+}
+
+.first\:mt-2\.5:first-child {
+  margin-top: 0.625rem;
+}
+
+.first\:mt-2:first-child {
+  margin-top: 0.5rem;
 }
 
 .hover\:bg-\[\#fcf6ff\]:hover {

@@ -53,10 +53,9 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
           }}
         />
         <div className="relative w-full h-2/3">
-          <div className="payment-shadow"></div>
           <div
             id="payway"
-            className="h-full px-1 overflow-y-auto no-scollbar bg-[#fcf6ff]"
+            className="relative max-h-full px-1 overflow-y-auto no-scollbar bg-[#fcf6ff]"
             onClick={(e) => {
               const target = e.target as HTMLDivElement;
 
@@ -64,12 +63,13 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
               return;
             }}
           >
+            <div className="payment-shadow"></div>
             {way?.map((way: any, i: any) => {
               const isNowExpand = curExpand === i;
               return (
                 <div
                   key={i}
-                  className="w-full mt-2.5"
+                  className="w-full first:mt-2.5 mb-2.5"
                   onClick={(e) => {
                     setCurExpand(i);
                     e.stopPropagation();

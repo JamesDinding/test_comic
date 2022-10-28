@@ -457,7 +457,7 @@ input[type="number"] {
 }
 
 .payment-shadow {
-  @apply absolute bottom-0 w-full h-[6px] opacity-10;
+  @apply absolute bottom-0 right-0 left-0 w-full h-[6px] opacity-10;
   background-image: linear-gradient(to bottom, rgba(158, 118, 84, 0), #3a2b1e);
 }
 

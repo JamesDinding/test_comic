@@ -40,7 +40,14 @@ const ServiceList: FunctionalComponent = () => {
           />,
           document.getElementById("back-drop")!
         )}
-      {isPopBinding && <BindPhone onClose={() => setIsPopBinding(false)} />}
+      {isPopBinding && (
+        <BindPhone
+          title={
+            userStatus.status === "active" ? "修改会员资料" : "绑定会员资料"
+          }
+          onClose={() => setIsPopBinding(false)}
+        />
+      )}
       {isPopLogout && <PopLogout onClose={() => setIsPopLogout(false)} />}
       <div className="flex flex-col overflow-auto">
         <div className="mb-2 rounded-2xl">

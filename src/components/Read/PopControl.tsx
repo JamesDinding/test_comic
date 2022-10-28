@@ -15,7 +15,7 @@ interface PopControlProps {
   changeChapter: StateUpdater<number>;
 }
 
-// 傳chapter.position 取代curChapter會比較好
+// 传chapter.position 取代curChapter会比较好
 const PopControl: FunctionalComponent<PopControlProps> = ({
   pageNum,
   curChapter,

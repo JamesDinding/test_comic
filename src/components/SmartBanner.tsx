@@ -64,13 +64,13 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
         <img
           src="/assets/favicon.svg"
           class="rounded-lg shadow-md h-12"
-          alt="女神漫画"
+          alt="水晶漫画"
         />
       </a>
 
       <div class="flex flex-col justify-start items-start mt-1 ml-1 grow">
         <a href={`/app/sjmh.${mobile}?tc=${tc}`} target="_blank">
-          <Logo class="h-5 mt-1" alt="女神漫画" />
+          <Logo class="h-5 mt-1" alt="水晶漫画" />
         </a>
         <span class="text-[11px] text-[#dfad6d] py-1 font-medium tracking-widest whitespace-nowrap">
           最懂您需求的漫画网站

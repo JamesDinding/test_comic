@@ -5,6 +5,7 @@ import { useUser } from "../../../context/user";
 import InputField from "./InputField";
 import Btn from "../../UI/Btn";
 import IconLogo from "../../../resources/img/logo-text.svg";
+import { CUSTOMER_SERVICE_URL } from "../../../const";
 
 interface LoginProps {}
 
@@ -101,9 +102,13 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             记住我的帐号密码
           </label>
           <div className="grow"></div>
-          <div className="cursor-pointer text-[#8d6d9f] btn-text">
+          <a
+            href={`${CUSTOMER_SERVICE_URL}?paymode-=1`}
+            target="_blank"
+            className="cursor-pointer text-[#8d6d9f] btn-text"
+          >
             忘记密码？
-          </div>
+          </a>
         </div>
         <Btn
           title="立即登入"

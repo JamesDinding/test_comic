@@ -74,9 +74,10 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="帐号"
           inputSetting={{
-            placeHolder: "请输入4-8位英文字母和数字组合帐号",
+            placeHolder: "请输入4-12位英文或数字组合帐号",
             type: "text",
-            maxLen: 8,
+            maxLen: 12,
+            minLen: 4,
           }}
           isWrong={isAccountWrong}
           warningMsg={accWarning}
@@ -85,9 +86,10 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="密码"
           inputSetting={{
-            placeHolder: "请输入4-8位英文字母和数字组合帐号",
+            placeHolder: "请输入4-12位英文或数字组合密码",
             type: "password",
-            maxLen: 8,
+            maxLen: 12,
+            minLen: 4,
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}
@@ -106,7 +108,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         <Btn
           title="立即登入"
           cb={() => {
-            // for test
+            if (isPending) return;
 
             const errorTextAll = document.querySelectorAll(
               ".text-input-warning"
@@ -124,9 +126,11 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             }, 1000);
 
             if (!isInputCorrect()) return;
+            setIsPending(true);
             login(accountRef.current.value, psRef.current.value)
               .then((response) => {
                 let hasError = false;
+                setIsPending(false);
 
                 switch (response.message) {
                   case "cannot parse request":

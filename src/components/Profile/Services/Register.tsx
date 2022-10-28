@@ -87,9 +87,10 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="帐号"
           inputSetting={{
-            placeHolder: "请输入4-8位英文字母和数字组合帐号",
+            placeHolder: "请输入4-12位英文或数字组合帐号",
             type: "text",
-            maxLen: 8,
+            maxLen: 12,
+            minLen: 4,
           }}
           isWrong={isAccountWrong}
           warningMsg={accWarning}
@@ -98,9 +99,10 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="密码"
           inputSetting={{
-            placeHolder: "请输入4-8位英文字母和数字组合帐号",
+            placeHolder: "请输入4-12位英文或数字组合密码",
             type: "password",
-            maxLen: 8,
+            maxLen: 12,
+            minLen: 4,
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}
@@ -109,9 +111,10 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="确认密码"
           inputSetting={{
-            placeHolder: "请再次输入码",
+            placeHolder: "请再次输入密码",
             type: "password",
-            maxLen: 8,
+            maxLen: 12,
+            minLen: 4,
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}

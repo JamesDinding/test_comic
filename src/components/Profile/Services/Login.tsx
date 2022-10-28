@@ -97,10 +97,10 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           inputRef={psRef}
         />
         <div className="flex items-center w-full mt-5 mb-20 text-sm">
-          <input type="checkbox" name="memorize" className="cursor-pointer" />
+          {/* <input type="checkbox" name="memorize" className="cursor-pointer" />
           <label className="ml-2 text-[#666666]" for="memorize">
-            记住我的帐号密码
-          </label>
+            记住我的帐号
+          </label> */}
           <div className="grow"></div>
           <a
             href={`${CUSTOMER_SERVICE_URL}?paymode-=1`}

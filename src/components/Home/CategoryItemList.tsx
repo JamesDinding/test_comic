@@ -30,15 +30,18 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   useEffect(() => {
     if (observer) return;
     const opt: IntersectionObserverInit = {
-      root: document.querySelector("#category-section"),
-      threshold: [0, 1],
+      root: document.querySelector("#scroll"),
+      // root: document.querySelector("#category-section"),
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       rootMargin: "-30px 0px 0px 0px",
     };
 
     const ob = new IntersectionObserver((entries, observer) => {
-      entries.forEach((e) => {
+      entries.forEach(async (e) => {
         if (e.isIntersecting) {
-          console.log("bottom ref show");
+          const { data } = await getSpecifiedCategory(catID.toString());
+          setContent((prev) => prev?.concat(data));
+          setCurrentNum((prev) => prev + 30);
         }
       });
     }, opt);
@@ -60,7 +63,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
         />
         <div
           ref={bottomRef}
-          className="w-[1px] h-[100px] absolute invisible"
+          className="w-[100px] h-[1px] invisible  bg-red-400"
         ></div>
       </div>
     </Fragment>

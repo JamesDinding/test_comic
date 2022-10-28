@@ -64,12 +64,16 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
             }}
           >
             <div className="payment-shadow"></div>
-            {way?.map((way: any, i: any) => {
+            {way?.map((way: any, i: any, arr: any) => {
               const isNowExpand = curExpand === i;
               return (
                 <div
                   key={i}
-                  className="w-full first:mt-2.5 mb-2.5"
+                  className={
+                    "w-full " +
+                    (i === 0 ? "mt-4 " : " ") +
+                    (arr.length - 1 === i ? " mb-4" : " mb-2.5")
+                  }
                   onClick={(e) => {
                     setCurExpand(i);
                     e.stopPropagation();
@@ -86,7 +90,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         </div>
         <div className="grow"></div>
         <button
-          className="w-full py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
+          className="w-full mt-[5rem] py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
           onClick={() => {
             if (!payment) return;
             onClose();

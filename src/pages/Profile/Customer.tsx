@@ -65,14 +65,14 @@ const CustomerPage: FunctionalComponent = () => {
       .then((data) => {
         setMsgList(data.conversation || []);
       })
-      .catch((err) => console.log(err.message || "Something wrong!"));
+      .catch((err) => console.error(err.message || "Something wrong!"));
   }, []);
 
   /* websocket testing start */
   useEffect(() => {
     ws = new WebSocket("ws://192.168.1.247:3000");
     ws.onopen = () => {
-      console.log("open connection");
+      // console.log("open connection");
       // 建立连线后，先向server发送资料来匹配客服人员
       ws?.send(
         JSON.stringify({
@@ -98,17 +98,16 @@ const CustomerPage: FunctionalComponent = () => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
         })
         .catch((err) => {
-          console.log(err.message || "error happen");
+          console.error(err.message || "error happen");
         });
     };
 
     ws.onclose = () => {
       // disconnected should inform server, then server could delete route from table.
-
-      console.log("close connection");
+      // console.log("close connection");
     };
 
     ws.onmessage = (e) => {
@@ -122,7 +121,7 @@ const CustomerPage: FunctionalComponent = () => {
         setIsTyping(false);
 
         setMsgList((prev) => {
-          console.log(prev);
+          // console.log(prev);
           const temp = [...prev];
           temp.push(res);
           return temp;
@@ -149,7 +148,7 @@ const CustomerPage: FunctionalComponent = () => {
   useEffect(() => {
     if (!window) return;
     window.onbeforeunload = () => {
-      console.log("user leaving");
+      // console.log("user leaving");
       ws?.send(
         JSON.stringify({
           type: "disconnect",

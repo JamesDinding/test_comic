@@ -26,7 +26,6 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
         }
         onClick={() => {
           if (!chapter.status) {
-            console.log({ ...chapter, bookId });
             setStuffInfo({ ...chapter, bookId });
             popBuy();
             return;

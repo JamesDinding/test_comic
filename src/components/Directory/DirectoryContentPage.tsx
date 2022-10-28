@@ -71,7 +71,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
                   content?.id,
                   isCollected ? "remove" : "add"
                 ).then((data) => {
-                  console.log("req response data:", data);
+                  // console.log("req response data:", data);
                 });
               }}
             >

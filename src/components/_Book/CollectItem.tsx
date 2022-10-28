@@ -88,7 +88,6 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
             onClick={() => {
               postMyBookmarks(Data.id, "remove")
                 .then((response) => {
-                  console.log(response);
                   updateList((prev) => {
                     return prev.filter((p) => p.id !== Data.id);
                   });

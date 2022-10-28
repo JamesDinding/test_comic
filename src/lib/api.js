@@ -91,7 +91,7 @@ export async function postMyRegister(acc, ps) {
   });
   const data = await response.json();
 
-  if (data.error) throw new Error(data.error || route + " failed");
+  if (data.error) throw new Error(data.message || route + " failed");
 
   return data;
 }

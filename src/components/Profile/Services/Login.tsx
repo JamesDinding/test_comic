@@ -38,12 +38,12 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
       return /^[A-Za-z0-9]*$/.test(str);
     }
 
-    if (accLen < 4 || accLen > 8) {
+    if (accLen < 4 || accLen > 12) {
       // acc len error
       setIsAccountWrong(true);
       isAccCorrect = false;
     }
-    if (pwLen < 4 || pwLen > 8) {
+    if (pwLen < 4 || pwLen > 12) {
       // pw len error
       setIsPsWrong(true);
       isPwCorrect = false;

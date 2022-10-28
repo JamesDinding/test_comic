@@ -4,12 +4,15 @@ import { postMyProfile } from "../../../lib/api";
 import InputField from "./InputField";
 import CardBottom from "../../Modal/CardBottom";
 import IconCross from "../../../resources/img/icon-cross.svg";
+import { useUser } from "../../../context/user";
 
 interface BindPhone {
   onClose: () => void;
 }
 
 const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
+  const { getUserStatus } = useUser();
+
   const phoneRef = useRef<HTMLInputElement>(null!);
   const mailRef = useRef<HTMLInputElement>(null!);
   const nameRef = useRef<HTMLInputElement>(null!);
@@ -93,8 +96,8 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
           inputSetting={{
             placeHolder: "输入邮箱",
             type: "text",
-            minLen: 10,
-            maxLen: 12,
+            minLen: 6,
+            maxLen: 30,
           }}
         />
         <InputField
@@ -120,7 +123,9 @@ const BindPhone: FunctionalComponent<BindPhone> = ({ onClose }) => {
               mailRef.current.value,
               nameRef.current.value
             )
-              .then((response) => {
+              .then(async () => {
+                // Complete user state, fetch latest profile
+                await getUserStatus();
                 onClose();
               })
               .catch((err) => {

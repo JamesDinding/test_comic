@@ -122,6 +122,7 @@ const ReadContentPage: FunctionalComponent = () => {
         changeChapter={setCurChapter}
       />
       <PopControl
+        chapterList={chapterList}
         pageNum={pageList.length}
         curChapter={curChapter}
         curComic={curComic}

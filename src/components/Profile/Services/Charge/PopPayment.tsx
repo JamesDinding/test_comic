@@ -6,6 +6,8 @@ import PaySelection from "./PaySelection";
 import Card from "../../../Modal/Card";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 import { getOrdersProductsId } from "../../../../lib/api";
+import { useUser } from "../../../../context/user";
+import { route } from "preact-router";
 
 type Payment = {
   name: string;
@@ -24,6 +26,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   onClose,
   onNextConfirm,
 }) => {
+  const { logout } = useUser();
   const { payment, userSelect, selectPay, selectCoins } = useCharge();
   const [curExpand, setCurExpand] = useState(-1);
   const [payments, setPayments] = useState<any>([]);
@@ -38,6 +41,9 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
       })
       .catch((err) => {
         console.error(err.message || "failed");
+        if (err.message === "not logged") {
+          logout().then(() => route("/login"));
+        }
       });
   }, []);
 

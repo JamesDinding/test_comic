@@ -52,7 +52,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
         setIsLogIn(false);
       }
     } catch (err: any) {
-      console.error("logout gogo");
+      console.error("logout");
       localStorage.removeItem("nsmh_log_status");
       setToken("");
       resetUserInfo();

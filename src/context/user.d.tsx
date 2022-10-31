@@ -14,7 +14,7 @@ declare interface UserContextType {
   user: User;
   userStatus: UserStatus;
   login: (account: string, password: string) => Promise<any>;
-  logout: () => void;
+  logout: () => Promise<any>;
   bindPhone: () => void;
   updateCoins: (cost: number) => void;
   getUserStatus: () => Promise<void>;

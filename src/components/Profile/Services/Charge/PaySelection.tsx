@@ -40,11 +40,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   const [selectName, setSelectName] = useState("");
 
   return (
-    <div
-      className={
-        "cursor-pointer charge-input-container overflow-y-auto duration-300 "
-      }
-    >
+    <div className={"cursor-pointer charge-input-container"}>
       <div className="flex items-center">
         <div className="mr-2.5 w-5">
           {iconMap.get(payInfo[0].type)?.element}

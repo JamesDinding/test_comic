@@ -104,6 +104,10 @@ input[type="number"] {
   @apply absolute cursor-pointer right-4 top-4;
 }
 
+.selection-animation {
+  transition: min-height 1s;
+}
+
 /* translate-x/y-[1px] 是bordor的寬度 */
 .pop-payment-active-decoration::before {
   @apply absolute bg-[#f98d83] bottom-0 right-0 translate-x-[1px] translate-y-[1px] w-4 h-4 block rounded;

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, Ref } from "preact/hooks";
 import { route } from "preact-router";
 import BookList from "../_Book/List";
 import { getSpecifiedCategory } from "../../lib/api";
+import { CATEGORY_PER_PAGE_NUM } from "../../const";
 
 interface CategoryItemListProps {
   catID: Number;
@@ -12,14 +13,21 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   catID,
 }) => {
   const [content, setContent] = useState<Book[]>();
-  const [currentNum, setCurrentNum] = useState(30);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const [observer, setObserver] = useState<IntersectionObserver>();
+  const [observer, setObserver] = useState<IntersectionObserver | null>(null);
+
+  // test ref
+  const pageRef = useRef(1);
+  const curCateId = useRef(catID);
+  const numRef = useRef(0);
 
   useEffect(() => {
     try {
       (async () => {
-        const { data } = await getSpecifiedCategory(catID.toString());
+        pageRef.current = 1;
+        curCateId.current = catID;
+        const { data } = await getSpecifiedCategory(catID, pageRef.current);
+        numRef.current = data?.length;
         setContent(data);
       })();
     } catch (err: any) {
@@ -39,9 +47,15 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach(async (e) => {
         if (e.isIntersecting) {
-          const { data } = await getSpecifiedCategory(catID.toString());
+          console.log(curCateId, pageRef);
+          console.log(numRef.current, Math.ceil(numRef.current || 0) / 30);
+          const { data } = await getSpecifiedCategory(
+            curCateId.current,
+            Math.ceil((numRef.current || 0) / CATEGORY_PER_PAGE_NUM) + 1
+          );
+          pageRef.current++;
+          numRef.current += data?.length;
           setContent((prev) => prev?.concat(data));
-          setCurrentNum((prev) => prev + 30);
         }
       });
     }, opt);
@@ -49,7 +63,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     setObserver(ob);
 
     ob.observe(bottomRef.current!);
-  }, [observer]);
+  }, [observer, bottomRef.current, curCateId.current, pageRef.current]);
 
   return (
     <Fragment>
@@ -59,7 +73,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           ItemPerRow={3}
           type={"separate"}
           isTemp={true}
-          itemNum={currentNum}
+          itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
         />
         <div
           ref={bottomRef}

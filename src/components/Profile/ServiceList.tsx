@@ -109,7 +109,7 @@ const ServiceList: FunctionalComponent = () => {
         </div>
         {isLogIn ? (
           <div
-            className="cursor-pointer bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
+            className="cursor-pointer bg-white py-2.5 px-5 text-[#6d5694] text-sm"
             onClick={() => {
               setIsPopLogout((prev) => !prev);
             }}
@@ -118,7 +118,7 @@ const ServiceList: FunctionalComponent = () => {
           </div>
         ) : (
           <Link
-            className="bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
+            className="cursor-pointer bg-white py-2.5 px-5 text-[#6d5694] text-sm"
             href="/login"
           >
             登录

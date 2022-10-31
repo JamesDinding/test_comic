@@ -1,4 +1,7 @@
+// for /pages/Profile/Customer
 export const API_ROUTE = "http://192.168.1.247:3000";
+
+export const CATEGORY_PER_PAGE_NUM = 30;
 
 export const CUSTOMER_SERVICE_URL =
   "https://secure.livechatinc.com/licence/14669538/v2/open_chat.cgi";

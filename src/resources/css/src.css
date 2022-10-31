@@ -84,11 +84,12 @@ input[type="number"] {
 }
 
 .modal {
-  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px] min-h-[515px] h-[80%];
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px];
 }
 
-.modal-shrink {
-  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px];
+.modal-dynamic {
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px] max-h-[515px] h-[515px];
+  transition: max-height 1s;
 }
 
 .pop-payment {

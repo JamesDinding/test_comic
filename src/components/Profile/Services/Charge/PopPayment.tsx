@@ -48,8 +48,8 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   }, []);
 
   return (
-    <Card>
-      <div className="relative overflow-auto no-scrollbar flex flex-col items-center h-full p-5">
+    <Card heightDynamic={true}>
+      <div className="relative flex flex-col items-center max-h-full p-5">
         <ModalTitle
           title="选择支付方案"
           onClose={() => {
@@ -58,14 +58,14 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
             onClose();
           }}
         />
-        <div className="relative w-full h-2/3">
+        <div className="relative w-full max-h-[50%] overflow-y-auto no-scollbar bg-[#fcf6ff]">
           <div
             id="payway"
-            className="relative max-h-full px-1 overflow-y-auto no-scollbar bg-[#fcf6ff]"
+            className="relative h-full px-1 py-2.5"
             onClick={(e) => {
               const target = e.target as HTMLDivElement;
 
-              if (target.id) setCurExpand(-1);
+              if (target.id === "payway") setCurExpand(-1);
               return;
             }}
           >
@@ -76,9 +76,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
                 <div
                   key={i}
                   className={
-                    "w-full " +
-                    (i === 0 ? "mt-4 " : " ") +
-                    (arr.length - 1 === i ? " mb-4" : " mb-2.5")
+                    "w-full " + (arr.length - 1 === i ? " " : " mb-2.5")
                   }
                   onClick={(e) => {
                     setCurExpand(i);
@@ -88,15 +86,15 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
                   <PaySelection
                     payInfo={payments[way]}
                     isExpand={isNowExpand}
+                    setCurExpand={setCurExpand}
                   />
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="grow"></div>
         <button
-          className="w-full mt-[5rem] py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
+          className="w-full mt-10 py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
           onClick={() => {
             if (!payment) return;
             onClose();

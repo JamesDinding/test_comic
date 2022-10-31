@@ -2,18 +2,18 @@ import { h, FunctionalComponent } from "preact";
 
 interface CardProps {
   heightShrink?: boolean;
-  dynamicHeight?: boolean;
+  heightDynamic?: boolean;
 }
 
 const Card: FunctionalComponent<CardProps> = ({
   children,
   heightShrink,
-  dynamicHeight,
+  heightDynamic,
 }) => {
-  let css = "modal" + (heightShrink ? "-shrink" : "");
+  let css = (heightShrink ? "" : " min-h-[515px] h-[80%] ") + "modal";
 
   return (
-    <div className={css + (dynamicHeight ? " max-h-2/3" : " ")}>{children}</div>
+    <div className={heightDynamic ? "modal-dynamic" : css}>{children}</div>
   );
 };
 

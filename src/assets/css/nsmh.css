@@ -783,6 +783,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.75rem;
 }
 
+.mb-\[\.625rem\] {
+  margin-bottom: .625rem;
+}
+
 .block {
   display: block;
 }

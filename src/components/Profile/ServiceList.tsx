@@ -50,8 +50,8 @@ const ServiceList: FunctionalComponent = () => {
       )}
       {isPopLogout && <PopLogout onClose={() => setIsPopLogout(false)} />}
       <div className="flex flex-col overflow-auto">
-        <div className="mb-2 rounded-2xl">
-          <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
+        <div className="mb-[.625rem] rounded-2xl">
+          <div className="bg-white text-[#4c4c4c] rounded-2xl">
             <ul>
               {serviceList.map(({ title, url, msg }, i, arr) => {
                 if (!isLogIn && url === "bind") return;

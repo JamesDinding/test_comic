@@ -49,60 +49,67 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
 
   return (
     <Card heightDynamic={true}>
-      <div className="relative flex flex-col items-center max-h-full p-5">
-        <ModalTitle
-          title="选择支付方案"
-          onClose={() => {
-            selectPay(null);
-            selectCoins(null);
-            onClose();
-          }}
-        />
-        <div className="relative w-full max-h-[50%] overflow-y-auto no-scollbar bg-[#fcf6ff]">
-          <div
-            id="payway"
-            className="relative h-full px-1 py-2.5"
-            onClick={(e) => {
-              const target = e.target as HTMLDivElement;
+      <div
+        className={
+          "expandPayment " + (curExpand > -1 ? "h-[515px]" : "h-[400px]")
+        }
+      >
+        <div className={"relative flex flex-col items-center h-full p-5 "}>
+          <ModalTitle
+            title="选择支付方案"
+            onClose={() => {
+              selectPay(null);
+              selectCoins(null);
+              onClose();
+            }}
+          />
+          <div className="relative w-full max-h-full overflow-y-auto no-scollbar bg-[#fcf6ff]">
+            <div
+              id="payway"
+              className="relative h-full px-1 py-2.5"
+              onClick={(e) => {
+                const target = e.target as HTMLDivElement;
 
-              if (target.id === "payway") setCurExpand(-1);
-              return;
+                if (target.id === "payway") setCurExpand(-1);
+                return;
+              }}
+            >
+              <div className="payment-shadow"></div>
+              {way?.map((way: any, i: any, arr: any) => {
+                const isNowExpand = curExpand === i;
+                return (
+                  <div
+                    key={i}
+                    className={
+                      "w-full " + (arr.length - 1 === i ? " " : " mb-2.5")
+                    }
+                    onClick={(e) => {
+                      setCurExpand(i);
+                      e.stopPropagation();
+                    }}
+                  >
+                    <PaySelection
+                      payInfo={payments[way]}
+                      isExpand={isNowExpand}
+                      setCurExpand={setCurExpand}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="grow"></div>
+          <button
+            className="w-full mt-10 py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
+            onClick={() => {
+              if (!payment) return;
+              onClose();
+              onNextConfirm();
             }}
           >
-            <div className="payment-shadow"></div>
-            {way?.map((way: any, i: any, arr: any) => {
-              const isNowExpand = curExpand === i;
-              return (
-                <div
-                  key={i}
-                  className={
-                    "w-full " + (arr.length - 1 === i ? " " : " mb-2.5")
-                  }
-                  onClick={(e) => {
-                    setCurExpand(i);
-                    e.stopPropagation();
-                  }}
-                >
-                  <PaySelection
-                    payInfo={payments[way]}
-                    isExpand={isNowExpand}
-                    setCurExpand={setCurExpand}
-                  />
-                </div>
-              );
-            })}
-          </div>
+            下一步
+          </button>
         </div>
-        <button
-          className="w-full mt-10 py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
-          onClick={() => {
-            if (!payment) return;
-            onClose();
-            onNextConfirm();
-          }}
-        >
-          下一步
-        </button>
       </div>
     </Card>
   );

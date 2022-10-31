@@ -919,8 +919,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 40px;
 }
 
+.h-\[515px\] {
+  height: 515px;
+}
+
 .h-\[49px\] {
   height: 49px;
+}
+
+.h-\[400px\] {
+  height: 400px;
 }
 
 .max-h-screen {
@@ -935,8 +943,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-height: 0px;
 }
 
-.max-h-\[50\%\] {
-  max-height: 50%;
+.max-h-\[300px\] {
+  max-height: 300px;
+}
+
+.max-h-\[87\%\] {
+  max-height: 87%;
 }
 
 .min-h-\[170px\] {
@@ -985,10 +997,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-h-\[60px\] {
   min-height: 60px;
-}
-
-.min-h-\[30px\] {
-  min-height: 30px;
 }
 
 .w-\[1\.125rem\] {
@@ -1886,6 +1894,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 2.5rem;
 }
 
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2400,7 +2412,6 @@ input[type="number"] {
   top: 50%;
   left: 50%;
   z-index: 999;
-  height: 515px;
   max-height: 515px;
   min-width: 335px;
   --tw-translate-y: -50%;
@@ -2739,6 +2750,10 @@ input[type="number"] {
   line-height: 1rem;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.expandPayment {
+  transition: height 0.3s;
 }
 
 .user-icon-shadow {

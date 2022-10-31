@@ -88,7 +88,7 @@ input[type="number"] {
 }
 
 .modal-dynamic {
-  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px] max-h-[515px] h-[515px];
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px] max-h-[515px];
   transition: max-height 1s;
 }
 
@@ -277,6 +277,10 @@ input[type="number"] {
 
 .charge-discount-text {
   @apply absolute top-[2px] left-1/2 translate-x-[-50%] text-xs  text-white flex flex-col justify-center items-center;
+}
+
+.expandPayment {
+  transition: height 0.3s;
 }
 
 .user-icon-shadow {

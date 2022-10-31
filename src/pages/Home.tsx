@@ -63,7 +63,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
           />
           <CategoryListBar
             onCategoryChanged={setCurrentCategory}
-            categories={[{ name: "首页", id: 0 }].concat(categories)}
+            categories={[{ id: 0, name: "首页" }].concat(categories)}
           />
 
           <PullToRefresh containerElement={containerRef}>
@@ -81,7 +81,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
                 <Recommend setTc={setTc} />
               )
             ) : (
-              <CategoryItemList catID={categories[currentCategory].id} />
+              <CategoryItemList catID={categories[currentCategory - 1].id} />
             )}
           </PullToRefresh>
         </ObserverProvider>

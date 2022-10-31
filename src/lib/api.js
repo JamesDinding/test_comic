@@ -139,7 +139,16 @@ export async function postMyBookmarks(id, action) {
 export const getCategories = curryFetch_GET("/contents/categories");
 
 // 取得指定分類
-export const getSpecifiedCategory = curryFetch_GET("/contents/categories");
+export const getSpecifiedCategory = async (category_id, page = 1) => {
+  const res = await fetch(
+    "/api/v1//contents/categories/" + category_id + "?page=" + page
+  );
+  const data = await res.json();
+
+  if (data.error) throw new Error(data.message || "failed");
+
+  return data;
+};
 
 // 取得區塊內容
 // export const getAllBlock = curryFetch_GET_QUERY("/contents/blocks");

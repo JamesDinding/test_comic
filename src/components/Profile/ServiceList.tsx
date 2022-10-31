@@ -50,8 +50,8 @@ const ServiceList: FunctionalComponent = () => {
       )}
       {isPopLogout && <PopLogout onClose={() => setIsPopLogout(false)} />}
       <div className="flex flex-col overflow-auto">
-        <div className="mb-2 rounded-2xl">
-          <div className="bg-white mb-4 text-[#4c4c4c] rounded-2xl">
+        <div className="mb-[.625rem] rounded-2xl">
+          <div className="bg-white text-[#4c4c4c] rounded-2xl">
             <ul>
               {serviceList.map(({ title, url, msg }, i, arr) => {
                 if (!isLogIn && url === "bind") return;
@@ -109,7 +109,7 @@ const ServiceList: FunctionalComponent = () => {
         </div>
         {isLogIn ? (
           <div
-            className="cursor-pointer bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
+            className="cursor-pointer bg-white py-2.5 px-5 text-[#6d5694] text-sm"
             onClick={() => {
               setIsPopLogout((prev) => !prev);
             }}
@@ -118,7 +118,7 @@ const ServiceList: FunctionalComponent = () => {
           </div>
         ) : (
           <Link
-            className="bg-white mb-5 py-2.5 px-5 text-[#6d5694] text-sm"
+            className="cursor-pointer bg-white py-2.5 px-5 text-[#6d5694] text-sm"
             href="/login"
           >
             登录

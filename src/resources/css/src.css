@@ -84,11 +84,12 @@ input[type="number"] {
 }
 
 .modal {
-  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px] min-h-[515px] h-[80%];
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px];
 }
 
-.modal-shrink {
-  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px];
+.modal-dynamic {
+  @apply fixed top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] z-[999] rounded-lg bg-white min-w-[335px] max-h-[515px];
+  transition: max-height 1s;
 }
 
 .pop-payment {
@@ -101,6 +102,10 @@ input[type="number"] {
 
 .modal-cross {
   @apply absolute cursor-pointer right-4 top-4;
+}
+
+.selection-animation {
+  transition: min-height 1s;
 }
 
 /* translate-x/y-[1px] 是bordor的寬度 */
@@ -272,6 +277,10 @@ input[type="number"] {
 
 .charge-discount-text {
   @apply absolute top-[2px] left-1/2 translate-x-[-50%] text-xs  text-white flex flex-col justify-center items-center;
+}
+
+.expandPayment {
+  transition: height 0.3s;
 }
 
 .user-icon-shadow {

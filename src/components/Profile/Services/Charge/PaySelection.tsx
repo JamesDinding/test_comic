@@ -1,5 +1,5 @@
 import { h, FunctionalComponent } from "preact";
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useState, useEffect, useRef, StateUpdater } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import IconChevron from "../../../../resources/img/icon-chevron.svg";
 import IconAlipay from "../../../../resources/img/payway/alipay.svg";
@@ -28,21 +28,19 @@ type PayInfo = {
 interface PaySelectionProps {
   payInfo: PayInfo[];
   isExpand: boolean;
+  setCurExpand: StateUpdater<number>;
 }
 
 const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   payInfo,
   isExpand,
+  setCurExpand,
 }) => {
   const { selectPay, payment } = useCharge();
   const [selectName, setSelectName] = useState("");
 
   return (
-    <div
-      className={
-        "cursor-pointer charge-input-container overflow-y-auto duration-300 "
-      }
-    >
+    <div className={"cursor-pointer charge-input-container"}>
       <div className="flex items-center">
         <div className="mr-2.5 w-5">
           {iconMap.get(payInfo[0].type)?.element}
@@ -52,7 +50,14 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
             (payment?.name === selectName ? "/" + selectName : "")}
         </div>
         <div className="grow"></div>
-        <div>
+        <div
+          className="cursor-pointer"
+          onClick={(e) => {
+            if (!isExpand) return;
+            setCurExpand(-1);
+            e.stopPropagation();
+          }}
+        >
           <IconChevron
             class={
               "h-4 duration-300 " + (isExpand ? "rotate-90" : "-rotate-90")

@@ -40,11 +40,13 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
 
   return (
     <Card heightDynamic={true}>
-      <div
+      {/* <div
         className={
-          "expandPayment " + (curExpand > -1 ? "h-[515px]" : "h-[400px]")
+          "expandPayment overflow-hidden " +
+          (curExpand > -1 ? "h-[515px]" : "h-[400px]")
         }
-      >
+      > */}
+      <div className={"expandPayment overflow-hidden"}>
         <div className={"relative flex flex-col items-center h-full p-5 "}>
           <ModalTitle
             title="选择支付方案"
@@ -54,10 +56,11 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
               onClose();
             }}
           />
-          <div className="relative w-full max-h-full overflow-y-auto no-scollbar bg-[#fcf6ff]">
+          {/* <div className="w-full max-h-full overflow-y-auto no-scollbar bg-[#fcf6ff]"> */}
+          <div className="w-full max-h-[310px] overflow-y-auto no-scollbar bg-[#fcf6ff]">
             <div
               id="payway"
-              className="relative h-full px-1 py-2.5"
+              className="relative overflow-hidden px-1 py-2.5"
               onClick={(e) => {
                 const target = e.target as HTMLDivElement;
 

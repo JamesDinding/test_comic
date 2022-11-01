@@ -955,6 +955,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-height: 87%;
 }
 
+.max-h-\[310px\] {
+  max-height: 310px;
+}
+
 .min-h-\[170px\] {
   min-height: 170px;
 }

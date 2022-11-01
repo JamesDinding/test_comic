@@ -7,6 +7,7 @@ interface ImageProps {
   alt: string;
   path: string;
   isFullHeight?: boolean;
+  pendingHeight?: string;
   setParentPending: StateUpdater<boolean>;
 }
 
@@ -14,6 +15,7 @@ const Image: FunctionalComponent<ImageProps> = ({
   alt,
   path,
   isFullHeight = true,
+  pendingHeight = "",
   setParentPending,
 }) => {
   const { srcDomain } = useDomain();
@@ -45,7 +47,10 @@ const Image: FunctionalComponent<ImageProps> = ({
     <img
       draggable={false}
       src={imageBlob || ""}
-      className={"Image-component " + (isFullHeight ? "h-full" : "h-auto")}
+      className={
+        "Image-component " +
+        (isShown ? (isFullHeight ? " h-full " : " h-auto ") : pendingHeight)
+      }
       alt={alt}
       ref={ref}
     />

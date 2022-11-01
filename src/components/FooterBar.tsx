@@ -1,7 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import IconHome from "./../resources/img/footer-home.svg";
-import IconVideo from "./../resources/img/footer-video.svg";
 import IconBookmark from "./../resources/img/footer-bookmark.svg";
 import IconProfile from "./../resources/img/footer-profile.svg";
 import { Link } from "preact-router/match";

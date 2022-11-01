@@ -60,6 +60,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
           <BrandBar
             onShowSearch={setShowSearch}
             onSearchResult={setSearchResult}
+            onCategoryChanged={setCurrentCategory}
           />
           <CategoryListBar
             onCategoryChanged={setCurrentCategory}

@@ -14,8 +14,10 @@ import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
 import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
 import { useDomain } from "../../context/domain";
+import { useUser } from "../../context/user";
 
 const DirectoryContentPage: FunctionalComponent = () => {
+  const { isLogIn } = useUser();
   const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
@@ -26,12 +28,38 @@ const DirectoryContentPage: FunctionalComponent = () => {
   const [isCollected, setIsCollected] = useState(false);
 
   useEffect(() => {
+    if (isLogIn) return;
+    const collections = JSON.parse(
+      localStorage.getItem("sjmh") || '{"collection":[]}'
+    ).collection;
+
+    const hasBook = collections.find(
+      (collect: Book) => collect.id === content?.id
+    );
+
+    if (hasBook) setIsCollected(true);
+  }, [isLogIn, content]);
+
+  useEffect(() => {
     getSpecifiedBook(cur_url)
       .then((response) => {
         const { data, domain } = response;
         setContent(data);
-        setIsCollected(data.bookmark_status);
         setDomain(domain);
+
+        if (isLogIn) {
+          setIsCollected(data.bookmark_status);
+        } else {
+          const collections = JSON.parse(
+            localStorage.getItem("sjmh") || '{"collection":[]}'
+          ).collection;
+
+          const hasBook = collections.find(
+            (collect: Book) => collect.id === content?.id
+          );
+
+          if (hasBook) setIsCollected(true);
+        }
       })
       .catch((err) => {
         console.error(err.message || "failed");
@@ -68,12 +96,33 @@ const DirectoryContentPage: FunctionalComponent = () => {
               className="flex flex-col items-center ml-5 w-12"
               onClick={() => {
                 setIsCollected((prev) => !prev);
-                postMyBookmarks(
-                  content?.id,
-                  isCollected ? "remove" : "add"
-                ).then((data) => {
-                  // console.log("req response data:", data);
-                });
+                if (isLogIn) {
+                  postMyBookmarks(
+                    content?.id,
+                    isCollected ? "remove" : "add"
+                  ).then((data) => {
+                    // console.log("req response data:", data);
+                  });
+                } else {
+                  // using localStorage
+                  const temp = JSON.parse(
+                    localStorage.getItem("sjmh") || ' {"collection":[]}'
+                  );
+                  if (isCollected) {
+                    temp.collection = temp.collection.filter(
+                      (collect: Content) => collect.id !== content?.id
+                    );
+                  } else {
+                    temp.collection.push({
+                      id: content?.id,
+                      title: content?.title,
+                      hot: content?.hot,
+                      views: content?.views,
+                      covers: { thumb: content?.covers.thumb },
+                    });
+                  }
+                  localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
+                }
               }}
             >
               {isCollected ? (

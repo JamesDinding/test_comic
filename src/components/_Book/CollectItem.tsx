@@ -3,6 +3,7 @@ import { StateUpdater, useState, useEffect } from "preact/hooks";
 import { Link, route } from "preact-router";
 import Image from "../_Image/image";
 import { postMyBookmarks } from "../../lib/api";
+import { useUser } from "../../context/user";
 
 interface CollectItemProps {
   Data: Book;
@@ -20,6 +21,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
   setCurPress,
   updateList,
 }) => {
+  const { isLogIn } = useUser();
   const [showPending, setPending] = useState(true);
   const [isLongPress, setIsLongPress] = useState(false);
 
@@ -86,6 +88,20 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
           <div
             className="z-[30] bg-[#ff978d] text-center text-white text-sm font-light h-[30px] leading-[30px]"
             onClick={() => {
+              if (!isLogIn) {
+                const collections = JSON.parse(
+                  localStorage.getItem("sjmh") || '{"collection":[]}'
+                ).collection;
+
+                const update_collections = collections.filter(
+                  (collect: Book) => collect.id !== Data?.id
+                );
+
+                localStorage.setItem(
+                  "sjmh",
+                  JSON.stringify({ ...update_collections })
+                );
+              }
               postMyBookmarks(Data.id, "remove")
                 .then((response) => {
                   updateList((prev) => {

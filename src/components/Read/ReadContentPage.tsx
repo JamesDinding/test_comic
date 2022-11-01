@@ -155,7 +155,7 @@ const ReadContentPage: FunctionalComponent = () => {
             return (
               <div
                 id={`page-${i + 1}`}
-                className={"page" + (parentPending ? " min-h-[50px]" : "")}
+                className={"page" + (parentPending ? " min-h-[160px]" : "")}
               >
                 <Image
                   path={page}

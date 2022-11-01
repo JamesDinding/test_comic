@@ -4,22 +4,13 @@ import { useCharge } from "../../../../context/charge";
 import ModalTitle from "../../../UI/ModalTitle";
 import PaySelection from "./PaySelection";
 import Card from "../../../Modal/Card";
-import IconCross from "../../../../resources/img/icon-cross.svg";
 import { getOrdersProductsId } from "../../../../lib/api";
 import { useUser } from "../../../../context/user";
 import { route } from "preact-router";
 
-type Payment = {
-  name: string;
-  id: number;
-};
-
 interface PopPaymentkDrop {
   onClose: () => void;
   onNextConfirm: () => void;
-}
-interface PayListProps {
-  payList: Array<Payment>;
 }
 
 const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
@@ -81,7 +72,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
                   <div
                     key={i}
                     className={
-                      "w-full " + (arr.length - 1 === i ? " " : " mb-2.5")
+                      "w-full" + (arr.length - 1 === i ? " " : " mb-2.5")
                     }
                     onClick={(e) => {
                       setCurExpand(i);

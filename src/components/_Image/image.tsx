@@ -7,6 +7,8 @@ interface ImageProps {
   alt: string;
   path: string;
   isFullHeight?: boolean;
+  pendingHeight?: string;
+  escapeObserve?: boolean;
   setParentPending: StateUpdater<boolean>;
 }
 
@@ -14,6 +16,8 @@ const Image: FunctionalComponent<ImageProps> = ({
   alt,
   path,
   isFullHeight = true,
+  pendingHeight = "",
+  escapeObserve = false,
   setParentPending,
 }) => {
   const { srcDomain } = useDomain();
@@ -23,7 +27,10 @@ const Image: FunctionalComponent<ImageProps> = ({
   const { ref, isShown } = observer.observe();
 
   useEffect(() => {
-    if (!path || !srcDomain || !isShown) return;
+    if (!escapeObserve) {
+      if (!isShown) return;
+    }
+    if (!path || !srcDomain) return;
     (async () => {
       try {
         const res = await fetch("//" + srcDomain + "/" + path);
@@ -45,7 +52,10 @@ const Image: FunctionalComponent<ImageProps> = ({
     <img
       draggable={false}
       src={imageBlob || ""}
-      className={"Image-component " + (isFullHeight ? "h-full" : "h-auto")}
+      className={
+        "Image-component " +
+        (isShown ? (isFullHeight ? " h-full " : " h-auto ") : pendingHeight)
+      }
       alt={alt}
       ref={ref}
     />

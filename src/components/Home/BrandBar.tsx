@@ -8,11 +8,13 @@ import { getSearch } from "../../lib/api";
 interface HomeBrandBarProps {
   onShowSearch: StateUpdater<boolean>;
   onSearchResult: StateUpdater<Book[]>;
+  onCategoryChanged: StateUpdater<number>;
 }
 
 const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({
   onShowSearch,
   onSearchResult,
+  onCategoryChanged,
 }) => {
   const searchRef = useRef<HTMLInputElement>(null!);
 
@@ -31,10 +33,18 @@ const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({
             const query = searchRef.current.value;
             if (query === "") return;
             if (e.key == "Enter" || e.keyCode === 13) {
-              getSearch("keyword=" + query).then((response) => {
-                onSearchResult(response.data);
-                onShowSearch(true);
-              });
+              getSearch("keyword=" + query)
+                .then((response) => {
+                  onSearchResult(response.data);
+                  onShowSearch(true);
+                  onCategoryChanged(0);
+                })
+                .catch((err) => {
+                  console.error(err.message || "failed");
+                  onSearchResult([]);
+                  onShowSearch(true);
+                  onCategoryChanged(0);
+                });
             }
           }}
         />

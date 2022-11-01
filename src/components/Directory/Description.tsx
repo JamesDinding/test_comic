@@ -31,6 +31,7 @@ const Description: FunctionalComponent<DescriptionProps> = ({
       setIsLoading(false);
     }
   }, [title]);
+  console.log(cover);
 
   return (
     <>
@@ -41,7 +42,12 @@ const Description: FunctionalComponent<DescriptionProps> = ({
             (showPending ? "pending" : "")
           }
         >
-          <Image alt="image" path={cover || ""} setParentPending={setPending} />
+          <Image
+            alt="image"
+            path={cover || ""}
+            escapeObserve={true}
+            setParentPending={setPending}
+          />
         </div>
         <div className="flex flex-col grow items-start">
           <div

@@ -162,6 +162,7 @@ const ReadContentPage: FunctionalComponent = () => {
                   alt=""
                   isFullHeight={false}
                   setParentPending={setParentPending}
+                  pendingHeight="min-h-[160px]"
                 />
               </div>
             );

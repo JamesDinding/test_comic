@@ -9,10 +9,14 @@ import { StateUpdater } from "preact/hooks";
 import CardBottom from "./CardBottom";
 
 interface ModalBuyProps {
+  setChapterList?: StateUpdater<any>;
   cb?: (arg: any) => any;
 }
 
-const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
+const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
+  cb,
+  setChapterList,
+}) => {
   const { isPopBuy, stuffInfo, reset } = useReadingModal();
   let layerCss = isPopBuy ? "" : "translate-y-[120%]";
   const { userStatus, updateCoins } = useUser();
@@ -51,6 +55,18 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({ cb }) => {
                 .then((response) => {
                   cb && cb(stuffInfo?.position);
 
+                  // update chapterList status
+                  setChapterList &&
+                    setChapterList((prev: any) => {
+                      const temp = [...prev];
+                      temp.forEach((t: any) => {
+                        if (t?.id === stuffInfo?.id) {
+                          t.status = true;
+                        }
+                      });
+
+                      return temp;
+                    });
                   updateCoins(stuffInfo?.price || 60);
                   reset();
 

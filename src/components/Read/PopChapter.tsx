@@ -16,7 +16,7 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
   bookId,
   changeChapter,
 }) => {
-  const { isPopChapter, reset } = useReadingModal();
+  const { isPopChapter, reset, popControl } = useReadingModal();
   layerCss = isPopChapter ? "" : "translate-y-[120%]";
 
   return (

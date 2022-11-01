@@ -37,6 +37,10 @@ const ReadContentPage: FunctionalComponent = () => {
 
   // 进入页面显示bar，让使用者可以注意到，再来是滚动时消失
   useEffect(() => {
+    popControl();
+  }, [curChapter]);
+
+  useEffect(() => {
     const container = containerRef.current;
     popControl();
     container.addEventListener("scroll", (e) => {
@@ -132,6 +136,7 @@ const ReadContentPage: FunctionalComponent = () => {
         changeChapter={setCurChapter}
       />
       <ModalBuy
+        setChapterList={setChapterList}
         cb={(chapter: number) => {
           setCurChapter(chapter);
         }}

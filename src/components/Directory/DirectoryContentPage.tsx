@@ -26,16 +26,17 @@ const DirectoryContentPage: FunctionalComponent = () => {
   const [isCollected, setIsCollected] = useState(false);
 
   useEffect(() => {
-    try {
-      getSpecifiedBook(cur_url).then((response) => {
+    getSpecifiedBook(cur_url)
+      .then((response) => {
         const { data, domain } = response;
         setContent(data);
         setIsCollected(data.bookmark_status);
         setDomain(domain);
+      })
+      .catch((err) => {
+        console.error(err.message || "failed");
+        route("/home");
       });
-    } catch (err: any) {
-      console.error(err.message || "failed");
-    }
   }, []);
 
   return (

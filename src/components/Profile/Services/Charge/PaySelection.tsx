@@ -39,8 +39,15 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   const { selectPay, payment } = useCharge();
   const [selectName, setSelectName] = useState("");
 
+  const expandHeight = isExpand ? ((payInfo.length + 1) * 40).toString() : "40";
+
   return (
-    <div className={"cursor-pointer charge-input-container"}>
+    <div
+      className={
+        "cursor-pointer charge-input-container duration-300 overflow-hidden "
+      }
+      style={{ height: expandHeight + "px" }}
+    >
       <div className="flex items-center">
         <div className="mr-2.5 w-5">
           {iconMap.get(payInfo[0].type)?.element}

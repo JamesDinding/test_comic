@@ -81,7 +81,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
                   <div
                     key={i}
                     className={
-                      "w-full " + (arr.length - 1 === i ? " " : " mb-2.5")
+                      "w-full" + (arr.length - 1 === i ? " " : " mb-2.5")
                     }
                     onClick={(e) => {
                       setCurExpand(i);

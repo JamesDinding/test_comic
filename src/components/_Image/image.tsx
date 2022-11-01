@@ -8,6 +8,7 @@ interface ImageProps {
   path: string;
   isFullHeight?: boolean;
   pendingHeight?: string;
+  escapeObserve?: boolean;
   setParentPending: StateUpdater<boolean>;
 }
 
@@ -16,6 +17,7 @@ const Image: FunctionalComponent<ImageProps> = ({
   path,
   isFullHeight = true,
   pendingHeight = "",
+  escapeObserve = false,
   setParentPending,
 }) => {
   const { srcDomain } = useDomain();
@@ -25,7 +27,10 @@ const Image: FunctionalComponent<ImageProps> = ({
   const { ref, isShown } = observer.observe();
 
   useEffect(() => {
-    if (!path || !srcDomain || !isShown) return;
+    if (!escapeObserve) {
+      if (!isShown) return;
+    }
+    if (!path || !srcDomain) return;
     (async () => {
       try {
         const res = await fetch("//" + srcDomain + "/" + path);

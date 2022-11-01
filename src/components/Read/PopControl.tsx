@@ -29,7 +29,8 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
   changeChapter,
 }) => {
   const { userStatus } = useUser();
-  const { isPopControl, popChapter, reset, popBuy, setStuffInfo } = useReadingModal();
+  const { isPopControl, popChapter, reset, popBuy, setStuffInfo } =
+    useReadingModal();
 
   return (
     <F>
@@ -47,8 +48,15 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
           <button
             className="mr-2"
             onClick={(e) => {
-              console.log(e)
               if (curChapter > 1) {
+                // chapterList count from 0, curChapter count from 1
+                if (!chapterList[curChapter - 2].status) {
+                  setStuffInfo(chapterList[curChapter]);
+                  popBuy();
+                  return;
+                }
+                document.querySelector("#page-1")?.scrollIntoView();
+                setCurPage(1);
                 changeChapter((prev) => prev - 1);
                 route(`/read/${curComic}/chapter/${curChapter - 1}`, true);
               }
@@ -83,12 +91,14 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
           <button
             className="ml-4"
             onClick={() => {
-              // chapterList count from 0, curChapter count form 1
-              if(!chapterList[curChapter].status){
-                setStuffInfo(chapterList[curChapter])
+              // chapterList count from 0, curChapter count from 1
+              if (!chapterList[curChapter].status) {
+                setStuffInfo(chapterList[curChapter]);
                 popBuy();
                 return;
               }
+              document.querySelector("#page-1")?.scrollIntoView();
+              setCurPage(1);
               changeChapter((prev) => prev + 1);
               route(`/read/${curComic}/chapter/${curChapter + 1}`, true);
             }}

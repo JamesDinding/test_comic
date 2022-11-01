@@ -16,6 +16,7 @@ const temp_tab_arr = ["收藏纪录", "购买记录"];
 const CollectPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
   const { isLogIn } = useUser();
+  // const [collectList, setCollectList] = useState<Array<Book>>([]);
   const [collectList, setCollectList] = useState<Array<Book>>([]);
   const [acquisitions, setAcquisitions] = useState<Array<Book>>([]);
   const [recommendBlock, setRecommendBlock] = useState([]);
@@ -29,7 +30,15 @@ const CollectPage: FunctionalComponent = () => {
   };
 
   useEffect(() => {
-    if (!isLogIn) return;
+    if (!isLogIn) {
+      const collect = JSON.parse(
+        localStorage.getItem("sjmh") || '{"collection":[]}'
+      ).collection;
+
+      setCollectList(collect);
+
+      return;
+    }
     try {
       if (curSelect === 0)
         (async () => {
@@ -48,18 +57,19 @@ const CollectPage: FunctionalComponent = () => {
     }
   }, [curSelect, isLogIn]);
 
-  useEffect(() => {
-    if (collectList.length === 0 || acquisitions.length === 0) {
-      getRandomBlock(9)
-        .then((response) => {
-          setRecommendBlock(response.data["新书上架"]);
-          setDomain(response.domain);
-        })
-        .catch((err) => {
-          console.error(err.message || "failed");
-        });
-    }
-  }, [collectList, curSelect]);
+  // temp remove this block in v1.0
+  // useEffect(() => {
+  //   if (collectList.length === 0 || acquisitions.length === 0) {
+  //     getRandomBlock(9)
+  //       .then((response) => {
+  //         setRecommendBlock(response.data["新书上架"]);
+  //         setDomain(response.domain);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err.message || "failed");
+  //       });
+  //   }
+  // }, [collectList, curSelect]);
 
   return (
     <F>

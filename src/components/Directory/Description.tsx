@@ -31,7 +31,6 @@ const Description: FunctionalComponent<DescriptionProps> = ({
       setIsLoading(false);
     }
   }, [title]);
-  console.log(cover);
 
   return (
     <>

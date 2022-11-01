@@ -13,6 +13,7 @@ import {
   getSpecifiedBookDescription,
 } from "../../lib/api";
 import { useDomain } from "../../context/domain";
+import { route } from "preact-router";
 
 const ReadContentPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
@@ -77,18 +78,28 @@ const ReadContentPage: FunctionalComponent = () => {
   }, [observer, containerRef.current, pageList.length]);
 
   useEffect(() => {
-    try {
-      (async () => {
-        const { data, domain } = await getSpecifiedBookIdContent(
-          curComic,
-          curChapter
-        );
-        setDomain(domain);
-        setPageList(data.contents.images);
-      })();
-    } catch (err: any) {
-      console.error(err.message);
-    }
+    getSpecifiedBookIdContent(curComic, curChapter)
+      .then((response) => {
+        setDomain(response.domain);
+        setPageList(response.data.contents.images);
+      })
+      .catch((err) => {
+        console.error(err.message);
+        if (err.message === "cannot get chapter by position id") route("/home");
+      });
+    // try {
+    //   (async () => {
+    //     const { data, domain } = await getSpecifiedBookIdContent(
+    //       curComic,
+    //       curChapter
+    //     );
+    //     setDomain(domain);
+    //     setPageList(data.contents.images);
+    //   })();
+    // } catch (err: any) {
+    //   console.error(err.message);
+    //   if (err.message === "cannot get chapters by item id") route("/home");
+    // }
   }, [curComic, curChapter]);
 
   useEffect(() => {

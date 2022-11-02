@@ -86,7 +86,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                   className="cursor-pointer"
                   onClick={() => {
                     setSelectName(p.name);
-                    selectPay(p);
+                    selectPay({ ...p, index: i + 1 });
                   }}
                 >
                   <input

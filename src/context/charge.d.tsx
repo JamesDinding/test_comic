@@ -1,7 +1,8 @@
 declare type PaymentType = {
- id:number;
- name:string;
- type:string;
+  id: number;
+  name: string;
+  type: string;
+  index?: number;
 };
 
 declare interface AllPaymentType {
@@ -14,7 +15,7 @@ declare interface SalesItem {
   options?: {
     body: string;
     title: string;
-    type:string;
+    type: string;
   };
   cash_amount: number;
   token_amount: number;
@@ -23,6 +24,6 @@ declare interface SalesItem {
 declare interface ChargeContextType {
   payment: PaymentType | null;
   userSelect: SalesItem;
-  selectCoins: (obj:any) => void;
-  selectPay: (obj:any) => void;
+  selectCoins: (obj: any) => void;
+  selectPay: (obj: any) => void;
 }

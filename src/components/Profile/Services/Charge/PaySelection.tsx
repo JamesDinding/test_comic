@@ -95,7 +95,8 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                     name={"foo"}
                     value={p.name}
                   />
-                  {p.name}
+                  {/* {p.name} */}
+                  分流 {i + 1}
                 </label>
               </div>
             </div>

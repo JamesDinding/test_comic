@@ -79,7 +79,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">
           <div>支付方式 :</div>
           <div className="text-[#666666]">
-            {payment?.type} - {payment?.name}
+            {payment?.type} - 分流 {payment?.index ?? ""}
           </div>
         </div>
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">

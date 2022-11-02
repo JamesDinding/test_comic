@@ -110,62 +110,64 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             忘记密码？
           </a>
         </div>
-        <Btn
-          title="立即登入"
-          cb={() => {
-            if (isPending) return;
+        <div className={isPending ? "opacity-40 w-full" : "w-full"}>
+          <Btn
+            title="立即登入"
+            cb={() => {
+              if (isPending) return;
 
-            const errorTextAll = document.querySelectorAll(
-              ".text-input-warning"
-            );
-            errorTextAll.forEach((errText) => {
-              errText.classList.remove("error-shaking");
-              errText.classList.add("error-shaking");
-            });
-
-            clearTimeout(timer);
-            timer = setTimeout(() => {
+              const errorTextAll = document.querySelectorAll(
+                ".text-input-warning"
+              );
               errorTextAll.forEach((errText) => {
                 errText.classList.remove("error-shaking");
+                errText.classList.add("error-shaking");
               });
-            }, 1000);
 
-            if (!isInputCorrect()) return;
-            setIsPending(true);
-            login(accountRef.current.value, psRef.current.value)
-              .then((response) => {
-                let hasError = false;
-                setIsPending(false);
+              clearTimeout(timer);
+              timer = setTimeout(() => {
+                errorTextAll.forEach((errText) => {
+                  errText.classList.remove("error-shaking");
+                });
+              }, 1000);
 
-                switch (response.message) {
-                  case "cannot parse request":
-                  case "given credential matches no record":
-                    setIsAccountWrong(true);
-                    setAccWarning("無效的帳號，請確認帳號是否正確。");
-                    hasError = true;
-                    break;
+              if (!isInputCorrect()) return;
+              setIsPending(true);
+              login(accountRef.current.value, psRef.current.value)
+                .then((response) => {
+                  let hasError = false;
+                  setIsPending(false);
 
-                  case "given password matches failed":
-                    setIsPsWrong(true);
-                    setPsWarning("密碼輸入錯誤，請確認後重新輸入。");
-                    hasError = true;
-                    break;
+                  switch (response.message) {
+                    case "cannot parse request":
+                    case "given credential matches no record":
+                      setIsAccountWrong(true);
+                      setAccWarning("無效的帳號，請確認帳號是否正確。");
+                      hasError = true;
+                      break;
 
-                  case "already logged":
-                    route("/memeber");
-                    break;
+                    case "given password matches failed":
+                      setIsPsWrong(true);
+                      setPsWarning("密碼輸入錯誤，請確認後重新輸入。");
+                      hasError = true;
+                      break;
 
-                  default:
-                    break;
-                }
+                    case "already logged":
+                      route("/memeber");
+                      break;
 
-                !hasError && route("/profile");
-              })
-              .catch((err) => {
-                console.error("err", err);
-              });
-          }}
-        />
+                    default:
+                      break;
+                  }
+
+                  !hasError && route("/profile");
+                })
+                .catch((err) => {
+                  console.error("err", err);
+                });
+            }}
+          />
+        </div>
         <div className="mt-5 text-sm text-[#999999]">
           不是会员？
           <span

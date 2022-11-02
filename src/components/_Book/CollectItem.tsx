@@ -87,20 +87,21 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
           </div>
           <div
             className="z-[30] bg-[#ff978d] text-center text-white text-sm font-light h-[30px] leading-[30px]"
-            onClick={() => {
+            onClick={(e) => {
               if (!isLogIn) {
-                const collections = JSON.parse(
+                const temp = JSON.parse(
                   localStorage.getItem("sjmh") || '{"collection":[]}'
-                ).collection;
+                );
 
-                const update_collections = collections.filter(
+                temp.collection = temp.collection.filter(
                   (collect: Book) => collect.id !== Data?.id
                 );
+                updateList((prev) => {
+                  return prev.filter((p) => p.id !== Data.id);
+                });
 
-                localStorage.setItem(
-                  "sjmh",
-                  JSON.stringify({ ...update_collections })
-                );
+                localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
+                return;
               }
               postMyBookmarks(Data.id, "remove")
                 .then((response) => {

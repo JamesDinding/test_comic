@@ -1,5 +1,5 @@
 import { h, FunctionComponent, Fragment as F } from "preact";
-import { route } from "preact-router";
+import Router, { route } from "preact-router";
 import { useState, useRef, StateUpdater } from "preact/hooks";
 import InputField from "./InputField";
 import Btn from "../../UI/Btn";
@@ -14,6 +14,8 @@ let timer: ReturnType<typeof setTimeout> | undefined;
 
 const Register: FunctionComponent<LoginProps> = ({}) => {
   const { setLogin } = useUser();
+
+  const [isPending, setIsPending] = useState(false);
 
   const accountRef = useRef<HTMLInputElement>(null!);
   const psRef = useRef<HTMLInputElement>(null!);
@@ -121,40 +123,47 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           inputRef={psCheckRef}
         />
         <div className="mb-[1.875rem]"></div>
-        <Btn
-          title="注册"
-          cb={() => {
-            const errorTextAll = document.querySelectorAll(
-              ".text-input-warning"
-            );
-            errorTextAll.forEach((errText) => {
-              errText.classList.remove("error-shaking");
-              errText.classList.add("error-shaking");
-            });
-
-            clearTimeout(timer);
-            timer = setTimeout(() => {
+        <div className={isPending ? "opacity-40 w-full" : "w-full"}>
+          <Btn
+            title="注册"
+            cb={() => {
+              if (isPending) return;
+              const errorTextAll = document.querySelectorAll(
+                ".text-input-warning"
+              );
               errorTextAll.forEach((errText) => {
                 errText.classList.remove("error-shaking");
+                errText.classList.add("error-shaking");
               });
-            }, 1000);
 
-            if (!isInputCorrect()) return;
-            postMyRegister(accountRef.current.value, psRef.current.value)
-              .then((data) => {
-                localStorage.setItem("sjmh_log_status", "true");
-                setLogin();
-              })
-              .catch((err) => {
-                if (err.message === "username already exists") {
-                  setAccWarning("该帐户已被注册，请重新输入");
-                  setIsAccountWrong(true);
-                } else {
-                  console.error(err);
-                }
-              });
-          }}
-        />
+              clearTimeout(timer);
+              timer = setTimeout(() => {
+                errorTextAll.forEach((errText) => {
+                  errText.classList.remove("error-shaking");
+                });
+              }, 1000);
+
+              if (!isInputCorrect()) return;
+              setIsPending(true);
+              postMyRegister(accountRef.current.value, psRef.current.value)
+                .then((data) => {
+                  localStorage.setItem("sjmh_log_status", "true");
+                  setLogin();
+                  setIsPending(false);
+                  route("/profile");
+                })
+                .catch((err) => {
+                  setIsPending(false);
+                  if (err.message === "username already exists") {
+                    setAccWarning("该帐户已被注册，请重新输入");
+                    setIsAccountWrong(true);
+                  } else {
+                    console.error(err);
+                  }
+                });
+            }}
+          />
+        </div>
         <div className="mt-5 text-sm text-[#999999]">
           已经是会员？
           <span

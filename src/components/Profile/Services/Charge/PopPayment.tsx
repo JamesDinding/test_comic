@@ -32,9 +32,6 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
       })
       .catch((err) => {
         console.error(err.message || "failed");
-        if (err.message === "not logged") {
-          logout().then(() => route("/login"));
-        }
       });
   }, []);
 

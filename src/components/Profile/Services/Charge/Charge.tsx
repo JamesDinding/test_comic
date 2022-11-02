@@ -122,7 +122,7 @@ const Charge = () => {
                 <button
                   className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#8d6d9f]"
                   onClick={() => {
-                    if (!isLogIn) route("/login");
+                    // if (!isLogIn) route("/login");
                     popPaymentHandler(sale);
                   }}
                 >

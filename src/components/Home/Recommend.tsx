@@ -45,7 +45,6 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
               Items={blocks[bn.name as keyof typeof blocks]}
               ItemPerRow={bn.count}
             />
-            <div id="ad-1"></div>
           </Fragment>
         );
       })}

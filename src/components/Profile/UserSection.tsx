@@ -18,7 +18,9 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
       <div className="grow px-5 mt-[30px]">
         <div className="h-[30px] flex items-center justify-between text-white">
           <span className="text-sm">ID</span>
-          <span className={showVIP ? "text-sm" : "text-lg"}>{user.ID}</span>
+          <span className={showVIP ? "text-sm" : "text-lg"}>
+            {user.userName}
+          </span>
         </div>
         <div className="h-[17px] mt-[3px] flex items-center justify-between text-[#f7bc86]">
           <span className="text-xs">剩余金币</span>

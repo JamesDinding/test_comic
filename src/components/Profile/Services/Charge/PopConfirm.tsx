@@ -1,11 +1,13 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useState, useEffect, StateUpdater } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
+import { useUser } from "../../../../context/user";
 import ModalTitle from "../../../UI/ModalTitle";
 import Card from "../../../Modal/Card";
 import {
   getOrdersRedirectOrderNum,
   postOrdersCharge,
+  postMyRegisterRandom,
 } from "../../../../lib/api";
 
 interface PopConfirmProps {
@@ -13,6 +15,7 @@ interface PopConfirmProps {
 }
 
 const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
+  const { isLogIn, setLogin } = useUser();
   const { payment, userSelect, selectCoins, selectPay } = useCharge();
   const [isPosting, setIsPosting] = useState(false);
   const [ip, setIp] = useState<string>();
@@ -176,18 +179,39 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
               }
             }
 
-            postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
-              .then((response) => {
-                const { data } = response;
-                window.location.href =
-                  "/api/v1/orders/redirect/" + data.order_num + "?paymode=1";
-              })
-              .catch((err) => {
-                console.error(err.message || "failed");
-                setIsPosting(false);
-                setIsError(true);
-                setErrMsg("请求发出失败，请确认网络状况");
+            if (isLogIn) {
+              postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
+                .then((response) => {
+                  const { data } = response;
+                  window.location.href =
+                    "/api/v1/orders/redirect/" + data.order_num + "?paymode=1";
+                })
+                .catch((err) => {
+                  console.error(err.message || "failed");
+                  setIsPosting(false);
+                  setIsError(true);
+                  setErrMsg("请求发出失败，请确认网络状况");
+                });
+            } else {
+              console.log("auto generate");
+              postMyRegisterRandom().then((res) => {
+                console.log(res);
+                postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
+                  .then((response) => {
+                    const { data } = response;
+                    window.location.href =
+                      "/api/v1/orders/redirect/" +
+                      data.order_num +
+                      "?paymode=1";
+                  })
+                  .catch((err) => {
+                    console.error(err.message || "failed");
+                    setIsPosting(false);
+                    setIsError(true);
+                    setErrMsg("请求发出失败，请确认网络状况");
+                  });
               });
+            }
           }}
         >
           确认充值

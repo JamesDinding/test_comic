@@ -6,10 +6,11 @@ const UserContext = createContext<UserContextType>(null!);
 
 export const UserProvider: FunctionalComponent = ({ children }) => {
   let initialLogInStatus =
-    localStorage.getItem("nsmh_log_status") === "true" ? true : false;
+    localStorage.getItem("sjmh_log_status") === "true" ? true : false;
   const [isLogIn, setIsLogIn] = useState(initialLogInStatus);
   // User
   const [ID, setID] = useState<number>(null!);
+  const [userName, setUserName] = useState("");
   const [token, setToken] = useState<string>("");
   // UserStatus
   const [coins, setCoins] = useState<number>(null!);
@@ -20,6 +21,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     setID(0);
     setCoins(0);
     setVip("");
+    setUserName("");
   }
 
   const loginHandler = useCallback(
@@ -28,7 +30,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
         const data = await apiLogin(account, password);
 
         if (!data.error) {
-          localStorage.setItem("nsmh_log_status", "true");
+          localStorage.setItem("sjmh_log_status", "true");
           setIsLogIn(true);
         }
 
@@ -46,19 +48,19 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
       const isError = await apiLogout();
 
       if (!isError) {
-        localStorage.removeItem("nsmh_log_status");
+        localStorage.removeItem("sjmh_log_status");
         setToken("");
         resetUserInfo();
         setIsLogIn(false);
       }
     } catch (err: any) {
       console.error("logout");
-      localStorage.removeItem("nsmh_log_status");
+      localStorage.removeItem("sjmh_log_status");
       setToken("");
       resetUserInfo();
       setIsLogIn(false);
     } finally {
-      localStorage.removeItem("nsmh_log_status");
+      localStorage.removeItem("sjmh_log_status");
       setToken("");
       resetUserInfo();
       setIsLogIn(false);
@@ -68,6 +70,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   const getUserStatusHandler = useCallback(async () => {
     const { data } = await getProfile();
     setID(data?.uid || 0);
+    setUserName(data?.username || "");
     setCoins(data?.coins || 0);
     setVip(data?.vip_time || null);
     setStatus(data?.status || "");
@@ -79,7 +82,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
   useEffect(() => {
     if (!isLogIn) {
-      localStorage.removeItem("nsmh_log_status");
+      localStorage.removeItem("sjmh_log_status");
       setToken("");
       resetUserInfo();
       setIsLogIn(false);
@@ -94,8 +97,9 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
   const value = {
     isLogIn,
-    user: { ID, token },
+    user: { ID, token, userName },
     userStatus: { coins, vip, status },
+    setLogin: () => setIsLogIn(true),
     login: loginHandler,
     logout: logoutHandler,
     bindPhone: () => {},

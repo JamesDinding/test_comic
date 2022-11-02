@@ -96,6 +96,19 @@ export async function postMyRegister(acc, ps) {
   return data;
 }
 
+// auto register
+export async function postMyRegisterRandom() {
+  const response = await fetch("/api/v1/my/register/random", {
+    method: "POST",
+  });
+
+  const data = await response.json();
+
+  if (data.error) throw new Error(data.message || route + " failed");
+
+  return data;
+}
+
 // 更新綁定資訊
 export async function postMyProfile(phone, mail, name) {
   const response = await fetch("/api/v1/my/profile", {

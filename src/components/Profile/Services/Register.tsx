@@ -1,5 +1,5 @@
 import { h, FunctionComponent, Fragment as F } from "preact";
-import { route } from "preact-router";
+import Router, { route } from "preact-router";
 import { useState, useRef, StateUpdater } from "preact/hooks";
 import InputField from "./InputField";
 import Btn from "../../UI/Btn";
@@ -144,6 +144,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
               .then((data) => {
                 localStorage.setItem("sjmh_log_status", "true");
                 setLogin();
+                route("/profile");
               })
               .catch((err) => {
                 if (err.message === "username already exists") {

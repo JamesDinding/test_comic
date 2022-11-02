@@ -88,11 +88,10 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
       setIsLogIn(false);
       return;
     }
-    try {
-      getUserStatusHandler();
-    } catch (err: any) {
-      // console.error(err.message || "Cant get user profile.");
-    }
+
+    getUserStatusHandler().catch((err) => {
+      console.error(err.message || "Cant get user profile.");
+    });
   }, [isLogIn]);
 
   const value = {

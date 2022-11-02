@@ -12,5 +12,7 @@ class ErrorBoundary extends Component {
     this.setState({ error: error.message });
   }
 
-  render() {}
+  render() {
+    return this.props.children;
+  }
 }

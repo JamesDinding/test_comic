@@ -56,7 +56,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
             route("/directory/" + (Data.id || Data.ID));
           }}
           onTouchStart={(e) => {
-            e.preventDefault();
+            if (e.cancelable) e.preventDefault();
             setCurPress(index_temp);
             clearTimeout(timer);
             timer = setTimeout(() => {

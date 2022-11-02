@@ -1,9 +1,17 @@
 import { h, FunctionalComponent, Fragment } from "preact";
+import { useEffect } from "preact/hooks";
 import ReturnBar from "../../components/ReturnBar";
 import UserSection from "../../components/Profile/UserSection";
 import Charge from "../../components/Profile/Services/Charge/Charge";
+import { useUser } from "../../context/user";
 
 const ChargePage: FunctionalComponent = () => {
+  const { getUserStatus } = useUser();
+
+  useEffect(() => {
+    getUserStatus();
+  }, [getUserStatus]);
+
   return (
     <>
       <div class="grow bg-white overflow-y-auto no-scollbar">

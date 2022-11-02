@@ -1,6 +1,7 @@
 declare type User = {
   ID: number;
-  token: string;
+  userName: string;
+  token: string; // do nothing
 };
 
 declare type UserStatus = {
@@ -13,6 +14,7 @@ declare interface UserContextType {
   isLogIn: boolean;
   user: User;
   userStatus: UserStatus;
+  setLogin: () => void;
   login: (account: string, password: string) => Promise<any>;
   logout: () => Promise<any>;
   bindPhone: () => void;

@@ -193,9 +193,9 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                   setErrMsg("请求发出失败，请确认网络状况");
                 });
             } else {
-              console.log("auto generate");
               postMyRegisterRandom().then((res) => {
-                console.log(res);
+                setLogin();
+                localStorage.setItem("sjmh_log_status", "true");
                 postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
                   .then((response) => {
                     const { data } = response;

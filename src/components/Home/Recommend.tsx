@@ -38,12 +38,15 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
           return <Swiper key={i} banners={blocks[bn.name]} />;
 
         return (
-          <RecommendBlock
-            key={i}
-            BlockName={bn.name}
-            Items={blocks[bn.name as keyof typeof blocks]}
-            ItemPerRow={bn.count}
-          />
+          <Fragment>
+            <RecommendBlock
+              key={i}
+              BlockName={bn.name}
+              Items={blocks[bn.name as keyof typeof blocks]}
+              ItemPerRow={bn.count}
+            />
+            <div id="ad-1"></div>
+          </Fragment>
         );
       })}
     </div>

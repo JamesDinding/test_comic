@@ -81,7 +81,6 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    console.log("isLogIn, ", isLogIn);
     if (!isLogIn) {
       localStorage.removeItem("sjmh_log_status");
       setToken("");

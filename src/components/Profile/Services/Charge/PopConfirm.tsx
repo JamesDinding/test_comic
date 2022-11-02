@@ -193,7 +193,6 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                   setErrMsg("请求发出失败，请确认网络状况");
                 });
             } else {
-              console.log("auto generate");
               postMyRegisterRandom().then((res) => {
                 setLogin();
                 localStorage.setItem("sjmh_log_status", "true");

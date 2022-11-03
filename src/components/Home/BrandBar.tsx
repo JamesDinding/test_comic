@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { useRef, StateUpdater } from "preact/hooks";
+import { useRef, StateUpdater, MutableRef } from "preact/hooks";
 import Logo from "./../../resources/img/logo-text.svg";
 import IconSearch from "./../../resources/img/homebrandbar-search.svg";
 import IconCoin from "../../resources/img/icon-coin.svg";
@@ -9,15 +9,15 @@ interface HomeBrandBarProps {
   onShowSearch: StateUpdater<boolean>;
   onSearchResult: StateUpdater<Book[]>;
   onCategoryChanged: StateUpdater<number>;
+  searchRef: MutableRef<HTMLInputElement>;
 }
 
 const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({
   onShowSearch,
   onSearchResult,
   onCategoryChanged,
+  searchRef,
 }) => {
-  const searchRef = useRef<HTMLInputElement>(null!);
-
   return (
     <div class="header flex px-4 py-2 items-center shrink-0">
       <a href="#">

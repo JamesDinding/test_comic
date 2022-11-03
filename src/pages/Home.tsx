@@ -5,6 +5,7 @@ import CategoryListBar from "../components/Home/CategoryListBar";
 import BrandBar from "../components/Home/BrandBar";
 import Recommend from "../components/Home/Recommend";
 import CategoryItemList from "../components/Home/CategoryItemList";
+import SearchResultList from "../components/Search/SearchResultList";
 import BookList from "../components/_Book/List";
 import { ObserverProvider } from "../context/observer";
 import { getCategories } from "../lib/api";
@@ -29,6 +30,8 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
   >([]);
   const [showSearch, setShowSearch] = useState(false);
   const [searchResult, setSearchResult] = useState<Book[]>([]);
+
+  const searchRef = useRef<HTMLInputElement>(null!);
 
   useEffect(() => {
     if (categories.length !== 0) return;
@@ -61,6 +64,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
             onShowSearch={setShowSearch}
             onSearchResult={setSearchResult}
             onCategoryChanged={setCurrentCategory}
+            searchRef={searchRef}
           />
           <CategoryListBar
             onCategoryChanged={setCurrentCategory}
@@ -70,14 +74,18 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
           <PullToRefresh containerElement={containerRef}>
             {currentCategory == 0 ? (
               showSearch ? (
-                <div className="mx-5">
-                  <BookList
-                    Items={searchResult}
-                    ItemPerRow={3}
-                    type={"separate"}
-                    isTemp={true}
-                  />
-                </div>
+                // <div className="mx-5">
+                //   <BookList
+                //     Items={searchResult}
+                //     ItemPerRow={3}
+                //     type={"separate"}
+                //     isTemp={true}
+                //   />
+                // </div>
+                <SearchResultList
+                  content={searchResult}
+                  searchRef={searchRef}
+                />
               ) : (
                 <Recommend setTc={setTc} />
               )

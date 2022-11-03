@@ -1,39 +1,25 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { useState, useEffect, useRef, Ref } from "preact/hooks";
+import { useState, useEffect, useRef, Ref, MutableRef } from "preact/hooks";
 import { route } from "preact-router";
 import BookList from "../_Book/List";
-import { getSpecifiedCategory } from "../../lib/api";
+import { getSearch, getSpecifiedCategory } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
 
-interface CategoryItemListProps {
-  catID: Number;
+interface SearchResultListProps {
+  content: Book[];
+  searchRef: MutableRef<HTMLInputElement>;
 }
 
-const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
-  catID,
+const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
+  content,
+  searchRef,
 }) => {
-  const [content, setContent] = useState<Book[]>();
   const bottomRef = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
 
-  // test ref
-  const pageRef = useRef(1);
-  const curCateId = useRef(catID);
+  const [moreContent, setMoreContent] = useState<Book[]>([]);
+  const pageRef = useRef(2);
   const numRef = useRef(0);
-
-  useEffect(() => {
-    try {
-      (async () => {
-        pageRef.current = 1;
-        curCateId.current = catID;
-        const { data } = await getSpecifiedCategory(catID, pageRef.current);
-        numRef.current = data?.length;
-        setContent(data);
-      })();
-    } catch (err: any) {
-      console.error(err.message || "failed");
-    }
-  }, [catID]);
 
   useEffect(() => {
     if (observer) return;
@@ -45,15 +31,17 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     };
 
     const ob = new IntersectionObserver((entries, observer) => {
-      entries.forEach(async (e) => {
+      entries.forEach((e) => {
         if (e.isIntersecting) {
-          const { data } = await getSpecifiedCategory(
-            curCateId.current,
-            Math.ceil((numRef.current || 0) / CATEGORY_PER_PAGE_NUM) + 1
+          const query = searchRef.current.value;
+          if (query === "") return;
+          getSearch("keyword=" + query + "&page=" + pageRef.current).then(
+            (response) => {
+              setMoreContent((prev) => prev.concat(response.data));
+              pageRef.current++;
+              numRef.current += response.data?.length;
+            }
           );
-          pageRef.current++;
-          numRef.current += data?.length;
-          setContent((prev) => prev?.concat(data));
         }
       });
     }, opt);
@@ -61,13 +49,13 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     setObserver(ob);
 
     ob.observe(bottomRef.current!);
-  }, [observer, bottomRef.current, curCateId.current, pageRef.current]);
+  }, [observer, bottomRef.current, searchRef.current, pageRef.current]);
 
   return (
     <Fragment>
       <div id="category-section relative" className="mx-5">
         <BookList
-          Items={content}
+          Items={content.concat(moreContent)}
           ItemPerRow={3}
           type={"separate"}
           isTemp={true}
@@ -82,4 +70,4 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   );
 };
 
-export default HomeCategoryItemList;
+export default SearchResultList;

@@ -69,6 +69,8 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
           <CategoryListBar
             onCategoryChanged={setCurrentCategory}
             categories={[{ id: 0, name: "首页" }].concat(categories)}
+            searchRef={searchRef}
+            setShowResult={setShowSearch}
           />
 
           <PullToRefresh containerElement={containerRef}>

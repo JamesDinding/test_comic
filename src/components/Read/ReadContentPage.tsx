@@ -10,7 +10,6 @@ import Image from "../_Image/image";
 import {
   getSpecifiedBookChapterList,
   getSpecifiedBookIdContent,
-  getSpecifiedBookDescription,
 } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 import { route } from "preact-router";
@@ -34,12 +33,11 @@ const ReadContentPage: FunctionalComponent = () => {
   const [curChapter, setCurChapter] = useState(
     parseInt(window.location.pathname.split("/")[4], 10)
   );
-  const [title, setTitle] = useState("");
 
   // 进入页面显示bar，让使用者可以注意到，再来是滚动时消失
   useEffect(() => {
     popControl();
-  }, [curChapter]);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -87,19 +85,6 @@ const ReadContentPage: FunctionalComponent = () => {
         console.error(err.message);
         if (err.message === "cannot get chapter by position id") route("/home");
       });
-    // try {
-    //   (async () => {
-    //     const { data, domain } = await getSpecifiedBookIdContent(
-    //       curComic,
-    //       curChapter
-    //     );
-    //     setDomain(domain);
-    //     setPageList(data.contents.images);
-    //   })();
-    // } catch (err: any) {
-    //   console.error(err.message);
-    //   if (err.message === "cannot get chapters by item id") route("/home");
-    // }
   }, [curComic, curChapter]);
 
   useEffect(() => {
@@ -112,13 +97,6 @@ const ReadContentPage: FunctionalComponent = () => {
       console.error(err.message);
     }
   }, [curComic]);
-
-  useEffect(() => {
-    if (title) return;
-    getSpecifiedBookDescription(curComic).then((response) => {
-      setTitle(response.data.title);
-    });
-  }, [curComic, title]);
 
   // 随页码条滚动
   useEffect(() => {
@@ -149,6 +127,8 @@ const ReadContentPage: FunctionalComponent = () => {
       <ModalBuy
         setChapterList={setChapterList}
         cb={(chapter: number) => {
+          setCurPage(1);
+          document.querySelector("#page-1")?.scrollIntoView();
           setCurChapter(chapter);
         }}
       />

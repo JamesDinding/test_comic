@@ -1,15 +1,19 @@
 import { FunctionalComponent, h } from "preact";
-import { useState, StateUpdater, useEffect } from "preact/hooks";
+import { useState, StateUpdater, useEffect, MutableRef } from "preact/hooks";
 import { getCategories } from "../../lib/api";
 
 interface HomeCategoryListBarProp {
   onCategoryChanged: StateUpdater<number>;
   categories: Array<{ id: number; name: string }>;
+  searchRef: MutableRef<HTMLInputElement>;
+  setShowResult: StateUpdater<boolean>;
 }
 
 const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
   onCategoryChanged,
   categories,
+  searchRef,
+  setShowResult,
 }) => {
   const [activeCategory, setActiveCategory] = useState(0);
 
@@ -25,6 +29,8 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
                 onClick={() => {
                   setActiveCategory(i);
                   onCategoryChanged(i);
+                  searchRef.current.value = "";
+                  setShowResult(false);
                 }}
                 class={"category-item" + (i == activeCategory ? " active" : "")}
               >

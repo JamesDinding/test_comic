@@ -54,7 +54,11 @@ const Image: FunctionalComponent<ImageProps> = ({
       src={imageBlob || ""}
       className={
         "Image-component " +
-        (isShown ? (isFullHeight ? " h-full " : " h-auto ") : pendingHeight)
+        (isShown || escapeObserve
+          ? isFullHeight
+            ? " h-full "
+            : " h-auto "
+          : pendingHeight)
       }
       alt={alt}
       ref={ref}

@@ -42,9 +42,15 @@ const ReadContentPage: FunctionalComponent = () => {
   useEffect(() => {
     const container = containerRef.current;
     popControl();
-    container.addEventListener("scroll", (e) => {
+
+    function removeBar() {
       reset();
-    });
+    }
+    container.addEventListener("scroll", removeBar);
+
+    return () => {
+      container.removeEventListener("scroll", removeBar);
+    };
   }, [containerRef.current]);
 
   // setup intersection observer for detecting current page

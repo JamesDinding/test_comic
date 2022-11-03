@@ -489,10 +489,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   visibility: hidden;
 }
 
-.static {
-  position: static;
-}
-
 .fixed {
   position: fixed;
 }
@@ -1766,14 +1762,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0px !important;
 }
 
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .px-12 {
@@ -2303,7 +2299,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .Image-component {
-  /* height: 100%; */
   width: 100%;
 }
 

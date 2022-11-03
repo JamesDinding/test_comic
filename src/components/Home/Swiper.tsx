@@ -104,6 +104,8 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
     if (isTouching) return;
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
+
+    return () => timer && clearTimeout(timer);
   });
 
   const touchStartHandler = (e: TouchEvent) => {

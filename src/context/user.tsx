@@ -74,7 +74,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
   useEffect(() => {
     if (!isLogIn) {
-      resetUserInfo();
+      logoutHandler();
       return;
     }
 

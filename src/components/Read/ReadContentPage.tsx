@@ -76,6 +76,7 @@ const ReadContentPage: FunctionalComponent = () => {
   }, [observer, containerRef.current, pageList.length]);
 
   useEffect(() => {
+    if (isNaN(curChapter)) route("/home");
     getSpecifiedBookIdContent(curComic, curChapter)
       .then((response) => {
         setDomain(response.domain);
@@ -83,7 +84,8 @@ const ReadContentPage: FunctionalComponent = () => {
       })
       .catch((err) => {
         console.error(err.message);
-        if (err.message === "cannot get chapter by position id") route("/home");
+        // if (err.message === "cannot get chapter by position id") route("/home");
+        setPageList([]);
       });
   }, [curComic, curChapter]);
 

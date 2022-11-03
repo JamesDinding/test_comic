@@ -210,11 +210,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
         onTouchEnd={touchEndHandler}
         onTouchMove={touchMovingHandler}
       >
-        {(
-          banners ||
-          JSON.parse(localStorage.getItem("swiper") || '{"banners":[]}')
-            ?.banners
-        )?.map((banner: any, i: number) => {
+        {banners?.map((banner: any, i: number) => {
           return (
             <a
               key={i}

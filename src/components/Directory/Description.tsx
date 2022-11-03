@@ -88,7 +88,7 @@ const Description: FunctionalComponent<DescriptionProps> = ({
               <span>★&nbsp;{hot}</span>
             </span>
             <span className="mr-2 min-w-6 text-[.6rem] book-oneline">
-              <span>◉&nbsp;{views}</span>
+              <span>◉&nbsp;{views}万</span>
             </span>
           </div>
         </div>

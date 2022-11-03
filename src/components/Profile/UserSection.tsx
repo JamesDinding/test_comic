@@ -33,7 +33,7 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
             <F>
               <span className="text-sm">ID</span>
               <span className={showVIP ? "text-sm" : "text-lg"}>
-                {user.userName}
+                {isLogIn ? user.userName : "尚未登录"}
               </span>
             </F>
           )}

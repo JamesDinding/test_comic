@@ -22,6 +22,9 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     setCoins(0);
     setVip("");
     setUserName("");
+    setToken("");
+    setIsLogIn(false);
+    localStorage.removeItem("sjmh_log_status");
   }
 
   const loginHandler = useCallback(
@@ -47,23 +50,12 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     try {
       const isError = await apiLogout();
 
-      if (!isError) {
-        localStorage.removeItem("sjmh_log_status");
-        setToken("");
-        resetUserInfo();
-        setIsLogIn(false);
-      }
+      if (!isError) resetUserInfo();
     } catch (err: any) {
       console.error("logout");
-      localStorage.removeItem("sjmh_log_status");
-      setToken("");
       resetUserInfo();
-      setIsLogIn(false);
     } finally {
-      localStorage.removeItem("sjmh_log_status");
-      setToken("");
       resetUserInfo();
-      setIsLogIn(false);
     }
   }, [setToken, setIsLogIn, apiLogout]);
 
@@ -82,14 +74,12 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
   useEffect(() => {
     if (!isLogIn) {
-      localStorage.removeItem("sjmh_log_status");
-      setToken("");
       resetUserInfo();
-      setIsLogIn(false);
       return;
     }
 
     getUserStatusHandler().catch((err) => {
+      resetUserInfo();
       console.error(err.message || "Cant get user profile.");
     });
   }, [isLogIn]);

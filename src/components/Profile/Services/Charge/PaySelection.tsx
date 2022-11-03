@@ -38,6 +38,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
 }) => {
   const { selectPay, payment } = useCharge();
   const [selectIndex, setSelectIndex] = useState(0);
+  const [selectName, setSelectName] = useState('')
 
   const expandHeight = isExpand ? ((payInfo.length + 1) * 40).toString() : "40";
 
@@ -54,7 +55,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
         </div>
         <div className="book-oneline">
           {iconMap.get(payInfo[0].type)?.title +
-            (payment?.index === selectIndex ? " / 分流 " + selectIndex : "")}
+            (payment?.name === selectName ? " / 分流 " + selectIndex : "")}
         </div>
         <div className="grow"></div>
         <div
@@ -86,10 +87,11 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                   className="cursor-pointer"
                   onClick={() => {
                     setSelectIndex(i + 1);
+                    setSelectName(p.name)
                     selectPay({ ...p, index: i + 1 });
                   }}
                 >
-                  <input className="mr-2.5" type="radio" name={"foo"} />
+                  <input className="mr-2.5" type="radio" name={"foo"} value={selectName} />
                   分流 {i + 1}
                 </label>
               </div>

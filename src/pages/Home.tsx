@@ -94,16 +94,12 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
           />
 
           <PullToRefresh containerElement={containerRef}>
-            {currentCategory == 0 ? (
+            {showSearch ? (<SearchResultList
+                  content={searchResult}
+                  searchRef={searchRef}
+                />):currentCategory == 0 ?<Recommend setTc={setTc} />: <CategoryItemList catID={categories[currentCategory - 1].id} />}
+            {/* {currentCategory == 0 ? (
               showSearch ? (
-                // <div className="mx-5">
-                //   <BookList
-                //     Items={searchResult}
-                //     ItemPerRow={3}
-                //     type={"separate"}
-                //     isTemp={true}
-                //   />
-                // </div>
                 <SearchResultList
                   content={searchResult}
                   searchRef={searchRef}
@@ -113,7 +109,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
               )
             ) : (
               <CategoryItemList catID={categories[currentCategory - 1].id} />
-            )}
+            )} */}
           </PullToRefresh>
         </ObserverProvider>
       </div>

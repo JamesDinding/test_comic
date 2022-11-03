@@ -128,6 +128,7 @@ const ReadContentPage: FunctionalComponent = () => {
         setChapterList={setChapterList}
         cb={(chapter: number) => {
           setCurPage(1);
+          document.querySelector("#page-1")?.scrollIntoView();
           setCurChapter(chapter);
         }}
       />

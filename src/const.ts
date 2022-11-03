@@ -1,6 +1,10 @@
 // for /pages/Profile/Customer
 export const API_ROUTE = "http://192.168.1.247:3000";
 
+// default localStorage sjmh
+export const defaultLocalStorage =
+  '{"collection":[], "home":{"curCategoryIndex":0, "categories":[]}}';
+
 export const CATEGORY_PER_PAGE_NUM = 30;
 
 export const CUSTOMER_SERVICE_URL =

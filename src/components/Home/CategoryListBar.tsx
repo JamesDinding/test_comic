@@ -1,5 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { useState, StateUpdater, useEffect, MutableRef } from "preact/hooks";
+import { defaultLocalStorage } from "../../const";
 import { getCategories } from "../../lib/api";
 
 interface HomeCategoryListBarProp {
@@ -15,7 +16,13 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
   searchRef,
   setShowResult,
 }) => {
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(
+    parseInt(
+      JSON.parse(localStorage.getItem("sjmh") || defaultLocalStorage)?.home
+        .curCategoryIndex,
+      10
+    )
+  );
 
   // min-h-[36px]
   return (
@@ -29,6 +36,11 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
                 onClick={() => {
                   setActiveCategory(i);
                   onCategoryChanged(i);
+                  const temp = JSON.parse(
+                    localStorage.getItem("sjmh") || defaultLocalStorage
+                  );
+                  temp.home.curCategoryIndex = i;
+                  localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
                   searchRef.current.value = "";
                   setShowResult(false);
                 }}

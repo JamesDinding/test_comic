@@ -10,6 +10,7 @@ import FooterBar from "../components/FooterBar";
 import { getMyBookmarks, getMyAcquisitions, getRandomBlock } from "../lib/api";
 import { useDomain } from "../context/domain";
 import { useUser } from "../context/user";
+import { defaultLocalStorage } from "../const";
 
 const temp_tab_arr = ["收藏纪录", "购买记录"];
 
@@ -32,7 +33,7 @@ const CollectPage: FunctionalComponent = () => {
   useEffect(() => {
     if (!isLogIn) {
       const collect = JSON.parse(
-        localStorage.getItem("sjmh") || '{"collection":[]}'
+        localStorage.getItem("sjmh") || defaultLocalStorage
       ).collection;
 
       setCollectList(collect);

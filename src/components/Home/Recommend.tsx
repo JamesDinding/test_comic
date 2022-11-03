@@ -5,6 +5,7 @@ import RecommendBlock from "./RecommendBlock";
 import Swiper from "./Swiper";
 import { getAllBlock } from "../../lib/api";
 import { useDomain } from "../../context/domain";
+import SmartBanner from "../SmartBanner";
 
 interface RecommendProps {
   setTc: StateUpdater<string>;
@@ -15,7 +16,7 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
   const [blocks, setBlocks] = useState<RecommendationBlock>({});
   const [blockOrder, setBlockOrder] = useState<
     { name: string; count: number }[]
-  >([]);
+  >([{ name: "banner", count: 1 }]);
 
   useEffect(() => {
     try {
@@ -33,6 +34,7 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
 
   return (
     <div>
+      {/* {blockOrder.map((bn, i, arr) => { */}
       {blockOrder.map((bn, i, arr) => {
         if (bn.name === "banner")
           return <Swiper key={i} banners={blocks[bn.name]} />;

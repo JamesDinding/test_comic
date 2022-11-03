@@ -4,6 +4,7 @@ import Logo from "./../../resources/img/logo-text.svg";
 import IconSearch from "./../../resources/img/homebrandbar-search.svg";
 import IconCoin from "../../resources/img/icon-coin.svg";
 import { getSearch } from "../../lib/api";
+import { defaultLocalStorage } from "../../const";
 
 interface HomeBrandBarProps {
   onShowSearch: StateUpdater<boolean>;
@@ -36,14 +37,19 @@ const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({
               getSearch("keyword=" + query)
                 .then((response) => {
                   onSearchResult(response.data);
-                  onShowSearch(true);
-                  onCategoryChanged(0);
                 })
                 .catch((err) => {
                   console.error(err.message || "failed");
                   onSearchResult([]);
+                })
+                .finally(() => {
                   onShowSearch(true);
                   onCategoryChanged(0);
+                  const temp = JSON.parse(
+                    localStorage.getItem("sjmh") || defaultLocalStorage
+                  );
+                  temp.home.curCategoryIndex = 0;
+                  localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
                 });
             }
           }}

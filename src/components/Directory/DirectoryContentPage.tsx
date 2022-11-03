@@ -15,6 +15,7 @@ import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
 import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 import { useUser } from "../../context/user";
+import { defaultLocalStorage } from "../../const";
 
 const DirectoryContentPage: FunctionalComponent = () => {
   const { isLogIn } = useUser();
@@ -30,7 +31,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
   useEffect(() => {
     if (isLogIn) return;
     const collections = JSON.parse(
-      localStorage.getItem("sjmh") || '{"collection":[]}'
+      localStorage.getItem("sjmh") || defaultLocalStorage
     ).collection;
 
     const hasBook = collections.find(
@@ -51,7 +52,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
           setIsCollected(data.bookmark_status);
         } else {
           const collections = JSON.parse(
-            localStorage.getItem("sjmh") || '{"collection":[]}'
+            localStorage.getItem("sjmh") || defaultLocalStorage
           ).collection;
 
           const hasBook = collections.find(
@@ -106,7 +107,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
                 } else {
                   // using localStorage
                   const temp = JSON.parse(
-                    localStorage.getItem("sjmh") || ' {"collection":[]}'
+                    localStorage.getItem("sjmh") || defaultLocalStorage
                   );
                   if (isCollected) {
                     temp.collection = temp.collection.filter(

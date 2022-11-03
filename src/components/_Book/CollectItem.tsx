@@ -4,6 +4,7 @@ import { Link, route } from "preact-router";
 import Image from "../_Image/image";
 import { postMyBookmarks } from "../../lib/api";
 import { useUser } from "../../context/user";
+import { defaultLocalStorage } from "../../const";
 
 interface CollectItemProps {
   Data: Book;
@@ -90,7 +91,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
             onClick={(e) => {
               if (!isLogIn) {
                 const temp = JSON.parse(
-                  localStorage.getItem("sjmh") || '{"collection":[]}'
+                  localStorage.getItem("sjmh") || defaultLocalStorage
                 );
 
                 temp.collection = temp.collection.filter(

@@ -1,10 +1,8 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { useState, useEffect, useRef, Ref, MutableRef } from "preact/hooks";
-import { route } from "preact-router";
 import BookList from "../_Book/List";
-import { getSearch, getSpecifiedCategory } from "../../lib/api";
+import { getSearch } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
-
 interface SearchResultListProps {
   content: Book[];
   searchRef: MutableRef<HTMLInputElement>;
@@ -22,7 +20,7 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   const numRef = useRef(0);
 
   useEffect(() => {
-    if (observer) return;
+    if (observer || content.length === 0) return;
     const opt: IntersectionObserverInit = {
       root: document.querySelector("#scroll"),
       // root: document.querySelector("#category-section"),

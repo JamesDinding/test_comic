@@ -92,24 +92,14 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
             searchRef={searchRef}
             setShowResult={setShowSearch}
           />
-
           <PullToRefresh containerElement={containerRef}>
-            {showSearch ? (<SearchResultList
-                  content={searchResult}
-                  searchRef={searchRef}
-                />):currentCategory == 0 ?<Recommend setTc={setTc} />: <CategoryItemList catID={categories[currentCategory - 1].id} />}
-            {/* {currentCategory == 0 ? (
-              showSearch ? (
-                <SearchResultList
-                  content={searchResult}
-                  searchRef={searchRef}
-                />
-              ) : (
-                <Recommend setTc={setTc} />
-              )
+            {showSearch ? (
+              <SearchResultList content={searchResult} searchRef={searchRef} />
+            ) : currentCategory == 0 ? (
+              <Recommend setTc={setTc} />
             ) : (
               <CategoryItemList catID={categories[currentCategory - 1].id} />
-            )} */}
+            )}
           </PullToRefresh>
         </ObserverProvider>
       </div>

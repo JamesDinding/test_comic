@@ -89,7 +89,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({
           inputSetting={{
             placeHolder: "输入手机号",
             type: "number",
-            minLen: 10,
+            minLen: 8,
             maxLen: 12,
           }}
         />
@@ -113,7 +113,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({
           inputSetting={{
             placeHolder: "输入昵称",
             type: "text",
-            minLen: 10,
+            minLen: 2,
             maxLen: 12,
           }}
         />

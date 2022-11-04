@@ -1,9 +1,19 @@
 import { h, FunctionalComponent } from "preact";
 
-const Empty: FunctionalComponent = () => {
+interface EmptyProps {
+  bgColor?: string;
+  msg?: string;
+}
+
+const Empty: FunctionalComponent<EmptyProps> = ({
+  bgColor = "bg-[#fcf6ff]",
+  msg = "啥都没有呢~",
+}) => {
   return (
-    <div className="flex justify-center items-center bg-[#fcf6ff] min-h-[170px]">
-      <span className="text-[#6d5694] opacity-40">啥都没有呢~</span>
+    <div
+      className={`flex justify-center items-center min-h-[170px] ${bgColor}`}
+    >
+      <span className="text-[#6d5694] opacity-40">{msg}</span>
     </div>
   );
 };

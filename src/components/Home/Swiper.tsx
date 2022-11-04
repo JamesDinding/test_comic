@@ -202,10 +202,10 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   }
 
   return (
-    <div className="w-full min-h-[190px] pb-[.8rem]">
+    <div className="w-full h-[190px] pb-[.8rem]">
       <div
         id="carousel"
-        className="w-full min-h-[190px] relative overflow-hidden whitespace-nowrap"
+        className="w-full h-full relative overflow-hidden whitespace-nowrap"
         onTouchStart={touchStartHandler}
         onTouchEnd={touchEndHandler}
         onTouchMove={touchMovingHandler}
@@ -215,9 +215,9 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
             <a
               key={i}
               href={"/directory/" + banner.id}
-              className={`block w-full absolute ${transList[i]}`}
+              className={`block w-full h-full absolute ${transList[i]}`}
             >
-              <div className="relative">
+              <div className="relative h-full">
                 {/* <Image
                   path={banner.covers?.thumb || ""}
                   alt={""}
@@ -227,7 +227,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
                   <img
                     draggable={false}
                     src={imageBlobList[i]}
-                    className={"Image-component "}
+                    className={"Image-component h-full "}
                     alt=""
                   />
                 }

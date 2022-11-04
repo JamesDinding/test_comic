@@ -6,7 +6,7 @@ const ModalContext = createContext<ModalContextType>(null!);
 export const ModalProvider: FunctionalComponent = ({ children }) => {
   const [isPop, setIsPop] = useState(false);
 
-  const pop = (windowName?: string) => setIsPop(true);
+  const pop = (title?: string, msg?: string) => setIsPop(true);
   const close = () => setIsPop(false);
 
   const value = { isPop, pop, close };

@@ -8,7 +8,6 @@ import FooterBar from "../components/FooterBar";
 import { useUser } from "../context/user";
 
 const ProfilePage: FunctionalComponent = () => {
-  // const [isPopBinding, setIsPopBinding] = useState(false);
   const { isLogIn, getUserStatus } = useUser();
 
   useEffect(() => {
@@ -27,10 +26,7 @@ const ProfilePage: FunctionalComponent = () => {
         <div className="px-5 mb-1 bg-white">
           <UserSection showVIP={true} />
         </div>
-        <ServiceList
-        // isPopBinding={isPopBinding}
-        // setIsPopBinding={setIsPopBinding}
-        />
+        <ServiceList />
       </div>
       <FooterBar />
     </>

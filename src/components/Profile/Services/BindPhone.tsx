@@ -38,7 +38,8 @@ const BindPhone: FunctionalComponent<BindPhone> = ({
     let isNickCorrect = true;
 
     function onlyNumbers(str: string) {
-      return /^[0-9]*$/.test(str);
+      return /1[3-9]{1}[0-9]*$/.test(str);
+      // return /^[0-9]*$/.test(str);
     }
     function validateEmail(str: string) {
       return String(str)

@@ -17,7 +17,6 @@ const temp_tab_arr = ["收藏纪录", "购买记录"];
 const CollectPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
   const { isLogIn } = useUser();
-  // const [collectList, setCollectList] = useState<Array<Book>>([]);
   const [collectList, setCollectList] = useState<Array<Book>>([]);
   const [acquisitions, setAcquisitions] = useState<Array<Book>>([]);
   const [recommendBlock, setRecommendBlock] = useState([]);

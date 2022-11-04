@@ -1,10 +1,9 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { useState, useEffect, useRef, Ref, MutableRef } from "preact/hooks";
-import { route } from "preact-router";
 import BookList from "../_Book/List";
-import { getSearch, getSpecifiedCategory } from "../../lib/api";
+import Empty from "../Collect/Empty";
+import { getSearch } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
-
 interface SearchResultListProps {
   content: Book[];
   searchRef: MutableRef<HTMLInputElement>;
@@ -22,7 +21,7 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   const numRef = useRef(0);
 
   useEffect(() => {
-    if (observer) return;
+    if (observer || content.length === 0) return;
     const opt: IntersectionObserverInit = {
       root: document.querySelector("#scroll"),
       // root: document.querySelector("#category-section"),
@@ -54,13 +53,17 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   return (
     <Fragment>
       <div id="category-section relative" className="mx-5">
-        <BookList
-          Items={content.concat(moreContent)}
-          ItemPerRow={3}
-          type={"separate"}
-          isTemp={true}
-          itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
-        />
+        {content.length === 0 ? (
+          <Empty bgColor="bg-white" msg="搜寻无结果｡ﾟヽ(ﾟ´Д`)ﾉﾟ｡" />
+        ) : (
+          <BookList
+            Items={content.concat(moreContent)}
+            ItemPerRow={3}
+            type={"separate"}
+            isTemp={true}
+            itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
+          />
+        )}
         <div
           ref={bottomRef}
           className="w-[100px] h-[1px] invisible  bg-red-400"

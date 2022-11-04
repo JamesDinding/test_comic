@@ -3,15 +3,21 @@ import Card from "./Card";
 import ModalTitle from "../UI/ModalTitle";
 import { useNotifyModal } from "../../context/modal";
 
-const ModalNotification: FunctionalComponent = () => {
+interface ModalNotificationProps {
+  title?: string;
+  msg?: string;
+}
+
+const ModalNotification: FunctionalComponent<ModalNotificationProps> = ({
+  title = "系统提示",
+  msg = "该帐户已从其他装置登录，请确认后重新登录。",
+}) => {
   const { close } = useNotifyModal();
 
   return (
     <Card>
-      <ModalTitle title="系统提示" onClose={close} />
-      <div className="py-5 text-center">
-        该帐户已从其他装置登录，请确认后重新登录。
-      </div>
+      <ModalTitle title={title} onClose={close} />
+      <div className="py-5 text-center">{msg}</div>
     </Card>
   );
 };

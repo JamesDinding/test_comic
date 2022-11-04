@@ -48,7 +48,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({
         );
     }
 
-    if (phoneLen < 8 || phoneLen > 15) {
+    if (phoneLen !== 11) {
       setIsPhoneWrong(true);
       isPhoneCorrect = false;
     }
@@ -60,7 +60,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({
       setIsMailWrong(true);
       isMailCorrect = false;
     }
-    if (nickLen < 2 || nickLen > 10) {
+    if (nickLen < 2 || nickLen > 12) {
       setIsNameWrong(true);
       isNickCorrect = false;
     }
@@ -89,8 +89,8 @@ const BindPhone: FunctionalComponent<BindPhone> = ({
           inputSetting={{
             placeHolder: "输入手机号",
             type: "number",
-            minLen: 10,
-            maxLen: 12,
+            minLen: 11,
+            maxLen: 11,
           }}
         />
         <InputField
@@ -113,7 +113,7 @@ const BindPhone: FunctionalComponent<BindPhone> = ({
           inputSetting={{
             placeHolder: "输入昵称",
             type: "text",
-            minLen: 10,
+            minLen: 2,
             maxLen: 12,
           }}
         />

@@ -25,7 +25,8 @@ let prev: slider = null;
 
 const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   // prettier-ignore
-  const [imageBlobList, setImageBlobList] = useState<Array<string>>(JSON.parse(localStorage.getItem("swiper") || '{"temp":[]}')?.temp || []);
+  // const [imageBlobList, setImageBlobList] = useState<Array<string>>(JSON.parse(localStorage.getItem("swiper") || '{"temp":[]}')?.temp || []);
+  const [imageBlobList, setImageBlobList] = useState<Array<string>>([]);
   const [pending, setPending] = useState<Array<boolean>>([]);
   const { srcDomain } = useDomain();
   const [isTouching, setIsTouching] = useState(false);
@@ -42,12 +43,12 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   useEffect(() => {
     if (!banners || imageBlobList.length !== 0) return;
 
-    const local = localStorage.getItem("swiper");
-    if (local) {
-      const { temp } = JSON.parse(local);
-      setImageBlobList(temp);
-      return;
-    }
+    // const local = localStorage.getItem("swiper");
+    // if (local) {
+    //   const { temp } = JSON.parse(local);
+    //   setImageBlobList(temp);
+    //   return;
+    // }
 
     let temp = new Array(banners.length).fill("");
     let temp_pending = new Array(banners.length).fill(true);
@@ -69,10 +70,10 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
           temp_pending[i] = false;
 
           // local storage test
-          localStorage.setItem(
-            "swiper",
-            JSON.stringify({ temp, banners: arr })
-          );
+          // localStorage.setItem(
+          //   "swiper",
+          //   JSON.stringify({ temp, banners: arr })
+          // );
 
           setImageBlobList(temp);
           setPending(temp_pending);
@@ -227,7 +228,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
                   <img
                     draggable={false}
                     src={imageBlobList[i]}
-                    className={"Image-component h-full "}
+                    className={"Image-component h-full "+ (pending[i] ? "pending" : "")}
                     alt=""
                   />
                 }

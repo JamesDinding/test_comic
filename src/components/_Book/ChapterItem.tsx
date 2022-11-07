@@ -11,6 +11,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
   chapter,
   smallSize = false,
   bookId = 0,
+  routeReplace = false,
 }) => {
   const { popBuy, setStuffInfo } = useReadingModal();
   const [isPending, setIsPending] = useState(true);
@@ -30,7 +31,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
             popBuy();
             return;
           }
-          route(`/read/${bookId}/chapter/${chapter.position}`, true);
+          route(`/read/${bookId}/chapter/${chapter.position}`, routeReplace);
         }}
       >
         {!chapter.status && <div className="chapter-item-backdrop"></div>}

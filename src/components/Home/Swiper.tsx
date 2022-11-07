@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { useDomain } from "../../context/domain";
+import Image from "../_Image/image";
 
 type slider = null | undefined | HTMLElement;
 
@@ -26,9 +27,8 @@ let prev: slider = null;
 const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   // prettier-ignore
   // const [imageBlobList, setImageBlobList] = useState<Array<string>>(JSON.parse(localStorage.getItem("swiper") || '{"temp":[]}')?.temp || []);
-  const [imageBlobList, setImageBlobList] = useState<Array<string>>([]);
-  const [pending, setPending] = useState<Array<boolean>>([]);
-  const { srcDomain } = useDomain();
+  const [isPending, setIsPending] = useState(true)
+
   const [isTouching, setIsTouching] = useState(false);
   const [touchOffset, setTouchOffset] = useState(0);
   const [curSlide, setCurSlide] = useState(0);
@@ -39,50 +39,6 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
     "translate-x-[100%] ",
     "translate-x-[-100%] ",
   ]);
-
-  useEffect(() => {
-    if (!banners || imageBlobList.length !== 0) return;
-
-    // const local = localStorage.getItem("swiper");
-    // if (local) {
-    //   const { temp } = JSON.parse(local);
-    //   setImageBlobList(temp);
-    //   return;
-    // }
-
-    let temp = new Array(banners.length).fill("");
-    let temp_pending = new Array(banners.length).fill(true);
-    setPending(temp_pending);
-    banners?.map((banner, i, arr) => {
-      fetch("//" + srcDomain + "/" + banner?.covers?.thumbx)
-        .then((res) => {
-          if (!res.ok) throw new Error("fail to fecth");
-
-          return res.text();
-        })
-        .then((data) => {
-          const b64 = data
-            .replace(/\+/g, "*")
-            .replace(/\//g, "+")
-            .replace(/\*/g, "/");
-
-          temp[i] = b64;
-          temp_pending[i] = false;
-
-          // local storage test
-          // localStorage.setItem(
-          //   "swiper",
-          //   JSON.stringify({ temp, banners: arr })
-          // );
-
-          setImageBlobList(temp);
-          setPending(temp_pending);
-        })
-        .catch((err) => {
-          console.error(err.message || "failed");
-        });
-    });
-  }, [banners, srcDomain, imageBlobList]);
 
   useEffect(() => {
     (() => {
@@ -218,20 +174,15 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
               href={"/directory/" + banner.id}
               className={`block w-full h-full absolute ${transList[i]}`}
             >
-              <div className="relative h-full">
-                {/* <Image
-                  path={banner.covers?.thumb || ""}
+              <div
+                className={"relative h-full " + (isPending ? "pending" : "")}
+              >
+                <Image
+                  path={banner.covers?.thumbx || ""}
                   alt={""}
-                  setParentPending={setPending}
-                /> */}
-                {
-                  <img
-                    draggable={false}
-                    src={imageBlobList[i]}
-                    className={"Image-component h-full "+ (pending[i] ? "pending" : "")}
-                    alt=""
-                  />
-                }
+                  setParentPending={setIsPending}
+                  escapeObserve={true}
+                />
               </div>
             </a>
           );

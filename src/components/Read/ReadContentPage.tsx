@@ -82,7 +82,7 @@ const ReadContentPage: FunctionalComponent = () => {
   }, [observer, containerRef.current, pageList.length]);
 
   useEffect(() => {
-    if (isNaN(curChapter)) route("/home");
+    if (!curChapter) route("/home");
     getSpecifiedBookIdContent(curComic, curChapter)
       .then((response) => {
         setDomain(response.domain);
@@ -138,6 +138,7 @@ const ReadContentPage: FunctionalComponent = () => {
       />
       <ModalBuy
         setChapterList={setChapterList}
+        curComic={curComic}
         cb={(chapter: number) => {
           setCurPage(1);
           document.querySelector("#page-1")?.scrollIntoView();

@@ -22,40 +22,11 @@ import ChargePage from "./Profile/Charge";
 import RecordPage from "./Profile/Record";
 import CustomerPage from "./Profile/Customer";
 
+import { getMobileOperatingSystem } from "../lib/helper";
+
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
   const [hadSendTC, setHadSendTC] = useState(false);
-  const [mobile, setMobile] = useState("");
-
-  useEffect(() => {
-    if (mobile !== "") return;
-    function getMobileOperatingSystem() {
-      var userAgent = navigator.userAgent;
-
-      // Windows Phone must come first because its UA also contains "Android"
-      if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
-      }
-
-      if (/android/i.test(userAgent)) {
-        return "Android";
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent)) {
-        return "iOS";
-      }
-
-      return "unknown";
-    }
-    const os = getMobileOperatingSystem();
-
-    if (os === "iOS") {
-      setMobile("mobileconfig");
-    } else {
-      setMobile("apk");
-    }
-  }, [mobile]);
 
   useEffect(() => {
     if (hadSendTC) return;

@@ -7,6 +7,7 @@ declare type ChapterData = {
   status: boolean;
   price: number;
   position: number;
+  bookId?: number;
 };
 
 declare type ChapterItem = {

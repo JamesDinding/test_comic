@@ -10,11 +10,13 @@ import CardBottom from "./CardBottom";
 
 interface ModalBuyProps {
   setChapterList?: StateUpdater<any>;
+  curComic?: number;
   cb?: (arg: any) => any;
 }
 
 const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
   cb,
+  curComic,
   setChapterList,
 }) => {
   const { isPopBuy, stuffInfo, reset } = useReadingModal();

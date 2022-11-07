@@ -96,7 +96,6 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
             clearTimeout(timer);
             setCurPress(index_temp);
             timer = setTimeout(() => {
-              console.log("t?");
               setIsLongPress(true);
             }, 400);
           }}

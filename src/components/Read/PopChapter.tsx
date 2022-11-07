@@ -54,7 +54,12 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
                   changeChapter(c.position);
                 }}
               >
-                <ChapterItem chapter={c} bookId={bookId} smallSize={false} />
+                <ChapterItem
+                  chapter={c}
+                  bookId={bookId}
+                  smallSize={false}
+                  routeReplace={true}
+                />
               </div>
             );
           })}

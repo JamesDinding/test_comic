@@ -13,6 +13,7 @@ declare type ChapterItem = {
   chapter: ChapterData;
   smallSize?: boolean;
   bookId?: number;
+  routeReplace?: boolean;
 };
 
 declare interface ChapterList {

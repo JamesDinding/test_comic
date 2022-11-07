@@ -1,7 +1,6 @@
 import { FunctionalComponent, h } from "preact";
-import { useState, StateUpdater, useEffect, MutableRef } from "preact/hooks";
+import { useState, StateUpdater, MutableRef } from "preact/hooks";
 import { defaultLocalStorage } from "../../const";
-import { getCategories } from "../../lib/api";
 
 interface HomeCategoryListBarProp {
   onCategoryChanged: StateUpdater<number>;
@@ -24,7 +23,6 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
     )
   );
 
-  // min-h-[36px]
   return (
     <div class="category_list_box shrink-0">
       <div class="relative flex overflow-x-scroll no-scrollbar overflow-y-hidden">

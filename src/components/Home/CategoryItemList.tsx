@@ -1,6 +1,5 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { useState, useEffect, useRef, Ref } from "preact/hooks";
-import { route } from "preact-router";
 import BookList from "../_Book/List";
 import { getSpecifiedCategory } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
@@ -50,7 +49,6 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           const { data } = await getSpecifiedCategory(
             curCateId.current,
             pageRef.current + 1
-            // Math.ceil((numRef.current || 0) / CATEGORY_PER_PAGE_NUM) + 1
           );
           pageRef.current++;
           numRef.current += data?.length;

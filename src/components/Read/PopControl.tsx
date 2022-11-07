@@ -2,7 +2,6 @@ import { h, FunctionalComponent, Fragment as F } from "preact";
 import { route } from "preact-router";
 import { StateUpdater, useState } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
-import { useUser } from "../../context/user";
 import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconMenu from "../../resources/img/icon-menu.svg";
 
@@ -18,19 +17,14 @@ interface PopControlProps {
   changeChapter: StateUpdater<number>;
 }
 
-// 传chapter.position 取代curChapter会比较好
 const PopControl: FunctionalComponent<PopControlProps> = ({
   chapterList,
-  pageNum,
   curChapter,
   curComic,
-  curPage,
-  setIsDrag,
   setCurPage,
   setPageList,
   changeChapter,
 }) => {
-  const { userStatus } = useUser();
   const { isPopControl, popChapter, reset, popBuy, setStuffInfo, popControl } =
     useReadingModal();
 
@@ -43,8 +37,6 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
         }
       >
         <div className="flex items-center justify-between h-full w-full">
-          {/* <div className="flex items-center h-full w-full"> */}
-          {/* <div className="grow"></div> */}
           <button
             className="mr-2"
             onClick={(e) => {
@@ -69,29 +61,6 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
           <button className="ml-2" onClick={popChapter}>
             <IconMenu class="h-10 w-10" />
           </button>
-          {/* <div className="flex items-center justify-between font-light text-white text-sm text-center w-[60px]">
-            <span className="text-[#6d5694] w-[25px]">{curPage}</span>
-            <span className="text-lg">&nbsp;/&nbsp;</span>
-            <span className="w-[25px]">{pageNum}</span>
-          </div>
-
-          <input
-            type="range"
-            id="page"
-            min="1"
-            max={pageNum}
-            value={curPage}
-            step="1"
-            className="ml-4 w-[150px] input-range-page"
-            style={{
-              backgroundSize: `${(curPage / pageNum) * 100}% 100%`,
-            }}
-            onChange={(e) => {
-              const target = e.target as HTMLInputElement;
-              setIsDrag(true);
-              setCurPage(parseInt(target.value, 10));
-            }}
-          /> */}
           <button
             className="ml-4"
             onClick={() => {

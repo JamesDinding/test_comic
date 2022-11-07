@@ -57,7 +57,6 @@ const CollectPage: FunctionalComponent = () => {
     }
   }, [curSelect, isLogIn]);
 
-  // temp remove this block in v1.0
   // useEffect(() => {
   //   if (collectList.length === 0 || acquisitions.length === 0) {
   //     getRandomBlock(9)

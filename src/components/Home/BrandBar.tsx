@@ -69,7 +69,6 @@ const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({
         </div>
       </div>
       <a href="/charge" class="flex flex-col items-center">
-        {/* <img src="/assets/img/deposit.png" className="w-6" alt="充值" /> */}
         <IconCoin class="w-6" />
         <span class="text-[#666666] text-xs">充值</span>
       </a>

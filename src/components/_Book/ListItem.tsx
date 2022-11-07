@@ -39,7 +39,6 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
             }
           ></div>
           <div className="rounded-lg overflow-hidden h-[157px]">
-            {/* <div className={showPending ? "z-[20] pending min-h-[157px]" : ""}> */}
             <div
               className={
                 "rounded-lg overflow-hidden h-full " +

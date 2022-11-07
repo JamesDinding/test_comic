@@ -442,7 +442,7 @@ input[type="number"] {
 }
 
 .pending {
-  @apply before:content-[''] before:absolute before:z-[12] before:top-0 before:left-0 before:w-full before:h-full before:bg-[rgba(109,86,148,0.2)]
+  @apply before:content-[''] before:absolute before:z-[14] before:top-0 before:left-0 before:w-full before:h-full before:bg-[rgba(109,86,148,0.2)]
   before:rounded before:shadow-none before:border-none;
 }
 

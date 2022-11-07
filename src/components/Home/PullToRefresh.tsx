@@ -17,7 +17,7 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
   const [dropCss, setDropCss] = useState("hidden");
   const [dropSpace, setDropSpace] = useState(0);
   const [dropText, setDropText] = useState("");
-  // const [dropText, setDropText] = useState("下拉即可更新");
+  // const [dropText, setDropText] = useState("");
 
   const touchStartHandler = (e: TouchEvent) => {
     startClientY = e.touches[0].clientY;
@@ -47,8 +47,6 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
     overScrollOffset = offsetY - startScrollTop;
 
     if (overScrollOffset < 80) return;
-
-    // console.log("trigger Refresh");
   };
   return (
     <div

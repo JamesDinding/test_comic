@@ -1,6 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { route } from "preact-router";
-import { StateUpdater, useState } from "preact/hooks";
+import { StateUpdater } from "preact/hooks";
 
 interface SelectionBarProps {
   tabArr: Array<string>;

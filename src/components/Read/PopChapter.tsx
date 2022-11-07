@@ -9,12 +9,14 @@ interface PopChapterProps extends ChapterList {
   changeChapter: StateUpdater<number>;
   setCurPage: StateUpdater<number>;
   setPageList: StateUpdater<string[]>;
+  curChapter: number;
 }
 
 let layerCss = "translate-y-full";
 const PopChapter: FunctionalComponent<PopChapterProps> = ({
   chapterList,
   bookId,
+  curChapter,
   changeChapter,
   setCurPage,
   setPageList,
@@ -53,7 +55,7 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
             return (
               <div
                 onClick={() => {
-                  if (!c.status) return;
+                  if (!c.status || curChapter === c.position) return;
                   setCurPage(1);
                   setPageList([]);
                   changeChapter(c.position);

@@ -258,7 +258,8 @@ export const postOrdersPurchase = async (id) => {
 export const postOrdersCharge = async (
   product_payment_method_id,
   amount,
-  client_ip
+  client_ip,
+  platform
 ) => {
   const response = await fetch("/api/v1/orders/charge", {
     method: "POST",
@@ -269,6 +270,7 @@ export const postOrdersCharge = async (
       product_payment_method_id,
       amount,
       client_ip,
+      platform,
     }),
   });
   const data = await response.json();

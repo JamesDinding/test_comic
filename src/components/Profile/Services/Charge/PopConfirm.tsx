@@ -1,14 +1,10 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useState, useEffect, StateUpdater } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import { useUser } from "../../../../context/user";
 import ModalTitle from "../../../UI/ModalTitle";
 import Card from "../../../Modal/Card";
-import {
-  getOrdersRedirectOrderNum,
-  postOrdersCharge,
-  postMyRegisterRandom,
-} from "../../../../lib/api";
+import { postOrdersCharge, postMyRegisterRandom } from "../../../../lib/api";
 
 interface PopConfirmProps {
   onClose: () => void;
@@ -178,7 +174,12 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
             }
 
             if (isLogIn) {
-              postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
+              postOrdersCharge(
+                payment?.id,
+                userSelect.cash_amount,
+                ip,
+                localStorage.getItem("sjmh_device")?.toLowerCase()
+              )
                 .then((response) => {
                   const { data } = response;
                   window.location.href =
@@ -194,7 +195,12 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
               postMyRegisterRandom().then((res) => {
                 setLogin();
                 localStorage.setItem("sjmh_log_status", "true");
-                postOrdersCharge(payment?.id, userSelect.cash_amount, ip)
+                postOrdersCharge(
+                  payment?.id,
+                  userSelect.cash_amount,
+                  ip,
+                  localStorage.getItem("sjmh_device")?.toLowerCase()
+                )
                   .then((response) => {
                     const { data } = response;
                     window.location.href =

@@ -21,7 +21,6 @@ const FooterBar: FunctionalComponent = () => {
   }, [mobile]);
 
   return (
-    // <footer class="relative h-[60px] border-t border-gray-100 shrink-0 grid grid-cols-4 text-center py-2 select-none">
     <footer
       class={
         "relative h-[60px] border-t border-gray-100 shrink-0 grid grid-cols-3 text-center py-2 select-none " +

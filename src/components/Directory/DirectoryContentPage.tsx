@@ -64,7 +64,6 @@ const DirectoryContentPage: FunctionalComponent = () => {
       })
       .catch((err) => {
         console.error(err.message || "failed");
-        route("/home");
       });
   }, []);
 

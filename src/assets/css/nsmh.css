@@ -2934,7 +2934,7 @@ input[type="number"] {
 
 .item-header-bg {
   border-radius: 0.25rem;
-  background: linear-gradient(to right, #c7b5e6 -89%, #ffffff80);
+  background: linear-gradient(to right, #c7b5e6 -89%, #ffffff);
 }
 
 .item {

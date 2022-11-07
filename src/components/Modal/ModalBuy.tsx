@@ -45,7 +45,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
           </div>
         </div>
       )}
-      {userStatus.coins > (stuffInfo?.price || 60) && (
+      {userStatus.coins >= (stuffInfo?.price || 60) && (
         <div className="m-5">
           <Btn
             title="继续阅读"

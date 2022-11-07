@@ -14,6 +14,7 @@ interface PopControlProps {
   curPage: number;
   setIsDrag: StateUpdater<boolean>;
   setCurPage: StateUpdater<number>;
+  setPageList: StateUpdater<string[]>;
   changeChapter: StateUpdater<number>;
 }
 
@@ -26,6 +27,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
   curPage,
   setIsDrag,
   setCurPage,
+  setPageList,
   changeChapter,
 }) => {
   const { userStatus } = useUser();
@@ -40,11 +42,9 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
           (isPopControl ? "" : "translate-y-[120%]")
         }
       >
-        <div className="flex items-center h-full w-full">
-          <button className="ml-2" onClick={popChapter}>
-            <IconMenu class="h-10 w-10" />
-          </button>
-          <div className="grow"></div>
+        <div className="flex items-center justify-between h-full w-full">
+          {/* <div className="flex items-center h-full w-full"> */}
+          {/* <div className="grow"></div> */}
           <button
             className="mr-2"
             onClick={(e) => {
@@ -57,6 +57,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
                 }
                 document.querySelector("#page-1")?.scrollIntoView();
                 setCurPage(1);
+                setPageList([]);
                 changeChapter((prev) => prev - 1);
                 popControl();
                 route(`/read/${curComic}/chapter/${curChapter - 1}`, true);
@@ -65,7 +66,10 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
           >
             <IconChevron class="h-10 w-10 text-white rotate-180" />
           </button>
-          <div className="flex items-center justify-between font-light text-white text-sm text-center w-[60px]">
+          <button className="ml-2" onClick={popChapter}>
+            <IconMenu class="h-10 w-10" />
+          </button>
+          {/* <div className="flex items-center justify-between font-light text-white text-sm text-center w-[60px]">
             <span className="text-[#6d5694] w-[25px]">{curPage}</span>
             <span className="text-lg">&nbsp;/&nbsp;</span>
             <span className="w-[25px]">{pageNum}</span>
@@ -87,8 +91,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
               setIsDrag(true);
               setCurPage(parseInt(target.value, 10));
             }}
-          />
-
+          /> */}
           <button
             className="ml-4"
             onClick={() => {
@@ -100,6 +103,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
               }
               document.querySelector("#page-1")?.scrollIntoView();
               setCurPage(1);
+              setPageList([]);
               changeChapter((prev) => prev + 1);
               popControl();
               route(`/read/${curComic}/chapter/${curChapter + 1}`, true);

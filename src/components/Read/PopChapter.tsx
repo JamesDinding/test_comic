@@ -8,6 +8,8 @@ import IconSort from "../../resources/img/icon-sort.svg";
 
 interface PopChapterProps extends ChapterList {
   changeChapter: StateUpdater<number>;
+  setCurPage: StateUpdater<number>;
+  setPageList: StateUpdater<string[]>;
 }
 
 let layerCss = "translate-y-full";
@@ -15,6 +17,8 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
   chapterList,
   bookId,
   changeChapter,
+  setCurPage,
+  setPageList,
 }) => {
   const { isPopChapter, reset, popControl } = useReadingModal();
   const [isSort, setIsSort] = useState(false);
@@ -51,6 +55,8 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
               <div
                 onClick={() => {
                   if (!c.status) return;
+                  setCurPage(1);
+                  setPageList([]);
                   changeChapter(c.position);
                 }}
               >

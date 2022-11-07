@@ -5,8 +5,6 @@ import ModalTitle from "../../../UI/ModalTitle";
 import PaySelection from "./PaySelection";
 import Card from "../../../Modal/Card";
 import { getOrdersProductsId } from "../../../../lib/api";
-import { useUser } from "../../../../context/user";
-import { route } from "preact-router";
 
 interface PopPaymentkDrop {
   onClose: () => void;
@@ -17,11 +15,11 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   onClose,
   onNextConfirm,
 }) => {
-  const { logout } = useUser();
   const { payment, userSelect, selectPay, selectCoins } = useCharge();
-  const [curExpand, setCurExpand] = useState(-1);
+  const [curExpand, setCurExpand] = useState(0);
   const [payments, setPayments] = useState<any>([]);
   const [way, setWay] = useState<any>([]);
+  const [isWrong, setIsWrong] = useState(false);
 
   useEffect(() => {
     getOrdersProductsId(userSelect.id.toString())
@@ -90,10 +88,21 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
             </div>
           </div>
           <div className="grow"></div>
+          <div
+            className={
+              "text-[#ff978d] text-input-warning text-sm pt-4 " +
+              (isWrong ? "error-shaking" : "")
+            }
+          >
+            {isWrong ? "请选择支付方案" : ""}
+          </div>
           <button
             className="w-full mt-10 py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
             onClick={() => {
-              if (!payment) return;
+              if (!payment) {
+                setIsWrong(true);
+                return;
+              }
               onClose();
               onNextConfirm();
             }}

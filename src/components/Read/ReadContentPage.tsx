@@ -19,7 +19,7 @@ const ReadContentPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const { isPopControl, popControl, reset } = useReadingModal();
   const [parentPending, setParentPending] = useState(true);
-  const [pageList, setPageList] = useState([]);
+  const [pageList, setPageList] = useState<string[]>([]);
   // 控制列的页码
   const [isDrag, setIsDrag] = useState(false);
   const [curPage, setCurPage] = useState(1);
@@ -68,6 +68,7 @@ const ReadContentPage: FunctionalComponent = () => {
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
+          console.log("intersection happened");
           const p = parseInt(e.target.id.split("-").pop()!, 10);
           setCurPage(p);
         }
@@ -130,6 +131,7 @@ const ReadContentPage: FunctionalComponent = () => {
         curPage={curPage}
         setIsDrag={setIsDrag}
         setCurPage={setCurPage}
+        setPageList={setPageList}
         changeChapter={setCurChapter}
       />
       <ModalBuy

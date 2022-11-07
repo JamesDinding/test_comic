@@ -97,7 +97,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
             {isWrong ? "请选择支付方案" : ""}
           </div>
           <button
-            className="w-full mt-10 py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
+            className="w-full mt-10 py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl "
             onClick={() => {
               if (!payment) {
                 setIsWrong(true);

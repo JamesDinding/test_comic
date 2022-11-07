@@ -26,7 +26,8 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({
       <div
         className="flex flex-col items-center text-white cursor-pointer"
         onClick={() => {
-          route(`/directory/${bookId}`, true);
+          history.back();
+          // route(`/directory/${bookId}`, true);
         }}
       >
         <span className="mb-[.125rem]">

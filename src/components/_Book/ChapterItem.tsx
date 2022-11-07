@@ -5,7 +5,6 @@ import { useReadingModal } from "../../context/reading";
 import IconLock from "../../resources/img/icon-lock.svg";
 import Image from "../_Image/image";
 import { ObserverProvider } from "../../context/observer";
-import ModalBuy from "../Modal/ModalBuy";
 
 const ChapterItem: FunctionalComponent<ChapterItem> = ({
   chapter,
@@ -13,6 +12,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
   bookId = 0,
   routeReplace = false,
 }) => {
+  const { reset } = useReadingModal();
   const { popBuy, setStuffInfo } = useReadingModal();
   const [isPending, setIsPending] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,6 +31,8 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
             popBuy();
             return;
           }
+
+          reset();
           route(`/read/${bookId}/chapter/${chapter.position}`, routeReplace);
         }}
       >

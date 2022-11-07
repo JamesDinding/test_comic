@@ -122,6 +122,8 @@ const ReadContentPage: FunctionalComponent = () => {
         chapterList={chapterList}
         bookId={curComic}
         changeChapter={setCurChapter}
+        setCurPage={setCurPage}
+        setPageList={setPageList}
       />
       <PopControl
         chapterList={chapterList}

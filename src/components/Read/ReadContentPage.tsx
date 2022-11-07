@@ -68,7 +68,6 @@ const ReadContentPage: FunctionalComponent = () => {
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          console.log("intersection happened");
           const p = parseInt(e.target.id.split("-").pop()!, 10);
           setCurPage(p);
         }

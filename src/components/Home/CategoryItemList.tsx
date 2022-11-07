@@ -49,7 +49,8 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
         if (e.isIntersecting) {
           const { data } = await getSpecifiedCategory(
             curCateId.current,
-            Math.ceil((numRef.current || 0) / CATEGORY_PER_PAGE_NUM) + 1
+            pageRef.current + 1
+            // Math.ceil((numRef.current || 0) / CATEGORY_PER_PAGE_NUM) + 1
           );
           pageRef.current++;
           numRef.current += data?.length;

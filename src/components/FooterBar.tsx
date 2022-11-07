@@ -4,31 +4,13 @@ import IconHome from "./../resources/img/footer-home.svg";
 import IconBookmark from "./../resources/img/footer-bookmark.svg";
 import IconProfile from "./../resources/img/footer-profile.svg";
 import { Link } from "preact-router/match";
+import { getMobileOperatingSystem } from "../lib/helper";
 
 const FooterBar: FunctionalComponent = () => {
   const [mobile, setMobile] = useState("");
 
   useEffect(() => {
     if (mobile !== "") return;
-    function getMobileOperatingSystem() {
-      var userAgent = navigator.userAgent;
-
-      // Windows Phone must come first because its UA also contains "Android"
-      if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
-      }
-
-      if (/android/i.test(userAgent)) {
-        return "Android";
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent)) {
-        return "iOS";
-      }
-
-      return "unknown";
-    }
     const os = getMobileOperatingSystem();
 
     if (os === "iOS") {
@@ -39,11 +21,10 @@ const FooterBar: FunctionalComponent = () => {
   }, [mobile]);
 
   return (
-    // <footer class="relative h-[60px] border-t border-gray-100 shrink-0 grid grid-cols-4 text-center py-2 select-none">
     <footer
       class={
         "relative h-[60px] border-t border-gray-100 shrink-0 grid grid-cols-3 text-center py-2 select-none " +
-        (mobile === "iOS" ? "pb-2" : "")
+        (mobile === "mobileconfig" ? " " : "")
       }
     >
       <Link activeClassName="active" href="/home" class="group">

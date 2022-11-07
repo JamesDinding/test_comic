@@ -23,8 +23,8 @@ const FooterBar: FunctionalComponent = () => {
   return (
     <footer
       class={
-        "relative border-t border-gray-100 shrink-0 grid grid-cols-3 text-center py-2 select-none " +
-        (mobile === "mobileconfig" ? " h-[75px]" : "h-[60px]")
+        "relative h-[60px] border-t border-gray-100 shrink-0 grid grid-cols-3 text-center py-2 select-none " +
+        (mobile === "mobileconfig" ? " " : "")
       }
     >
       <Link activeClassName="active" href="/home" class="group">

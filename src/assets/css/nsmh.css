@@ -935,18 +935,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 49px;
 }
 
-.h-\[80px\] {
-  height: 80px;
-}
-
-.h-\[70px\] {
-  height: 70px;
-}
-
-.h-\[75px\] {
-  height: 75px;
-}
-
 .max-h-screen {
   max-height: 100vh;
 }
@@ -1236,10 +1224,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .select-none {
   user-select: none;
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .grid-cols-3 {
@@ -1822,10 +1806,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1rem;
 }
 
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-
 .pt-1 {
   padding-top: 0.25rem;
 }
@@ -1848,6 +1828,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-2\.5 {
   padding-bottom: 0.625rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .pt-\[1\.125rem\] {
@@ -2312,6 +2296,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .Image-component {
   width: 100%;
+}
+
+body {
+  background-color: white !important;
+  padding-bottom: (env(safe-area-inset-bottom));
 }
 
 a {

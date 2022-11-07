@@ -955,10 +955,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 170px;
 }
 
-.min-h-\[36px\] {
-  min-height: 36px;
-}
-
 .min-h-\[515px\] {
   min-height: 515px;
 }
@@ -973,10 +969,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-h-\[160px\] {
   min-height: 160px;
-}
-
-.min-h-\[157px\] {
-  min-height: 157px;
 }
 
 .min-h-\[54px\] {
@@ -1059,14 +1051,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 2.5rem;
 }
 
-.w-\[25px\] {
-  width: 25px;
-}
-
-.w-\[150px\] {
-  width: 150px;
-}
-
 .w-\[76px\] {
   width: 76px;
 }
@@ -1077,6 +1061,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[70px\] {
   width: 70px;
+}
+
+.w-\[150px\] {
+  width: 150px;
 }
 
 .w-\[\.8rem\] {
@@ -3087,7 +3075,7 @@ input[type="number"] {
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 12;
+  z-index: 14;
   height: 100%;
   width: 100%;
   border-radius: 0.25rem;

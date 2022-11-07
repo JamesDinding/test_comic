@@ -28,7 +28,9 @@ const PurchaseItem: FunctionComponent<PurchaseItemProps> = ({
         onClick={() => setIsDrop((prev) => !prev)}
       >
         <div className="w-2/5 text-center text-[#4fa7dd] font-semibold whitespace-nowrap">
-          {purchaseObj.amount} 金币
+          {(purchaseObj.amount >= 0 ? "+ " : "- ") +
+            Math.abs(purchaseObj.amount)}{" "}
+          金币
         </div>
         <div className="grow text-center">余 {purchaseObj.balance} 金币</div>
         <div className="flex items-center justify-end">

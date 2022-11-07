@@ -2,6 +2,7 @@ import { FunctionalComponent, h } from "preact";
 import Logo from "./../resources/img/logo-text.svg";
 import IconClose from "./../resources/img/icon-close.svg";
 import { StateUpdater, useState, useEffect } from "preact/hooks";
+import { getMobileOperatingSystem } from "../lib/helper";
 
 interface SmartBannerProps {
   SetSmartBannerVisiblity: StateUpdater<boolean>;
@@ -16,25 +17,6 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
 
   useEffect(() => {
     if (mobile !== "") return;
-    function getMobileOperatingSystem() {
-      var userAgent = navigator.userAgent;
-
-      // Windows Phone must come first because its UA also contains "Android"
-      if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
-      }
-
-      if (/android/i.test(userAgent)) {
-        return "Android";
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod|Mac/.test(userAgent)) {
-        return "iOS";
-      }
-
-      return "unknown";
-    }
     const os = getMobileOperatingSystem();
 
     if (os === "iOS") {

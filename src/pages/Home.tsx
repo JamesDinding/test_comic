@@ -46,6 +46,8 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
 
   const searchRef = useRef<HTMLInputElement>(null!);
 
+  //useEffect => figure out app/ios/web
+
   useEffect(() => {
     if (categories.length !== 0) return;
     initial = false;

@@ -38,7 +38,12 @@ const App: FunctionalComponent = () => {
       queryObj[temp[0]] = temp[1];
     });
 
-    if (queryObj.app) setShowSmartBanner(false);
+    if (queryObj.app) {
+      setShowSmartBanner(false);
+      localStorage.setItem("sjmh_device", queryObj.app);
+    } else {
+      localStorage.setItem("sjmh_device", "web");
+    }
 
     fetch(`/api/v1/auth/init${query}`)
       .then((res) => {

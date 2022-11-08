@@ -3,9 +3,9 @@ import { h, FunctionalComponent, Component, ErrorInfo } from "preact";
 export default class ErrorBoundary extends Component {
   state = { error: null };
 
-  static getDerivedStateFromError(error: any): object | null {
-    return { error: error.message };
-  }
+  // static getDerivedStateFromError(error: any): object | null {
+  //   return { error: error.message };
+  // }
 
   componentDidCatch(error: any, errorInfo: ErrorInfo): void {
     console.error(error);
@@ -14,7 +14,7 @@ export default class ErrorBoundary extends Component {
 
   render() {
     if (this.state.error) {
-      console.log("error catch by errorboundary");
+      console.error("error happened in the app");
     }
 
     return this.props.children;

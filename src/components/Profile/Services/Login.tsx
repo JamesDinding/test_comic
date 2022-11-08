@@ -170,7 +170,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           不是会员？
           <span
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
-            onClick={() => route("/register")}
+            onClick={() => route("/register", true)}
           >
             立即注册
           </span>

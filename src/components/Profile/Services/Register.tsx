@@ -170,7 +170,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
             onClick={() => route("/login")}
           >
-            快速登录
+            立即登录
           </span>
         </div>
       </div>

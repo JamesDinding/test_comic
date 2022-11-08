@@ -6,7 +6,6 @@ import BrandBar from "../components/Home/BrandBar";
 import Recommend from "../components/Home/Recommend";
 import CategoryItemList from "../components/Home/CategoryItemList";
 import SearchResultList from "../components/Search/SearchResultList";
-import BookList from "../components/_Book/List";
 import { ObserverProvider } from "../context/observer";
 import { getCategories } from "../lib/api";
 import SmartBanner from "../components/SmartBanner";
@@ -25,6 +24,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
   showBanner,
   setShowBanner,
 }) => {
+  console.log(initial);
   const [currentCategory, setCurrentCategory] = useState(
     initial
       ? 0
@@ -89,6 +89,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
             searchRef={searchRef}
           />
           <CategoryListBar
+            curCategory={currentCategory}
             onCategoryChanged={setCurrentCategory}
             categories={[{ id: 0, name: "首页" }].concat(categories)}
             searchRef={searchRef}

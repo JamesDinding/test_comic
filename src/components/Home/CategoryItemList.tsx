@@ -27,6 +27,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
         curCateId.current = catID;
         const { data } = await getSpecifiedCategory(catID, pageRef.current);
         numRef.current = data?.length;
+        pageRef.current++;
         setContent(data);
       })();
     } catch (err: any) {
@@ -48,7 +49,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
         if (e.isIntersecting) {
           const { data } = await getSpecifiedCategory(
             curCateId.current,
-            pageRef.current + 1
+            pageRef.current
           );
           pageRef.current++;
           numRef.current += data?.length;

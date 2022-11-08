@@ -35,15 +35,15 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
     let isPwCorrect = true;
 
     function onlyLettersAndNumbers(str: string) {
-      return /^[A-Za-z0-9\_]*$/.test(str);
+      return /^[A-Za-z0-9\_\-]*$/.test(str);
     }
 
-    if (accLen < 4 || accLen > 16) {
+    if (accLen < 6) {
       // acc len error
       setIsAccountWrong(true);
       isAccCorrect = false;
     }
-    if (pwLen < 4 || pwLen > 16) {
+    if (pwLen < 6) {
       // pw len error
       setIsPsWrong(true);
       isPwCorrect = false;
@@ -75,10 +75,9 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="帐号"
           inputSetting={{
-            placeHolder: "请输入4-16位英文或数字组合帐号",
+            placeHolder: "请输入6位以上英文或数字组合帐号",
             type: "text",
-            maxLen: 16,
-            minLen: 4,
+            minLen: 6,
           }}
           isWrong={isAccountWrong}
           warningMsg={accWarning}
@@ -87,10 +86,9 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
         <InputField
           title="密码"
           inputSetting={{
-            placeHolder: "请输入4-16位英文或数字组合密码",
+            placeHolder: "请输入6位以上英文或数字组合密码",
             type: "password",
-            maxLen: 16,
-            minLen: 4,
+            minLen: 6,
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}
@@ -174,7 +172,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
             onClick={() => route("/register")}
           >
-            免费注册
+            立即注册
           </span>
         </div>
       </div>

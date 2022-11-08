@@ -38,12 +38,12 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
       return /^[A-Za-z0-9\_\-]*$/.test(str);
     }
 
-    if (accLen < 6) {
+    if (accLen < 4) {
       // acc len error
       setIsAccountWrong(true);
       isAccCorrect = false;
     }
-    if (pwLen < 6) {
+    if (pwLen < 4) {
       // pw len error
       setIsPsWrong(true);
       isPwCorrect = false;
@@ -77,7 +77,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           inputSetting={{
             placeHolder: "请输入6位以上英文或数字组合帐号",
             type: "text",
-            minLen: 6,
+            minLen: 4,
           }}
           isWrong={isAccountWrong}
           warningMsg={accWarning}
@@ -88,7 +88,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           inputSetting={{
             placeHolder: "请输入6位以上英文或数字组合密码",
             type: "password",
-            minLen: 6,
+            minLen: 4,
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}
@@ -170,7 +170,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           不是会员？
           <span
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
-            onClick={() => route("/register")}
+            onClick={() => route("/register", true)}
           >
             立即注册
           </span>

@@ -42,11 +42,11 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
             onClick={(e) => {
               if (curChapter > 1) {
                 // chapterList count from 0, curChapter count from 1
+                setStuffInfo({
+                  ...chapterList[curChapter - 2],
+                  bookId: curComic,
+                });
                 if (!chapterList[curChapter - 2].status) {
-                  setStuffInfo({
-                    ...chapterList[curChapter - 2],
-                    bookId: curComic,
-                  });
                   popBuy();
                   return;
                 }
@@ -68,8 +68,8 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
             className="ml-4"
             onClick={() => {
               // chapterList count from 0, curChapter count from 1
+              setStuffInfo({ ...chapterList[curChapter], bookId: curComic });
               if (!chapterList[curChapter].status) {
-                setStuffInfo({ ...chapterList[curChapter], bookId: curComic });
                 popBuy();
                 return;
               }

@@ -1,8 +1,9 @@
 import { FunctionalComponent, h } from "preact";
-import { useState, StateUpdater, MutableRef } from "preact/hooks";
+import { StateUpdater, MutableRef } from "preact/hooks";
 import { defaultLocalStorage } from "../../const";
 
 interface HomeCategoryListBarProp {
+  curCategory: number;
   onCategoryChanged: StateUpdater<number>;
   categories: Array<{ id: number; name: string }>;
   searchRef: MutableRef<HTMLInputElement>;
@@ -10,19 +11,12 @@ interface HomeCategoryListBarProp {
 }
 
 const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
+  curCategory,
   onCategoryChanged,
   categories,
   searchRef,
   setShowResult,
 }) => {
-  const [activeCategory, setActiveCategory] = useState(
-    parseInt(
-      JSON.parse(localStorage.getItem("sjmh") || defaultLocalStorage)?.home
-        .curCategoryIndex,
-      10
-    )
-  );
-
   return (
     <div class="category_list_box shrink-0">
       <div class="relative flex overflow-x-scroll no-scrollbar overflow-y-hidden">
@@ -32,7 +26,7 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
               <a
                 href="/home"
                 onClick={() => {
-                  setActiveCategory(i);
+                  // setActiveCategory(i);
                   onCategoryChanged(i);
                   const temp = JSON.parse(
                     localStorage.getItem("sjmh") || defaultLocalStorage
@@ -42,13 +36,13 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
                   searchRef.current.value = "";
                   setShowResult(false);
                 }}
-                class={"category-item" + (i == activeCategory ? " active" : "")}
+                class={"category-item" + (i == curCategory ? " active" : "")}
               >
                 {c.name}
               </a>
               <div
                 className={
-                  i == activeCategory
+                  i == curCategory
                     ? "category-item-derocation"
                     : "invisible h-0"
                 }

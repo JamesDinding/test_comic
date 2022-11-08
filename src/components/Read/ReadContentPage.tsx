@@ -14,10 +14,11 @@ import {
 import { useDomain } from "../../context/domain";
 import { route } from "preact-router";
 
+let test: any;
 const ReadContentPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
-  const { isPopControl, popControl, reset } = useReadingModal();
+  const { isPopControl, popControl, reset, stuffInfo } = useReadingModal();
   const [parentPending, setParentPending] = useState(true);
   const [pageList, setPageList] = useState<string[]>([]);
   // 控制列的页码
@@ -31,8 +32,16 @@ const ReadContentPage: FunctionalComponent = () => {
     parseInt(window.location.pathname.split("/")[2], 10)
   );
   const [curChapter, setCurChapter] = useState(
-    parseInt(window.location.pathname.split("/")[4], 10)
+    parseInt(window.location.pathname.split("/")[4], 10) ||
+      stuffInfo?.position ||
+      1
   );
+
+  // test console.log
+  clearInterval(test);
+  test = setInterval(() => {
+    console.log("timer", stuffInfo);
+  }, 2000);
 
   // 进入页面显示bar，让使用者可以注意到，再来是滚动时消失
   useEffect(() => {
@@ -82,7 +91,10 @@ const ReadContentPage: FunctionalComponent = () => {
   }, [observer, containerRef.current, pageList.length]);
 
   useEffect(() => {
-    if (!curChapter) route("/home");
+    if (!curChapter) {
+      console.log("curChapter nan");
+    }
+    console.log(stuffInfo?.position);
     getSpecifiedBookIdContent(curComic, curChapter)
       .then((response) => {
         setDomain(response.domain);

@@ -165,7 +165,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           已经是会员？
           <span
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
-            onClick={() => route("/login")}
+            onClick={() => route("/login", true)}
           >
             立即登录
           </span>

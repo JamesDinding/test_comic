@@ -183,29 +183,36 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                   setErrMsg("请求发出失败，请确认网络状况");
                 });
             } else {
-              postMyRegisterRandom().then((res) => {
-                setLogin();
-                localStorage.setItem("sjmh_log_status", "true");
-                postOrdersCharge(
-                  payment?.id,
-                  userSelect.cash_amount,
-                  ip,
-                  localStorage.getItem("sjmh_device")?.toLowerCase()
-                )
-                  .then((response) => {
-                    const { data } = response;
-                    window.location.href =
-                      "/api/v1/orders/redirect/" +
-                      data.order_num +
-                      "?paymode=1";
-                  })
-                  .catch((err) => {
-                    console.error(err.message || "failed");
-                    setIsPosting(false);
-                    setIsError(true);
-                    setErrMsg("请求发出失败，请确认网络状况");
-                  });
-              });
+              postMyRegisterRandom()
+                .then((res) => {
+                  setLogin();
+                  localStorage.setItem("sjmh_log_status", "true");
+                  postOrdersCharge(
+                    payment?.id,
+                    userSelect.cash_amount,
+                    ip,
+                    localStorage.getItem("sjmh_device")?.toLowerCase()
+                  )
+                    .then((response) => {
+                      const { data } = response;
+                      window.location.href =
+                        "/api/v1/orders/redirect/" +
+                        data.order_num +
+                        "?paymode=1";
+                    })
+                    .catch((err) => {
+                      console.error(err.message || "failed");
+                      setIsPosting(false);
+                      setIsError(true);
+                      setErrMsg("请求发出失败，请确认网络状况");
+                    });
+                })
+                .catch((err) => {
+                  console.error(err.message || "failed");
+                  setIsPosting(false);
+                  setIsError(true);
+                  setErrMsg("请求发出失败，请确认网络状况");
+                });
             }
           }}
         >

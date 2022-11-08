@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { route } from "preact-router";
+import { route, Link } from "preact-router";
 import { useState, useEffect, useRef } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
 import IconLock from "../../resources/img/icon-lock.svg";

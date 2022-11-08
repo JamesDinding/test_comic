@@ -48,7 +48,7 @@ const ChargeItem: FunctionComponent<ChargeItemProps> = ({ chargeObj }) => {
         </div>
       </div>
       <div
-        className={`w-full px-5 text-sm text-[#666666] flex flex-col justify-center tracking-wide border-solid border-b-[1px] border-[#9e765466] duration-300 overflow-hidden ${dropCss}`}
+        className={`w-full px-5 text-sm text-[#666666] flex flex-col justify-center tracking-wide border-solid border-b-[1px] border-[#6d569466] duration-300 overflow-hidden ${dropCss}`}
       >
         <div className="mt-2 mb-1">单号 : {chargeObj.order_num}</div>
         <div className="mb-2">时间 : {chargeObj.created_at}</div>

@@ -99,6 +99,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                     key={i}
                     tabIndex={i}
                     id={"validation-" + i}
+                    inputMode="numeric"
                     type="number"
                     max={9}
                     min={0}
@@ -126,16 +127,6 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                   />
                 );
               })}
-              {/* <input
-                type="text"
-                value={validationCode!}
-                maxLength={4}
-                className="w-full h-[50px] px-2 py-1.5 border-solid border-2 rounded text-right text-lg"
-                onInput={(e) => {
-                  const target = e.target as HTMLInputElement;
-                  setValidationCode(target.value);
-                }}
-              /> */}
             </div>
           </div>
           <div className="flex items-center justify-between w-full px-2.5 mt-2">

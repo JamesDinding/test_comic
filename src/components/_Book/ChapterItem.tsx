@@ -26,8 +26,8 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
           (smallSize ? "w-[76px] h-[115px]" : "min-w-[105px] h-[72px]")
         }
         onClick={() => {
+          setStuffInfo({ ...chapter, bookId });
           if (!chapter.status) {
-            setStuffInfo({ ...chapter, bookId });
             popBuy();
             return;
           }

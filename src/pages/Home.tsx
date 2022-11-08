@@ -24,7 +24,6 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
   showBanner,
   setShowBanner,
 }) => {
-  console.log(initial);
   const [currentCategory, setCurrentCategory] = useState(
     initial
       ? 0

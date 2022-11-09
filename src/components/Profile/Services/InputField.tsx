@@ -60,7 +60,7 @@ const InputField: FunctionComponent<InputProps> = ({
       <div className="relative">
         {inputSetting.hidePassword && (
           <div
-            className="absolute flex top-1/2 translate-y-[-50%] ml-5 text-[#6d5694] h-[calc(100%-1.5rem)] bg-white"
+            className="absolute flex top-1/2 translate-y-[-50%] ml-5 text-[#6d5694] h-[calc(100%-1.5rem)] bg-white select-none"
             onClick={(e) => {
               const target = e.target as HTMLDivElement;
               target.parentNode?.querySelector("input")?.focus();
@@ -80,7 +80,7 @@ const InputField: FunctionComponent<InputProps> = ({
             "text-[#6d5694] w-full h-[50px] py-3 px-5 text-sm border-[1px] border-solid rounded-lg placeholder:text-[#bbbbbb] " +
             (isWrong ? "border-[#ff978d]" : "border-[rgba(109,86,148,0.4)]") +
             (inputSetting.hidePassword
-              ? " caret-transparent"
+              ? " caret-transparent select-none"
               : " caret-[#6d5694]")
           }
           ref={inputRef}

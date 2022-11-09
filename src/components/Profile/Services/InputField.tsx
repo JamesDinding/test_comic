@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from "preact";
-import { MutableRef, useEffect } from "preact/hooks";
+import { MutableRef, useEffect, useState } from "preact/hooks";
 
 // type === number => remove char which is not number
 type inputConfig = {
@@ -7,6 +7,7 @@ type inputConfig = {
   type: "text" | "number" | "password";
   maxLen?: number;
   minLen?: number;
+  hidePassword?: boolean;
 };
 
 interface InputProps {
@@ -27,6 +28,9 @@ const InputField: FunctionComponent<InputProps> = ({
   isWrong,
   inputRef,
 }) => {
+  const [inputValue, setInputValue] = useState("");
+  const [isFocus, setIsFocus] = useState(false);
+
   useEffect(() => {
     if (!isWrong) return;
 
@@ -53,17 +57,38 @@ const InputField: FunctionComponent<InputProps> = ({
           {isWrong ? warningMsg : ""}
         </div>
       </div>
-      <input
-        type={inputSetting.type}
-        placeholder={inputSetting.placeHolder}
-        minLength={inputSetting?.minLen}
-        maxLength={inputSetting?.maxLen}
-        className={
-          "text-[#6d5694] w-full h-[50px] py-3 px-5 text-sm border-[1px] border-solid rounded-lg placeholder:text-[#bbbbbb] " +
-          (isWrong ? "border-[#ff978d]" : "border-[rgba(109,86,148,0.4)]")
-        }
-        ref={inputRef}
-      />
+      <div className="relative">
+        {inputSetting.hidePassword && (
+          <div
+            className="absolute flex top-1/2 translate-y-[-50%] ml-5 text-[#6d5694] h-[calc(100%-1.5rem)] bg-white"
+            onClick={(e) => {
+              const target = e.target as HTMLDivElement;
+              target.parentNode?.querySelector("input")?.focus();
+              setIsFocus(true);
+            }}
+          >
+            {inputValue.split("").map((_) => "＊")}
+            {isFocus && <div className="input-animation-flicker">|</div>}
+          </div>
+        )}
+        <input
+          type={inputSetting.type}
+          placeholder={inputSetting.placeHolder}
+          minLength={inputSetting?.minLen}
+          maxLength={inputSetting?.maxLen}
+          className={
+            "text-[#6d5694] w-full h-[50px] py-3 px-5 text-sm border-[1px] border-solid rounded-lg placeholder:text-[#bbbbbb] " +
+            (isWrong ? "border-[#ff978d]" : "border-[rgba(109,86,148,0.4)]")
+          }
+          ref={inputRef}
+          onFocus={() => setIsFocus(true)}
+          onfocusout={() => setIsFocus(false)}
+          onChange={() => {
+            setIsFocus(true);
+            setInputValue(inputRef.current.value);
+          }}
+        />
+      </div>
     </div>
   );
 };

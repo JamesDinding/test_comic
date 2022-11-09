@@ -87,8 +87,9 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           title="密码"
           inputSetting={{
             placeHolder: "请输入6位以上英文或数字组合密码",
-            type: "password",
+            type: "text",
             minLen: 4,
+            hidePassword: true,
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}

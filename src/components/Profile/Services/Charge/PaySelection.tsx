@@ -22,6 +22,7 @@ type PayInfo = {
   id: number;
   name: string;
   type: string;
+  bonus_text?: string;
 };
 
 //  支付/ID/线路
@@ -100,6 +101,11 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                     value={selectName}
                   />
                   分流&nbsp;{i + 1}&nbsp;{dev_showId ? `(${p.id})` : ""}
+                  {p.bonus_text && (
+                    <span className="text-left text-[#ff978d] text-xs">
+                      {p.bonus_text}
+                    </span>
+                  )}
                 </label>
               </div>
             </div>

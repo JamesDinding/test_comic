@@ -173,14 +173,20 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
               )
                 .then((response) => {
                   const { data } = response;
+                  if (data.error) throw new Error(data.message);
                   window.location.href =
                     "/api/v1/orders/redirect/" + data.order_num + "?paymode=1";
                 })
                 .catch((err) => {
                   console.error(err.message || "failed");
+                  setErrMsg("请求发出失败，请确认网络状况");
+                  if (err.message === "产品沒有可使用的錢包地址，請聯繫客服") {
+                    setErrMsg(
+                      err.message || "产品沒有可使用的錢包地址，請聯繫客服"
+                    );
+                  }
                   setIsPosting(false);
                   setIsError(true);
-                  setErrMsg("请求发出失败，请确认网络状况");
                 });
             } else {
               postMyRegisterRandom()
@@ -195,6 +201,10 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                   )
                     .then((response) => {
                       const { data } = response;
+
+                      if (data.error) {
+                        throw new Error(data.message);
+                      }
                       window.location.href =
                         "/api/v1/orders/redirect/" +
                         data.order_num +
@@ -202,9 +212,14 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                     })
                     .catch((err) => {
                       console.error(err.message || "failed");
+                      setErrMsg("请求发出失败，请确认网络状况");
+                      if (err.message === "c") {
+                        setErrMsg(
+                          err.message || "产品沒有可使用的錢包地址，請聯繫客服"
+                        );
+                      }
                       setIsPosting(false);
                       setIsError(true);
-                      setErrMsg("请求发出失败，请确认网络状况");
                     });
                 })
                 .catch((err) => {

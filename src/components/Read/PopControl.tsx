@@ -66,7 +66,9 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
             className="flex flex-col items-center justify-center h-full text-[12px] leading-[12px] text-white"
             onClick={() => route("/home")}
           >
-            <IconHome class="h-6 w-6" />
+            <div className="grayscale-[70%]">
+              <IconHome class="h-6 w-6" />
+            </div>
             首页
           </button>
           <button className="ml-2" onClick={popChapter}>

@@ -4,6 +4,7 @@ import { StateUpdater, useState } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
 import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconMenu from "../../resources/img/icon-menu.svg";
+import IconHome from "../../resources/img/icon-reading-home.svg";
 
 interface PopControlProps {
   chapterList: ChapterData[];
@@ -60,6 +61,14 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
             }}
           >
             <IconChevron class="h-10 w-10 text-white rotate-180" />
+          </button>
+          <button
+            className="flex flex-col items-center justify-center h-full text-[12px] leading-[12px] text-white"
+            onClick={() => route("/home")}
+          >
+            <div className="">
+              <IconHome class="h-6 w-6 text-white" />
+            </div>
           </button>
           <button className="ml-2" onClick={popChapter}>
             <IconMenu class="h-10 w-10" />

@@ -2214,6 +2214,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(209 148 99 / var(--tw-text-opacity));
 }
 
+.caret-transparent {
+  caret-color: transparent;
+}
+
+.caret-\[\#6d5694\] {
+  caret-color: #6d5694;
+}
+
 .opacity-60 {
   opacity: 0.6;
 }

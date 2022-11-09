@@ -99,7 +99,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                     name={"foo"}
                     value={selectName}
                   />
-                  分流 {i + 1}
+                  分流&nbsp;{i + 1}&nbsp;{dev_showId ? `(${p.id})` : ""}
                 </label>
               </div>
             </div>

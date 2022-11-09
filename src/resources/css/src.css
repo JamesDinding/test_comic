@@ -595,3 +595,16 @@ footer .active span {
     transform: tranlsateY(0%);
   }
 }
+
+.input-animation-flicker {
+  animation: filcker 1.2s infinite;
+}
+
+@keyframes filcker {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}

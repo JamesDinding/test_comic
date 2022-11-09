@@ -101,8 +101,9 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           title="密码"
           inputSetting={{
             placeHolder: "请输入6位以上英文或数字组合密码",
-            type: "password",
+            type: "text",
             minLen: 6,
+            hidePassword: true,
           }}
           isWrong={isPsWrong}
           warningMsg={psWarning}
@@ -112,8 +113,9 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           title="确认密码"
           inputSetting={{
             placeHolder: "请再次输入密码",
-            type: "password",
+            type: "text",
             minLen: 6,
+            hidePassword: true,
           }}
           isWrong={isPsCheckWrong}
           warningMsg={psCheckWarning}

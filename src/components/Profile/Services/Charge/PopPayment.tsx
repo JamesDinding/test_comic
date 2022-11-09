@@ -22,7 +22,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   const [isWrong, setIsWrong] = useState(false);
 
   // counter for showing id
-  const counterRef = useRef(0);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     getOrdersProductsId(userSelect.id.toString())
@@ -47,7 +47,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
       <div className={"expandPayment overflow-hidden"}>
         <div
           className={"relative flex flex-col items-center h-full p-5 "}
-          onClick={() => counterRef.current++}
+          onClick={() => setCounter((prev) => prev + 1)}
         >
           <ModalTitle
             title="选择支付方案"
@@ -87,7 +87,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
                       payInfo={payments[way]}
                       isExpand={isNowExpand}
                       setCurExpand={setCurExpand}
-                      dev_showId={counterRef.current > 5}
+                      dev_showId={counter > 4}
                     />
                   </div>
                 );

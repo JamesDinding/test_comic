@@ -18,7 +18,10 @@ export default class ErrorBoundary extends Component {
       console.error("error happened in the app");
       return (
         <div className="w-full text-center mt-10">
-          程式发生错误，点击<a href="/">返回首页</a>
+          程式发生错误，点击
+          <div className="cursor-pointer font-bold" onClick={() => route("/")}>
+            返回首页
+          </div>
         </div>
       );
     }

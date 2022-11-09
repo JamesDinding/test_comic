@@ -29,16 +29,18 @@ interface PaySelectionProps {
   payInfo: PayInfo[];
   isExpand: boolean;
   setCurExpand: StateUpdater<number>;
+  dev_showId: boolean;
 }
 
 const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   payInfo,
   isExpand,
   setCurExpand,
+  dev_showId,
 }) => {
   const { selectPay, payment } = useCharge();
   const [selectIndex, setSelectIndex] = useState(0);
-  const [selectName, setSelectName] = useState('')
+  const [selectName, setSelectName] = useState("");
 
   const expandHeight = isExpand ? ((payInfo.length + 1) * 40).toString() : "40";
 
@@ -87,11 +89,16 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                   className="cursor-pointer"
                   onClick={() => {
                     setSelectIndex(i + 1);
-                    setSelectName(p.name)
+                    setSelectName(p.name);
                     selectPay({ ...p, index: i + 1 });
                   }}
                 >
-                  <input className="mr-2.5" type="radio" name={"foo"} value={selectName} />
+                  <input
+                    className="mr-2.5"
+                    type="radio"
+                    name={"foo"}
+                    value={selectName}
+                  />
                   分流 {i + 1}
                 </label>
               </div>

@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { useState, useEffect, StateUpdater } from "preact/hooks";
+import { useState, useEffect, StateUpdater, useRef } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import ModalTitle from "../../../UI/ModalTitle";
 import PaySelection from "./PaySelection";
@@ -20,6 +20,9 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   const [payments, setPayments] = useState<any>([]);
   const [way, setWay] = useState<any>([]);
   const [isWrong, setIsWrong] = useState(false);
+
+  // counter for showing id
+  const counterRef = useRef(0);
 
   useEffect(() => {
     getOrdersProductsId(userSelect.id.toString())
@@ -42,7 +45,10 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
         }
       > */}
       <div className={"expandPayment overflow-hidden"}>
-        <div className={"relative flex flex-col items-center h-full p-5 "}>
+        <div
+          className={"relative flex flex-col items-center h-full p-5 "}
+          onClick={() => counterRef.current++}
+        >
           <ModalTitle
             title="选择支付方案"
             onClose={() => {
@@ -81,6 +87,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
                       payInfo={payments[way]}
                       isExpand={isNowExpand}
                       setCurExpand={setCurExpand}
+                      dev_showId={counterRef.current > 5}
                     />
                   </div>
                 );

@@ -8,9 +8,7 @@ import PopPayment from "./PopPayment";
 import PopConfirm from "./PopConfirm";
 import Attention from "./Attention";
 import IconDiscountCoins from "../../../../resources/img/icon-discount-coins.svg";
-import IconDiscountVip from "../../../../resources/img/icon-discount-vip.svg";
 import { getOrdersProducts } from "../../../../lib/api";
-import { route } from "preact-router";
 
 declare interface SalesItem {
   id: number;

@@ -182,7 +182,7 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                   setErrMsg("请求发出失败，请确认网络状况");
                   if (
                     err.message === "产品沒有可使用的錢包地址，請聯繫客服" ||
-                    err.message === "order limit"
+                    err.message === "请求次数超过限制"
                   ) {
                     setErrMsg(
                       err.message || "产品沒有可使用的錢包地址，請聯繫客服"

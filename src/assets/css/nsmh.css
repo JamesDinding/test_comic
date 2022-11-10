@@ -569,6 +569,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   z-index: 10;
 }
 
+.z-\[11\] {
+  z-index: 11;
+}
+
 .m-2 {
   margin: 0.5rem;
 }

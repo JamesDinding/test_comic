@@ -107,7 +107,7 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                   />
                   分流&nbsp;{i + 1}&nbsp;{dev_showId ? `(${p.method_id})` : ""}
                   {p.bonus_text && (
-                    <div className="inline text-left text-[#ff978d] leading-[10px] text-[10px]">
+                    <div className="inline text-left text-[#ff978d] leading-[10px] text-[10px] whitespace-nowrap">
                       {p.bonus_text}
                     </div>
                   )}

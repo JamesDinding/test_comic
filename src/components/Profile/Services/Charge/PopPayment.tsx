@@ -16,10 +16,8 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   onNextConfirm,
 }) => {
   const { payment, userSelect, selectPay, selectCoins } = useCharge();
-  const [curExpand, setCurExpand] = useState(0);
   const [payments, setPayments] = useState<any>([]);
   const [way, setWay] = useState<any>([]);
-  const [isWrong, setIsWrong] = useState(false);
 
   // counter for showing id
   const [counter, setCounter] = useState(0);
@@ -38,84 +36,45 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
 
   return (
     <Card heightDynamic={true}>
-      {/* <div
-        className={
-          "expandPayment overflow-hidden " +
-          (curExpand > -1 ? "h-[515px]" : "h-[400px]")
-        }
-      > */}
       <div className={"expandPayment overflow-hidden"}>
-        <div
-          className={"relative flex flex-col items-center h-full p-5 "}
-          onClick={() => setCounter((prev) => prev + 1)}
-        >
-          <ModalTitle
-            title="选择支付方案"
-            onClose={() => {
-              selectPay(null);
-              selectCoins(null);
-              onClose();
-            }}
-          />
-          {/* <div className="w-full max-h-full overflow-y-auto no-scollbar bg-[#fcf6ff]"> */}
-          <div className="w-full max-h-[310px] overflow-y-auto no-scollbar bg-[#fcf6ff]">
-            <div
-              id="payway"
-              className="relative overflow-hidden px-1 py-2.5"
-              onClick={(e) => {
-                const target = e.target as HTMLDivElement;
-
-                if (target.id === "payway") setCurExpand(-1);
-                return;
+        <div className={"relative flex flex-col items-center h-full p-5 "}>
+          <div
+            className="w-full"
+            onClick={() => setCounter((prev) => prev + 1)}
+          >
+            <ModalTitle
+              title="选择支付方案"
+              onClose={() => {
+                selectPay(null);
+                selectCoins(null);
+                onClose();
               }}
-            >
+            />
+          </div>
+          <div className="w-full max-h-[350px] overflow-y-auto no-scollbar bg-[#fcf6ff]">
+            <div id="payway" className="relative overflow-hidden px-1 py-2.5">
               <div className="payment-shadow"></div>
               {way?.map((way: any, i: any, arr: any) => {
-                const isNowExpand = curExpand === i;
                 return (
                   <div
                     key={i}
                     className={
                       "w-full" + (arr.length - 1 === i ? " " : " mb-2.5")
                     }
-                    onClick={(e) => {
-                      setCurExpand(i);
-                      e.stopPropagation();
-                    }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <PaySelection
                       payInfo={payments[way]}
-                      isExpand={isNowExpand}
-                      setCurExpand={setCurExpand}
+                      isExpand={true}
                       dev_showId={counter > 4}
+                      onNext={onNextConfirm}
+                      onClose={onClose}
                     />
                   </div>
                 );
               })}
             </div>
           </div>
-          <div className="grow"></div>
-          <div
-            className={
-              "text-[#ff978d] text-input-warning text-sm pt-4 " +
-              (isWrong ? "error-shaking" : "")
-            }
-          >
-            {isWrong ? "请选择支付方案" : ""}
-          </div>
-          <button
-            className="w-full mt-10 py-4 text-center text-white text-lg bg-[#8d6d9f] rounded-xl "
-            onClick={() => {
-              if (!payment) {
-                setIsWrong(true);
-                return;
-              }
-              onClose();
-              onNextConfirm();
-            }}
-          >
-            下一步
-          </button>
         </div>
       </div>
     </Card>

@@ -29,21 +29,26 @@ type PayInfo = {
 interface PaySelectionProps {
   payInfo: PayInfo[];
   isExpand: boolean;
-  setCurExpand: StateUpdater<number>;
   dev_showId: boolean;
+  onNext: () => void;
+  onClose: () => void;
 }
 
 const PaySelection: FunctionalComponent<PaySelectionProps> = ({
   payInfo,
   isExpand,
-  setCurExpand,
   dev_showId,
+  onNext,
+  onClose,
 }) => {
   const { selectPay, payment } = useCharge();
   const [selectIndex, setSelectIndex] = useState(0);
   const [selectName, setSelectName] = useState("");
 
-  const expandHeight = isExpand ? ((payInfo.length + 1) * 40).toString() : "40";
+  const [isFold, setIsFold] = useState(false);
+
+  const expandHeight =
+    isExpand && !isFold ? ((payInfo.length + 1) * 40).toString() : "40";
 
   return (
     <div
@@ -52,7 +57,10 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
       }
       style={{ height: expandHeight + "px" }}
     >
-      <div className="flex items-center">
+      <div
+        className="flex items-center"
+        onClick={() => setIsFold((prev) => !prev)}
+      >
         <div className="mr-2.5 w-5">
           {iconMap.get(payInfo[0].type)?.element}
         </div>
@@ -61,17 +69,11 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
             (payment?.name === selectName ? " / 分流 " + selectIndex : "")}
         </div>
         <div className="grow"></div>
-        <div
-          className="cursor-pointer"
-          onClick={(e) => {
-            if (!isExpand) return;
-            setCurExpand(-1);
-            e.stopPropagation();
-          }}
-        >
+        <div className="cursor-pointer">
           <IconChevron
             class={
-              "h-4 duration-300 " + (isExpand ? "rotate-90" : "-rotate-90")
+              "h-4 duration-300 " +
+              (isExpand && !isFold ? "rotate-90" : "-rotate-90")
             }
           />
         </div>
@@ -92,6 +94,8 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
                     setSelectIndex(i + 1);
                     setSelectName(p.name);
                     selectPay({ ...p, index: i + 1 });
+                    onNext();
+                    onClose();
                   }}
                 >
                   <input

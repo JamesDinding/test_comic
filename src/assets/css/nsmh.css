@@ -1314,6 +1314,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow-y: scroll;
 }
 
+.whitespace-normal {
+  white-space: normal;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -1950,6 +1954,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 40px;
 }
 
+.text-\[8px\] {
+  font-size: 8px;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
+}
+
 .font-medium {
   font-weight: 500;
 }
@@ -2012,6 +2024,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .leading-\[40px\] {
   line-height: 40px;
+}
+
+.leading-\[10px\] {
+  line-height: 10px;
 }
 
 .tracking-wide {
@@ -3001,7 +3017,7 @@ input[type="number"] {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
   --tw-gradient-from: rgba(89,89,89,0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(89 89 89 / 0));
-  --tw-gradient-to: #000;
+  --tw-gradient-to: rgba(0,0,0,.4);
 }
 
 .item-overlay-chapter {

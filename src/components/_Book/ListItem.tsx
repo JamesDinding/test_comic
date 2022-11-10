@@ -6,11 +6,13 @@ import Image from "../_Image/image";
 interface BookListItemProps {
   Data: Book;
   type?: "separate" | "stack" | "original" | "collect";
+  customHeight?: string;
 }
 
 const BookListItem: FunctionalComponent<BookListItemProps> = ({
   Data,
   type = "original",
+  customHeight = "h-[157px]",
 }) => {
   const [showPending, setPending] = useState(true);
 
@@ -38,7 +40,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
               (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
             }
           ></div>
-          <div className="rounded-lg overflow-hidden h-[157px]">
+          <div className={`rounded-lg overflow-hidden ${customHeight}`}>
             <div
               className={
                 "rounded-lg overflow-hidden h-full " +

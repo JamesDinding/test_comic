@@ -22,7 +22,7 @@ const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({
       <BookList
         Items={Items}
         ItemPerRow={ItemPerRow}
-        type={ItemPerRow === 2 ? "stack" : "separate"}
+        type={"separate"}
         isTemp={true}
       />
     </div>

@@ -19,9 +19,9 @@ export default class ErrorBoundary extends Component {
       return (
         <div className="w-full text-center mt-10">
           程式发生错误，点击
-          <div className="cursor-pointer font-bold" onClick={() => route("/")}>
+          <a href="/home" className="cursor-pointer font-bold px-1">
             返回首页
-          </div>
+          </a>
         </div>
       );
     }

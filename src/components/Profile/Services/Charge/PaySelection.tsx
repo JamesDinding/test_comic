@@ -86,32 +86,30 @@ const PaySelection: FunctionalComponent<PaySelectionProps> = ({
       >
         {payInfo.map((p, i) => {
           return (
-            <div className="mt-5">
-              <div>
-                <label
-                  className="cursor-pointer"
-                  onClick={() => {
-                    setSelectIndex(i + 1);
-                    setSelectName(p.name);
-                    selectPay({ ...p, index: i + 1 });
-                    onNext();
-                    onClose();
-                  }}
-                >
-                  <input
-                    className="mr-2.5"
-                    type="radio"
-                    name={"foo"}
-                    value={selectName}
-                  />
-                  分流&nbsp;{i + 1}&nbsp;{dev_showId ? `(${p.id})` : ""}
-                  {p.bonus_text && (
-                    <div className="inline text-left text-[#ff978d] leading-[10px] text-[10px] whitespace-nowrap">
-                      {p.bonus_text}
-                    </div>
-                  )}
-                </label>
-              </div>
+            <div className="mt-5 w-full">
+              <label
+                className="cursor-pointer"
+                onClick={() => {
+                  setSelectIndex(i + 1);
+                  setSelectName(p.name);
+                  selectPay({ ...p, index: i + 1 });
+                  onNext();
+                  onClose();
+                }}
+              >
+                <input
+                  className="mr-2.5"
+                  type="radio"
+                  name={"foo"}
+                  value={selectName}
+                />
+                分流&nbsp;{i + 1}&nbsp;{dev_showId ? `(${p.id})` : ""}
+                {p.bonus_text && (
+                  <div className="inline text-left text-[#ff978d] leading-[10px] text-[10px] whitespace-nowrap">
+                    {p.bonus_text}
+                  </div>
+                )}
+              </label>
             </div>
           );
         })}

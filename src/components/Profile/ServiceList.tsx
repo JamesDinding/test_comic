@@ -3,6 +3,8 @@ import { StateUpdater, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
 import { useUser } from "../../context/user";
 import { Link } from "preact-router";
+import CustomLink from "../CustomLink";
+import { useRouter } from "../../context/router";
 import { route } from "preact-router";
 import ServiceRow from "./ServiceRow";
 import BindPhone from "./Services/BindPhone";
@@ -24,6 +26,7 @@ const serviceList = [
 ];
 
 const ServiceList: FunctionalComponent = () => {
+  const { customRouter } = useRouter();
   const { isLogIn, logout, userStatus } = useUser();
   const [isPopBinding, setIsPopBinding] = useState(false);
   const [isPopLogout, setIsPopLogout] = useState(false);
@@ -67,6 +70,7 @@ const ServiceList: FunctionalComponent = () => {
                           setIsPopBinding(true);
                           return;
                         }
+                        customRouter.push(url);
                         route(url);
                       }}
                     />
@@ -99,6 +103,7 @@ const ServiceList: FunctionalComponent = () => {
                         setIsPopBinding(true);
                         return;
                       }
+                      customRouter.push(url);
                       route(url);
                     }}
                   />
@@ -117,12 +122,12 @@ const ServiceList: FunctionalComponent = () => {
             登出
           </div>
         ) : (
-          <Link
+          <CustomLink
             className="cursor-pointer bg-white py-2.5 px-5 text-[#6d5694] text-sm"
             href="/login"
           >
             登录
-          </Link>
+          </CustomLink>
         )}
       </div>
     </F>

@@ -1,4 +1,5 @@
 import { h, FunctionalComponent } from "preact";
+import { useRouter } from "../../context/router";
 import { route } from "preact-router";
 import { useReadingModal } from "../../context/reading";
 import { useUser } from "../../context/user";
@@ -19,6 +20,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
   curComic,
   setChapterList,
 }) => {
+  const { customRouter } = useRouter();
   const { isPopBuy, stuffInfo, reset } = useReadingModal();
   let layerCss = isPopBuy ? "" : "translate-y-[120%]";
   const { userStatus, updateCoins } = useUser();
@@ -40,7 +42,10 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
           <Btn
             title="金币不足，充值去"
             bgColor="bg-[#eb6f6f]"
-            cb={() => route("/charge")}
+            cb={() => {
+              customRouter.push("/charge");
+              route("/charge");
+            }}
           />
           <div className="mt-2.5 text-center text-[#6d569466]">
             点击按钮后，将会前往充值服务页面
@@ -72,6 +77,10 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
                   updateCoins(stuffInfo?.price || 60);
                   reset();
 
+                  customRouter.push(
+                    `/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`,
+                    true
+                  );
                   route(
                     `/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`,
                     true

@@ -5,6 +5,7 @@ import IconSearch from "./../../resources/img/homebrandbar-search.svg";
 import IconCoin from "../../resources/img/icon-coin.svg";
 import { getSearch } from "../../lib/api";
 import { defaultLocalStorage } from "../../const";
+import CustomLink from "../CustomLink";
 
 interface HomeBrandBarProps {
   onShowSearch: StateUpdater<boolean>;
@@ -68,10 +69,10 @@ const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({
           <IconSearch class="text-gray-500 h-4" alt="搜索" />
         </div>
       </div>
-      <a href="/charge" class="flex flex-col items-center">
+      <CustomLink href="/charge" className="flex flex-col items-center">
         <IconCoin class="w-6" />
         <span class="text-[#666666] text-xs">充值</span>
-      </a>
+      </CustomLink>
     </div>
   );
 };

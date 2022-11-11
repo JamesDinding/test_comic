@@ -4,6 +4,7 @@ import ModalTitle from "../../../UI/ModalTitle";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 import Btn from "../../../UI/Btn";
 import { route } from "preact-router";
+import { useRouter } from "../../../../context/router";
 
 interface PopDescriptionProps {
   onClose: () => void;
@@ -12,6 +13,8 @@ interface PopDescriptionProps {
 const PopDescription: FunctionalComponent<PopDescriptionProps> = ({
   onClose,
 }) => {
+  const { customRouter } = useRouter();
+
   return (
     <Card heightShrink={true}>
       <div className="relative overflow-y-auto no-scrollbar flex flex-col items-center h-full p-5">
@@ -43,7 +46,10 @@ const PopDescription: FunctionalComponent<PopDescriptionProps> = ({
         <Btn
           title="联系客服"
           bgColor="bg-[#a186af]"
-          cb={() => route("/service")}
+          cb={() => {
+            customRouter.push("/service");
+            route("/service");
+          }}
         />
       </div>
     </Card>

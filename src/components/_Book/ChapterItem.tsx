@@ -1,10 +1,11 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { route, Link } from "preact-router";
+import { route } from "preact-router";
 import { useState, useEffect, useRef } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
 import IconLock from "../../resources/img/icon-lock.svg";
 import Image from "../_Image/image";
 import { ObserverProvider } from "../../context/observer";
+import { useRouter } from "../../context/router";
 
 const ChapterItem: FunctionalComponent<ChapterItem> = ({
   chapter,
@@ -12,6 +13,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
   bookId = 0,
   routeReplace = false,
 }) => {
+  const { customRouter } = useRouter();
   const { reset } = useReadingModal();
   const { popBuy, setStuffInfo } = useReadingModal();
   const [isPending, setIsPending] = useState(true);
@@ -33,6 +35,10 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
           }
 
           reset();
+          customRouter.push(
+            `/read/${bookId}/chapter/${chapter.position}`,
+            routeReplace
+          );
           route(`/read/${bookId}/chapter/${chapter.position}`, routeReplace);
         }}
       >

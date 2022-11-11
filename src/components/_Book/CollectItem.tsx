@@ -1,10 +1,11 @@
 import { h, FunctionalComponent } from "preact";
 import { StateUpdater, useState, useEffect } from "preact/hooks";
-import { Link, route } from "preact-router";
+import { route } from "preact-router";
 import Image from "../_Image/image";
 import { postMyBookmarks } from "../../lib/api";
 import { useUser } from "../../context/user";
 import { defaultLocalStorage } from "../../const";
+import { useRouter } from "../../context/router";
 
 interface CollectItemProps {
   Data: Book;
@@ -22,6 +23,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
   setCurPress,
   updateList,
 }) => {
+  const { customRouter } = useRouter();
   const { isLogIn } = useUser();
   const [showPending, setPending] = useState(true);
   const [isLongPress, setIsLongPress] = useState(false);
@@ -89,6 +91,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
               e.stopPropagation();
               return;
             }
+            customRouter.push("/directory/" + (Data.id || Data.ID));
             route("/directory/" + (Data.id || Data.ID));
           }}
           onTouchStart={(e) => {
@@ -105,6 +108,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
               e.stopPropagation();
               return;
             }
+            customRouter.push("/directory/" + (Data.id || Data.ID));
             route("/directory/" + (Data.id || Data.ID));
           }}
         >

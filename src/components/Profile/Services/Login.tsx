@@ -1,5 +1,6 @@
 import { h, FunctionComponent, Fragment as F } from "preact";
 import { route } from "preact-router";
+import { useRouter } from "../../../context/router";
 import { useState, useRef, StateUpdater } from "preact/hooks";
 import { useUser } from "../../../context/user";
 import InputField from "./InputField";
@@ -13,6 +14,7 @@ interface LoginProps {}
 let timer: ReturnType<typeof setTimeout> | undefined;
 
 const Login: FunctionComponent<LoginProps> = ({}) => {
+  const { customRouter } = useRouter();
   const { login } = useUser();
   const [isPending, setIsPending] = useState(false);
 
@@ -152,6 +154,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
                       break;
 
                     case "already logged":
+                      customRouter.push("/member");
                       route("/memeber");
                       break;
 
@@ -159,7 +162,10 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
                       break;
                   }
 
-                  !hasError && route("/profile");
+                  if (!hasError) {
+                    customRouter.push("/profile");
+                    route("/profile");
+                  }
                 })
                 .catch((err) => {
                   console.error("err", err);
@@ -171,7 +177,10 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
           不是会员？
           <span
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
-            onClick={() => route("/register", true)}
+            onClick={() => {
+              customRouter.push("/register", true);
+              route("/register", true);
+            }}
           >
             立即注册
           </span>

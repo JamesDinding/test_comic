@@ -12,10 +12,11 @@ import {
   getSpecifiedBookIdContent,
 } from "../../lib/api";
 import { useDomain } from "../../context/domain";
-import { route } from "preact-router";
+import { useRouter } from "../../context/router";
 
 let test: any;
 const ReadContentPage: FunctionalComponent = () => {
+  const { currentRoute } = useRouter();
   const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const { isPopControl, popControl, reset, stuffInfo } = useReadingModal();
@@ -29,19 +30,19 @@ const ReadContentPage: FunctionalComponent = () => {
   // 暂时先这样写
   // [ _, _, comicId, _, chapterId ]
   const [curComic, setCurComic] = useState(
-    parseInt(window.location.pathname.split("/")[2], 10)
+    parseInt(currentRoute.split("/")[2], 10)
   );
+  // const [curComic, setCurComic] = useState(
+  //   parseInt(window.location.pathname.split("/")[2], 10)
+  // );
   const [curChapter, setCurChapter] = useState(
-    parseInt(window.location.pathname.split("/")[4], 10) ||
-      stuffInfo?.position ||
-      1
+    parseInt(currentRoute.split("/")[4], 10) || stuffInfo?.position || 1
   );
-
-  // test console.log
-  clearInterval(test);
-  test = setInterval(() => {
-    console.log("timer", stuffInfo);
-  }, 2000);
+  // const [curChapter, setCurChapter] = useState(
+  //   parseInt(window.location.pathname.split("/")[4], 10) ||
+  //     stuffInfo?.position ||
+  //     1
+  // );
 
   // 进入页面显示bar，让使用者可以注意到，再来是滚动时消失
   useEffect(() => {
@@ -94,7 +95,6 @@ const ReadContentPage: FunctionalComponent = () => {
     if (!curChapter) {
       console.log("curChapter nan");
     }
-    console.log(stuffInfo?.position);
     getSpecifiedBookIdContent(curComic, curChapter)
       .then((response) => {
         setDomain(response.domain);

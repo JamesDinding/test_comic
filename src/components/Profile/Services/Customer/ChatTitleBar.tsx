@@ -1,6 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { Link } from "preact-router";
-import { route } from "preact-router";
+import CustomLink from "../../../CustomLink";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 import IconChevron from "../../../../resources/img/icon-chevron.svg";
 import IconHome from "../../../../resources/img/footer-home.svg";
@@ -34,9 +33,9 @@ const CharTitleBar: FunctionalComponent<CharTitleBarProps> = ({
         </div>
       </div>
       <div className="w-">
-        <Link href="/">
+        <CustomLink href="/">
           <IconCross class="h-8 text-white" />
-        </Link>
+        </CustomLink>
       </div>
     </div>
   );

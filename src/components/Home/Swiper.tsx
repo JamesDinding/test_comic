@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { useDomain } from "../../context/domain";
+import CustomLink from "../CustomLink";
 import Image from "../_Image/image";
 
 type slider = null | undefined | HTMLElement;
@@ -169,7 +170,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
       >
         {banners?.map((banner: any, i: number) => {
           return (
-            <a
+            <CustomLink
               key={i}
               href={"/directory/" + banner.id}
               className={`block w-full h-full absolute ${transList[i]}`}
@@ -184,7 +185,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
                   escapeObserve={true}
                 />
               </div>
-            </a>
+            </CustomLink>
           );
         })}
       </div>

@@ -3,8 +3,10 @@ import IconCs from "../resources/img/btn-cs.svg";
 import IconArrow from "../resources/img/icon-arrow.svg";
 import IconCross from "../resources/img/icon-cross.svg";
 import IconCoin from "../resources/img/icon-coin.svg";
-import { Link, route } from "preact-router";
+import Router, { Link, route } from "preact-router";
 import { CUSTOMER_SERVICE_URL } from "../const";
+import { useRouter } from "../context/router";
+import CustomLink from "./CustomLink";
 
 interface ReturnBarProps {
   title: string;
@@ -21,6 +23,8 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
   hasShadow = false,
   defaultDestination,
 }) => {
+  const { customRouter } = useRouter();
+
   return (
     <div
       className={
@@ -31,9 +35,12 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
         className="h-[37px] flex flex-col justify-end items-center cursor-pointer"
         onClick={() => {
           if (defaultDestination) {
+            customRouter.push(defaultDestination);
             route(defaultDestination);
           } else {
-            history.back();
+            const des = customRouter.pop();
+            // history.back();
+            route(des);
           }
         }}
       >
@@ -58,28 +65,31 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
       )}
       {type === "charge" && (
         <div className="h-[30px]">
-          <Link href="/charge">
+          <CustomLink href="/charge">
             <img src="/assets/img/deposit.gif" className="w-6" />
-          </Link>
+          </CustomLink>
         </div>
       )}
       {type === "reading" && (
         <div className="h-[30px]">
-          <Link href="/charge">
+          <CustomLink href="/charge">
             <span className="mb-[.125rem]">
               <IconCoin class="w-[1.125rem] text-[#8f6e9f]" />
             </span>
             <div className="pt-1 text-[#666666] text-[12px] leading-[12px]">
               返回
             </div>
-          </Link>
+          </CustomLink>
         </div>
       )}
       {type === "cross" && (
         <div className="h-[30px]">
           <div
             className="h-[37px] flex flex-col justify-end items-center cursor-pointer"
-            onClick={() => history.back()}
+            onClick={() => {
+              customRouter.pop();
+              history.back();
+            }}
           >
             <span className="mb-[.125rem]">
               <IconCross class="w-8 text-[#8f6e9f]" />

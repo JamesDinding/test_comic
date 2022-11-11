@@ -101,7 +101,7 @@ input[type="number"] {
 }
 
 .modal-title {
-  @apply w-full mt-6 pb-2.5 text-center text-[#6d5694] text-lg tracking-wider border-b-[1px] border-solid border-[#ba9bf066];
+  @apply w-full mt-6 pb-2.5 text-center text-[#6d5694] text-lg tracking-wider border-b-[1px] border-solid border-[rgba(186,155,240,0.4)];
 }
 
 .modal-cross {
@@ -332,7 +332,7 @@ input[type="number"] {
 
 /* 章節目錄 */
 .chapter-title {
-  @apply text-lg text-[#6d5694] border-b-2 pb-2 border-[#6d569466];
+  @apply text-lg text-[#6d5694] border-b-2 pb-2 border-[rgba(109,86,148,0.4)];
 }
 
 .chapter-item-backdrop {

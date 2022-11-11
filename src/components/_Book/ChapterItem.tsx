@@ -42,7 +42,15 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
           route(`/read/${bookId}/chapter/${chapter.position}`, routeReplace);
         }}
       >
-        {!chapter.status && <div className="chapter-item-backdrop"></div>}
+        {!chapter.status && (
+          <div
+            className="chapter-item-backdrop"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, rgba(0, 0, 0, 0.4), #000)",
+            }}
+          ></div>
+        )}
         {!chapter.status && (
           <div className="absolute left-1/2 translate-x-[-50%] pt-[1.125rem]">
             <IconLock class="w-5 h-5" />
@@ -59,7 +67,13 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
             />
           </div>
         </ObserverProvider>
-        <div className="item-overlay-chapter"></div>
+        <div
+          className="item-overlay-chapter"
+          style={{
+            backgroundImage:
+              "linear-gradient(to bottom,rgba(89, 89, 89, 0),rgba(0, 0, 0, 0.8))",
+          }}
+        ></div>
         <div className="absolute left-1/2 bottom-[.25rem] translate-x-[-50%] whitespace-nowrap text-sm text-white text-center w-[70px] h-[20px] leading-[20px]">
           第 {chapter.position} 章
         </div>

@@ -93,7 +93,7 @@ const ReadContentPage: FunctionalComponent = () => {
 
   useEffect(() => {
     if (!curChapter) {
-      console.log("curChapter nan");
+      console.error("curChapter nan");
     }
     getSpecifiedBookIdContent(curComic, curChapter)
       .then((response) => {

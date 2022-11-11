@@ -101,7 +101,7 @@ input[type="number"] {
 }
 
 .modal-title {
-  @apply w-full mt-6 pb-2.5 text-center text-[#6d5694] text-lg tracking-wider border-b-[1px] border-solid border-[#ba9bf066];
+  @apply w-full mt-6 pb-2.5 text-center text-[#6d5694] text-lg tracking-wider border-b-[1px] border-solid border-[rgba(186,155,240,0.4)];
 }
 
 .modal-cross {
@@ -332,7 +332,7 @@ input[type="number"] {
 
 /* 章節目錄 */
 .chapter-title {
-  @apply text-lg text-[#6d5694] border-b-2 pb-2 border-[#6d569466];
+  @apply text-lg text-[#6d5694] border-b-2 pb-2 border-[rgba(109,86,148,0.4)];
 }
 
 .chapter-item-backdrop {
@@ -412,12 +412,24 @@ input[type="number"] {
   @apply absolute z-10 w-3 h-3 rotate-[30deg] left-[-5px] origin-bottom-left;
 }
 
+/* @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.5)] rounded-b-lg absolute bottom-0 left-0 w-full h-28; */
 .item-overlay {
-  @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.5)] rounded-b-lg absolute bottom-0 left-0 w-full h-28;
+  @apply rounded-b-lg absolute bottom-0 left-0 w-full h-28;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(89, 89, 89, 0),
+    rgba(0, 0, 0, 0.5)
+  );
 }
 
+/* @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.8)] rounded-b-lg absolute bottom-0 left-0 w-full h-[28px]; */
 .item-overlay-chapter {
-  @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.8)] rounded-b-lg absolute bottom-0 left-0 w-full h-[28px];
+  @apply rounded-b-lg absolute bottom-0 left-0 w-full h-[28px];
+  background-image: linear-gradient(
+    to bottom,
+    rgba(89, 89, 89, 0),
+    rgba(0, 0, 0, 0.8)
+  );
 }
 
 .item .title {

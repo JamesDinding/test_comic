@@ -14,4 +14,7 @@ module.exports = {
     require("tailwindcss-safe-area"),
     require("@tailwindcss/line-clamp"),
   ],
+  corePlugins: {
+    backgroundImage: false,
+  },
 };

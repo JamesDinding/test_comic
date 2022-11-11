@@ -1617,18 +1617,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
 }
 
-.bg-userSection {
-  background-image: url('../img/bg-user.png');
-}
-
-.bg-userIcon {
-  background-image: url('../img/user-icon.png');
-}
-
-.bg-cartoon {
-  background-image: url('../img/bg-cartoon.png');
-}
-
 .bg-\[length\:100\%_50\%\] {
   background-size: 100% 50%;
 }
@@ -2994,6 +2982,8 @@ input[type="number"] {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+/* @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.5)] rounded-b-lg absolute bottom-0 left-0 w-full h-28; */
+
 .item-overlay {
   position: absolute;
   bottom: 0px;
@@ -3002,11 +2992,14 @@ input[type="number"] {
   width: 100%;
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-  --tw-gradient-from: rgba(89,89,89,0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(89 89 89 / 0));
-  --tw-gradient-to: rgba(0,0,0,.5);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(89, 89, 89, 0),
+    rgba(0, 0, 0, 0.5)
+  );
 }
+
+/* @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.8)] rounded-b-lg absolute bottom-0 left-0 w-full h-[28px]; */
 
 .item-overlay-chapter {
   position: absolute;
@@ -3016,10 +3009,11 @@ input[type="number"] {
   width: 100%;
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-  --tw-gradient-from: rgba(89,89,89,0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(89 89 89 / 0));
-  --tw-gradient-to: rgba(0,0,0,.8);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(89, 89, 89, 0),
+    rgba(0, 0, 0, 0.8)
+  );
 }
 
 .item .title {
@@ -3318,11 +3312,6 @@ footer .active span {
   content: var(--tw-content);
   --tw-scale-y: -1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.before\:bg-cartoon::before {
-  content: var(--tw-content);
-  background-image: url('../img/bg-cartoon.png');
 }
 
 .before\:bg-\[length\:100\%_100\%\]::before {

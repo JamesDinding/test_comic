@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.3 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -30,6 +30,7 @@
 2. Prevent adjustments of font size after orientation changes in iOS.
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
 */
 
 html {
@@ -42,6 +43,8 @@ html {
   /* 3 */
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
 }
 
 /*
@@ -183,6 +186,8 @@ textarea {
   font-family: inherit;
   /* 1 */
   font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
   /* 1 */
   line-height: inherit;
   /* 1 */
@@ -398,15 +403,62 @@ video {
   height: auto;
 }
 
-/*
-Ensure the default browser behavior of the `hidden` attribute.
-*/
+/* Make elements with the HTML hidden attribute stay hidden by default */
 
 [hidden] {
   display: none;
 }
 
 *, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -1468,6 +1520,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(209 148 99 / var(--tw-border-opacity));
 }
 
+.border-\[\#855595\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(133 85 149 / var(--tw-border-opacity));
+}
+
 .border-\[\#6d569419\] {
   border-color: #6d569419;
 }
@@ -1537,14 +1594,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#ff978d\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 151 141 / var(--tw-bg-opacity));
-}
-
-.bg-\[rgba\(0\2c 0\2c 0\2c \.7\)\] {
-  background-color: rgba(0,0,0,.7);
-}
-
-.bg-\[rgba\(0\2c 0\2c 0\2c \.6\)\] {
-  background-color: rgba(0,0,0,.6);
 }
 
 .bg-\[\#71b3d0\] {
@@ -1623,6 +1672,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#a186af\] {
   --tw-bg-opacity: 1;
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
+}
+
+.bg-\[linear-gradient\(\)\] {
+  background-image: linear-gradient();
+}
+
+.bg-userSection {
+  background-image: url('../img/bg-user.png');
+}
+
+.bg-userIcon {
+  background-image: url('../img/user-icon.png');
+}
+
+.bg-cartoon {
+  background-image: url('../img/bg-cartoon.png');
 }
 
 .bg-\[length\:100\%_50\%\] {
@@ -3320,6 +3385,11 @@ footer .active span {
   content: var(--tw-content);
   --tw-scale-y: -1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.before\:bg-cartoon::before {
+  content: var(--tw-content);
+  background-image: url('../img/bg-cartoon.png');
 }
 
 .before\:bg-\[length\:100\%_100\%\]::before {

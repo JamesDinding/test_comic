@@ -4,8 +4,8 @@ import { useState, useEffect, useContext, useCallback } from "preact/hooks";
 const RouterContext = createContext<RouterContextType>(null!);
 
 export const RouterProvider: FunctionalComponent = ({ children }) => {
-  const [currentUrl, setCurrentUrl] = useState(window.location.href || "");
-  const [routerStack, setRouterStack] = useState([window.location.href]);
+  const [currentUrl, setCurrentUrl] = useState(window.location.pathname || "");
+  const [routerStack, setRouterStack] = useState([window.location.pathname]);
 
   const popHandler = useCallback(() => {
     const temp = [...routerStack];
@@ -18,19 +18,22 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     return popResult;
   }, [routerStack]);
 
-  const pushHandler = useCallback((url: string, replace?: boolean) => {
-    const temp = [...routerStack];
-    setCurrentUrl(url);
+  const pushHandler = useCallback(
+    (url: string, replace?: boolean) => {
+      const temp = [...routerStack];
+      setCurrentUrl(url);
 
-    if (replace) {
-      temp.pop();
-      temp.push(url);
-      setRouterStack(temp);
-    } else {
-      temp.push(url);
-      setRouterStack(temp);
-    }
-  }, []);
+      if (replace) {
+        temp.pop();
+        temp.push(url);
+        setRouterStack(temp);
+      } else {
+        temp.push(url);
+        setRouterStack(temp);
+      }
+    },
+    [routerStack]
+  );
 
   const value = {
     currentRoute: currentUrl,
@@ -46,6 +49,6 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   );
 };
 
-export function useUser() {
+export function useRouter() {
   return useContext(RouterContext);
 }

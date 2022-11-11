@@ -1,5 +1,12 @@
 import { h, FunctionalComponent, createContext } from "preact";
-import { useState, useRef, useContext, useCallback } from "preact/hooks";
+import { route } from "preact-router";
+import {
+  useState,
+  useRef,
+  useContext,
+  useCallback,
+  useEffect,
+} from "preact/hooks";
 
 const RouterContext = createContext<RouterContextType>(null!);
 
@@ -33,6 +40,14 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     },
     [routerStack, currentUrlRef.current]
   );
+
+  useEffect(() => {
+    window.onpopstate = (e) => {
+      const des = popHandler();
+      route(des);
+      console.log(des);
+    };
+  }, [popHandler]);
 
   const value = {
     currentRoute: currentUrlRef.current,

@@ -1,5 +1,6 @@
 import { h, FunctionComponent, Fragment as F } from "preact";
-import Router, { route } from "preact-router";
+import { route } from "preact-router";
+import { useRouter } from "../../../context/router";
 import { useState, useRef, StateUpdater } from "preact/hooks";
 import InputField from "./InputField";
 import Btn from "../../UI/Btn";
@@ -13,6 +14,7 @@ interface LoginProps {}
 let timer: ReturnType<typeof setTimeout> | undefined;
 
 const Register: FunctionComponent<LoginProps> = ({}) => {
+  const { customRouter } = useRouter();
   const { setLogin } = useUser();
 
   const [isPending, setIsPending] = useState(false);
@@ -149,6 +151,7 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
                   localStorage.setItem("sjmh_log_status", "true");
                   setLogin();
                   setIsPending(false);
+                  customRouter.push("/profile");
                   route("/profile");
                 })
                 .catch((err) => {
@@ -167,7 +170,10 @@ const Register: FunctionComponent<LoginProps> = ({}) => {
           已经是会员？
           <span
             className="cursor-pointer px-2 text-[#a1b68b] btn-text"
-            onClick={() => route("/login", true)}
+            onClick={() => {
+              customRouter.push("/login", true);
+              route("/login", true);
+            }}
           >
             立即登录
           </span>

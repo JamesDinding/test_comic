@@ -1,6 +1,7 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useRef, useState, useEffect } from "preact/hooks";
 import { route } from "preact-router";
+import { useRouter } from "../../context/router";
 import Description from "./Description";
 import ChapterList from "./ChapterList";
 import ReturnBar from "../ReturnBar";
@@ -18,13 +19,13 @@ import { useUser } from "../../context/user";
 import { defaultLocalStorage } from "../../const";
 
 const DirectoryContentPage: FunctionalComponent = () => {
+  const { currentRoute, customRouter } = useRouter();
   const { isLogIn } = useUser();
   const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
   const [recommendBlock, setRecommendBlock] = useState();
 
-  const cur_url = window.location.href.split("/").pop();
   // temp collection state
   const [isCollected, setIsCollected] = useState(false);
 
@@ -42,7 +43,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
   }, [isLogIn, content]);
 
   useEffect(() => {
-    getSpecifiedBook(cur_url)
+    getSpecifiedBook(currentRoute.split("/").pop())
       .then((response) => {
         const { data, domain } = response;
         setContent(data);
@@ -65,7 +66,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
       .catch((err) => {
         console.error(err.message || "failed");
       });
-  }, []);
+  }, [currentRoute]);
 
   return (
     <F>
@@ -88,7 +89,12 @@ const DirectoryContentPage: FunctionalComponent = () => {
           <div className="flex mb-5">
             <button
               className="w-full py-2.5 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
-              onClick={() => route("/read/" + cur_url + "/chapter/1")}
+              onClick={() => {
+                customRouter.push(
+                  "/read/" + currentRoute.split("/").pop() + "/chapter/1"
+                );
+                route("/read/" + currentRoute.split("/").pop() + "/chapter/1");
+              }}
             >
               开始阅读
             </button>

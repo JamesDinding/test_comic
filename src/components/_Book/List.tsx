@@ -1,5 +1,4 @@
 import { h, FunctionalComponent } from "preact";
-import { Link } from "preact-router";
 import BookListItem from "./ListItem";
 
 interface BookListProps {

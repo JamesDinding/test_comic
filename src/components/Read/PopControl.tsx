@@ -1,5 +1,6 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { route } from "preact-router";
+import { useRouter } from "../../context/router";
 import { StateUpdater, useState } from "preact/hooks";
 import { useReadingModal } from "../../context/reading";
 import IconChevron from "../../resources/img/icon-chevron.svg";
@@ -26,6 +27,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
   setPageList,
   changeChapter,
 }) => {
+  const { customRouter } = useRouter();
   const { isPopControl, popChapter, reset, popBuy, setStuffInfo, popControl } =
     useReadingModal();
 
@@ -56,6 +58,10 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
                 setPageList([]);
                 changeChapter((prev) => prev - 1);
                 popControl();
+                customRouter.push(
+                  `/read/${curComic}/chapter/${curChapter - 1}`,
+                  true
+                );
                 route(`/read/${curComic}/chapter/${curChapter - 1}`, true);
               }
             }}
@@ -64,7 +70,10 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
           </button>
           <button
             className="flex flex-col items-center justify-center h-full text-[12px] leading-[12px] text-white"
-            onClick={() => route("/home")}
+            onClick={() => {
+              customRouter.push("/home");
+              route("/home");
+            }}
           >
             <div className="">
               <IconHome class="h-6 w-6 text-white" />
@@ -87,6 +96,10 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
               setPageList([]);
               changeChapter((prev) => prev + 1);
               popControl();
+              customRouter.push(
+                `/read/${curComic}/chapter/${curChapter + 1}`,
+                true
+              );
               route(`/read/${curComic}/chapter/${curChapter + 1}`, true);
             }}
           >

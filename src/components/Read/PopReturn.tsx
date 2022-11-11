@@ -1,9 +1,10 @@
 import { h, FunctionalComponent } from "preact";
-import { route } from "preact-router";
-import { Link } from "preact-router";
+import CustomLink from "../CustomLink";
+import { useRouter } from "../../context/router";
 import { useReadingModal } from "../../context/reading";
 import IconCoin from "../../resources/img/icon-coin.svg";
 import IconArrow from "../../resources/img/icon-arrow.svg";
+import { route } from "preact-router";
 
 interface PopReturnProps {
   bookId: number;
@@ -14,6 +15,7 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({
   bookId,
   chapterNum,
 }) => {
+  const { customRouter } = useRouter();
   const { isPopControl } = useReadingModal();
 
   return (
@@ -26,7 +28,14 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({
       <div
         className="flex flex-col items-center text-white cursor-pointer"
         onClick={() => {
-          history.back();
+          if (customRouter.routerStack.length === 1) {
+            customRouter.push(`/directory/${bookId}`, true);
+            route(`/directory/${bookId}`, true);
+            return;
+          }
+          const des = customRouter.pop();
+          // history.back();
+          route(des);
           // route(`/directory/${bookId}`, true);
         }}
       >
@@ -44,14 +53,14 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({
       </div>
 
       <div className="w-6 text-white flex flex-col items-center">
-        <Link href="/charge">
+        <CustomLink href="/charge">
           <span>
             <IconCoin class="w-full" />
           </span>
           <div className="w-full mt-[.125rem] text-[12px] whitespace-nowrap leading-[12px]">
             充值
           </div>
-        </Link>
+        </CustomLink>
       </div>
     </div>
   );

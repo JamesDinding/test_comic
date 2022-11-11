@@ -413,11 +413,11 @@ input[type="number"] {
 }
 
 .item-overlay {
-  @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.4)] rounded-b-lg absolute bottom-0 left-0 w-full h-28;
+  @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.5)] rounded-b-lg absolute bottom-0 left-0 w-full h-28;
 }
 
 .item-overlay-chapter {
-  @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-black rounded-b-lg absolute bottom-0 left-0 w-full h-[28px];
+  @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.8)] rounded-b-lg absolute bottom-0 left-0 w-full h-[28px];
 }
 
 .item .title {

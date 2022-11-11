@@ -1,5 +1,4 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { route } from "preact-router";
 import { StateUpdater, useEffect, useState } from "preact/hooks";
 import RecommendBlock from "./RecommendBlock";
 import Swiper from "./Swiper";

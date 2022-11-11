@@ -1,5 +1,4 @@
 import { h, FunctionalComponent } from "preact";
-import { route } from "preact-router";
 
 interface ServiceRowProps {
   url: string;

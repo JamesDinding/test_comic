@@ -1,6 +1,7 @@
 import { h, FunctionalComponent } from "preact";
 import { useState } from "preact/hooks";
 import { Link } from "preact-router";
+import CustomLink from "../CustomLink";
 import Image from "../_Image/image";
 
 interface BookListItemProps {
@@ -18,9 +19,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
 
   if (type === "separate")
     return (
-      <Link
+      <CustomLink
         href={"/directory/" + Data.id}
-        class={"item-separate flex flex-col "}
+        className={"item-separate flex flex-col "}
       >
         <div class="relative rounded-lg grow">
           {!showPending && (
@@ -43,7 +44,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
           <div className={`rounded-lg overflow-hidden ${customHeight}`}>
             <div
               className={
-                "rounded-lg overflow-hidden h-full " +
+                "rounded-lg overflow-hidden h-full relative z-[11] " +
                 (showPending ? "pending" : "")
               }
             >
@@ -59,14 +60,14 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         <div class="rating-separate">
           ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
         </div>
-      </Link>
+      </CustomLink>
     );
 
   if (type === "stack")
     return (
-      <Link
+      <CustomLink
         href={"/directory/" + Data.id}
-        class={"item h-[242px] " + (showPending ? "pending" : "")}
+        className={"item h-[242px] " + (showPending ? "pending" : "")}
       >
         <div className="relative z-20 rounded-lg overflow-hidden h-full">
           <Image
@@ -96,14 +97,14 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
             ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
           </span>
         </div>
-      </Link>
+      </CustomLink>
     );
 
   // default return
   return (
-    <Link
+    <CustomLink
       href={"/directory/" + Data.ID}
-      class={"item " + (showPending ? " pending" : "")}
+      className={"item " + (showPending ? " pending" : "")}
     >
       <Image
         path={Data.Cover || ""}
@@ -115,7 +116,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
       <span class="rating">
         ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
       </span>
-    </Link>
+    </CustomLink>
   );
 };
 

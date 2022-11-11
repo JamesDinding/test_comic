@@ -337,7 +337,7 @@ input[type="number"] {
 
 .chapter-item-backdrop {
   @apply absolute w-full h-full;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), #000);
+  /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), #000); */
 }
 
 .book-oneline {
@@ -425,11 +425,11 @@ input[type="number"] {
 /* @apply bg-gradient-to-b from-[rgba(89,89,89,0)] to-[rgba(0,0,0,.8)] rounded-b-lg absolute bottom-0 left-0 w-full h-[28px]; */
 .item-overlay-chapter {
   @apply rounded-b-lg absolute bottom-0 left-0 w-full h-[28px];
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to bottom,
     rgba(89, 89, 89, 0),
     rgba(0, 0, 0, 0.8)
-  );
+  ); */
 }
 
 .item .title {

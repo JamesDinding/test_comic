@@ -35,9 +35,10 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
     <F>
       <div
         className={
-          "fixed z-[30] bottom-0 left-1/2 translate-x-[-50%] h-[50px] max-w-[420px] w-full bg-[rgba(0,0,0,.7)] duration-300 " +
+          "fixed z-[30] bottom-0 left-1/2 translate-x-[-50%] h-[50px] max-w-[420px] w-full duration-300 " +
           (isPopControl ? "" : "translate-y-[120%]")
         }
+        style={{ backgroundColor: "rgba(0,0,0,.7)" }}
       >
         <div className="flex items-center justify-between h-full w-full">
           <button

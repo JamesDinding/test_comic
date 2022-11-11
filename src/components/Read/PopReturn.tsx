@@ -21,9 +21,10 @@ const PopReturn: FunctionalComponent<PopReturnProps> = ({
   return (
     <div
       className={
-        "fixed flex items-center justify-between w-full max-w-[420px] h-[50px] min-h-[50px] px-5 bg-[rgba(0,0,0,.6)] duration-300 " +
+        "fixed flex items-center justify-between w-full max-w-[420px] h-[50px] min-h-[50px] px-5 duration-300 " +
         (isPopControl ? "" : "translate-y-[-100%] opacity-0")
       }
+      style={{ backgroundColor: "rgba(0,0,0,.6)" }}
     >
       <div
         className="flex flex-col items-center text-white cursor-pointer"

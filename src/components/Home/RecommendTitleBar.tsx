@@ -1,8 +1,10 @@
 import { FunctionalComponent, h } from "preact";
+import { StateUpdater } from "preact/hooks";
 
 interface RecommendTitleBarProps {
   BlockName: string;
   BlockID?: number;
+  onShowMore: StateUpdater<boolean>;
 }
 
 const blockTitle = new Map([
@@ -16,7 +18,8 @@ const blockTitle = new Map([
 
 const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockName,
-  BlockID
+  BlockID,
+  onShowMore,
 }) => {
   const pic = blockTitle.get(BlockName) || "crown";
   return (
@@ -32,12 +35,14 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       </div>
       {BlockName}
       <div class="grow"></div>
-      {/* <a
-        href={"/book-more/" + BlockID}
+      <div
+        onClick={() => {
+          onShowMore(true);
+        }}
         class="block text-sm font-normal tracking-normal leading-[16px]"
       >
         更多 ▶
-      </a> */}
+      </div>
     </div>
   );
 };

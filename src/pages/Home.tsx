@@ -1,5 +1,11 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { useState, useRef, useEffect, StateUpdater } from "preact/hooks";
+import {
+  useState,
+  useRef,
+  useEffect,
+  StateUpdater,
+  useCallback,
+} from "preact/hooks";
 import PullToRefresh from "../components/Home/PullToRefresh";
 import CategoryListBar from "../components/Home/CategoryListBar";
 import BrandBar from "../components/Home/BrandBar";
@@ -40,10 +46,20 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
       : JSON.parse(localStorage.getItem("sjmh") || defaultLocalStorage).home
           .categories
   );
+  // Part Search
   const [showSearch, setShowSearch] = useState(false);
   const [searchResult, setSearchResult] = useState<Book[]>([]);
-
   const searchRef = useRef<HTMLInputElement>(null!);
+
+  // Part More
+  const [showMore, setShowMore] = useState(false);
+  const [moreResult, setMoreResult] = useState<Book[]>([]);
+  const [moreBlockId, setMoreBlockId] = useState(0);
+
+  const stopShowResult = useCallback(() => {
+    setShowMore(false);
+    setShowSearch(false);
+  }, [setShowMore, setShowSearch]);
 
   //useEffect => figure out app/ios/web
 
@@ -92,20 +108,26 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
             onCategoryChanged={setCurrentCategory}
             categories={[{ id: 0, name: "首页" }].concat(categories)}
             searchRef={searchRef}
-            setShowResult={setShowSearch}
+            stopShowResult={stopShowResult}
           />
           <PullToRefresh containerElement={containerRef}>
-            {showSearch ? (
+            {showMore ? (
+              <div>more</div>
+            ) : showSearch ? (
               <SearchResultList content={searchResult} searchRef={searchRef} />
             ) : currentCategory == 0 ? (
-              <Recommend setTc={setTc} />
+              <Recommend
+                setTc={setTc}
+                onShowMore={setShowMore}
+                stopShowResult={stopShowResult}
+              />
             ) : (
               <CategoryItemList catID={categories[currentCategory - 1].id} />
             )}
           </PullToRefresh>
         </ObserverProvider>
       </div>
-      <FooterBar />
+      <FooterBar stopShowResult={stopShowResult} />
     </>
   );
 };

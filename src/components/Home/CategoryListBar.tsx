@@ -7,7 +7,7 @@ interface HomeCategoryListBarProp {
   onCategoryChanged: StateUpdater<number>;
   categories: Array<{ id: number; name: string }>;
   searchRef: MutableRef<HTMLInputElement>;
-  setShowResult: StateUpdater<boolean>;
+  stopShowResult: () => void;
 }
 
 const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
@@ -15,7 +15,7 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
   onCategoryChanged,
   categories,
   searchRef,
-  setShowResult,
+  stopShowResult,
 }) => {
   return (
     <div class="category_list_box shrink-0">
@@ -34,7 +34,7 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
                   temp.home.curCategoryIndex = i;
                   localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
                   searchRef.current.value = "";
-                  setShowResult(false);
+                  stopShowResult();
                 }}
                 class={"category-item" + (i == curCategory ? " active" : "")}
               >

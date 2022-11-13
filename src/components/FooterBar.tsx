@@ -7,7 +7,11 @@ import { Link } from "preact-router/match";
 import CustomLink from "./CustomLink";
 import { getMobileOperatingSystem } from "../lib/helper";
 
-const FooterBar: FunctionalComponent = () => {
+interface FooterBarProps {
+  stopShowResult: () => void;
+}
+
+const FooterBar: FunctionalComponent<FooterBarProps> = ({ stopShowResult }) => {
   const [mobile, setMobile] = useState("");
 
   useEffect(() => {
@@ -23,6 +27,7 @@ const FooterBar: FunctionalComponent = () => {
 
   return (
     <footer
+      onClick={() => stopShowResult()}
       class={
         "relative h-[60px] border-t border-gray-100 shrink-0 grid grid-cols-3 text-center py-2 select-none " +
         (mobile === "mobileconfig" ? " " : "")

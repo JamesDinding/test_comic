@@ -42,9 +42,12 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
           onShowMore(true);
           setMoreBlockId(BlockID);
         }}
-        class="block text-sm font-normal tracking-normal leading-[16px]"
+        class="flex items-center block text-sm font-normal tracking-normal leading-[16px]"
       >
-        更多 ▶
+        更多{" "}
+        <div>
+          <div className="ml-2 h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import CustomLink from "./CustomLink";
 import { getMobileOperatingSystem } from "../lib/helper";
 
 interface FooterBarProps {
-  stopShowResult: () => void;
+  stopShowResult?: () => void;
 }
 
 const FooterBar: FunctionalComponent<FooterBarProps> = ({ stopShowResult }) => {
@@ -26,7 +26,7 @@ const FooterBar: FunctionalComponent<FooterBarProps> = ({ stopShowResult }) => {
 
   return (
     <footer
-      onClick={() => stopShowResult()}
+      onClick={() => stopShowResult && stopShowResult()}
       class={
         "relative h-[60px] border-t border-gray-100 shrink-0 grid grid-cols-3 text-center py-2 select-none " +
         (mobile === "mobileconfig" ? " " : "")

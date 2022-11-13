@@ -1,11 +1,14 @@
 import { FunctionalComponent, h } from "preact";
+import { route } from "preact-router";
+import { useRouter } from "../../context/router";
 import { StateUpdater } from "preact/hooks";
 
 interface RecommendTitleBarProps {
   BlockName: string;
   BlockID: number;
-  onShowMore: StateUpdater<boolean>;
-  setMoreBlockId: StateUpdater<number>;
+  onShowMore?: StateUpdater<boolean>;
+  setMoreBlockId?: StateUpdater<number>;
+  onDefaultBehavior?: boolean;
 }
 
 const blockTitle = new Map([
@@ -22,7 +25,9 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockID,
   onShowMore,
   setMoreBlockId,
+  onDefaultBehavior = true,
 }) => {
+  const { customRouter } = useRouter();
   const pic = blockTitle.get(BlockName) || "crown";
   return (
     <div class="flex items-center item-header item-header-bg select-none text-lg font-semibold leading-8 text-[#6d5694] h-8 tracking-widest">
@@ -39,8 +44,12 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       <div class="grow"></div>
       <div
         onClick={() => {
-          onShowMore(true);
-          setMoreBlockId(BlockID);
+          if (!onDefaultBehavior) {
+            customRouter.push("/home");
+            route("/home");
+          }
+          onShowMore && onShowMore(true);
+          setMoreBlockId && setMoreBlockId(BlockID);
         }}
         class="flex items-center block text-sm font-normal tracking-normal leading-[16px]"
       >

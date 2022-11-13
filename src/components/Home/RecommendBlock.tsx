@@ -21,7 +21,6 @@ const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({
   onShowMore,
   setMoreBlockId,
 }) => {
-  console.log("Items: ", Items);
   return (
     <div class="items mt-[1.2rem] mx-5">
       <RecommendTitleBar

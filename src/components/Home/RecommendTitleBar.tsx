@@ -16,6 +16,7 @@ const blockTitle = new Map([
 
 const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockName,
+  BlockID
 }) => {
   const pic = blockTitle.get(BlockName) || "crown";
   return (

@@ -3,7 +3,6 @@ import { useEffect, useState } from "preact/hooks";
 import IconHome from "./../resources/img/footer-home.svg";
 import IconBookmark from "./../resources/img/footer-bookmark.svg";
 import IconProfile from "./../resources/img/footer-profile.svg";
-import { Link } from "preact-router/match";
 import CustomLink from "./CustomLink";
 import { getMobileOperatingSystem } from "../lib/helper";
 

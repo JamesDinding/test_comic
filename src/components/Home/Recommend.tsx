@@ -10,18 +10,20 @@ interface RecommendProps {
   setTc: StateUpdater<string>;
   onShowMore: StateUpdater<boolean>;
   stopShowResult: () => void;
+  setMoreBlockId: StateUpdater<number>;
 }
 
 const HomeRecommend: FunctionalComponent<RecommendProps> = ({
   setTc,
   onShowMore,
   stopShowResult,
+  setMoreBlockId,
 }) => {
   const { setDomain } = useDomain();
   const [blocks, setBlocks] = useState<RecommendationBlock>({});
   const [blockOrder, setBlockOrder] = useState<
-    { id?: number; name: string; count: number }[]
-  >([{ name: "banner", count: 1 }]);
+    { id: number; name: string; count: number }[]
+  >([{ id: 1, name: "banner", count: 1 }]);
 
   useEffect(() => {
     try {
@@ -53,6 +55,7 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({
               Items={blocks[bn.name as keyof typeof blocks]}
               ItemPerRow={bn.count}
               onShowMore={onShowMore}
+              setMoreBlockId={setMoreBlockId}
             />
           </Fragment>
         );

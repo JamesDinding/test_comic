@@ -12,8 +12,9 @@ import BrandBar from "../components/Home/BrandBar";
 import Recommend from "../components/Home/Recommend";
 import CategoryItemList from "../components/Home/CategoryItemList";
 import SearchResultList from "../components/Search/SearchResultList";
+import MoreResultList from "../components/More/MoreResultList";
 import { ObserverProvider } from "../context/observer";
-import { getCategories } from "../lib/api";
+import { getBlockById, getCategories } from "../lib/api";
 import SmartBanner from "../components/SmartBanner";
 
 import FooterBar from "../components/FooterBar";
@@ -82,6 +83,23 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
     }
   }, [categories]);
 
+  // fetch more content by moreBlockId
+  useEffect(() => {
+    if (moreBlockId === 0) return;
+    getBlockById(moreBlockId)
+      .then((response) => {
+        setMoreResult(response.data);
+      })
+      .catch((err) => {
+        console.error(err.message || "failed");
+        setMoreResult([]);
+      })
+      .finally(() => {
+        setShowMore(true);
+        setCurrentCategory(0);
+      });
+  }, [moreBlockId]);
+
   return (
     <>
       {showBanner ? (
@@ -112,7 +130,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
           />
           <PullToRefresh containerElement={containerRef}>
             {showMore ? (
-              <div>more</div>
+              <MoreResultList content={moreResult} moreBlockId={moreBlockId} />
             ) : showSearch ? (
               <SearchResultList content={searchResult} searchRef={searchRef} />
             ) : currentCategory == 0 ? (
@@ -120,6 +138,7 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
                 setTc={setTc}
                 onShowMore={setShowMore}
                 stopShowResult={stopShowResult}
+                setMoreBlockId={setMoreBlockId}
               />
             ) : (
               <CategoryItemList catID={categories[currentCategory - 1].id} />

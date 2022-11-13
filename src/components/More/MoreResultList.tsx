@@ -2,17 +2,17 @@ import { h, FunctionalComponent, Fragment } from "preact";
 import { useState, useEffect, useRef, Ref, MutableRef } from "preact/hooks";
 import BookList from "../_Book/List";
 import Empty from "../Collect/Empty";
-import { getSearch } from "../../lib/api";
+import { getBlockById } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
 
-interface SearchResultListProps {
+interface MoreResultListProps {
   content: Book[];
-  searchRef: MutableRef<HTMLInputElement>;
+  moreBlockId: number;
 }
 
-const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
+const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
   content,
-  searchRef,
+  moreBlockId,
 }) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
@@ -33,9 +33,8 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          const query = searchRef.current.value;
-          if (query === "") return;
-          getSearch("keyword=" + query + "&page=" + pageRef.current).then(
+          const query = moreBlockId;
+          getBlockById(moreBlockId + "?page=" + pageRef.current).then(
             (response) => {
               setMoreContent((prev) => prev.concat(response.data));
               pageRef.current++;
@@ -49,7 +48,7 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
     setObserver(ob);
 
     ob.observe(bottomRef.current!);
-  }, [observer, bottomRef.current, searchRef.current, pageRef.current]);
+  }, [observer, bottomRef.current, moreBlockId, , pageRef.current]);
 
   return (
     <Fragment>
@@ -74,4 +73,4 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   );
 };
 
-export default SearchResultList;
+export default MoreResultList;

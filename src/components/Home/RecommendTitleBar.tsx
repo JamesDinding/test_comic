@@ -3,8 +3,9 @@ import { StateUpdater } from "preact/hooks";
 
 interface RecommendTitleBarProps {
   BlockName: string;
-  BlockID?: number;
+  BlockID: number;
   onShowMore: StateUpdater<boolean>;
+  setMoreBlockId: StateUpdater<number>;
 }
 
 const blockTitle = new Map([
@@ -20,6 +21,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockName,
   BlockID,
   onShowMore,
+  setMoreBlockId,
 }) => {
   const pic = blockTitle.get(BlockName) || "crown";
   return (
@@ -38,6 +40,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       <div
         onClick={() => {
           onShowMore(true);
+          setMoreBlockId(BlockID);
         }}
         class="block text-sm font-normal tracking-normal leading-[16px]"
       >

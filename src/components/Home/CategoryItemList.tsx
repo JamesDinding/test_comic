@@ -40,17 +40,22 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     const opt: IntersectionObserverInit = {
       root: document.querySelector("#scroll"),
       // root: document.querySelector("#category-section"),
-      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      // threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       rootMargin: "-30px 0px 0px 0px",
     };
 
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach(async (e) => {
         if (e.isIntersecting) {
+          if (pageRef.current === 1) return;
           const { data } = await getSpecifiedCategory(
             curCateId.current,
             pageRef.current
           );
+          if (data.length === 0) {
+            observer.unobserve(e.target);
+            return;
+          }
           pageRef.current++;
           numRef.current += data?.length;
           setContent((prev) => prev?.concat(data));

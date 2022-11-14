@@ -131,15 +131,8 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
           <PullToRefresh containerElement={containerRef}>
             {showSearch ? (
               <SearchResultList content={searchResult} searchRef={searchRef} />
-            ) : showMore ? (
-              <MoreResultList content={moreResult} moreBlockId={moreBlockId} />
             ) : currentCategory == 0 ? (
-              <Recommend
-                setTc={setTc}
-                onShowMore={setShowMore}
-                stopShowResult={stopShowResult}
-                setMoreBlockId={setMoreBlockId}
-              />
+              <Recommend setTc={setTc} />
             ) : (
               <CategoryItemList catID={categories[currentCategory - 1].id} />
             )}

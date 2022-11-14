@@ -6,6 +6,7 @@ import IconAlipay from "../../../../resources/img/payway/alipay.svg";
 import IconUnionpay from "../../../../resources/img/payway/unionpay.svg";
 import IconUsdt from "../../../../resources/img/payway/usdt.svg";
 import IconWechat from "../../../../resources/img/payway/wechat.svg";
+import IconGash from "../../../../resources/img/payway/gash.svg";
 
 const iconMap: Map<any, { title: string; element: h.JSX.Element }> = new Map();
 iconMap.set("ALIPAY", {
@@ -16,6 +17,10 @@ iconMap.set("USDT", { title: "USDT", element: <IconUsdt class="h-5 w-5" /> });
 iconMap.set("WECHAT", {
   title: "微信",
   element: <IconWechat class="h-5 w-5" />,
+});
+iconMap.set("TWD", {
+  title: "GASH",
+  element: <IconGash class="h-5 w-5" />,
 });
 
 type PayInfo = {

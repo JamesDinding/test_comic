@@ -3,6 +3,7 @@ import IconCs from "../resources/img/btn-cs.svg";
 import IconArrow from "../resources/img/icon-arrow.svg";
 import IconCross from "../resources/img/icon-cross.svg";
 import IconCoin from "../resources/img/icon-coin.svg";
+import IconHome from "../resources/img/icon-reading-home.svg";
 import Router, { Link, route } from "preact-router";
 import { CUSTOMER_SERVICE_URL } from "../const";
 import { useRouter } from "../context/router";
@@ -10,7 +11,7 @@ import CustomLink from "./CustomLink";
 
 interface ReturnBarProps {
   title: string;
-  type?: "service" | "charge" | "cross" | "reading";
+  type?: "service" | "charge" | "cross" | "reading" | "home";
   defaultDestination?: string;
   bgColor?: string;
   hasShadow?: boolean;
@@ -47,7 +48,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
         <span className="mb-[.125rem]">
           <IconArrow class="w-[1.125rem] text-[#8f6e9f]" />
         </span>
-        <div className="pt-1 text-[#666666] text-[12px] leading-[12px] whitespace-nowrap">
+        <div className="pt-1.5 text-[#666666] text-[12px] leading-[12px] whitespace-nowrap">
           返回
         </div>
       </div>
@@ -67,6 +68,13 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
         <div className="h-[30px]">
           <CustomLink href="/charge">
             <img src="/assets/img/deposit.gif" className="w-6" />
+          </CustomLink>
+        </div>
+      )}
+      {type === "home" && (
+        <div className="h-[30px]">
+          <CustomLink href="/home">
+            <IconHome class="h-[25px]" />
           </CustomLink>
         </div>
       )}

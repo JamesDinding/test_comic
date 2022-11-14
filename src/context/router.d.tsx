@@ -7,4 +7,6 @@ declare type Router = {
 declare interface RouterContextType {
   customRouter: Router;
   currentRoute: string;
+  attachment: any;
+  attachData: (arg: any) => any;
 }

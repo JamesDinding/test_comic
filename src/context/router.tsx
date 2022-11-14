@@ -13,6 +13,7 @@ const RouterContext = createContext<RouterContextType>(null!);
 export const RouterProvider: FunctionalComponent = ({ children }) => {
   const [routerStack, setRouterStack] = useState([window.location.pathname]);
   const currentUrlRef = useRef(window.location.pathname || "");
+  const [attachment, setaAttachment] = useState(null);
 
   // pop the lastest history and return current lastest history
   const popHandler = useCallback(() => {
@@ -41,11 +42,14 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     [routerStack, currentUrlRef.current]
   );
 
+  const attachDataHandler = useCallback((d: any) => {
+    setaAttachment(d);
+  }, []);
+
   useEffect(() => {
     window.onpopstate = (e) => {
       const des = popHandler();
       route(des);
-      console.log(des);
     };
   }, [popHandler]);
 
@@ -56,6 +60,8 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
       pop: popHandler,
       push: pushHandler,
     },
+    attachment,
+    attachData: attachDataHandler,
   };
 
   return (

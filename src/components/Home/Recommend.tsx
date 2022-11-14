@@ -8,17 +8,9 @@ import SmartBanner from "../SmartBanner";
 
 interface RecommendProps {
   setTc: StateUpdater<string>;
-  onShowMore: StateUpdater<boolean>;
-  stopShowResult: () => void;
-  setMoreBlockId: StateUpdater<number>;
 }
 
-const HomeRecommend: FunctionalComponent<RecommendProps> = ({
-  setTc,
-  onShowMore,
-  stopShowResult,
-  setMoreBlockId,
-}) => {
+const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
   const { setDomain } = useDomain();
   const [blocks, setBlocks] = useState<RecommendationBlock>({});
   const [blockOrder, setBlockOrder] = useState<
@@ -54,8 +46,6 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({
               BlockName={bn.name}
               Items={blocks[bn.name as keyof typeof blocks]}
               ItemPerRow={bn.count}
-              onShowMore={onShowMore}
-              setMoreBlockId={setMoreBlockId}
             />
           </Fragment>
         );

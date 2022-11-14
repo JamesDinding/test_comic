@@ -67,7 +67,7 @@ const Password: FunctionalComponent<Password> = ({
           warningMsg="无效号码，请重新输入!"
           isWrong={isOriginalPasswordWrong}
           inputSetting={{
-            placeHolder: "请输入4-16位原有密码",
+            placeHolder: "请输入原有密码",
             type: "text",
             minLen: 4,
             maxLen: 16,

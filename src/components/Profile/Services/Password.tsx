@@ -31,25 +31,28 @@ const Password: FunctionalComponent<Password> = ({
     const new_password = newPassword.current.value;
     const check_password = checkNewPassword.current.value;
 
-    let isPhoneCorrect = true;
-    let isMailCorrect = true;
-    let isNickCorrect = true;
+    let isOriginalCorrect = true;
+    let isNewCorrect = true;
+    let isCheckCorrect = true;
 
     function check_len(arg: string) {
       return arg.length >= 4 && arg.length <= 16;
     }
 
-    isPhoneCorrect = check_len(original_password);
-    isMailCorrect = check_len(new_password);
-    isNickCorrect = check_len(check_password);
+    isOriginalCorrect = check_len(original_password);
+    isNewCorrect = check_len(new_password);
+    isCheckCorrect = check_len(check_password);
 
-    !isPhoneCorrect && setIsOriginalPasswordWrong(true);
-    !isMailCorrect && setIsNewPasswordWrong(true);
-    !isNickCorrect && setIsCheckNewPasswordWrong(true);
+    if (new_password !== check_password) {
+      setIsNewPasswordWrong(true);
+      isCheckCorrect = false;
+    }
 
-    if (new_password !== check_password) setIsNewPasswordWrong(true);
+    !isOriginalCorrect && setIsOriginalPasswordWrong(true);
+    !isNewCorrect && setIsNewPasswordWrong(true);
+    !isCheckCorrect && setIsCheckNewPasswordWrong(true);
 
-    return isPhoneCorrect && isMailCorrect && isNickCorrect;
+    return isOriginalCorrect && isNewCorrect && isCheckCorrect;
   };
 
   return (
@@ -64,7 +67,7 @@ const Password: FunctionalComponent<Password> = ({
         <InputField
           inputRef={originalPassword}
           title="原密码"
-          warningMsg="无效号码，请重新输入!"
+          warningMsg="密码错误，请重新输入"
           isWrong={isOriginalPasswordWrong}
           inputSetting={{
             placeHolder: "请输入原有密码",
@@ -88,7 +91,7 @@ const Password: FunctionalComponent<Password> = ({
         <InputField
           inputRef={checkNewPassword}
           title="确认新密码"
-          warningMsg="无效号码，请重新输入!"
+          warningMsg="密码错误，请重新输入"
           isWrong={isCheckNewPasswordWrong}
           inputSetting={{
             placeHolder: "请再次输入4-16位新密码",

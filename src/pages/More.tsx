@@ -13,6 +13,9 @@ const MorePage: FunctionalComponent = () => {
   const [moreBlockId, setMoreBlockId] = useState(
     parseInt(window.location.pathname.split("/").pop() || "0", 10)
   );
+  const [titleName, setTitleName] = useState(
+    window.location.search.split("=").pop() || ""
+  );
 
   const [recommendBlock, setRecommendBlock] = useState<Book[]>([]);
 
@@ -42,7 +45,7 @@ const MorePage: FunctionalComponent = () => {
 
   return (
     <F>
-      <ReturnBar title="test" type="home" />
+      <ReturnBar title={titleName} type="home" />
       <div
         id="scroll"
         className="grow overflow-hidden overflow-y-auto"

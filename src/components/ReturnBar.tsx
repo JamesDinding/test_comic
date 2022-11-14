@@ -48,7 +48,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
         <span className="mb-[.125rem]">
           <IconArrow class="w-[1.125rem] text-[#8f6e9f]" />
         </span>
-        <div className="pt-1 text-[#666666] text-[12px] leading-[12px] whitespace-nowrap">
+        <div className="pt-1.5 text-[#666666] text-[12px] leading-[12px] whitespace-nowrap">
           返回
         </div>
       </div>

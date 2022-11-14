@@ -23,6 +23,7 @@ import ChargePage from "./Profile/Charge";
 import RecordPage from "./Profile/Record";
 import CustomerPage from "./Profile/Customer";
 import MorePage from "./More";
+import SearchPage from "./Search";
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -90,6 +91,7 @@ const App: FunctionalComponent = () => {
                       <RecordPage path="/record" />
 
                       <MorePage path="/more/:id" />
+                      <SearchPage path="/search" />
 
                       <CustomerPage path="/service" />
                       <DefaultRouteHandler default />

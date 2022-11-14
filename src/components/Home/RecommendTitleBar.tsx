@@ -42,7 +42,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
           customRouter.push("/more/" + BlockID);
           route("/more/" + BlockID);
         }}
-        class="flex items-center block text-sm font-normal tracking-normal leading-[16px]"
+        class="cursor-pointer flex items-center block text-sm font-normal tracking-normal leading-[16px]"
       >
         更多{" "}
         <div>

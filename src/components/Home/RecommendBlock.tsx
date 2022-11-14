@@ -9,6 +9,7 @@ interface RecommendBlockProps {
   BlockName: string;
   ItemPerRow: number;
   Items: Array<Book> | undefined;
+  totalNum?: number;
 }
 
 const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({
@@ -16,6 +17,7 @@ const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({
   Items,
   ItemPerRow,
   BlockID,
+  totalNum = 6,
 }) => {
   return (
     <div class="items mt-[1.2rem] mx-5">
@@ -24,6 +26,7 @@ const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({
         Items={Items}
         ItemPerRow={ItemPerRow}
         type={"separate"}
+        itemNum={totalNum}
         isTemp={true}
       />
     </div>

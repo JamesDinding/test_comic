@@ -37,6 +37,9 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
           if (query === "") return;
           getSearch("keyword=" + query + "&page=" + pageRef.current).then(
             (response) => {
+              if (response.data.length === 0) {
+                observer.unobserve(e.target);
+              }
               setMoreContent((prev) => prev.concat(response.data));
               pageRef.current++;
               numRef.current += response.data?.length;
@@ -53,9 +56,9 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
 
   return (
     <Fragment>
-      <div id="category-section relative" className="mx-5">
+      <div id="category-section" className="px-5 relative bg-[#fcf6ff]">
         {content.length === 0 ? (
-          <Empty bgColor="bg-white" msg="搜寻无结果｡ﾟヽ(ﾟ´Д`)ﾉﾟ｡" />
+          <Empty bgColor=" bg-[#fcf6ff]" msg="搜寻无结果，换个关键字试试？" />
         ) : (
           <BookList
             Items={content.concat(moreContent)}

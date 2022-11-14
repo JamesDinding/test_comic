@@ -3,15 +3,33 @@ import { useRouter } from "../../context/router";
 import { route } from "preact-router";
 import IconArrow from "../../resources/img/icon-arrow.svg";
 import IconSearch from "../../resources/img/homebrandbar-search.svg";
+import { MutableRef, StateUpdater } from "preact/hooks";
+import { getSearch } from "../../lib/api";
 
-const SearchBar: FunctionalComponent = () => {
+interface SesarchBarProps {
+  inputRef: MutableRef<HTMLInputElement>;
+  onShow: StateUpdater<boolean>;
+  onSearch: StateUpdater<Book[]>;
+}
+
+const SearchBar: FunctionalComponent<SesarchBarProps> = ({
+  inputRef,
+  onShow,
+  onSearch,
+}) => {
   const { customRouter } = useRouter();
 
   return (
-    <div className="return-bar px-5 relative shadow-md">
+    <div className="return-bar px-5 relative shadow-md bg-white">
       <div
         className="h-[37px] flex flex-col justify-end items-center cursor-pointer"
         onClick={() => {
+          if (inputRef.current.value) {
+            inputRef.current.value = "";
+            onShow(false);
+            onSearch([]);
+            return;
+          }
           const des = customRouter.pop();
           // history.back();
           route(des);
@@ -26,45 +44,43 @@ const SearchBar: FunctionalComponent = () => {
       </div>
       <div className="relative grow px-3">
         <input
-          //   ref={searchRef}
+          ref={inputRef}
           placeholder="更多分类"
           type="text"
           class="search-box bg-[#f1f1f1] w-full px-5 py-2.5 rounded-full text-xs text-gray-500 font-medium flex"
           onKeyDown={(e) => {
-            console.log("key down");
-            // const query = searchRef.current.value;
-            // if (query === "") return;
-            // if (e.key == "Enter" || e.keyCode === 13) {
-            //   getSearch("keyword=" + query)
-            //     .then((response) => {
-            //       onSearchResult(response.data);
-            //     })
-            //     .catch((err) => {
-            //       console.error(err.message || "failed");
-            //       onSearchResult([]);
-            //     })
-            //     .finally(() => {
-            //       onShowSearch(true);
-            //       onCategoryChanged(0);
-            //       const temp = JSON.parse(
-            //         localStorage.getItem("sjmh") || defaultLocalStorage
-            //       );
-            //       temp.home.curCategoryIndex = 0;
-            //       localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
-            //     });
-            // }
+            const query = inputRef.current.value;
+            if (query === "") return;
+
+            if (e.key == "Enter" || e.keyCode === 13) {
+              getSearch("keyword=" + query)
+                .then((response) => {
+                  onSearch(response.data);
+                  onShow(true);
+                })
+                .catch((err) => {
+                  console.error(err.message || "failed");
+                  onSearch([]);
+                  onShow(true);
+                });
+            }
           }}
         />
         <div
           className="absolute top-1/2 right-8 translate-y-[-50%]"
           onClick={() => {
-            console.log("click");
-            // const query = searchRef.current.value;
-            // if (query === "") return;
-            // getSearch("keyword=" + query).then((response) => {
-            //   onSearchResult(response.data);
-            //   onShowSearch(true);
-            // });
+            const query = inputRef.current.value;
+            if (query === "") return;
+            getSearch("keyword=" + query)
+              .then((response) => {
+                onSearch(response.data);
+                onShow(true);
+              })
+              .catch((err) => {
+                console.error(err.message || "failed");
+                onSearch([]);
+                onShow(true);
+              });
           }}
         >
           <IconSearch class="text-gray-500 h-4" alt="搜索" />

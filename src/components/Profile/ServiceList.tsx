@@ -2,7 +2,6 @@ import { FunctionalComponent, h, Fragment as F } from "preact";
 import { StateUpdater, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
 import { useUser } from "../../context/user";
-import { Link } from "preact-router";
 import CustomLink from "../CustomLink";
 import { useRouter } from "../../context/router";
 import { route } from "preact-router";
@@ -11,10 +10,12 @@ import BindPhone from "./Services/BindPhone";
 import PopLogout from "./Services/PopLogout";
 import BackDrop from "../BackDrop";
 import { CUSTOMER_SERVICE_URL } from "../../const";
+import Password from "./Services/Password";
 
 const serviceList = [
   { title: "注册", msg: "完成注册即赠送50金币!", url: "/register" },
-  { title: "完善会员资料", msg: "完成即赠送150金币!", url: "bind" },
+  { title: "完善会员资料", msg: "完成即赠送150金币!", url: "#bind" },
+  { title: "修改密碼", msg: "", url: "#password" },
   { title: "充值服务", msg: "", url: "/charge" },
   { title: "钱包纪录", msg: "", url: "/record" },
   // { title: "寻回帐户", msg: "", url: "/recovery" },
@@ -29,16 +30,18 @@ const ServiceList: FunctionalComponent = () => {
   const { customRouter } = useRouter();
   const { isLogIn, logout, userStatus } = useUser();
   const [isPopBinding, setIsPopBinding] = useState(false);
+  const [isPopPassword, setIsPopPassword] = useState(false);
   const [isPopLogout, setIsPopLogout] = useState(false);
 
   return (
     <F>
-      {(isPopBinding || isPopLogout) &&
+      {(isPopBinding || isPopPassword || isPopLogout) &&
         createPortal(
           <BackDrop
             onClose={() => {
               setIsPopBinding(false);
               setIsPopLogout(false);
+              setIsPopPassword(false);
             }}
           />,
           document.getElementById("back-drop")!
@@ -51,22 +54,24 @@ const ServiceList: FunctionalComponent = () => {
           onClose={() => setIsPopBinding(false)}
         />
       )}
+      {isPopPassword && <Password onClose={() => setIsPopPassword(false)} />}
       {isPopLogout && <PopLogout onClose={() => setIsPopLogout(false)} />}
       <div className="flex flex-col overflow-auto">
         <div className="mb-[.625rem] rounded-2xl">
           <div className="bg-white text-[#4c4c4c] rounded-2xl">
             <ul>
               {serviceList.map(({ title, url, msg }, i, arr) => {
-                if (!isLogIn && url === "bind") return;
+                if (!isLogIn && url === "#bind") return;
+                if (!isLogIn && url === "#password") return;
                 if (isLogIn && url === "/register") return;
-                if (userStatus.status === "active" && url === "bind") {
+                if (userStatus.status === "active" && url === "#bind") {
                   return (
                     <ServiceRow
                       url={url}
                       title={"修改会员资料"}
                       msg=""
                       clickCb={() => {
-                        if (url === "bind") {
+                        if (url === "#bind") {
                           setIsPopBinding(true);
                           return;
                         }
@@ -99,8 +104,12 @@ const ServiceList: FunctionalComponent = () => {
                     title={title}
                     msg={msg}
                     clickCb={() => {
-                      if (url === "bind") {
+                      if (url === "#bind") {
                         setIsPopBinding(true);
+                        return;
+                      }
+                      if (url === "#password") {
+                        setIsPopPassword(true);
                         return;
                       }
                       customRouter.push(url);

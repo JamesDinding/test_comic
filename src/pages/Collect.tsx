@@ -117,7 +117,7 @@ const CollectPage: FunctionalComponent = () => {
             ) : (
               <F>
                 <Empty />
-                <div className="mx-5 mt-5">
+                {/* <div className="mx-5 mt-5">
                   <RecommendTitleBar
                     BlockID={44}
                     BlockName="新书上架"
@@ -128,7 +128,7 @@ const CollectPage: FunctionalComponent = () => {
                       return <BookListItem Data={el} type="separate" />;
                     })}
                   </div>
-                </div>
+                </div> */}
               </F>
             ))}
           {curSelect === 1 &&
@@ -143,7 +143,7 @@ const CollectPage: FunctionalComponent = () => {
             ) : (
               <F>
                 <Empty />
-                <div className="mx-5 mt-5">
+                {/* <div className="mx-5 mt-5">
                   <RecommendTitleBar
                     BlockID={44}
                     BlockName="新书上架"
@@ -154,9 +154,21 @@ const CollectPage: FunctionalComponent = () => {
                       return <BookListItem Data={el} type="separate" />;
                     })}
                   </div>
-                </div>
+                </div> */}
               </F>
             ))}
+          <div className="mx-5 mt-5">
+            <RecommendTitleBar
+              BlockID={44}
+              BlockName="新书上架"
+              onDefaultBehavior={false}
+            />
+            <div className="items-box grid grid-cols-3 gap-2.5 py-4">
+              {recommendBlock.slice(0, 9).map((el: Book, i, arr) => {
+                return <BookListItem Data={el} type="separate" />;
+              })}
+            </div>
+          </div>
         </ObserverProvider>
       </div>
       <div className="grow bg-[#fcf6ff]"></div>

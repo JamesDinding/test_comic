@@ -2314,7 +2314,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 body {
-  background-color: white !important;
+  /* background-color: white !important; */
   padding-bottom: (env(safe-area-inset-bottom));
 }
 

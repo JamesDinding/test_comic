@@ -15,7 +15,7 @@ import Password from "./Services/Password";
 const serviceList = [
   { title: "注册", msg: "完成注册即赠送50金币!", url: "/register" },
   { title: "完善会员资料", msg: "完成即赠送150金币!", url: "#bind" },
-  { title: "修改密碼", msg: "", url: "#password" },
+  { title: "修改密码", msg: "", url: "#password" },
   { title: "充值服务", msg: "", url: "/charge" },
   { title: "钱包纪录", msg: "", url: "/record" },
   // { title: "寻回帐户", msg: "", url: "/recovery" },

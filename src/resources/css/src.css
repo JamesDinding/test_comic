@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: white !important;
+  /* background-color: white !important; */
   padding-bottom: (env(safe-area-inset-bottom));
 }
 

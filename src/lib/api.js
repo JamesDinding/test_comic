@@ -129,6 +129,25 @@ export async function postMyProfile(phone, mail, name) {
   return data;
 }
 
+// 修改密碼
+export async function postMyPassword(original, new_password) {
+  const response = await fetch("/api/v1/my/password", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      new_password: new_password,
+      old_password: original,
+    }),
+  });
+  const data = await response.json();
+
+  if (data.error) throw new Error(data.message || route + " failed");
+
+  return data;
+}
+
 export async function postMyBookmarks(id, action) {
   const response = await fetch("/api/v1/my/bookmarks", {
     method: "POST",

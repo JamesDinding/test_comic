@@ -1,6 +1,6 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useState, useEffect, useRef } from "preact/hooks";
-import { postMyProfile } from "../../../lib/api";
+import { postMyPassword } from "../../../lib/api";
 import InputField from "./InputField";
 import CardBottom from "../../Modal/CardBottom";
 import IconCross from "../../../resources/img/icon-cross.svg";
@@ -13,7 +13,7 @@ interface Password {
 
 const Password: FunctionalComponent<Password> = ({
   onClose,
-  title = "修改密碼",
+  title = "修改密码",
 }) => {
   const { getUserStatus } = useUser();
   const [isPending, setIsPending] = useState(false);
@@ -36,16 +36,18 @@ const Password: FunctionalComponent<Password> = ({
     let isNickCorrect = true;
 
     function check_len(arg: string) {
-      return arg.length < 4 || arg.length > 16;
+      return arg.length >= 4 && arg.length <= 16;
     }
 
-    check_len(original_password) && setIsOriginalPasswordWrong(false);
-    check_len(new_password) && setIsNewPasswordWrong(false);
-    check_len(check_password) && setIsCheckNewPasswordWrong(false);
+    isPhoneCorrect = check_len(original_password);
+    isMailCorrect = check_len(new_password);
+    isNickCorrect = check_len(check_password);
 
-    if (new_password !== check_password) {
-      isMailCorrect = false;
-    }
+    !isPhoneCorrect && setIsOriginalPasswordWrong(true);
+    !isMailCorrect && setIsNewPasswordWrong(true);
+    !isNickCorrect && setIsCheckNewPasswordWrong(true);
+
+    if (new_password !== check_password) setIsNewPasswordWrong(true);
 
     return isPhoneCorrect && isMailCorrect && isNickCorrect;
   };
@@ -61,11 +63,11 @@ const Password: FunctionalComponent<Password> = ({
       <div className="px-5 pt-5 text-[#666666]">
         <InputField
           inputRef={originalPassword}
-          title="原密碼"
+          title="原密码"
           warningMsg="无效号码，请重新输入!"
           isWrong={isOriginalPasswordWrong}
           inputSetting={{
-            placeHolder: "請輸入原有密碼",
+            placeHolder: "请输入4-16位原有密码",
             type: "text",
             minLen: 4,
             maxLen: 16,
@@ -73,11 +75,11 @@ const Password: FunctionalComponent<Password> = ({
         />
         <InputField
           inputRef={newPassword}
-          title="新密碼"
+          title="新密码"
           warningMsg="无效号码，请重新输入!"
           isWrong={isNewPasswordWrong}
           inputSetting={{
-            placeHolder: "請輸入新密碼",
+            placeHolder: "请输入4-16位新密码",
             type: "text",
             minLen: 4,
             maxLen: 16,
@@ -85,11 +87,11 @@ const Password: FunctionalComponent<Password> = ({
         />
         <InputField
           inputRef={checkNewPassword}
-          title="確認新密碼"
+          title="确认新密码"
           warningMsg="无效号码，请重新输入!"
           isWrong={isCheckNewPasswordWrong}
           inputSetting={{
-            placeHolder: "请再次输入新密碼",
+            placeHolder: "请再次输入4-16位新密码",
             type: "text",
             minLen: 4,
             maxLen: 16,
@@ -105,13 +107,13 @@ const Password: FunctionalComponent<Password> = ({
           onClick={(e) => {
             if (!verifyInput()) return;
             setIsPending(true);
-            postMyProfile(
+            postMyPassword(
               originalPassword.current.value,
-              newPassword.current.value,
-              checkNewPassword.current.value
+              newPassword.current.value
             )
-              .then(async () => {
+              .then(async (res) => {
                 // Complete user state, fetch latest profile
+                if (res.error) throw new Error(res.message || "failed");
                 await getUserStatus();
                 setIsPending(false);
                 onClose();

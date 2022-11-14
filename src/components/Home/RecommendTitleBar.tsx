@@ -6,8 +6,6 @@ import { StateUpdater } from "preact/hooks";
 interface RecommendTitleBarProps {
   BlockName: string;
   BlockID: number;
-  onShowMore?: StateUpdater<boolean>;
-  setMoreBlockId?: StateUpdater<number>;
   onDefaultBehavior?: boolean;
 }
 
@@ -23,9 +21,6 @@ const blockTitle = new Map([
 const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockName,
   BlockID,
-  onShowMore,
-  setMoreBlockId,
-  onDefaultBehavior = true,
 }) => {
   const { customRouter } = useRouter();
   const pic = blockTitle.get(BlockName) || "crown";
@@ -44,12 +39,8 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       <div class="grow"></div>
       <div
         onClick={() => {
-          if (!onDefaultBehavior) {
-            customRouter.push("/home");
-            route("/home");
-          }
-          onShowMore && onShowMore(true);
-          setMoreBlockId && setMoreBlockId(BlockID);
+          customRouter.push("/more/" + BlockID);
+          route("/more/" + BlockID);
         }}
         class="flex items-center block text-sm font-normal tracking-normal leading-[16px]"
       >

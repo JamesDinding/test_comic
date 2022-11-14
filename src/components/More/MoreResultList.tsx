@@ -21,6 +21,8 @@ const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
   const pageRef = useRef(2);
   const numRef = useRef(0);
 
+  const [isEnd, setIsEnd] = useState(false);
+
   useEffect(() => {
     if (observer || content.length === 0) return;
     const opt: IntersectionObserverInit = {
@@ -33,9 +35,14 @@ const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
+          if (isEnd) return;
           const query = moreBlockId;
           getBlockById(moreBlockId + "?page=" + pageRef.current).then(
             (response) => {
+              if (response.data.length === 0) {
+                observer.unobserve(e.target);
+              }
+              console.log(response.data.length === 0);
               setMoreContent((prev) => prev.concat(response.data));
               pageRef.current++;
               numRef.current += response.data?.length;
@@ -54,7 +61,7 @@ const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
     <Fragment>
       <div id="category-section relative" className="mx-5">
         {content.length === 0 ? (
-          <Empty bgColor="bg-white" msg="搜寻无结果｡ﾟヽ(ﾟ´Д`)ﾉﾟ｡" />
+          <Empty bgColor="bg-[#fcf6ff]" msg="搜寻无结果" />
         ) : (
           <BookList
             Items={content.concat(moreContent)}

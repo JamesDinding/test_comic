@@ -40,7 +40,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       <div
         onClick={() => {
           customRouter.push("/more/" + BlockID + "?name=" + BlockName);
-          route("/more/" + BlockID);
+          route("/more/" + BlockID + "?name=" + BlockName);
         }}
         class="cursor-pointer flex items-center block text-sm font-normal tracking-normal leading-[16px]"
       >

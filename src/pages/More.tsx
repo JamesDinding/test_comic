@@ -45,7 +45,7 @@ const MorePage: FunctionalComponent = () => {
 
   return (
     <F>
-      <ReturnBar title={titleName} type="home" />
+      <ReturnBar title={"更多內容"} type="home" />
       <div
         id="scroll"
         className="grow overflow-hidden overflow-y-auto"

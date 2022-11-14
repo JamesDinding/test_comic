@@ -116,7 +116,8 @@ const Password: FunctionalComponent<Password> = ({
             )
               .then(async (res) => {
                 // Complete user state, fetch latest profile
-                if (res.error) throw new Error(res.message || "failed");
+                if (res.status !== 200)
+                  throw new Error(res.message || "failed");
                 await getUserStatus();
                 setIsPending(false);
                 onClose();

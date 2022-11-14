@@ -22,7 +22,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
   BlockName,
   BlockID,
 }) => {
-  const { customRouter } = useRouter();
+  const { customRouter, attachData } = useRouter();
   const pic = blockTitle.get(BlockName) || "crown";
   return (
     <div class="flex items-center item-header item-header-bg select-none text-lg font-semibold leading-8 text-[#6d5694] h-8 tracking-widest">
@@ -39,8 +39,9 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       <div class="grow"></div>
       <div
         onClick={() => {
-          customRouter.push("/more/" + BlockID + "?name=" + BlockName);
-          route("/more/" + BlockID + "?name=" + BlockName);
+          attachData(BlockName);
+          customRouter.push("/more/" + BlockID);
+          route("/more/" + BlockID);
         }}
         class="cursor-pointer flex items-center block text-sm font-normal tracking-normal leading-[16px]"
       >

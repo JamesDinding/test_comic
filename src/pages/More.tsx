@@ -5,16 +5,15 @@ import MoreResultList from "../components/More/MoreResultList";
 import RecommendBlock from "../components/Home/RecommendBlock";
 import { getBlockById } from "../lib/api";
 import { ObserverProvider } from "../context/observer";
+import { useRouter } from "../context/router";
 
 const MorePage: FunctionalComponent = () => {
+  const { attachment } = useRouter();
   const containerRef = useRef<HTMLDivElement>(null!);
 
   const [moreResult, setMoreResult] = useState<Book[]>([]);
   const [moreBlockId, setMoreBlockId] = useState(
     parseInt(window.location.pathname.split("/").pop() || "0", 10)
-  );
-  const [titleName, setTitleName] = useState(
-    window.location.search.split("=").pop() || ""
   );
 
   const [recommendBlock, setRecommendBlock] = useState<Book[]>([]);
@@ -45,7 +44,7 @@ const MorePage: FunctionalComponent = () => {
 
   return (
     <F>
-      <ReturnBar title={"更多內容"} type="home" />
+      <ReturnBar title={attachment} type="home" />
       <div
         id="scroll"
         className="grow overflow-hidden overflow-y-auto"

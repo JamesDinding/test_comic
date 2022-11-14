@@ -92,7 +92,11 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
             }}
           />
           <div className="mt-2.5 text-center text-[#6d569466]">
-            继续阅读将消耗{" "}
+            现在有
+            <span className="text-[#eb6f6f]">
+              &nbsp;{userStatus.coins}&nbsp;
+            </span>
+            金币 ，继续阅读将消耗{" "}
             <span className="text-[#eb6f6f]">{stuffInfo?.price || 60}</span>{" "}
             金币
           </div>

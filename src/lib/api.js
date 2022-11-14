@@ -167,11 +167,9 @@ export const getSpecifiedCategory = async (category_id, page = 1) => {
 // export const getAllBlock = curryFetch_GET_QUERY("/contents/blocks");
 export const getAllBlock = curryFetch_GET("/contents/blocks");
 
-// random
-export const getRandomBlock = async (num) => {
-  const res = await fetch(
-    `/api/v1/contents/blocks/random/${num}?type=新书上架`
-  );
+// 取得指定區塊內容
+export const getBlockById = async (id) => {
+  const res = await fetch(`/api/v1/contents/blocks/${id}`);
   const data = await res.json();
   if (data.error) throw new Error("failed");
   return data;

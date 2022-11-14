@@ -25,7 +25,7 @@ const KeywordSection: FunctionalComponent = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="h-[160px] py-2.5 px-5 overflow-y-auto no-scrollbar">
+    <div className="flex items-start h-[160px] py-2.5 px-5 bg-[#fcf6ff] overflow-y-auto no-scrollbar">
       {keywordList.map((keyword, i) => {
         return <KeywordItem key={i} keyname={keyword} />;
       })}

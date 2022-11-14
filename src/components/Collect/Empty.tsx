@@ -11,7 +11,7 @@ const Empty: FunctionalComponent<EmptyProps> = ({
 }) => {
   return (
     <div
-      className={`flex justify-center items-center min-h-[170px] ${bgColor}`}
+      className={`flex justify-center items-center min-h-[160px] ${bgColor}`}
     >
       <span className="text-[#6d5694] opacity-40">{msg}</span>
     </div>

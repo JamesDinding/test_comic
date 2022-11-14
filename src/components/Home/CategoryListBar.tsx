@@ -14,7 +14,6 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
   curCategory,
   onCategoryChanged,
   categories,
-  searchRef,
   stopShowResult,
 }) => {
   return (
@@ -33,7 +32,6 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
                   );
                   temp.home.curCategoryIndex = i;
                   localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
-                  searchRef.current.value = "";
                   stopShowResult();
                 }}
                 class={"category-item" + (i == curCategory ? " active" : "")}

@@ -17,8 +17,10 @@ import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 import { useUser } from "../../context/user";
 import { defaultLocalStorage } from "../../const";
+import { useReadingModal } from "../../context/reading";
 
 const DirectoryContentPage: FunctionalComponent = () => {
+  const { popBuy } = useReadingModal();
   const { currentRoute, customRouter } = useRouter();
   const { isLogIn } = useUser();
   const { setDomain } = useDomain();
@@ -90,6 +92,10 @@ const DirectoryContentPage: FunctionalComponent = () => {
             <button
               className="w-full py-2.5 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
               onClick={() => {
+                if (!content?.chapter[0].status) {
+                  popBuy();
+                  return;
+                }
                 customRouter.push(
                   "/read/" + currentRoute.split("/").pop() + "/chapter/1"
                 );

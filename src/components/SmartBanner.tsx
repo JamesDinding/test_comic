@@ -19,7 +19,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
 
   useEffect(() => {
     if (mobile !== "") return;
-    settingTc(tc);
+    settingTc(tc.toString());
     const os = getMobileOperatingSystem();
 
     if (os === "iOS") {

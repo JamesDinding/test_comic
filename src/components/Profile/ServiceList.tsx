@@ -112,7 +112,10 @@ const ServiceList: FunctionalComponent = () => {
                     </a>
                   );
                 }
-                if (url === "#app") {
+                if (
+                  url === "#app" &&
+                  localStorage.getItem("sjmh_device") === "web"
+                ) {
                   return (
                     <a href={`/app/sjmh.${mobile}?tc=${tc}`} target="_blank">
                       <li className="cursor-pointer flex items-center bg-white py-4 px-5">

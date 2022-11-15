@@ -20,17 +20,9 @@ import SmartBanner from "../components/SmartBanner";
 import FooterBar from "../components/FooterBar";
 import { defaultLocalStorage } from "../const";
 
-interface HomePageProps {
-  showBanner: boolean;
-  setShowBanner: StateUpdater<boolean>;
-}
-
 let initial = true;
 
-const HomePage: FunctionalComponent<HomePageProps> = ({
-  showBanner,
-  setShowBanner,
-}) => {
+const HomePage: FunctionalComponent = ({}) => {
   const [currentCategory, setCurrentCategory] = useState(
     initial
       ? 0
@@ -102,12 +94,6 @@ const HomePage: FunctionalComponent<HomePageProps> = ({
 
   return (
     <>
-      {showBanner ? (
-        <SmartBanner SetSmartBannerVisiblity={setShowBanner} tc={tc} />
-      ) : (
-        <></>
-      )}
-
       {/* <div class={"grow overflow-hidden overflow-y-auto"} ref={containerRef}> */}
       <div
         id="scroll"

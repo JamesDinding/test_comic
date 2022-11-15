@@ -1,7 +1,7 @@
 // DEBUG, make sure that this import is the first import in your whole app
 import "preact/debug";
 import ErrorBoundary from "../components/Error/ErrorBoundary";
-import { FunctionalComponent, h } from "preact";
+import { FunctionalComponent, h, Fragment } from "preact";
 import Router from "preact-router";
 import { useEffect, useState } from "preact/hooks";
 
@@ -24,10 +24,12 @@ import RecordPage from "./Profile/Record";
 import CustomerPage from "./Profile/Customer";
 import MorePage from "./More";
 import SearchPage from "./Search";
+import SmartBanner from "../components/SmartBanner";
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
   const [hadSendTC, setHadSendTC] = useState(false);
+  const [tc, setTc] = useState("");
 
   useEffect(() => {
     if (hadSendTC) return;
@@ -52,6 +54,7 @@ const App: FunctionalComponent = () => {
         return res.json();
       })
       .then((data) => {
+        setTc(data.referrer);
         setHadSendTC(true);
       })
       .catch((err) => {
@@ -68,16 +71,20 @@ const App: FunctionalComponent = () => {
             <UserProvider>
               <ChargeProvider>
                 <div id="root" class="w-full max-w-[420px] h-full">
+                  {showSmartBanner ? (
+                    <SmartBanner
+                      SetSmartBannerVisiblity={setShowSmartBanner}
+                      tc={tc}
+                    />
+                  ) : (
+                    <></>
+                  )}
                   <div
                     id="container"
                     class="bg-white w-full h-full flex flex-col"
                   >
                     <Router>
-                      <HomePage
-                        path="/home"
-                        showBanner={showSmartBanner}
-                        setShowBanner={setShowSmartBanner}
-                      />
+                      <HomePage path="/home" />
                       <CollectPage path="/collect" />
                       <ProfilePage path="/profile" />
 

@@ -55,7 +55,7 @@ const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
 
   return (
     <Fragment>
-      <div id="category-section relative" className="mx-5">
+      <div id="category-section relative" className="px-5 bg-[#fcf6ff]">
         {content.length === 0 ? (
           <Empty bgColor="bg-[#fcf6ff]" msg="搜寻无结果" />
         ) : (

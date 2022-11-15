@@ -50,7 +50,7 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
           <div className="mt-2.5 text-center text-[#6d569466]">
             阅读章节需要
             <span className="text-[#eb6f6f]">
-              &nbsp;{userStatus.coins}&nbsp;
+              &nbsp;{stuffInfo?.price}&nbsp;
             </span>
             金币 ，将前往充值服务页面
           </div>

@@ -28,7 +28,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
 
   return (
     <div
-      class="flex pt-2 pb-3 items-center gap-1.5 border-b border-gray-100 shadow-sm shrink-0"
+      class="flex pt-2 pb-3 items-center gap-1.5 border-b border-gray-100 shadow-sm shrink-0 bg-white"
       id="smartbanner"
     >
       <a

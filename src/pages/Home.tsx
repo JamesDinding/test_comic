@@ -97,7 +97,7 @@ const HomePage: FunctionalComponent = ({}) => {
       {/* <div class={"grow overflow-hidden overflow-y-auto"} ref={containerRef}> */}
       <div
         id="scroll"
-        class={"grow overflow-hidden overflow-y-auto"}
+        class={"flex flex-col grow overflow-hidden"}
         ref={containerRef}
       >
         <ObserverProvider rootElement={containerRef}>

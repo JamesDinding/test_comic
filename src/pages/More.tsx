@@ -6,9 +6,11 @@ import RecommendBlock from "../components/Home/RecommendBlock";
 import { getBlockById } from "../lib/api";
 import { ObserverProvider } from "../context/observer";
 import { useRouter } from "../context/router";
+import { useDomain } from "../context/domain";
 
 const MorePage: FunctionalComponent = () => {
   const { attachment } = useRouter();
+  const { srcDomain, setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
 
   const [moreResult, setMoreResult] = useState<Book[]>([]);
@@ -23,6 +25,7 @@ const MorePage: FunctionalComponent = () => {
     getBlockById(moreBlockId)
       .then((response) => {
         setMoreResult(response.data);
+        setDomain(response.domain);
       })
       .catch((err) => {
         console.error(err.message || "failed");

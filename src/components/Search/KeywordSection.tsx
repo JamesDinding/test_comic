@@ -61,7 +61,6 @@ const KeywordSection: FunctionalComponent<KeywordSectionProps> = ({
     if (keywordList.length !== 0) return;
     getKeywords()
       .then((response) => {
-        console.log(response);
         if (response.error) throw new Error(response.message || "failed");
         setKeywordList(response.data);
       })

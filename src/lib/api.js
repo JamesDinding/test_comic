@@ -235,6 +235,9 @@ export const getSpecifiedBookIdContent = async (item, chapter) => {
 // 搜尋
 export const getSearch = curryFetch_GET_QUERY("/contents/search");
 
+// 取得搜尋頁的常用關鍵字listk
+export const getKeywords = curryFetch_GET("/contents/keywords");
+
 export async function createOrder(title, price) {
   const response = await fetch("/api/v1/orders/create", {
     method: "POST",

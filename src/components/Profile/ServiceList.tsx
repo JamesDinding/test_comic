@@ -126,7 +126,7 @@ const ServiceList: FunctionalComponent = () => {
                         </div>
                         <div className="ml-5 grow text-left text-[#ff978d] text-xs">
                           {mobile === "mobileconfig"
-                            ? "频果用户请使用safari下载"
+                            ? "苹果用户请使用safari下载"
                             : ""}
                         </div>
                         <div>

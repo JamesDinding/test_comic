@@ -6,7 +6,7 @@ import {
   StateUpdater,
   useCallback,
 } from "preact/hooks";
-import { getSearch } from "../../lib/api";
+import { getSearch, getKeywords } from "../../lib/api";
 
 type KeywordItemProps = {
   keyname: string;
@@ -67,6 +67,18 @@ const KeywordSection: FunctionalComponent<KeywordSectionProps> = ({
     },
     [inputRef.current.value]
   );
+
+  useEffect(() => {
+    if (keywordList.length !== 0) return;
+    getKeywords()
+      .then((response) => {
+        console.log(response);
+        if (response.error) throw new Error(response.message || "failed");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [keywordList]);
 
   return (
     <div className="flex flex-wrap items-start max-h-[160px] pt-2.5 px-5 bg-[#fcf6ff] overflow-y-auto no-scrollbar">

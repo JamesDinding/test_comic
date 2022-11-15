@@ -48,7 +48,11 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
             }}
           />
           <div className="mt-2.5 text-center text-[#6d569466]">
-            点击按钮后，将会前往充值服务页面
+            阅读章节需要
+            <span className="text-[#eb6f6f]">
+              &nbsp;{userStatus.coins}&nbsp;
+            </span>
+            金币 ，将前往充值服务页面
           </div>
         </div>
       )}

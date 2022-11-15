@@ -17,7 +17,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
 }) => {
   const { payment, userSelect, selectPay, selectCoins } = useCharge();
   const [payments, setPayments] = useState<any>([]);
-  const [way, setWay] = useState<any>([]);
+  const [orderedWay, setOrderedWay] = useState<string[]>([]);
 
   // counter for showing id
   const [counter, setCounter] = useState(0);
@@ -25,8 +25,8 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
   useEffect(() => {
     getOrdersProductsId(userSelect.id.toString())
       .then((response) => {
-        const { data } = response;
-        setWay(Object.keys(data));
+        const { data, ordering } = response;
+        setOrderedWay(ordering);
         setPayments(data);
       })
       .catch((err) => {
@@ -54,7 +54,7 @@ const PopPayment: FunctionalComponent<PopPaymentkDrop> = ({
           <div className="w-full max-h-[350px] overflow-y-auto no-scollbar bg-[#fcf6ff]">
             <div id="payway" className="relative overflow-hidden px-1 py-2.5">
               <div className="payment-shadow"></div>
-              {way?.map((way: any, i: any, arr: any) => {
+              {orderedWay?.map((way: any, i: any, arr: any) => {
                 return (
                   <div
                     key={i}

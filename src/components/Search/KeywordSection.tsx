@@ -38,18 +38,7 @@ const KeywordSection: FunctionalComponent<KeywordSectionProps> = ({
   onShow,
   onSearch,
 }) => {
-  const [keywordList, setKeywordList] = useState<string[]>([
-    "家庭",
-    "教师",
-    "邻居女孩",
-    "教师",
-    "便利商店",
-    "女大学生",
-    "人妻",
-    "高中生",
-    "野外",
-    "乱交",
-  ]);
+  const [keywordList, setKeywordList] = useState<string[]>([]);
 
   const clickHandler = useCallback(
     (search: string) => {
@@ -72,8 +61,8 @@ const KeywordSection: FunctionalComponent<KeywordSectionProps> = ({
     if (keywordList.length !== 0) return;
     getKeywords()
       .then((response) => {
-        console.log(response);
         if (response.error) throw new Error(response.message || "failed");
+        setKeywordList(response.data);
       })
       .catch((err) => {
         console.error(err);

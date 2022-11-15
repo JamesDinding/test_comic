@@ -17,7 +17,7 @@ const serviceList = [
   { title: "注册", msg: "完成注册即赠送50金币!", url: "/register" },
   { title: "完善会员资料", msg: "完成即赠送150金币!", url: "#bind" },
   { title: "修改密码", msg: "", url: "#password" },
-  { title: "下載", msg: "", url: "#app" },
+  { title: "下载", msg: "", url: "#app" },
   { title: "充值服务", msg: "", url: "/charge" },
   { title: "钱包纪录", msg: "", url: "/record" },
   // { title: "寻回帐户", msg: "", url: "/recovery" },
@@ -120,12 +120,14 @@ const ServiceList: FunctionalComponent = () => {
                     <a href={`/app/sjmh.${mobile}?tc=${tc}`} target="_blank">
                       <li className="cursor-pointer flex items-center bg-white py-4 px-5">
                         <div className="text-[#6d5694] text-sm">
-                          {"下載 " +
+                          {"下载 " +
                             (mobile === "mobileconfig" ? "iOS" : "Android") +
                             " App"}
                         </div>
                         <div className="ml-5 grow text-left text-[#ff978d] text-xs">
-                          {msg}
+                          {mobile === "mobileconfig"
+                            ? "频果用户请使用safari下载"
+                            : ""}
                         </div>
                         <div>
                           <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>

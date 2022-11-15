@@ -71,18 +71,18 @@ const App: FunctionalComponent = () => {
             <UserProvider>
               <ChargeProvider>
                 <div id="root" class="w-full max-w-[420px] h-full">
-                  {showSmartBanner ? (
-                    <SmartBanner
-                      SetSmartBannerVisiblity={setShowSmartBanner}
-                      tc={tc}
-                    />
-                  ) : (
-                    <></>
-                  )}
                   <div
                     id="container"
                     class="bg-white w-full h-full flex flex-col"
                   >
+                    {showSmartBanner ? (
+                      <SmartBanner
+                        SetSmartBannerVisiblity={setShowSmartBanner}
+                        tc={tc}
+                      />
+                    ) : (
+                      <></>
+                    )}
                     <Router>
                       <HomePage path="/home" />
                       <CollectPage path="/collect" />

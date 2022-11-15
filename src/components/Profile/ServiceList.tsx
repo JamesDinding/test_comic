@@ -1,5 +1,5 @@
 import { FunctionalComponent, h, Fragment as F } from "preact";
-import { StateUpdater, useState } from "preact/hooks";
+import { StateUpdater, useEffect, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
 import { useUser } from "../../context/user";
 import CustomLink from "../CustomLink";
@@ -11,11 +11,13 @@ import PopLogout from "./Services/PopLogout";
 import BackDrop from "../BackDrop";
 import { CUSTOMER_SERVICE_URL } from "../../const";
 import Password from "./Services/Password";
+import { getMobileOperatingSystem } from "../../lib/helper";
 
 const serviceList = [
   { title: "注册", msg: "完成注册即赠送50金币!", url: "/register" },
   { title: "完善会员资料", msg: "完成即赠送150金币!", url: "#bind" },
   { title: "修改密码", msg: "", url: "#password" },
+  { title: "下载", msg: "", url: "#app" },
   { title: "充值服务", msg: "", url: "/charge" },
   { title: "钱包纪录", msg: "", url: "/record" },
   // { title: "寻回帐户", msg: "", url: "/recovery" },
@@ -27,11 +29,24 @@ const serviceList = [
 ];
 
 const ServiceList: FunctionalComponent = () => {
-  const { customRouter } = useRouter();
+  const { customRouter, tc } = useRouter();
   const { isLogIn, logout, userStatus } = useUser();
   const [isPopBinding, setIsPopBinding] = useState(false);
   const [isPopPassword, setIsPopPassword] = useState(false);
   const [isPopLogout, setIsPopLogout] = useState(false);
+
+  const [mobile, setMobile] = useState("");
+
+  useEffect(() => {
+    if (mobile) return;
+    const os = getMobileOperatingSystem();
+
+    if (os === "iOS") {
+      setMobile("mobileconfig");
+    } else {
+      setMobile("apk");
+    }
+  }, [mobile]);
 
   return (
     <F>
@@ -89,6 +104,30 @@ const ServiceList: FunctionalComponent = () => {
                         <div className="text-[#6d5694] text-sm">{title}</div>
                         <div className="ml-5 grow text-left text-[#ff978d] text-xs">
                           {msg}
+                        </div>
+                        <div>
+                          <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>
+                        </div>
+                      </li>
+                    </a>
+                  );
+                }
+                if (
+                  url === "#app" &&
+                  localStorage.getItem("sjmh_device") === "web"
+                ) {
+                  return (
+                    <a href={`/app/sjmh.${mobile}?tc=${tc}`} target="_blank">
+                      <li className="cursor-pointer flex items-center bg-white py-4 px-5">
+                        <div className="text-[#6d5694] text-sm">
+                          {"下载 " +
+                            (mobile === "mobileconfig" ? "iOS" : "Android") +
+                            " App"}
+                        </div>
+                        <div className="ml-5 grow text-left text-[#ff978d] text-xs">
+                          {mobile === "mobileconfig"
+                            ? "频果用户请使用safari下载"
+                            : ""}
                         </div>
                         <div>
                           <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>

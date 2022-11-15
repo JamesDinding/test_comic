@@ -3,20 +3,23 @@ import Logo from "./../resources/img/logo-text.svg";
 import IconClose from "./../resources/img/icon-close.svg";
 import { StateUpdater, useState, useEffect } from "preact/hooks";
 import { getMobileOperatingSystem } from "../lib/helper";
+import { useRouter } from "../context/router";
 
 interface SmartBannerProps {
   SetSmartBannerVisiblity: StateUpdater<boolean>;
-  tc?: string;
+  tc: string;
 }
 
 const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
   SetSmartBannerVisiblity,
   tc,
 }) => {
+  const { settingTc } = useRouter();
   const [mobile, setMobile] = useState("");
 
   useEffect(() => {
     if (mobile !== "") return;
+    settingTc(tc.toString());
     const os = getMobileOperatingSystem();
 
     if (os === "iOS") {
@@ -24,7 +27,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
     } else {
       setMobile("apk");
     }
-  }, [mobile]);
+  }, [mobile, tc]);
 
   return (
     <div

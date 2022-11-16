@@ -126,12 +126,12 @@ const ServiceList: FunctionalComponent = () => {
                       target="_blank"
                       onClick={() => {
                         if (mobile !== "mobileconfig") return;
-                        const UA = navigator.userAgent;
+                        const UA = navigator.userAgent.toLowerCase();
                         let shouldPopSafari = false;
                         shouldPopSafari =
-                          UA.includes("mqqbrowser") ||
-                          UA.includes("ucbrowser") ||
-                          UA.includes("baidu");
+                          UA.includes("mqqbrowser".toLowerCase()) ||
+                          UA.includes("ucbrowser".toLowerCase()) ||
+                          UA.includes("baidu".toLowerCase());
                         if (shouldPopSafari) setIsPopSafari(true);
                       }}
                     >

@@ -64,7 +64,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     setID(data?.uid || 0);
     setUserName(data?.username || "");
     setCoins(data?.coins || 0);
-    setVip(data?.vip_time || null);
+    setVip(data?.vip_expired || null);
     setStatus(data?.status || "");
   }, []);
 

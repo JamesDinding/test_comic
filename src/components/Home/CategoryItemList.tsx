@@ -20,14 +20,10 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   const curCateId = useRef(catID);
   const numRef = useRef(0);
 
-  // for random layout
-  const countRef = useRef(0);
-
   useEffect(() => {
     try {
       (async () => {
         pageRef.current = 1;
-        countRef.current = 0;
         curCateId.current = catID;
         const { data } = await getSpecifiedCategory(catID, pageRef.current);
         numRef.current = data?.length;
@@ -82,7 +78,6 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           isTemp={true}
           itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
           isLayoutDiff={true}
-          countRef={countRef}
         />
         <div
           ref={bottomRef}

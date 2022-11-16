@@ -27,6 +27,16 @@ const ProfilePage: FunctionalComponent = () => {
           <UserSection showVIP={true} />
         </div>
         <ServiceList />
+        <div className="pt-8 bg-[#fcf6ff] text-sm text-center text-gray-500 tracking-wide">
+          水晶漫畫永久域名:
+          <a
+            className="ml-5 text-[#0000EE]"
+            href="https://dw.sjmh.top?paymode=1"
+            target="_blank"
+          >
+            sjmh.top
+          </a>
+        </div>
       </div>
       <FooterBar />
     </>

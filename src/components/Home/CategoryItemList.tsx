@@ -57,7 +57,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
             pageRef.current
           );
           if (data.length === 0) {
-            observer.unobserve(e.target);
+            // observer.unobserve(e.target);
             return;
           }
           pageRef.current++;

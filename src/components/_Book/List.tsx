@@ -22,6 +22,7 @@ const BookList: FunctionalComponent<BookListProps> = ({
   isLayoutDiff,
   countRef,
 }) => {
+  console.log("booklist render");
   const layoutType = useRef(0);
   function generateRandomLayout() {
     return Math.floor(Math.random() * 10) % 5;
@@ -38,7 +39,6 @@ const BookList: FunctionalComponent<BookListProps> = ({
             countRef.current += layoutType.current;
           }
 
-          console.log(layoutType.current);
           return (
             <BookListItem
               key={i}

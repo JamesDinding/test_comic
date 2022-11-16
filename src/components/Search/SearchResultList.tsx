@@ -40,7 +40,7 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
           getSearch("keyword=" + query + "&page=" + pageRef.current).then(
             (response) => {
               if (response.data.length === 0) {
-                observer.unobserve(e.target);
+                // observer.unobserve(e.target);
                 return;
               }
               setMoreContent((prev) => prev.concat(response.data));

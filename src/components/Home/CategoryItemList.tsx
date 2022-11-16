@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { useState, useEffect, useRef, Ref } from "preact/hooks";
+import { useState, useEffect, useRef } from "preact/hooks";
 import BookList from "../_Book/List";
 import { getSpecifiedCategory } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
@@ -20,10 +20,14 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   const curCateId = useRef(catID);
   const numRef = useRef(0);
 
+  // for random layout
+  const countRef = useRef(0);
+
   useEffect(() => {
     try {
       (async () => {
         pageRef.current = 1;
+        countRef.current = 0;
         curCateId.current = catID;
         const { data } = await getSpecifiedCategory(catID, pageRef.current);
         numRef.current = data?.length;
@@ -53,7 +57,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
             pageRef.current
           );
           if (data.length === 0) {
-            observer.unobserve(e.target);
+            // observer.unobserve(e.target);
             return;
           }
           pageRef.current++;
@@ -77,6 +81,8 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           type={"separate"}
           isTemp={true}
           itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
+          isLayoutDiff={true}
+          countRef={countRef}
         />
         <div
           ref={bottomRef}

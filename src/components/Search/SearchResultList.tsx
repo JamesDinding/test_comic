@@ -8,11 +8,13 @@ import { CATEGORY_PER_PAGE_NUM } from "../../const";
 interface SearchResultListProps {
   content: Book[];
   searchRef: MutableRef<HTMLInputElement>;
+  countRef: MutableRef<number>;
 }
 
 const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   content,
   searchRef,
+  countRef,
 }) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
@@ -38,7 +40,7 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
           getSearch("keyword=" + query + "&page=" + pageRef.current).then(
             (response) => {
               if (response.data.length === 0) {
-                observer.unobserve(e.target);
+                // observer.unobserve(e.target);
                 return;
               }
               setMoreContent((prev) => prev.concat(response.data));
@@ -67,6 +69,8 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
             type={"separate"}
             isTemp={true}
             itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
+            isLayoutDiff={true}
+            countRef={countRef}
           />
         )}
         <div

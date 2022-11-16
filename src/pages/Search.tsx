@@ -6,6 +6,7 @@ import KeywordSection from "../components/Search/KeywordSection";
 import RecommendBlock from "../components/Home/RecommendBlock";
 import { ObserverProvider } from "../context/observer";
 import { getBlockById } from "../lib/api";
+import { useDomain } from "../context/domain";
 
 const SearchPage: FunctionalComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null!);
@@ -13,12 +14,14 @@ const SearchPage: FunctionalComponent = () => {
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [searchResult, setSearchResult] = useState<Book[]>([]);
   const [recommendBlock, setRecommendBlock] = useState<Book[]>([]);
+  const { setDomain } = useDomain();
 
   useEffect(() => {
     if (searchResult.length !== 0) return;
     getBlockById(44)
       .then((response) => {
         setRecommendBlock(response.data);
+        setDomain(response.domain);
       })
       .catch((err) => {
         console.error(err.message || "failed");

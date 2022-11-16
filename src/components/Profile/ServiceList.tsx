@@ -12,6 +12,7 @@ import BackDrop from "../BackDrop";
 import { CUSTOMER_SERVICE_URL } from "../../const";
 import Password from "./Services/Password";
 import { getMobileOperatingSystem } from "../../lib/helper";
+import IconTriangle from "../../resources/img/icon-triangle.svg";
 
 const serviceList = [
   { title: "注册", msg: "完成注册即赠送50金币!", url: "/register" },
@@ -106,7 +107,8 @@ const ServiceList: FunctionalComponent = () => {
                           {msg}
                         </div>
                         <div>
-                          <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>
+                          <IconTriangle class="w-2 mr-4" />
+                          {/* <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div> */}
                         </div>
                       </li>
                     </a>
@@ -128,7 +130,8 @@ const ServiceList: FunctionalComponent = () => {
                             : ""}
                         </div>
                         <div>
-                          <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>
+                          <IconTriangle class="w-2 mr-4" />
+                          {/* <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div> */}
                         </div>
                       </li>
                     </a>

@@ -11,4 +11,6 @@ declare interface RouterContextType {
   settingTc: (arg: string) => void;
   attachment: any;
   attachData: (arg: any) => any;
+  tempData: any;
+  setTempData: (arg: any) => void;
 }

@@ -44,14 +44,14 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
             {userStatus.coins || 0}&nbsp;元
           </span>
         </div>
-        {/* {showVIP && (
+        {showVIP && (
           <div className="h-[17px] mt-[1px] flex items-center justify-between text-[#999999]">
             <span className="text-xs">VIP 会员</span>
             <span className="text-xs">
               {userStatus.vip?.split(" ")[0] || "尚未开通"}
             </span>
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );

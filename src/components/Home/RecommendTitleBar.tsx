@@ -2,6 +2,7 @@ import { FunctionalComponent, h } from "preact";
 import { route } from "preact-router";
 import { useRouter } from "../../context/router";
 import { StateUpdater } from "preact/hooks";
+import IconTriangle from "../../resources/img/icon-triangle.svg";
 
 interface RecommendTitleBarProps {
   BlockName: string;
@@ -30,7 +31,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
         <img
           src={`/assets/img/title/${pic}@3x.png`}
           class={
-            "inline-block translate-y-[-10px] w-full px-2.5" +
+            "relative z-10 inline-block translate-y-[-10px] w-full px-2.5" +
             (BlockName === "本周更新" ? "!px-0" : "")
           }
         />
@@ -47,7 +48,8 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       >
         更多{" "}
         <div>
-          <div className="ml-2 h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>
+          <IconTriangle class="w-2 ml-1 " />
+          {/* <div className="ml-2 h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div> */}
         </div>
       </div>
     </div>

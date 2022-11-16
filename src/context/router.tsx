@@ -15,6 +15,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   const currentUrlRef = useRef(window.location.pathname || "");
   const [attachment, setaAttachment] = useState(null);
   const [tc, setTc] = useState("");
+  const [tempData, setTempData] = useState(null);
 
   // pop the lastest history and return current lastest history
   const popHandler = useCallback(() => {
@@ -47,6 +48,10 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     setaAttachment(d);
   }, []);
 
+  const setTempHandler = useCallback((d: any) => {
+    setTempData(d);
+  }, []);
+
   const settingTcHandler = useCallback(
     (tcString: string) => setTc(tcString),
     []
@@ -70,6 +75,8 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     settingTc: settingTcHandler,
     attachment,
     attachData: attachDataHandler,
+    tempData,
+    setTempData: setTempHandler,
   };
 
   return (

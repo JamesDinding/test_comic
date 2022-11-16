@@ -2,12 +2,12 @@ import { FunctionalComponent, h, Fragment } from "preact";
 import { useState, useEffect } from "preact/compat";
 import { createPortal } from "preact/compat";
 import { useCharge } from "../../../../context/charge";
-import { useUser } from "../../../../context/user";
 import BackDrop from "../../../BackDrop";
 import PopPayment from "./PopPayment";
 import PopConfirm from "./PopConfirm";
 import Attention from "./Attention";
 import IconDiscountCoins from "../../../../resources/img/icon-discount-coins.svg";
+import IconDiscountVip from "../../../../resources/img/icon-discount-vip-old.svg";
 import { getOrdersProducts } from "../../../../lib/api";
 
 declare interface SalesItem {
@@ -24,10 +24,10 @@ declare interface SalesItem {
 
 const Charge = () => {
   const { selectCoins, selectPay } = useCharge();
-  const { isLogIn } = useUser();
   const [isPopPayment, setIsPopPayment] = useState(false);
   const [isPopConfirm, setIsPopConfirm] = useState(false);
   const [salesList, setSalesList] = useState<SalesItem[]>([]);
+  const [vipList, setVipList] = useState([]);
   const popPaymentHandler = (sale: any) => {
     selectCoins(sale);
     setIsPopPayment(true);
@@ -37,6 +37,7 @@ const Charge = () => {
     getOrdersProducts()
       .then((response) => {
         setSalesList(response.data);
+        setVipList(response.data);
       })
       .catch((err) => {
         console.error(err.message || "failed");
@@ -129,7 +130,7 @@ const Charge = () => {
               </div>
             );
           })}
-          {/* {vipList.map((sale, index) => {
+          {vipList.map((sale: any, index) => {
             return (
               <div
                 className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(255,188,188,0.2)] rounded-xl"
@@ -137,31 +138,33 @@ const Charge = () => {
                 key={index}
               >
                 <div className="charge-discount-container">
-                  <IconDiscountVip class="w-[27px]" />
+                  {sale.options?.title && <IconDiscountVip class="w-[27px]" />}
                 </div>
                 <div className="flex w-full pl-3">
                   <div>
                     <img
-                      src="/assets/img/coin.png"
+                      src="/assets/img/vip.png"
                       className="h-10 w-10"
                       alt=""
                     />
                   </div>
                   <div className="pl-2.5">
-                    <div className="text-sm">金币</div>
-                    <div className="text-lg font-semibold">3,000</div>
-                    {index !== 0 && (
-                      <div className="text-sm opacity-60">含赠送 3,000</div>
-                    )}
+                    <div className="text-sm">天數</div>
+                    <div className="text-lg font-semibold">
+                      {sale.token_amount || sale.days}
+                    </div>
+                    <div className="text-sm opacity-60">
+                      {sale.options?.body}
+                    </div>
                   </div>
                 </div>
 
                 <button className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#ff978d]">
-                  &#165;&nbsp;30
+                  &#165;&nbsp;{sale.cash_amount}
                 </button>
               </div>
             );
-          })} */}
+          })}
         </div>
         <Attention />
       </div>

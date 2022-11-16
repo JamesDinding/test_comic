@@ -65,7 +65,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
           target="_blank"
           onClick={() => {
             if (mobile !== "mobileconfig") return;
-            const UA = navigator.userAgent;
+            const UA = navigator.userAgent.toLowerCase();
             let shouldPopSafari = false;
             shouldPopSafari =
               UA.includes("mqqbrowser") ||

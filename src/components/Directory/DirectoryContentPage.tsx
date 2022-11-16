@@ -110,12 +110,11 @@ const DirectoryContentPage: FunctionalComponent = () => {
               onClick={() => {
                 setIsCollected((prev) => !prev);
                 if (isLogIn) {
-                  postMyBookmarks(
-                    content?.id,
-                    isCollected ? "remove" : "add"
-                  ).then((data) => {
-                    // console.log("req response data:", data);
-                  });
+                  postMyBookmarks(content?.id, isCollected ? "remove" : "add")
+                    .then((data) => {
+                      // console.log("req response data:", data);
+                    })
+                    .catch((err) => console.error(err.message));
                 } else {
                   // using localStorage
                   const temp = JSON.parse(

@@ -28,7 +28,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
         const { data } = await getSpecifiedCategory(catID, pageRef.current);
         numRef.current = data?.length;
         pageRef.current++;
-        setContent(data);
+        setContent(data?.sort(() => Math.random() - 0.5));
       })();
     } catch (err: any) {
       console.error(err.message || "failed");

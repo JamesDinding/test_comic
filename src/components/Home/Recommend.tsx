@@ -44,7 +44,9 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
               key={i}
               BlockID={bn.id}
               BlockName={bn.name}
-              Items={blocks[bn.name as keyof typeof blocks]}
+              Items={blocks[bn.name as keyof typeof blocks]?.sort(
+                () => Math.random() - 0.5
+              )}
               ItemPerRow={bn.count}
             />
           </Fragment>

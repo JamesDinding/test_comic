@@ -62,6 +62,7 @@ const CollectPage: FunctionalComponent = () => {
     getBlockById(44)
       .then((response) => {
         setRecommendBlock(response.data);
+        setDomain(response.domain);
       })
       .catch((err) => {
         console.error(err.message || "failed");
@@ -170,9 +171,12 @@ const CollectPage: FunctionalComponent = () => {
               onDefaultBehavior={false}
             />
             <div className="items-box grid grid-cols-3 gap-2.5 py-4">
-              {recommendBlock.slice(0, 9).map((el: Book, i, arr) => {
-                return <BookListItem Data={el} type="separate" />;
-              })}
+              {recommendBlock
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 9)
+                .map((el: Book, i, arr) => {
+                  return <BookListItem Data={el} type="separate" />;
+                })}
             </div>
           </div>
         </ObserverProvider>

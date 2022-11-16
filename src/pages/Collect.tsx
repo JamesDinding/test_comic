@@ -116,7 +116,10 @@ const CollectPage: FunctionalComponent = () => {
               </div>
             ) : (
               <F>
-                <Empty />
+                <Empty
+                  hasButton={true}
+                  btnConfig={{ href: "/home", msg: "去逛逛" }}
+                />
                 {/* <div className="mx-5 mt-5">
                   <RecommendTitleBar
                     BlockID={44}
@@ -142,7 +145,10 @@ const CollectPage: FunctionalComponent = () => {
               </div>
             ) : (
               <F>
-                <Empty />
+                <Empty
+                  hasButton={true}
+                  btnConfig={{ href: "/charge", msg: "去充值" }}
+                />
                 {/* <div className="mx-5 mt-5">
                   <RecommendTitleBar
                     BlockID={44}

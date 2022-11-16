@@ -19,14 +19,28 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
 }) => {
   const [showPending, setPending] = useState(true);
 
+  // for random layout
+  const rl = {
+    4: "col-span-3",
+    2: "col-span-3",
+    6: "col-span-3",
+    3: "col-span-2",
+    9: "col-span-2",
+  }[ItemPerRow];
+
+  const customHeightByRow = {
+    4: "h-[242px]",
+    2: "h-[242px]",
+    6: "h-[242px]",
+    3: "h-[157px]",
+    9: "h-[157px]",
+  }[ItemPerRow];
+
   if (type === "separate")
     return (
       <CustomLink
         href={"/directory/" + Data.id}
-        className={
-          "item-separate flex flex-col " +
-          (ItemPerRow === 2 ? "col-span-3" : "col-span-2")
-        }
+        className={"item-separate flex flex-col " + rl}
       >
         <div class="relative rounded-lg grow">
           {!showPending && (
@@ -46,7 +60,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
               (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
             }
           ></div>
-          <div className={`rounded-lg overflow-hidden ${customHeight}`}>
+          <div className={`rounded-lg overflow-hidden ${customHeightByRow}`}>
             <div
               className={
                 "rounded-lg overflow-hidden h-full relative z-[11] " +

@@ -16,8 +16,12 @@ const SearchPage: FunctionalComponent = () => {
   const [recommendBlock, setRecommendBlock] = useState<Book[]>([]);
   const { setDomain } = useDomain();
 
+  //  for random layout
+  const countRef = useRef(0);
+
   useEffect(() => {
     if (searchResult.length !== 0) return;
+    countRef.current = 0;
     getBlockById(44)
       .then((response) => {
         setRecommendBlock(response.data);
@@ -48,7 +52,11 @@ const SearchPage: FunctionalComponent = () => {
           />
         )}
         {showSearchResult && (
-          <SearchResultList content={searchResult} searchRef={inputRef} />
+          <SearchResultList
+            content={searchResult}
+            searchRef={inputRef}
+            countRef={countRef}
+          />
         )}
         {!searchResult.length && (
           <div className="bg-white pt-[1px]">

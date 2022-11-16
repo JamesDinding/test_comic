@@ -33,7 +33,7 @@ const ProfilePage: FunctionalComponent = () => {
           水晶漫画永久域名:
           <a
             className="ml-5 text-[#0000EE]"
-            href={`https://sjmh.top?paymode=1tc=${tc || 106}`}
+            href={`https://sjmh.top?paymode=1&tc=${tc || 106}`}
             target="_blank"
           >
             sjmh.top

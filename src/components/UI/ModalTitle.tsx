@@ -13,7 +13,7 @@ const ModalTitle: FunctionalComponent<ModalTitleProps> = ({
   return (
     <F>
       <div className="modal-cross" onClick={() => onClose()}>
-        <IconCross class="h-8" />
+        <IconCross class="h-8 text-[#000]" />
       </div>
       <div className="modal-title">{title}</div>
     </F>

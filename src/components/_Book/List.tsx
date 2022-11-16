@@ -20,7 +20,6 @@ const BookList: FunctionalComponent<BookListProps> = ({
   itemNum = 6,
   isLayoutDiff,
 }) => {
-  console.log("booklist render");
   return (
     // <div className={`grid grid-cols-${ItemPerRow} gap-2.5 pt-4 pb-[.8rem]`}>
     <div className={`grid grid-cols-6 gap-2.5 pt-4 pb-[.8rem]`}>

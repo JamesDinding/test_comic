@@ -21,13 +21,15 @@ const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
   const pageRef = useRef(2);
   const numRef = useRef(0);
 
+  console.log(observer);
+
   useEffect(() => {
-    if (observer || content.length === 0) return;
+    if (observer) return;
     const opt: IntersectionObserverInit = {
       root: document.querySelector("#scroll"),
       // root: document.querySelector("#category-section"),
       // threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-      rootMargin: "-30px 0px 0px 0px",
+      rootMargin: "-30px 0px 30px 0px",
     };
 
     const ob = new IntersectionObserver((entries, observer) => {
@@ -36,7 +38,7 @@ const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
           getBlockById(moreBlockId + "?page=" + pageRef.current).then(
             (response) => {
               if (response.data.length === 0) {
-                observer.unobserve(e.target);
+                // observer.unobserve(e.target);
                 return;
               }
               setMoreContent((prev) => prev.concat(response.data));

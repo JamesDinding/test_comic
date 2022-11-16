@@ -41,7 +41,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
       root: document.querySelector("#scroll"),
       // root: document.querySelector("#category-section"),
       // threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-      rootMargin: "-30px 0px 0px 0px",
+      rootMargin: "-30px 0px 30px 0px",
     };
 
     const ob = new IntersectionObserver((entries, observer) => {

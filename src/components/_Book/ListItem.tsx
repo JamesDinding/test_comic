@@ -1,8 +1,12 @@
 import { h, FunctionalComponent } from "preact";
-import { useState } from "preact/hooks";
-import { Link } from "preact-router";
+import { useState, useEffect } from "preact/hooks";
 import CustomLink from "../CustomLink";
 import Image from "../_Image/image";
+import { useUser } from "../../context/user";
+import IconBookmark from "../../resources/img/icon-bookmark.svg";
+import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
+import { defaultLocalStorage } from "../../const";
+import { postMyBookmarks } from "../../lib/api";
 
 interface BookListItemProps {
   Data: Book;
@@ -17,7 +21,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   customHeight = "h-[157px]",
   ItemPerRow = 3,
 }) => {
+  const { isLogIn } = useUser();
   const [showPending, setPending] = useState(true);
+  const [isCollected, setIsCollected] = useState(false);
 
   // for random layout
   const rl = {
@@ -34,6 +40,22 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
     9: "h-[157px]",
   }[ItemPerRow];
 
+  useEffect(() => {
+    if (isLogIn) {
+      setIsCollected(Data.bookmark_status || false);
+    } else {
+      const collections = JSON.parse(
+        localStorage.getItem("sjmh") || defaultLocalStorage
+      ).collection;
+
+      const hasBook = collections.find(
+        (collect: Book) => collect.id === Data?.id
+      );
+
+      if (hasBook) setIsCollected(true);
+    }
+  }, [isLogIn]);
+
   if (type === "separate")
     return (
       <CustomLink
@@ -41,6 +63,46 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         className={"item-separate flex flex-col " + rl}
       >
         <div class="relative rounded-lg grow">
+          {
+            <button
+              className="absolute z-20 right-0 top-[-4px]"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                setIsCollected((prev) => !prev);
+                if (isLogIn) {
+                  postMyBookmarks(Data?.id, isCollected ? "remove" : "add")
+                    .then((data) => {})
+                    .catch((err) => console.error(err.message));
+                } else {
+                  //using localStorage
+                  const temp = JSON.parse(
+                    localStorage.getItem("sjmh") || defaultLocalStorage
+                  );
+                  if (isCollected) {
+                    temp.collection = temp.collection.filter(
+                      (collect: Content) => collect.id !== Data?.id
+                    );
+                  } else {
+                    temp.collection.push({
+                      id: Data?.id,
+                      title: Data?.title,
+                      hot: Data?.hot,
+                      views: Data?.views,
+                      covers: { thumb: Data?.covers?.thumb },
+                    });
+                  }
+                  localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
+                }
+              }}
+            >
+              {isCollected ? (
+                <IconBookmark class="w-8 h-8" />
+              ) : (
+                <IconBookmarkGray class="w-8 h-8" />
+              )}
+            </button>
+          }
           {!showPending && (
             <div className="item-overlay z-[25] !h-[60px]"></div>
           )}

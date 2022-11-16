@@ -13,6 +13,7 @@ import { CUSTOMER_SERVICE_URL } from "../../const";
 import Password from "./Services/Password";
 import { getMobileOperatingSystem } from "../../lib/helper";
 import IconTriangle from "../../resources/img/icon-triangle.svg";
+import ModalSafari from "../Modal/ModalSafari";
 
 const serviceList = [
   { title: "注册", msg: "完成注册即赠送50金币!", url: "/register" },
@@ -35,6 +36,7 @@ const ServiceList: FunctionalComponent = () => {
   const [isPopBinding, setIsPopBinding] = useState(false);
   const [isPopPassword, setIsPopPassword] = useState(false);
   const [isPopLogout, setIsPopLogout] = useState(false);
+  const [isPopSafari, setIsPopSafari] = useState(false);
 
   const [mobile, setMobile] = useState("");
 
@@ -51,13 +53,14 @@ const ServiceList: FunctionalComponent = () => {
 
   return (
     <F>
-      {(isPopBinding || isPopPassword || isPopLogout) &&
+      {(isPopBinding || isPopPassword || isPopLogout || isPopSafari) &&
         createPortal(
           <BackDrop
             onClose={() => {
               setIsPopBinding(false);
               setIsPopLogout(false);
               setIsPopPassword(false);
+              setIsPopSafari(false);
             }}
           />,
           document.getElementById("back-drop")!
@@ -72,6 +75,7 @@ const ServiceList: FunctionalComponent = () => {
       )}
       {isPopPassword && <Password onClose={() => setIsPopPassword(false)} />}
       {isPopLogout && <PopLogout onClose={() => setIsPopLogout(false)} />}
+      {isPopSafari && <ModalSafari onClose={() => setIsPopSafari(false)} />}
       <div className="flex flex-col overflow-auto">
         <div className="mb-[.625rem] rounded-2xl">
           <div className="bg-white text-[#4c4c4c] rounded-2xl">
@@ -117,7 +121,20 @@ const ServiceList: FunctionalComponent = () => {
                 if (url === "#app") {
                   if (localStorage.getItem("sjmh_device") !== "web") return;
                   return (
-                    <a href={`/app/sjmh.${mobile}?tc=${tc}`} target="_blank">
+                    <a
+                      href={`/app/sjmh.${mobile}?tc=${tc}`}
+                      target="_blank"
+                      onClick={() => {
+                        if (mobile !== "mobileconfig") return;
+                        const UA = navigator.userAgent;
+                        let shouldPopSafari = false;
+                        shouldPopSafari =
+                          UA.includes("mqqbrowser") ||
+                          UA.includes("ucbrowser") ||
+                          UA.includes("baidu");
+                        if (shouldPopSafari) setIsPopSafari(true);
+                      }}
+                    >
                       <li className="cursor-pointer flex items-center bg-white py-4 px-5">
                         <div className="text-[#6d5694] text-sm">
                           {"下载 " +

@@ -1107,14 +1107,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 40%;
 }
 
-.w-\[160px\] {
-  width: 160px;
-}
-
-.w-\[200px\] {
-  width: 200px;
-}
-
 .min-w-\[161px\] {
   min-width: 161px;
 }
@@ -1639,10 +1631,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#a186af\] {
   --tw-bg-opacity: 1;
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
-}
-
-.bg-\[linear-gradient\(\)\] {
-  background-image: linear-gradient();
 }
 
 .bg-userSection {
@@ -2257,20 +2245,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   opacity: 0.4;
 }
 
+.opacity-80 {
+  opacity: 0.8;
+}
+
 .opacity-0 {
   opacity: 0;
 }
 
 .opacity-20 {
   opacity: 0.2;
-}
-
-.opacity-100 {
-  opacity: 1;
-}
-
-.opacity-80 {
-  opacity: 0.8;
 }
 
 .shadow-md {

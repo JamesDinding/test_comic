@@ -23,7 +23,6 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   const rl = {
     4: "col-span-3",
     2: "col-span-3",
-    6: "col-span-3",
     3: "col-span-2",
     9: "col-span-2",
   }[ItemPerRow];
@@ -31,7 +30,6 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   const customHeightByRow = {
     4: "h-[242px]",
     2: "h-[242px]",
-    6: "h-[242px]",
     3: "h-[157px]",
     9: "h-[157px]",
   }[ItemPerRow];

@@ -8,13 +8,11 @@ import { CATEGORY_PER_PAGE_NUM } from "../../const";
 interface SearchResultListProps {
   content: Book[];
   searchRef: MutableRef<HTMLInputElement>;
-  countRef: MutableRef<number>;
 }
 
 const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   content,
   searchRef,
-  countRef,
 }) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
@@ -70,7 +68,6 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
             isTemp={true}
             itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
             isLayoutDiff={true}
-            countRef={countRef}
           />
         )}
         <div

@@ -21,7 +21,6 @@ const SearchPage: FunctionalComponent = () => {
 
   useEffect(() => {
     if (searchResult.length !== 0) return;
-    countRef.current = 0;
     getBlockById(44)
       .then((response) => {
         setRecommendBlock(response.data);
@@ -52,11 +51,7 @@ const SearchPage: FunctionalComponent = () => {
           />
         )}
         {showSearchResult && (
-          <SearchResultList
-            content={searchResult}
-            searchRef={inputRef}
-            countRef={countRef}
-          />
+          <SearchResultList content={searchResult} searchRef={inputRef} />
         )}
         {!searchResult.length && (
           <div className="bg-white pt-[1px]">

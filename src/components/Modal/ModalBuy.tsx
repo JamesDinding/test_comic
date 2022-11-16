@@ -82,12 +82,10 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
                   reset();
 
                   customRouter.push(
-                    `/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`,
-                    true
+                    `/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`
                   );
                   route(
-                    `/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`,
-                    true
+                    `/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`
                   );
                 })
                 .catch((err) => {

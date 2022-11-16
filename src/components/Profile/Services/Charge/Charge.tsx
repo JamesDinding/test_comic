@@ -37,7 +37,7 @@ const Charge = () => {
     getOrdersProducts()
       .then((response) => {
         setSalesList(response.data);
-        setVipList(response.data);
+        setVipList(response.vips);
       })
       .catch((err) => {
         console.error(err.message || "failed");
@@ -130,11 +130,11 @@ const Charge = () => {
               </div>
             );
           })}
-          {vipList.map((sale: any, index) => {
+          {vipList?.map((sale: any, index) => {
             return (
               <div
                 className="relative flex flex-col items-center justify-between py-2.5 min-h-[140px] text-[#9e7654] bg-[rgba(255,188,188,0.2)] rounded-xl"
-                onClick={popPaymentHandler.bind(this, sale)}
+                // onClick={popPaymentHandler.bind(this, sale)}
                 key={index}
               >
                 <div className="charge-discount-container">
@@ -144,22 +144,28 @@ const Charge = () => {
                   <div>
                     <img
                       src="/assets/img/vip.png"
-                      className="h-10 w-10"
+                      className="h-10 w-12"
                       alt=""
                     />
                   </div>
-                  <div className="pl-2.5">
-                    <div className="text-sm">天數</div>
+                  <div>
+                    <div className="text-sm">VIP无限看</div>
                     <div className="text-lg font-semibold">
-                      {sale.token_amount || sale.days}
+                      {sale.vip_length}&nbsp;天
                     </div>
-                    <div className="text-sm opacity-60">
+                    <div className="text-xs opacity-60">
                       {sale.options?.body}
                     </div>
                   </div>
                 </div>
 
-                <button className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#ff978d]">
+                <button
+                  className="w-4/5 py-2 mt-2 rounded-xl text-white bg-[#ff978d]"
+                  onClick={() => {
+                    // if (!isLogIn) route("/login");
+                    popPaymentHandler(sale);
+                  }}
+                >
                   &#165;&nbsp;{sale.cash_amount}
                 </button>
               </div>

@@ -1,4 +1,5 @@
 import { h, FunctionalComponent } from "preact";
+import IconTriangle from "../../resources/img/icon-triangle.svg";
 
 interface ServiceRowProps {
   url: string;
@@ -23,7 +24,8 @@ const ServiceRow: FunctionalComponent<ServiceRowProps> = ({
       <div className="text-[#6d5694] text-sm">{title}</div>
       <div className="ml-5 grow text-left text-[#ff978d] text-xs">{msg}</div>
       <div>
-        <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div>
+        <IconTriangle class="w-2 mr-4" />
+        {/* <div className="h-0 w-0 border-l-[.5rem] border-[.35rem] border-transparent border-l-[#6d569499] rounded-sm"></div> */}
       </div>
     </li>
   );

@@ -30,6 +30,14 @@ const Image: FunctionalComponent<ImageProps> = ({
     if (!escapeObserve) {
       if (!isShown) return;
     }
+    if (!path) {
+      setImageBlob(
+        "/assets/img/chapterCover/" +
+          ((Math.floor(Math.random() * 10) % 5) + 1) +
+          ".jpg"
+      );
+      setParentPending(false);
+    }
     if (!path || !srcDomain) return;
     (async () => {
       try {
@@ -43,6 +51,13 @@ const Image: FunctionalComponent<ImageProps> = ({
         setImageBlob(b64);
         setParentPending(false);
       } catch (err) {
+        setImageBlob(
+          "/assets/img/chapterCover/" +
+            (Math.floor(Math.random() * 10) % 5) +
+            1 +
+            ".jpg"
+        );
+        setParentPending(false);
         console.error(err);
       }
     })();

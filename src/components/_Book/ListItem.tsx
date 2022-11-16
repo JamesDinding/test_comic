@@ -65,7 +65,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         <div class="relative rounded-lg grow">
           {
             <button
-              className="absolute z-20 right-0 top-[-4px]"
+              className="absolute z-20 right-0 top-[-6px]"
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();

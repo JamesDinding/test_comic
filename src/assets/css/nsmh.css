@@ -1099,6 +1099,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 40%;
 }
 
+.w-\[160px\] {
+  width: 160px;
+}
+
+.w-\[200px\] {
+  width: 200px;
+}
+
 .min-w-\[161px\] {
   min-width: 161px;
 }
@@ -2251,6 +2259,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-20 {
   opacity: 0.2;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.opacity-80 {
+  opacity: 0.8;
 }
 
 .shadow-md {

@@ -6,9 +6,11 @@ import ReturnBar from "../components/ReturnBar";
 import FooterBar from "../components/FooterBar";
 
 import { useUser } from "../context/user";
+import { useRouter } from "../context/router";
 
 const ProfilePage: FunctionalComponent = () => {
   const { isLogIn, getUserStatus } = useUser();
+  const { tc } = useRouter();
 
   useEffect(() => {
     if (!isLogIn) return;
@@ -28,10 +30,10 @@ const ProfilePage: FunctionalComponent = () => {
         </div>
         <ServiceList />
         <div className="pt-8 bg-[#fcf6ff] text-sm text-center text-gray-500 tracking-wide">
-          水晶漫畫永久域名:
+          水晶漫画永久域名:
           <a
             className="ml-5 text-[#0000EE]"
-            href="https://dw.sjmh.top?paymode=1"
+            href={`https://sjmh.top?paymode=1tc=${tc || 106}`}
             target="_blank"
           >
             sjmh.top

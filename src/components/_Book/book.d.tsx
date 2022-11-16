@@ -33,4 +33,5 @@ declare interface Book extends BlockContent {
   ID?: number;
   Cover?: string;
   Name?: string;
+  bookmark_status?: boolean;
 }

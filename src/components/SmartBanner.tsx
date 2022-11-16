@@ -65,14 +65,16 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
           target="_blank"
           onClick={(e) => {
             if (mobile !== "mobileconfig") return;
-            e.preventDefault();
             const UA = navigator.userAgent.toLowerCase();
             let shouldPopSafari = false;
             shouldPopSafari =
               UA.includes("mqqbrowser") ||
               UA.includes("ucbrowser") ||
               UA.includes("baidu");
-            if (shouldPopSafari) setIsPopSafari(true);
+            if (shouldPopSafari) {
+              e.preventDefault();
+              setIsPopSafari(true);
+            }
           }}
         >
           <img
@@ -95,6 +97,19 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
           href={`/app/sjmh.${mobile}?tc=${tc}`}
           target="_blank"
           class="rounded-full border-2 border-[#b5a7d0] text-[#6d5694] p-2 text-xs font-bold mr-2 hover:bg-[#fcf6ff] whitespace-nowrap"
+          onClick={(e) => {
+            if (mobile !== "mobileconfig") return;
+            const UA = navigator.userAgent.toLowerCase();
+            let shouldPopSafari = false;
+            shouldPopSafari =
+              UA.includes("mqqbrowser") ||
+              UA.includes("ucbrowser") ||
+              UA.includes("baidu");
+            if (shouldPopSafari) {
+              e.preventDefault();
+              setIsPopSafari(true);
+            }
+          }}
         >
           安装 APP
           <img

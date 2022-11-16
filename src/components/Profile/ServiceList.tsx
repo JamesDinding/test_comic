@@ -126,14 +126,16 @@ const ServiceList: FunctionalComponent = () => {
                       target="_blank"
                       onClick={(e) => {
                         if (mobile !== "mobileconfig") return;
-                        e.preventDefault();
                         const UA = navigator.userAgent.toLowerCase();
                         let shouldPopSafari = false;
                         shouldPopSafari =
                           UA.includes("mqqbrowser".toLowerCase()) ||
                           UA.includes("ucbrowser".toLowerCase()) ||
                           UA.includes("baidu".toLowerCase());
-                        if (shouldPopSafari) setIsPopSafari(true);
+                        if (shouldPopSafari) {
+                          e.preventDefault();
+                          setIsPopSafari(true);
+                        }
                       }}
                     >
                       <li className="cursor-pointer flex items-center bg-white py-4 px-5">

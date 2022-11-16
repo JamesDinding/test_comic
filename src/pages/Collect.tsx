@@ -138,7 +138,7 @@ const CollectPage: FunctionalComponent = () => {
           {curSelect === 1 &&
             (acquisitions?.length ? (
               <div className="grow bg-[#fcf6ff]">
-                <div className="items-box grid grid-cols-3 gap-2.5 py-4 px-5">
+                <div className="items-box grid grid-cols-6 gap-2.5 py-4 px-5">
                   {acquisitions.map((purchase: any, i, arr) => {
                     return <BookListItem Data={purchase} type="separate" />;
                   })}
@@ -170,7 +170,7 @@ const CollectPage: FunctionalComponent = () => {
               BlockName="新书上架"
               onDefaultBehavior={false}
             />
-            <div className="items-box grid grid-cols-3 gap-2.5 py-4">
+            <div className="items-box grid grid-cols-6 gap-2.5 py-4">
               {recommendBlock
                 .sort(() => Math.random() - 0.5)
                 .slice(0, 9)

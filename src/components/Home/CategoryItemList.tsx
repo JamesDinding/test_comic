@@ -77,6 +77,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           type={"separate"}
           isTemp={true}
           itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
+          isLayoutDiff={true}
         />
         <div
           ref={bottomRef}

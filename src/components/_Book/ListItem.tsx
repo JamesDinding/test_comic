@@ -8,12 +8,14 @@ interface BookListItemProps {
   Data: Book;
   type?: "separate" | "stack" | "original" | "collect";
   customHeight?: string;
+  ItemPerRow?: number;
 }
 
 const BookListItem: FunctionalComponent<BookListItemProps> = ({
   Data,
   type = "original",
   customHeight = "h-[157px]",
+  ItemPerRow = 3,
 }) => {
   const [showPending, setPending] = useState(true);
 
@@ -21,7 +23,10 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
     return (
       <CustomLink
         href={"/directory/" + Data.id}
-        className={"item-separate flex flex-col "}
+        className={
+          "item-separate flex flex-col " +
+          (ItemPerRow === 2 ? "col-span-3" : "col-span-2")
+        }
       >
         <div class="relative rounded-lg grow">
           {!showPending && (

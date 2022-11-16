@@ -67,6 +67,7 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
             type={"separate"}
             isTemp={true}
             itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
+            isLayoutDiff={true}
           />
         )}
         <div

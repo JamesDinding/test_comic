@@ -32,7 +32,7 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
   }, []);
 
   return (
-    <div className="bg-[linear-gradient()]">
+    <div>
       {/* {blockOrder.map((bn, i, arr) => { */}
       {blockOrder.map((bn, i, arr) => {
         if (bn.name === "banner")

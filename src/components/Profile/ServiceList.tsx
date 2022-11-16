@@ -124,8 +124,9 @@ const ServiceList: FunctionalComponent = () => {
                     <a
                       href={`/app/sjmh.${mobile}?tc=${tc}`}
                       target="_blank"
-                      onClick={() => {
+                      onClick={(e) => {
                         if (mobile !== "mobileconfig") return;
+                        e.preventDefault();
                         const UA = navigator.userAgent.toLowerCase();
                         let shouldPopSafari = false;
                         shouldPopSafari =

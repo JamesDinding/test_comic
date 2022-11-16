@@ -17,7 +17,7 @@ const ModalSafari: FunctionalComponent<ModalSafariProps> = ({ onClose }) => {
         <div className="">
           您目前使用的浏览器非苹果官方Safari，无法安装本站所提供的iOS轻量版App
         </div>
-        <div>请使用官方Safari浏览本站点再d点击安裝App以开始安装</div>
+        <div>请使用官方Safari浏览本站点再点击安裝App以开始安装</div>
         <IconSafari class="w-1/3 mx-auto my-4" />
         <Btn title="我已了解" cb={() => onClose()} />
       </div>

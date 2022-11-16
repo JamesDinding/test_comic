@@ -65,7 +65,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         <div class="relative rounded-lg grow">
           {
             <button
-              className="absolute z-20 right-0"
+              className="absolute z-20 right-0 top-[-4px]"
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
@@ -97,9 +97,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
               }}
             >
               {isCollected ? (
-                <IconBookmark class="w-7 h-7" />
+                <IconBookmark class="w-8 h-8" />
               ) : (
-                <IconBookmarkGray class="w-7 h-7" />
+                <IconBookmarkGray class="w-8 h-8" />
               )}
             </button>
           }

@@ -7,14 +7,12 @@ interface HomeCategoryListBarProp {
   onCategoryChanged: StateUpdater<number>;
   categories: Array<{ id: number; name: string }>;
   searchRef: MutableRef<HTMLInputElement>;
-  stopShowResult: () => void;
 }
 
 const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
   curCategory,
   onCategoryChanged,
   categories,
-  stopShowResult,
 }) => {
   return (
     <div class="category_list_box shrink-0">
@@ -32,7 +30,6 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
                   );
                   temp.home.curCategoryIndex = i;
                   localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
-                  stopShowResult();
                 }}
                 class={"category-item" + (i == curCategory ? " active" : "")}
               >

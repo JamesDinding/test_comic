@@ -1,23 +1,33 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { useState, useEffect, useRef, Ref, MutableRef } from "preact/hooks";
+import {
+  useState,
+  useEffect,
+  useRef,
+  Ref,
+  MutableRef,
+  StateUpdater,
+} from "preact/hooks";
 import BookList from "../_Book/List";
 import Empty from "../Collect/Empty";
 import { getSearch } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
+import { useRouter } from "../../context/router";
 
 interface SearchResultListProps {
   content: Book[];
+  setContent: StateUpdater<Book[]>;
   searchRef: MutableRef<HTMLInputElement>;
 }
 
 const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   content,
+  setContent,
   searchRef,
 }) => {
+  const { setTempData, tempData } = useRouter();
   const bottomRef = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
 
-  const [moreContent, setMoreContent] = useState<Book[]>([]);
   const pageRef = useRef(2);
   const numRef = useRef(0);
 
@@ -41,7 +51,15 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
                 // observer.unobserve(e.target);
                 return;
               }
-              setMoreContent((prev) => prev.concat(response.data));
+              setContent((prev) => prev.concat(response.data));
+              setTempData((prev: any) => {
+                return {
+                  SearchPage: {
+                    ...prev.SearchPage,
+                    content: prev.SearchPage.content.concat(response.data),
+                  },
+                };
+              });
               pageRef.current++;
               numRef.current += response.data?.length;
             }
@@ -57,12 +75,12 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
 
   return (
     <Fragment>
-      <div id="category-section" className="px-5 relative bg-[#fcf6ff]">
+      <div id="search-section" className="px-5 relative bg-[#fcf6ff]">
         {content.length === 0 ? (
           <Empty bgColor=" bg-[#fcf6ff]" msg="搜寻无结果，换个关键字试试？" />
         ) : (
           <BookList
-            Items={content.concat(moreContent)}
+            Items={content}
             ItemPerRow={3}
             type={"separate"}
             isTemp={true}

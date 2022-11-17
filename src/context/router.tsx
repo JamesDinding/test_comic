@@ -77,6 +77,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     attachData: attachDataHandler,
     tempData,
     setTempData: setTempHandler,
+    cleanTempData: () => setTempData(null),
   };
 
   return (

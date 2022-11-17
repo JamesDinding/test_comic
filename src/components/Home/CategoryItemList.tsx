@@ -16,6 +16,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
 
   // test ref
+  const topRef = useRef<HTMLDivElement>(null!);
   const pageRef = useRef(1);
   const curCateId = useRef(catID);
   const numRef = useRef(0);
@@ -23,6 +24,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   useEffect(() => {
     try {
       (async () => {
+        topRef.current.scrollIntoView();
         pageRef.current = 1;
         curCateId.current = catID;
         const { data } = await getSpecifiedCategory(catID, pageRef.current);
@@ -71,6 +73,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   return (
     <Fragment>
       <div id="category-section relative" className="mx-5">
+        <div ref={topRef}></div>
         <BookList
           Items={content}
           ItemPerRow={3}

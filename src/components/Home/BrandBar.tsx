@@ -7,14 +7,9 @@ import { useRouter } from "../../context/router";
 import Router, { route } from "preact-router";
 import CustomLink from "../CustomLink";
 
-interface HomeBrandBarProps {
-  onShowSearch: StateUpdater<boolean>;
-  onSearchResult: StateUpdater<Book[]>;
-  onCategoryChanged: StateUpdater<number>;
-  searchRef: MutableRef<HTMLInputElement>;
-}
+interface HomeBrandBarProps {}
 
-const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = ({}) => {
+const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = () => {
   const { customRouter } = useRouter();
 
   return (

@@ -41,7 +41,6 @@ const HomePage: FunctionalComponent = ({}) => {
   );
   // Part Search
   const [showSearch, setShowSearch] = useState(false);
-  const [searchResult, setSearchResult] = useState<Book[]>([]);
   const searchRef = useRef<HTMLInputElement>(null!);
 
   // Part More
@@ -101,23 +100,15 @@ const HomePage: FunctionalComponent = ({}) => {
         ref={containerRef}
       >
         <ObserverProvider rootElement={containerRef}>
-          <BrandBar
-            onShowSearch={setShowSearch}
-            onSearchResult={setSearchResult}
-            onCategoryChanged={setCurrentCategory}
-            searchRef={searchRef}
-          />
+          <BrandBar />
           <CategoryListBar
             curCategory={currentCategory}
             onCategoryChanged={setCurrentCategory}
             categories={[{ id: 0, name: "首页" }].concat(categories)}
             searchRef={searchRef}
-            stopShowResult={stopShowResult}
           />
           <PullToRefresh containerElement={containerRef}>
-            {showSearch ? (
-              <SearchResultList content={searchResult} searchRef={searchRef} />
-            ) : currentCategory == 0 ? (
+            {currentCategory == 0 ? (
               <Recommend setTc={setTc} />
             ) : (
               <CategoryItemList catID={categories[currentCategory - 1].id} />
@@ -125,7 +116,7 @@ const HomePage: FunctionalComponent = ({}) => {
           </PullToRefresh>
         </ObserverProvider>
       </div>
-      <FooterBar stopShowResult={stopShowResult} />
+      <FooterBar />
     </>
   );
 };

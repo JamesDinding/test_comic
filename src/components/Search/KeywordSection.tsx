@@ -43,6 +43,7 @@ const KeywordSection: FunctionalComponent<KeywordSectionProps> = ({
   const clickHandler = useCallback(
     (search: string) => {
       inputRef.current.value = search;
+      localStorage.setItem("sjmh_search_key", search);
       getSearch("keyword=" + search)
         .then((response) => {
           onSearch(response.data);

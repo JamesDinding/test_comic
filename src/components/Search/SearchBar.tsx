@@ -50,6 +50,7 @@ const SearchBar: FunctionalComponent<SesarchBarProps> = ({
           class="search-box bg-[#f1f1f1] w-full px-5 py-2.5 rounded-full text-xs text-gray-500 font-medium flex"
           onKeyDown={(e) => {
             const query = inputRef.current.value;
+            localStorage.setItem("sjmh_search_key", query);
             if (query === "") return;
 
             if (e.key == "Enter" || e.keyCode === 13) {

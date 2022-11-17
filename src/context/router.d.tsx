@@ -13,4 +13,5 @@ declare interface RouterContextType {
   attachData: (arg: any) => any;
   tempData: any;
   setTempData: (arg: any) => void;
+  cleanTempData: () => void;
 }

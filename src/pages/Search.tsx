@@ -7,14 +7,37 @@ import RecommendBlock from "../components/Home/RecommendBlock";
 import { ObserverProvider } from "../context/observer";
 import { getBlockById } from "../lib/api";
 import { useDomain } from "../context/domain";
+import { useRouter } from "../context/router";
 
 const SearchPage: FunctionalComponent = () => {
+  const [hasEnter, setHasEnter] = useState(false);
+  const { tempData, setTempData } = useRouter();
   const containerRef = useRef<HTMLDivElement>(null!);
   const inputRef = useRef<HTMLInputElement>(null!);
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [searchResult, setSearchResult] = useState<Book[]>([]);
   const [recommendBlock, setRecommendBlock] = useState<Book[]>([]);
   const { setDomain } = useDomain();
+
+  useEffect(() => {
+    if (
+      !hasEnter &&
+      tempData &&
+      tempData.SearchPage.searchWord === localStorage.getItem("sjmh_search_key")
+    ) {
+      setSearchResult(tempData.SearchPage.content);
+      setShowSearchResult(true);
+      inputRef.current.value = tempData.SearchPage.searchWord;
+    } else {
+      setTempData({
+        SearchPage: {
+          content: searchResult,
+          searchWord: inputRef.current?.value || "",
+        },
+      });
+    }
+    setHasEnter(true);
+  }, [searchResult, inputRef.current, hasEnter]);
 
   useEffect(() => {
     if (searchResult.length !== 0) return;
@@ -48,7 +71,11 @@ const SearchPage: FunctionalComponent = () => {
           />
         )}
         {showSearchResult && (
-          <SearchResultList content={searchResult} searchRef={inputRef} />
+          <SearchResultList
+            content={searchResult}
+            setContent={setSearchResult}
+            searchRef={inputRef}
+          />
         )}
         {!searchResult.length && (
           <div className="bg-white pt-[1px]">

@@ -7,6 +7,7 @@ import {
   useCallback,
 } from "preact/hooks";
 import { getSearch, getKeywords } from "../../lib/api";
+import { useRouter } from "../../context/router";
 
 type KeywordItemProps = {
   keyname: string;
@@ -38,16 +39,24 @@ const KeywordSection: FunctionalComponent<KeywordSectionProps> = ({
   onShow,
   onSearch,
 }) => {
+  const { setTempData, tempData } = useRouter();
   const [keywordList, setKeywordList] = useState<string[]>([]);
 
   const clickHandler = useCallback(
     (search: string) => {
       inputRef.current.value = search;
       localStorage.setItem("sjmh_search_key", search);
+
       getSearch("keyword=" + search)
         .then((response) => {
           onSearch(response.data);
           onShow(true);
+          setTempData({
+            SearchPage: {
+              content: response.data,
+              searchWord: search,
+            },
+          });
         })
         .catch((err) => {
           console.error(err.message || "failed");

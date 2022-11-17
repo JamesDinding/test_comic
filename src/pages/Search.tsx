@@ -23,11 +23,23 @@ const SearchPage: FunctionalComponent = () => {
     if (
       !hasEnter &&
       tempData &&
+      tempData.SearchPage.searchWord.length &&
       tempData.SearchPage.searchWord === localStorage.getItem("sjmh_search_key")
     ) {
       setSearchResult(tempData.SearchPage.content);
       setShowSearchResult(true);
       inputRef.current.value = tempData.SearchPage.searchWord;
+
+      //   if (tempContainerHeight) {
+      //     console.log("container height", tempContainerHeight);
+      //     const t = document.querySelector("#search-section") as HTMLDivElement;
+      //     console.log("element", t);
+      //     t.style.minHeight = tempContainerHeight + "px";
+      //   }
+      //   if (tempHeight) {
+      //     console.log("scroll height", tempHeight);
+      //     window.scrollTo(0, parseInt(tempHeight, 10));
+      //   }
     } else {
       setTempData({
         SearchPage: {

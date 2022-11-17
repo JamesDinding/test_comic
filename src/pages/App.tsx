@@ -26,6 +26,10 @@ import MorePage from "./More";
 import SearchPage from "./Search";
 import SmartBanner from "../components/SmartBanner";
 
+localStorage.setItem("sjmh_search_key", "");
+localStorage.setItem("sjmh_search_section_height", "");
+localStorage.setItem("sjmh_scroll_height", "");
+
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
   const [hadSendTC, setHadSendTC] = useState(false);

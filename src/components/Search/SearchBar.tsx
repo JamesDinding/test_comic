@@ -24,6 +24,9 @@ const SearchBar: FunctionalComponent<SesarchBarProps> = ({
       <div
         className="h-[37px] flex flex-col justify-end items-center cursor-pointer"
         onClick={() => {
+          localStorage.setItem("sjmh_search_key", "");
+          localStorage.setItem("sjmh_search_section_height", "");
+          localStorage.setItem("sjmh_scroll_height", "");
           if (inputRef.current.value) {
             inputRef.current.value = "";
             onShow(false);

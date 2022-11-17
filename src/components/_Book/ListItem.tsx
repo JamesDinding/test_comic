@@ -69,6 +69,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
+
                 setIsCollected((prev) => !prev);
                 if (isLogIn) {
                   postMyBookmarks(Data?.id, isCollected ? "remove" : "add")

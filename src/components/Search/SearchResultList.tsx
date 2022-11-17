@@ -31,6 +31,33 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   const pageRef = useRef(2);
   const numRef = useRef(0);
 
+  const [load, setIsLoad] = useState(false);
+
+  useEffect(() => {
+    // if (content.length === 0) return;
+    if (
+      tempData &&
+      tempData.SearchPage.searchWord.length &&
+      tempData.SearchPage.searchWord === localStorage.getItem("sjmh_search_key")
+    ) {
+      const tempHeight = localStorage.getItem("sjmh_scroll_height");
+      const tempContainerHeight = localStorage.getItem(
+        "sjmh_search_section_height"
+      );
+
+      const t = document.querySelector("#search-section") as HTMLDivElement;
+      const s = document.querySelector("#scroll") as HTMLDivElement;
+
+      if (tempContainerHeight && t) {
+        t.style.minHeight = tempContainerHeight + "px";
+      }
+      if (tempHeight && s) {
+        s.scrollTo(0, parseInt(tempHeight, 10));
+        t.style.minHeight = "";
+      }
+    }
+  }, [tempData]);
+
   useEffect(() => {
     if (observer || content.length === 0) return;
     const opt: IntersectionObserverInit = {

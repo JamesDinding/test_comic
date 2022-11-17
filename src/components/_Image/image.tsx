@@ -10,6 +10,7 @@ interface ImageProps {
   pendingHeight?: string;
   escapeObserve?: boolean;
   setParentPending: StateUpdater<boolean>;
+  isChapterCover?: boolean;
 }
 
 const Image: FunctionalComponent<ImageProps> = ({
@@ -19,6 +20,7 @@ const Image: FunctionalComponent<ImageProps> = ({
   pendingHeight = "",
   escapeObserve = false,
   setParentPending,
+  isChapterCover = false,
 }) => {
   const { srcDomain } = useDomain();
   const [imageBlob, setImageBlob] = useState("");
@@ -30,7 +32,8 @@ const Image: FunctionalComponent<ImageProps> = ({
     if (!escapeObserve) {
       if (!isShown) return;
     }
-    if (!path) {
+
+    if (!path && isChapterCover) {
       setImageBlob(
         "/assets/img/chapterCover/" +
           ((Math.floor(Math.random() * 10) % 5) + 1) +
@@ -38,6 +41,7 @@ const Image: FunctionalComponent<ImageProps> = ({
       );
       setParentPending(false);
     }
+
     if (!path || !srcDomain) return;
     (async () => {
       try {

@@ -64,6 +64,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
               path={chapter.covers.thumb}
               alt=""
               setParentPending={setIsPending}
+              isChapterCover={true}
             />
           </div>
         </ObserverProvider>

@@ -70,8 +70,6 @@ const DirectoryContentPage: FunctionalComponent = () => {
       .finally(() => shutLoading());
   }, [currentRoute]);
 
-  console.log(InMemoryStore);
-
   return (
     <F>
       <ObserverProvider rootElement={containerRef}>

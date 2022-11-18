@@ -1428,10 +1428,6 @@ video {
   border-radius: 9999px;
 }
 
-.rounded {
-  border-radius: 0.25rem;
-}
-
 .rounded-xl {
   border-radius: 0.75rem;
 }
@@ -1450,6 +1446,10 @@ video {
 
 .rounded-\[3rem\] {
   border-radius: 3rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
 }
 
 .border-2 {
@@ -1718,16 +1718,6 @@ video {
 .bg-\[\#a186af\] {
   --tw-bg-opacity: 1;
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
-}
-
-.bg-amber-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
-}
-
-.bg-blue-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
 }
 
 .bg-userSection {
@@ -2099,10 +2089,6 @@ video {
   line-height: 12px;
 }
 
-.leading-3 {
-  line-height: .75rem;
-}
-
 .leading-8 {
   line-height: 2rem;
 }
@@ -2210,11 +2196,6 @@ video {
 .text-\[\#999999\] {
   --tw-text-opacity: 1;
   color: rgb(153 153 153 / var(--tw-text-opacity));
-}
-
-.text-\[\#68b2e1\] {
-  --tw-text-opacity: 1;
-  color: rgb(104 178 225 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -2385,11 +2366,6 @@ video {
   outline-offset: 2px;
 }
 
-.blur-sm {
-  --tw-blur: blur(4px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .grayscale {
   --tw-grayscale: grayscale(100%);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -2397,14 +2373,6 @@ video {
 
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.duration-\[1\.5s\] {
-  transition-duration: 1.5s;
-}
-
-.duration-1000 {
-  transition-duration: 1000ms;
 }
 
 .duration-300 {
@@ -2426,6 +2394,11 @@ video {
 
 .Image-component {
   width: 100%;
+}
+
+body,
+html {
+  touch-action: unset;
 }
 
 body {

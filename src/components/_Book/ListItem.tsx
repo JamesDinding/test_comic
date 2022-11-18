@@ -13,6 +13,7 @@ interface BookListItemProps {
   type?: "separate" | "stack" | "original" | "collect";
   customHeight?: string;
   ItemPerRow?: number;
+  collectCallBack?: (arg: any, arg2: boolean) => void;
 }
 
 const BookListItem: FunctionalComponent<BookListItemProps> = ({
@@ -20,6 +21,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   type = "original",
   customHeight = "h-[157px]",
   ItemPerRow = 3,
+  collectCallBack,
 }) => {
   const { isLogIn } = useUser();
   const [showPending, setPending] = useState(true);
@@ -54,7 +56,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
 
       if (hasBook) setIsCollected(true);
     }
-  }, [isLogIn]);
+  }, [isLogIn, Data]);
 
   if (type === "separate")
     return (
@@ -73,7 +75,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
                 setIsCollected((prev) => !prev);
                 if (isLogIn) {
                   postMyBookmarks(Data?.id, isCollected ? "remove" : "add")
-                    .then((data) => {})
+                    .then(() => {
+                      collectCallBack && collectCallBack(Data, isCollected);
+                    })
                     .catch((err) => console.error(err.message));
                 } else {
                   //using localStorage

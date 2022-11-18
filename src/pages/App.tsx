@@ -119,9 +119,7 @@ const App: FunctionalComponent = () => {
       </RouterProvider>
     </ErrorBoundary>
   ) : (
-    <div>
-      <Loading />
-    </div>
+    <div></div>
   );
 };
 

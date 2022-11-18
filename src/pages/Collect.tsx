@@ -69,19 +69,6 @@ const CollectPage: FunctionalComponent = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   if (collectList.length === 0 || acquisitions.length === 0) {
-  //     getRandomBlock(9)
-  //       .then((response) => {
-  //         setRecommendBlock(response.data["新书上架"]);
-  //         setDomain(response.domain);
-  //       })
-  //       .catch((err) => {
-  //         console.error(err.message || "failed");
-  //       });
-  //   }
-  // }, [collectList, curSelect]);
-
   return (
     <F>
       <ReturnBar title="我的收藏" defaultDestination="/home" />
@@ -121,18 +108,6 @@ const CollectPage: FunctionalComponent = () => {
                   hasButton={true}
                   btnConfig={{ href: "/home", msg: "去逛逛" }}
                 />
-                {/* <div className="mx-5 mt-5">
-                  <RecommendTitleBar
-                    BlockID={44}
-                    BlockName="新书上架"
-                    onDefaultBehavior={false}
-                  />
-                  <div className="items-box grid grid-cols-3 gap-2.5 py-4">
-                    {recommendBlock.map((el: Book, i, arr) => {
-                      return <BookListItem Data={el} type="separate" />;
-                    })}
-                  </div>
-                </div> */}
               </F>
             ))}
           {curSelect === 1 &&
@@ -150,18 +125,6 @@ const CollectPage: FunctionalComponent = () => {
                   hasButton={true}
                   btnConfig={{ href: "/charge", msg: "去充值" }}
                 />
-                {/* <div className="mx-5 mt-5">
-                  <RecommendTitleBar
-                    BlockID={44}
-                    BlockName="新书上架"
-                    onDefaultBehavior={false}
-                  />
-                  <div className="items-box grid grid-cols-3 gap-2.5 py-4">
-                    {recommendBlock.map((el: Book, i, arr) => {
-                      return <BookListItem Data={el} type="separate" />;
-                    })}
-                  </div>
-                </div> */}
               </F>
             ))}
           <div className="mx-5 mt-5">
@@ -172,7 +135,20 @@ const CollectPage: FunctionalComponent = () => {
             />
             <div className="items-box grid grid-cols-6 gap-2.5 py-4">
               {recommendBlock.slice(0, 9).map((el: Book, i, arr) => {
-                return <BookListItem Data={el} type="separate" />;
+                return (
+                  <BookListItem
+                    Data={el}
+                    type="separate"
+                    collectCallBack={(data, iscollected) => {
+                      setCollectList((prev) => {
+                        if (iscollected) {
+                          return prev.filter((p) => p.id !== el.id);
+                        }
+                        return prev.concat(data);
+                      });
+                    }}
+                  />
+                );
               })}
             </div>
           </div>

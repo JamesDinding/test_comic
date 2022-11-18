@@ -14,6 +14,7 @@ import Password from "./Services/Password";
 import { getMobileOperatingSystem } from "../../lib/helper";
 import IconTriangle from "../../resources/img/icon-triangle.svg";
 import ModalSafari from "../Modal/ModalSafari";
+import ModalPassword from "../Modal/ModalPassword";
 
 const serviceList = [
   { title: "注册", msg: "完成注册即赠送50金币!", url: "/register" },
@@ -37,6 +38,7 @@ const ServiceList: FunctionalComponent = () => {
   const [isPopPassword, setIsPopPassword] = useState(false);
   const [isPopLogout, setIsPopLogout] = useState(false);
   const [isPopSafari, setIsPopSafari] = useState(false);
+  const [isPopPasswordSuccess, setIsPopPasswordSuccess] = useState(false);
 
   const [mobile, setMobile] = useState("");
 
@@ -53,7 +55,11 @@ const ServiceList: FunctionalComponent = () => {
 
   return (
     <F>
-      {(isPopBinding || isPopPassword || isPopLogout || isPopSafari) &&
+      {(isPopBinding ||
+        isPopPassword ||
+        isPopLogout ||
+        isPopSafari ||
+        isPopPasswordSuccess) &&
         createPortal(
           <BackDrop
             onClose={() => {
@@ -73,9 +79,17 @@ const ServiceList: FunctionalComponent = () => {
           onClose={() => setIsPopBinding(false)}
         />
       )}
-      {isPopPassword && <Password onClose={() => setIsPopPassword(false)} />}
+      {isPopPassword && (
+        <Password
+          onClose={() => setIsPopPassword(false)}
+          popSuccess={setIsPopPasswordSuccess}
+        />
+      )}
       {isPopLogout && <PopLogout onClose={() => setIsPopLogout(false)} />}
       {isPopSafari && <ModalSafari onClose={() => setIsPopSafari(false)} />}
+      {isPopPasswordSuccess && (
+        <ModalPassword onClose={() => setIsPopPasswordSuccess(false)} />
+      )}
       <div className="flex flex-col overflow-auto">
         <div className="mb-[.625rem] rounded-2xl">
           <div className="bg-white text-[#4c4c4c] rounded-2xl">

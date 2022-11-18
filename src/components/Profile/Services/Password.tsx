@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useState, useEffect, useRef, StateUpdater } from "preact/hooks";
 import { postMyPassword } from "../../../lib/api";
 import InputField from "./InputField";
 import CardBottom from "../../Modal/CardBottom";
@@ -9,11 +9,13 @@ import { useUser } from "../../../context/user";
 interface Password {
   onClose: () => void;
   title?: string;
+  popSuccess: StateUpdater<boolean>;
 }
 
 const Password: FunctionalComponent<Password> = ({
   onClose,
   title = "修改密码",
+  popSuccess,
 }) => {
   const { getUserStatus } = useUser();
   const [isPending, setIsPending] = useState(false);
@@ -121,6 +123,7 @@ const Password: FunctionalComponent<Password> = ({
                 await getUserStatus();
                 setIsPending(false);
                 onClose();
+                popSuccess(true);
               })
               .catch((err) => {
                 setIsPending(false);

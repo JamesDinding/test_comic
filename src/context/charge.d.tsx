@@ -20,6 +20,7 @@ declare interface SalesItem {
   cash_amount: number;
   token_amount: number;
   type?: string;
+  vip_length?: number;
 }
 
 declare interface ChargeContextType {

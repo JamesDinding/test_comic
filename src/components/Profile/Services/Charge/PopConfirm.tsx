@@ -69,7 +69,12 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
           <div>方案 : </div>
           <div className="text-[#666666]">
             {userSelect.type}充值 -{" "}
-            <span className="text-[#dc6060]">{userSelect.token_amount}</span> 枚
+            <span className="text-[#dc6060]">
+              {userSelect.type === "VIP"
+                ? userSelect.vip_length
+                : userSelect.token_amount}
+            </span>{" "}
+            {userSelect.type === "VIP" ? "天" : "枚"}
           </div>
         </div>
         <div className="flex items-center justify-between w-full px-2.5 py-2.5 text-sm border-b-[1px] border-[#e6e6e6] border-dashed">

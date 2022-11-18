@@ -14,4 +14,7 @@ declare interface RouterContextType {
   tempData: any;
   setTempData: (arg: any) => void;
   cleanTempData: () => void;
+  isLoading: boolean;
+  popLoading: () => void;
+  shutLoading: () => void;
 }

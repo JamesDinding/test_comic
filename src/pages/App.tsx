@@ -25,6 +25,7 @@ import CustomerPage from "./Profile/Customer";
 import MorePage from "./More";
 import SearchPage from "./Search";
 import SmartBanner from "../components/SmartBanner";
+import Loading from "../components/Modal/Loading";
 
 localStorage.setItem("sjmh_search_key", "");
 localStorage.setItem("sjmh_search_section_height", "");
@@ -77,7 +78,7 @@ const App: FunctionalComponent = () => {
                 <div id="root" class="w-full max-w-[420px] h-full">
                   <div
                     id="container"
-                    class="bg-white w-full h-full flex flex-col"
+                    class="relative bg-white w-full h-full flex flex-col"
                   >
                     {showSmartBanner ? (
                       <SmartBanner
@@ -118,7 +119,9 @@ const App: FunctionalComponent = () => {
       </RouterProvider>
     </ErrorBoundary>
   ) : (
-    <div></div>
+    <div>
+      <Loading />
+    </div>
   );
 };
 

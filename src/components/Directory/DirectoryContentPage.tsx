@@ -6,18 +6,16 @@ import Description from "./Description";
 import ChapterList from "./ChapterList";
 import ReturnBar from "../ReturnBar";
 import FooterBar from "../FooterBar";
-import RecommendBlock from "../Home/RecommendBlock";
-import BookListItem from "../_Book/ListItem";
-import RecommendTitleBar from "../Home/RecommendTitleBar";
 import { ObserverProvider } from "../../context/observer";
 import ModalBuy from "../Modal/ModalBuy";
 import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
-import { getAllBlock, getSpecifiedBook, postMyBookmarks } from "../../lib/api";
+import { getSpecifiedBook, postMyBookmarks } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 import { useUser } from "../../context/user";
 import { defaultLocalStorage } from "../../const";
 import { useReadingModal } from "../../context/reading";
+import Loading from "../Modal/Loading";
 
 const DirectoryContentPage: FunctionalComponent = () => {
   const { popBuy, setStuffInfo } = useReadingModal();
@@ -26,7 +24,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
   const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
-  const [recommendBlock, setRecommendBlock] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   // temp collection state
   const [isCollected, setIsCollected] = useState(false);
@@ -62,16 +60,18 @@ const DirectoryContentPage: FunctionalComponent = () => {
             (collect: Book) => collect.id === content?.id
           );
 
-          if (hasBook) setIsCollected(true);
+          // if (hasBook) setIsCollected(true);
         }
       })
       .catch((err) => {
         console.error(err.message || "failed");
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, [currentRoute]);
 
   return (
     <F>
+      {isLoading && <Loading />}
       <ObserverProvider rootElement={containerRef}>
         <ModalBuy />
         <ReturnBar title={content?.title || ""} />
@@ -154,23 +154,6 @@ const DirectoryContentPage: FunctionalComponent = () => {
             />
           </div>
         </div>
-        {/* <RecommendTitleBar BlockID={124} BlockName="新品上市" />
-            <div className="items-box grid grid-cols-3 gap-2.5 py-4">
-              {comicArr.map((el, i, arr) => {
-                return (
-                  <BookListItem
-                    Data={{ ID: 12345, Cover: "", Name: "test" }}
-                    type="separate"
-                  />
-                );
-              })}
-            </div> */}
-        {/* <RecommendBlock
-          BlockID={1236}
-          BlockName={"吸睛首选"}
-          Items={recommendBlock['吸睛首选']}
-          ItemPerRow={3}
-        /> */}
       </ObserverProvider>
       <FooterBar />
     </F>

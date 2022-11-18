@@ -26,7 +26,6 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
         const target = t.closest("a");
 
         const container = document.querySelector("#search-section");
-        console.log(container);
         if (container) {
           localStorage.setItem(
             "sjmh_search_section_height",

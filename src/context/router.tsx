@@ -60,6 +60,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
 
   useEffect(() => {
     window.onpopstate = (e) => {
+      setIsLoading(true);
       const des = popHandler();
       route(des);
     };

@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useRef, useState, useEffect } from "preact/hooks";
+import { useRef, useState, useEffect, useMemo } from "preact/hooks";
 import { route } from "preact-router";
 import { useRouter } from "../../context/router";
 import Description from "./Description";
@@ -17,14 +17,15 @@ import { defaultLocalStorage } from "../../const";
 import { useReadingModal } from "../../context/reading";
 import Loading from "../Modal/Loading";
 
+import { InMemoryStore } from "../../lib/api";
+
 const DirectoryContentPage: FunctionalComponent = () => {
   const { popBuy, setStuffInfo } = useReadingModal();
-  const { currentRoute, customRouter } = useRouter();
+  const { currentRoute, customRouter, isLoading, shutLoading } = useRouter();
   const { isLogIn } = useUser();
   const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
   const [content, setContent] = useState<Content>();
-  const [isLoading, setIsLoading] = useState(true);
 
   // temp collection state
   const [isCollected, setIsCollected] = useState(false);
@@ -43,7 +44,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
   }, [isLogIn, content]);
 
   useEffect(() => {
-    getSpecifiedBook(currentRoute.split("/").pop())
+    getSpecifiedBook(currentRoute.split("/").pop(), 30000)
       .then((response) => {
         const { data, domain } = response;
         setContent(data);
@@ -60,18 +61,19 @@ const DirectoryContentPage: FunctionalComponent = () => {
             (collect: Book) => collect.id === content?.id
           );
 
-          // if (hasBook) setIsCollected(true);
+          if (hasBook) setIsCollected(true);
         }
       })
       .catch((err) => {
         console.error(err.message || "failed");
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => shutLoading());
   }, [currentRoute]);
+
+  console.log(InMemoryStore);
 
   return (
     <F>
-      {isLoading && <Loading />}
       <ObserverProvider rootElement={containerRef}>
         <ModalBuy />
         <ReturnBar title={content?.title || ""} />

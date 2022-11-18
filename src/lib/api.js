@@ -1,5 +1,25 @@
+export const InMemoryStore = {
+  // {
+  //   data: "",
+  //   expired: "",
+  // }
+};
+
 function curryFetch_GET(route) {
-  return async function (dynamic = "") {
+  return async function (dynamic = "", freshness = 0) {
+    // InMemoryStore[]
+    const r = (route + (dynamic ? "/" + dynamic : "")).toString();
+
+    console.log("inmoemoryStorare[]", InMemoryStore[r]);
+    let isUsingCache =
+      freshness >
+      new Date().valueOf() - (InMemoryStore[r]?.expired?.valueOf() || 0);
+
+    if (isUsingCache) {
+      console.log("using cache");
+      return InMemoryStore[r].data;
+    } else {
+      console.log("using fetch");
     const isDynamic = !!dynamic;
     const response = await fetch(
       "/api/v1" + route + (isDynamic ? `/${dynamic.toString()}` : "")
@@ -7,7 +27,11 @@ function curryFetch_GET(route) {
     const data = await response.json();
     if (data.error) throw new Error(data.message || route + " failed");
 
+    // in-memory
+    InMemoryStore[r] = { data, expired: new Date() };
+
     return data;
+    }
   };
 }
 

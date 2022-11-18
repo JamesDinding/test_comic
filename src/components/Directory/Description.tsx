@@ -50,39 +50,16 @@ const Description: FunctionalComponent<DescriptionProps> = ({
         </div>
         <div className="flex flex-col grow items-start">
           <div
-            className={
-              "text-[#666666] text-xl font-semibold book-oneline duration-[1.5s] " +
-              (isLoading ? "blur-sm" : "")
-            }
+            className={"text-[#666666] text-xl font-semibold book-oneline  "}
           >
-            {title || "标题载入中"}
+            {title}
           </div>
           <div className="text-[#999999] text-xs mt-2 book-oneline">
-            <span
-              className={"mr-2 duration-[1.5s] " + (isLoading ? "blur-sm" : "")}
-            >
-              作者:{author || "作者载入中"}
-            </span>
+            <span className={"mr-2 "}>作者:{author}</span>
           </div>
 
-          <p
-            className={
-              "book-description duration-1000 " + (isLoading ? "blur-sm" : "")
-            }
-          >
-            {description ||
-              "亲爱的使用者您好，现在正在载入资料，还请您稍等一会儿。若等待时间过久，请检查网络状况，皆无法解决时，请洽客服反映相关问题，谢谢您的配合。"}
-          </p>
+          <p className={"book-description "}>{description}</p>
           <div className="grow"></div>
-          {/* <div className="leading-3">
-            {new Array(6).fill("test").map((tag, i, arr) => {
-              return (
-                <span className="text-xs text-[#68b2e1] mr-2 inline-block text-white rounded">
-                  #&nbsp;{tag}
-                </span>
-              );
-            })}
-          </div> */}
           <div className="flex items-center w-full mt-1 text-[#a8a8a8]">
             <span className="mr-2 min-w-6 text-[.6rem] book-oneline">
               <span>★&nbsp;{hot}</span>

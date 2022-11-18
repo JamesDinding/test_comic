@@ -71,10 +71,12 @@ const SearchBar: FunctionalComponent<SesarchBarProps> = ({
           }}
         />
         <div
-          className="absolute top-1/2 right-8 translate-y-[-50%]"
+          className="cursor-pointer absolute top-1/2 right-8 translate-y-[-50%]"
           onClick={() => {
             const query = inputRef.current.value;
+            localStorage.setItem("sjmh_search_key", query);
             if (query === "") return;
+
             getSearch("keyword=" + query)
               .then((response) => {
                 onSearch(response.data);

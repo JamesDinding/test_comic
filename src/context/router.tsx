@@ -16,6 +16,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   const [attachment, setaAttachment] = useState(null);
   const [tc, setTc] = useState("");
   const [tempData, setTempData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // pop the lastest history and return current lastest history
   const popHandler = useCallback(() => {
@@ -78,6 +79,9 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     tempData,
     setTempData: setTempHandler,
     cleanTempData: () => setTempData(null),
+    isLoading,
+    popLoading: () => setIsLoading(true),
+    shutLoading: () => setIsLoading(false),
   };
 
   return (

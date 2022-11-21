@@ -31,6 +31,7 @@ const SearchBar: FunctionalComponent<SesarchBarProps> = ({
             inputRef.current.value = "";
             onShow(false);
             onSearch([]);
+            document.querySelector("#scroll")?.scrollTo(0, 0);
             return;
           }
           const des = customRouter.pop();

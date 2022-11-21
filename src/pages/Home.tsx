@@ -40,20 +40,12 @@ const HomePage: FunctionalComponent = ({}) => {
           .categories
   );
   // Part Search
-  const [showSearch, setShowSearch] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null!);
 
   // Part More
   const [showMore, setShowMore] = useState(false);
   const [moreResult, setMoreResult] = useState<Book[]>([]);
   const [moreBlockId, setMoreBlockId] = useState(0);
-
-  const stopShowResult = useCallback(() => {
-    setShowMore(false);
-    setShowSearch(false);
-  }, [setShowMore, setShowSearch]);
-
-  //useEffect => figure out app/ios/web
 
   useEffect(() => {
     if (categories.length !== 0) return;

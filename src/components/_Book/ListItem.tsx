@@ -1,4 +1,4 @@
-import { h, FunctionalComponent } from "preact";
+import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import CustomLink from "../CustomLink";
 import Image from "../_Image/image";
@@ -14,6 +14,7 @@ interface BookListItemProps {
   customHeight?: string;
   ItemPerRow?: number;
   collectCallBack?: (arg: any, arg2: boolean) => void;
+  catID?: number;
 }
 
 const BookListItem: FunctionalComponent<BookListItemProps> = ({
@@ -22,6 +23,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   customHeight = "h-[157px]",
   ItemPerRow = 3,
   collectCallBack,
+  catID = 0,
 }) => {
   const { isLogIn } = useUser();
   const [showPending, setPending] = useState(true);
@@ -43,6 +45,12 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   }[ItemPerRow];
 
   useEffect(() => {
+    if (Data.covers) return;
+    setPending(true);
+  }, [Data]);
+
+  useEffect(() => {
+    setIsCollected(false);
     if (isLogIn) {
       setIsCollected(Data.bookmark_status || false);
     } else {
@@ -111,20 +119,24 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
           {!showPending && (
             <div className="item-overlay z-[25] !h-[60px]"></div>
           )}
-          <div
-            class={
-              "bottom-4 tag " +
-              (Data.status === "完结" ? "bg-[#71b3d0]" : "bg-[#d0719a]")
-            }
-          >
-            {Data.status}
-          </div>
-          <div
-            class={
-              "bottom-4 tag-decoration " +
-              (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
-            }
-          ></div>
+          {!showPending && (
+            <F>
+              <div
+                class={
+                  "bottom-4 tag " +
+                  (Data.status === "完结" ? "bg-[#71b3d0]" : "bg-[#d0719a]")
+                }
+              >
+                {Data.status}
+              </div>
+              <div
+                class={
+                  "bottom-4 tag-decoration " +
+                  (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
+                }
+              ></div>
+            </F>
+          )}
           <div className={`rounded-lg overflow-hidden ${customHeightByRow}`}>
             <div
               className={
@@ -140,8 +152,10 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
             </div>
           </div>
         </div>
-        <div class="title-separate">{Data.Name || Data.title}</div>
-        <div class="rating-separate">
+        <div class="title-separate min-h-[1.5rem]">
+          {Data.Name || Data.title}
+        </div>
+        <div class="rating-separate min-h-[1rem]">
           ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
         </div>
       </CustomLink>

@@ -105,6 +105,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
                       covers: { thumb: Data?.covers?.thumb },
                     });
                   }
+                  collectCallBack && collectCallBack(Data, isCollected);
                   localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
                 }
               }}

@@ -22,7 +22,7 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
             <F>
               <div className="flex flex-col text-xs">
                 <span>ID</span>
-                <span>预设密码</span>
+                <span>密码</span>
               </div>
               <div className="flex flex-col text-xs text-right">
                 <span>{user.userName}</span>

@@ -11,6 +11,7 @@ import {
 const RouterContext = createContext<RouterContextType>(null!);
 
 export const RouterProvider: FunctionalComponent = ({ children }) => {
+  const stackRef = useRef<string[]>([]);
   const [routerStack, setRouterStack] = useState([window.location.pathname]);
   const currentUrlRef = useRef(window.location.pathname || "");
   const [attachment, setaAttachment] = useState(null);
@@ -62,6 +63,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     window.onpopstate = (e) => {
       // e.preventDefault();
       const des = popHandler();
+
       const ua = navigator.userAgent.toLowerCase();
       if (ua.includes("ucbrowser")) {
         route(des);

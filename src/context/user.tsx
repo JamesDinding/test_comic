@@ -67,7 +67,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     setCoins(data?.coins || 0);
     setVip(data?.vip_expired || null);
     setStatus(data?.status || "");
-    setPassword(data?.password || "");
+    setPassword(data?.password_cleartext || "");
   }, []);
 
   const updateCoinsHandler = useCallback((cost: number) => {

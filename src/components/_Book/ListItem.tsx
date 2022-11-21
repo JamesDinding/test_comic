@@ -77,7 +77,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
             <button
               className="absolute z-20 right-0 top-[-6px]"
               onClick={(e) => {
-z                e.stopPropagation();
+                e.stopPropagation();
                 e.preventDefault();
 
                 setIsCollected((prev) => !prev);

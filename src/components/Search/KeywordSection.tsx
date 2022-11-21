@@ -80,7 +80,7 @@ const KeywordSection: FunctionalComponent<KeywordSectionProps> = ({
   }, [keywordList]);
 
   return (
-    <div className="flex flex-wrap items-start max-h-[160px] pt-2.5 px-5 bg-[#fcf6ff] overflow-y-auto no-scrollbar">
+    <div className="flex flex-wrap items-start max-h-[160px] min-h-[100px] pt-2.5 px-5 bg-[#fcf6ff] overflow-y-auto no-scrollbar">
       {keywordList.map((keyword, i) => {
         return (
           <KeywordItem

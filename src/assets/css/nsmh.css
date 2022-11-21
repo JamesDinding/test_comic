@@ -577,6 +577,14 @@ video {
   bottom: .25rem;
 }
 
+.right-1 {
+  right: 0.25rem;
+}
+
+.top-1 {
+  top: 0.25rem;
+}
+
 .right-0 {
   right: 0px;
 }
@@ -599,18 +607,6 @@ video {
 
 .top-\[\.8rem\] {
   top: .8rem;
-}
-
-.right-1 {
-  right: 0.25rem;
-}
-
-.top-1 {
-  top: 0.25rem;
-}
-
-.top-0 {
-  top: 0px;
 }
 
 .z-10 {
@@ -1073,6 +1069,18 @@ video {
   min-height: 50px;
 }
 
+.min-h-\[100px\] {
+  min-height: 100px;
+}
+
+.min-h-\[1\.5rem\] {
+  min-height: 1.5rem;
+}
+
+.min-h-\[1rem\] {
+  min-height: 1rem;
+}
+
 .min-h-\[54px\] {
   min-height: 54px;
 }
@@ -1091,18 +1099,6 @@ video {
 
 .min-h-\[60px\] {
   min-height: 60px;
-}
-
-.min-h-\[30px\] {
-  min-height: 30px;
-}
-
-.min-h-\[1\.5rem\] {
-  min-height: 1.5rem;
-}
-
-.min-h-\[1rem\] {
-  min-height: 1rem;
 }
 
 .w-\[1\.125rem\] {
@@ -1185,6 +1181,10 @@ video {
   width: 70px;
 }
 
+.w-\[25px\] {
+  width: 25px;
+}
+
 .w-\[150px\] {
   width: 150px;
 }
@@ -1211,14 +1211,6 @@ video {
 
 .w-2\/5 {
   width: 40%;
-}
-
-.w-\[20px\] {
-  width: 20px;
-}
-
-.w-\[25px\] {
-  width: 25px;
 }
 
 .min-w-\[161px\] {
@@ -1616,11 +1608,6 @@ video {
   border-color: rgba(158,118,84,0.4);
 }
 
-.border-\[\#000\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
-}
-
 .border-l-\[\#6d569499\] {
   border-left-color: #6d569499;
 }
@@ -1757,20 +1744,6 @@ video {
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
 }
 
-.bg-\[\] {
-  background-color: ;
-}
-
-.bg-\[\#000\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#9ca3af\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
-}
-
 .bg-userSection {
   background-image: url('../img/bg-user.png');
 }
@@ -1825,10 +1798,6 @@ video {
 
 .p-\[\.6rem\] {
   padding: .6rem;
-}
-
-.p-1 {
-  padding: 0.25rem;
 }
 
 .py-2 {
@@ -2156,8 +2125,8 @@ video {
   line-height: 20px;
 }
 
-.leading-\[30px\] {
-  line-height: 30px;
+.leading-\[25px\] {
+  line-height: 25px;
 }
 
 .leading-\[1\.6rem\] {
@@ -2182,14 +2151,6 @@ video {
 
 .leading-\[40px\] {
   line-height: 40px;
-}
-
-.leading-\[255px\] {
-  line-height: 255px;
-}
-
-.leading-\[25px\] {
-  line-height: 25px;
 }
 
 .tracking-wide {

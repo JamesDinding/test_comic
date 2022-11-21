@@ -1,6 +1,7 @@
 declare type User = {
   ID: number;
   userName: string;
+  password: string;
   token: string; // do nothing
 };
 

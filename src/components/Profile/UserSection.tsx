@@ -26,7 +26,7 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
               </div>
               <div className="flex flex-col text-xs text-right">
                 <span>{user.userName}</span>
-                <span>{user.userName.slice(-6)}</span>
+                <span>{user.password || user.userName.slice(-6)}</span>
               </div>
             </F>
           ) : (

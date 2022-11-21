@@ -9,7 +9,6 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
   showVIP = false,
 }) => {
   const { isLogIn, userStatus, user } = useUser();
-  const isAutoAccount = user.userName.startsWith("sj_");
 
   return (
     <div className="flex  w-full bg-no-repeat bg-userSection bg-[length:100%_50%] min-h-[120px]">

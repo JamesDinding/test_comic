@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { useEffect, useState } from "preact/hooks";
+import { StateUpdater, useEffect, useState } from "preact/hooks";
 import { useDomain } from "../../context/domain";
 import CustomLink from "../CustomLink";
 import Image from "../_Image/image";
@@ -24,6 +24,36 @@ let touchStartPosition = 0;
 let cur: slider = null;
 let next: slider = null;
 let prev: slider = null;
+
+interface SwiperItemProps {
+  bannerId: number;
+  translateOffset: string;
+  imgPath: string;
+}
+
+const SwiperItem: FunctionalComponent<SwiperItemProps> = ({
+  bannerId,
+  translateOffset,
+  imgPath,
+}) => {
+  const [isPending, setIsPending] = useState(true);
+
+  return (
+    <CustomLink
+      href={"/directory/" + bannerId}
+      className={`block w-full h-full absolute ${translateOffset}`}
+    >
+      <div className={"relative h-full " + (isPending ? "pending" : "")}>
+        <Image
+          path={imgPath || ""}
+          alt={""}
+          setParentPending={setIsPending}
+          // escapeObserve={true}
+        />
+      </div>
+    </CustomLink>
+  );
+};
 
 const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   // prettier-ignore
@@ -170,22 +200,12 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
       >
         {banners?.map((banner: any, i: number) => {
           return (
-            <CustomLink
+            <SwiperItem
               key={i}
-              href={"/directory/" + banner.id}
-              className={`block w-full h-full absolute ${transList[i]}`}
-            >
-              <div
-                className={"relative h-full " + (isPending ? "pending" : "")}
-              >
-                <Image
-                  path={banner.covers?.thumbx || ""}
-                  alt={""}
-                  setParentPending={setIsPending}
-                  escapeObserve={true}
-                />
-              </div>
-            </CustomLink>
+              bannerId={banner.id}
+              translateOffset={transList[i]}
+              imgPath={banner.covers.thumbx}
+            />
           );
         })}
       </div>

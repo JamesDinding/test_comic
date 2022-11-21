@@ -1,4 +1,4 @@
-import { h, FunctionalComponent } from "preact";
+import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import CustomLink from "../CustomLink";
 import Image from "../_Image/image";
@@ -119,20 +119,24 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
           {!showPending && (
             <div className="item-overlay z-[25] !h-[60px]"></div>
           )}
-          <div
-            class={
-              "bottom-4 tag " +
-              (Data.status === "完结" ? "bg-[#71b3d0]" : "bg-[#d0719a]")
-            }
-          >
-            {Data.status}
-          </div>
-          <div
-            class={
-              "bottom-4 tag-decoration " +
-              (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
-            }
-          ></div>
+          {!showPending && (
+            <F>
+              <div
+                class={
+                  "bottom-4 tag " +
+                  (Data.status === "完结" ? "bg-[#71b3d0]" : "bg-[#d0719a]")
+                }
+              >
+                {Data.status}
+              </div>
+              <div
+                class={
+                  "bottom-4 tag-decoration " +
+                  (Data.status === "完结" ? "bg-[#407389]" : "bg-[#ab4b74]")
+                }
+              ></div>
+            </F>
+          )}
           <div className={`rounded-lg overflow-hidden ${customHeightByRow}`}>
             <div
               className={

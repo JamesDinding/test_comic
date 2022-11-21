@@ -10,6 +10,7 @@ interface BookListProps {
   isTemp?: boolean;
   itemNum?: number;
   isLayoutDiff?: boolean;
+  catID?: number;
 }
 
 const BookList: FunctionalComponent<BookListProps> = ({
@@ -19,11 +20,11 @@ const BookList: FunctionalComponent<BookListProps> = ({
   type = "original",
   itemNum = 6,
   isLayoutDiff,
+  catID = 0,
 }) => {
   return (
     // <div className={`grid grid-cols-${ItemPerRow} gap-2.5 pt-4 pb-[.8rem]`}>
     <div className={`grid grid-cols-6 gap-2.5 pt-4 pb-[.8rem]`}>
-      {/* {Items?.sort(() => Math.random() - 0.5) */}
       {Items.slice(0, ItemPerRow === 2 ? 4 : itemNum).map((el, i, arr) => {
         let layout = i % 13 < 4 ? 4 : 9;
 
@@ -34,6 +35,7 @@ const BookList: FunctionalComponent<BookListProps> = ({
             type={type}
             customHeight={ItemPerRow === 2 ? "h-[242px]" : "h-[157px]"}
             ItemPerRow={isLayoutDiff ? layout : ItemPerRow}
+            catID={catID}
           />
         );
       })}

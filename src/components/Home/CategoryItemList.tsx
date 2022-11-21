@@ -5,7 +5,7 @@ import { getSpecifiedCategory } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
 
 interface CategoryItemListProps {
-  catID: Number;
+  catID: number;
 }
 
 const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
@@ -22,11 +22,12 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   const numRef = useRef(0);
 
   useEffect(() => {
+    topRef.current.scrollIntoView();
+    pageRef.current = 1;
+    curCateId.current = catID;
+    setContent([{}, {}, {}, {}, {}, {}, {}]);
     try {
       (async () => {
-        topRef.current.scrollIntoView();
-        pageRef.current = 1;
-        curCateId.current = catID;
         const { data } = await getSpecifiedCategory(catID, pageRef.current);
         numRef.current = data?.length;
         pageRef.current++;
@@ -75,6 +76,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
       <div id="category-section relative" className="mx-5">
         <div ref={topRef}></div>
         <BookList
+          catID={catID}
           Items={content}
           ItemPerRow={3}
           type={"separate"}

@@ -43,6 +43,7 @@ const SearchPage: FunctionalComponent = () => {
 
   useEffect(() => {
     if (searchResult.length !== 0) return;
+    setRecommendBlock([{}, {}, {}, {}, {}, {}]);
     getBlockById(44)
       .then((response) => {
         setRecommendBlock(response.data?.sort(() => Math.random() - 0.5));

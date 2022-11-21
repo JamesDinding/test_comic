@@ -62,7 +62,10 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     window.onpopstate = (e) => {
       // e.preventDefault();
       const des = popHandler();
-      // route(des);
+      const ua = navigator.userAgent.toLowerCase();
+      if (ua.includes("ucbrowser")) {
+        route(des);
+      }
     };
   }, [popHandler]);
 

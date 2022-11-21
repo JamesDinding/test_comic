@@ -48,7 +48,7 @@ const SwiperItem: FunctionalComponent<SwiperItemProps> = ({
           path={imgPath || ""}
           alt={""}
           setParentPending={setIsPending}
-          // escapeObserve={true}
+          escapeObserve={true}
         />
       </div>
     </CustomLink>

@@ -17,7 +17,7 @@ const RecommendBlock: FunctionalComponent<RecommendBlockProps> = ({
   Items,
   ItemPerRow,
   BlockID,
-  totalNum = 6,
+  totalNum = 9,
 }) => {
   return (
     <div class="items mt-[1.2rem] mx-5">

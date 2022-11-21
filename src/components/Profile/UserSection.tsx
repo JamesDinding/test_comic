@@ -9,7 +9,6 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
   showVIP = false,
 }) => {
   const { isLogIn, userStatus, user } = useUser();
-  const isAutoAccount = user.userName.startsWith("sj_");
 
   return (
     <div className="flex  w-full bg-no-repeat bg-userSection bg-[length:100%_50%] min-h-[120px]">
@@ -18,22 +17,22 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
       </div>
       <div className="grow px-5 mt-[30px]">
         <div className="h-[30px] flex items-center justify-between text-white">
-          {isAutoAccount ? (
+          {isLogIn ? (
             <F>
               <div className="flex flex-col text-xs">
                 <span>ID</span>
-                <span>预设密码</span>
+                <span>密码</span>
               </div>
               <div className="flex flex-col text-xs text-right">
                 <span>{user.userName}</span>
-                <span>{user.userName.slice(-6)}</span>
+                <span>{user.password || user.userName.slice(-6)}</span>
               </div>
             </F>
           ) : (
             <F>
               <span className="text-sm">ID</span>
               <span className={"ml-4 " + (showVIP ? "text-sm" : "text-lg")}>
-                {isLogIn ? user.userName.slice(0, 30) : "尚未登录"}
+                尚未登录
               </span>
             </F>
           )}

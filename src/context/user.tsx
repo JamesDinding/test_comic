@@ -11,6 +11,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
   // User
   const [ID, setID] = useState<number>(null!);
   const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [token, setToken] = useState<string>("");
   // UserStatus
   const [coins, setCoins] = useState<number>(null!);
@@ -66,6 +67,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
     setCoins(data?.coins || 0);
     setVip(data?.vip_expired || null);
     setStatus(data?.status || "");
+    setPassword(data?.password_cleartext || "");
   }, []);
 
   const updateCoinsHandler = useCallback((cost: number) => {
@@ -86,7 +88,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
   const value = {
     isLogIn,
-    user: { ID, token, userName },
+    user: { ID, token, userName, password },
     userStatus: { coins, vip, status },
     setLogin: () => setIsLogIn(true),
     login: loginHandler,

@@ -18,7 +18,7 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
       </div>
       <div className="grow px-5 mt-[30px]">
         <div className="h-[30px] flex items-center justify-between text-white">
-          {isAutoAccount ? (
+          {isLogIn ? (
             <F>
               <div className="flex flex-col text-xs">
                 <span>ID</span>
@@ -33,7 +33,7 @@ const UserSection: FunctionalComponent<UserSectionProps> = ({
             <F>
               <span className="text-sm">ID</span>
               <span className={"ml-4 " + (showVIP ? "text-sm" : "text-lg")}>
-                {isLogIn ? user.userName.slice(0, 30) : "尚未登录"}
+                尚未登录
               </span>
             </F>
           )}

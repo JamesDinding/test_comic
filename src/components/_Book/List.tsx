@@ -18,14 +18,14 @@ const BookList: FunctionalComponent<BookListProps> = ({
   ItemPerRow,
   Items = [{}, {}, {}, {}, {}, {}],
   type = "original",
-  itemNum = 6,
+  itemNum = 9,
   isLayoutDiff,
   catID = 0,
 }) => {
   return (
     // <div className={`grid grid-cols-${ItemPerRow} gap-2.5 pt-4 pb-[.8rem]`}>
     <div className={`grid grid-cols-6 gap-2.5 pt-4 pb-[.8rem]`}>
-      {Items.slice(0, ItemPerRow === 2 ? 4 : itemNum).map((el, i, arr) => {
+      {Items.slice(0, ItemPerRow === 2 ? 6 : itemNum).map((el, i, arr) => {
         let layout = i % 13 < 4 ? 4 : 9;
 
         return (

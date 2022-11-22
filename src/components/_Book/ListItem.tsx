@@ -7,6 +7,7 @@ import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
 import { defaultLocalStorage } from "../../const";
 import { postMyBookmarks } from "../../lib/api";
+import { subscribe, unsubscribe } from "../../lib/event";
 
 interface BookListItemProps {
   Data: Book;
@@ -50,6 +51,12 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   }, [Data]);
 
   useEffect(() => {
+    function cancelCollectHandler(e: CustomEvent) {
+      if (e.detail.target_id !== Data.id) return;
+      setIsCollected(false);
+    }
+    subscribe("cancelCollect", cancelCollectHandler);
+
     setIsCollected(false);
     if (isLogIn) {
       setIsCollected(Data.bookmark_status || false);
@@ -64,6 +71,10 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
 
       if (hasBook) setIsCollected(true);
     }
+
+    return () => {
+      unsubscribe("cancelCollect", cancelCollectHandler);
+    };
   }, [isLogIn, Data]);
 
   if (type === "separate")
@@ -73,7 +84,9 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         className={"item-separate flex flex-col " + rl}
       >
         <div class="relative rounded-lg grow">
-          {
+          {showPending ? (
+            <div></div>
+          ) : (
             <button
               className="absolute z-20 right-0 top-[-6px]"
               onClick={(e) => {
@@ -116,7 +129,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
                 <IconBookmarkGray class="w-8 h-8" />
               )}
             </button>
-          }
+          )}
           {!showPending && (
             <div className="item-overlay z-[25] !h-[60px]"></div>
           )}
@@ -154,10 +167,22 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
           </div>
         </div>
         <div class="title-separate min-h-[1.5rem]">
-          {Data.Name || Data.title}
+          {Data.Name || Data.title || (
+            <span className="inline-block mt-[.125rem] min-w-[125px] h-5 bg-gray-200 rounded-xl"></span>
+          )}
         </div>
         <div class="rating-separate min-h-[1rem]">
-          ★ {Data.hot}&nbsp;&nbsp;◉ {Data.views}万
+          {Data.hot ? (
+            "★ " + Data.hot
+          ) : (
+            <span className="inline-block mt-[.125rem] min-w-[55px] h-4 bg-gray-200 rounded-xl"></span>
+          )}
+          &nbsp;&nbsp;
+          {Data.views ? (
+            "◉ " + Data.views + "万"
+          ) : (
+            <span className="inline-block mt-[.125rem] min-w-[55px] h-4 bg-gray-200 rounded-xl"></span>
+          )}
         </div>
       </CustomLink>
     );

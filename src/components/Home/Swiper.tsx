@@ -97,11 +97,11 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   });
 
   const touchStartHandler = (e: TouchEvent) => {
-    setIsTouching(true);
-
+    // const touchStartHandler = (e: MouseEvent) => {
     timer && clearTimeout(timer);
 
     touchStartPosition = e.touches[0].clientX;
+    // touchStartPosition = e.clientX;
 
     const t = e.target as Element;
     const container = t.closest("div");
@@ -111,7 +111,9 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   };
 
   const touchMovingHandler = (e: TouchEvent) => {
+    // const touchMovingHandler = (e: MouseEvent) => {
     setTouchOffset(e.touches[0].clientX - touchStartPosition);
+    // setTouchOffset(e.clientX - touchStartPosition);
 
     cur?.classList.remove("duration-300");
     next?.classList.remove("duration-300");
@@ -129,6 +131,8 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   };
 
   const touchEndHandler = (e: TouchEvent) => {
+    // const touchEndHandler = (e: MouseEvent) => {
+    e.preventDefault();
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
 
@@ -190,24 +194,30 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   }
 
   return (
-    <div className="w-full h-[190px] pb-[.8rem]">
-      <div
-        id="carousel"
-        className="w-full h-full relative overflow-hidden whitespace-nowrap"
-        onTouchStart={touchStartHandler}
-        onTouchEnd={touchEndHandler}
-        onTouchMove={touchMovingHandler}
-      >
-        {banners?.map((banner: any, i: number) => {
-          return (
-            <SwiperItem
-              key={i}
-              bannerId={banner.id}
-              translateOffset={transList[i]}
-              imgPath={banner.covers.thumbx}
-            />
-          );
-        })}
+    <div>
+      <div className="w-[calc(100%+1px)] h-[190px] pb-[.8rem] overflow-x-scroll">
+        {/* <div className="w-full h-[190px] pb-[.8rem]"> */}
+        <div
+          id="carousel"
+          className="w-full h-full relative overflow-hidden whitespace-nowrap"
+          onTouchStart={touchStartHandler}
+          onTouchEnd={touchEndHandler}
+          onTouchMove={touchMovingHandler}
+          // onMouseDown={touchStartHandler}
+          // onMouseUp={touchEndHandler}
+          // onMouseMove={touchMovingHandler}
+        >
+          {banners?.map((banner: any, i: number) => {
+            return (
+              <SwiperItem
+                key={i}
+                bannerId={banner.id}
+                translateOffset={transList[i]}
+                imgPath={banner.covers.thumbx}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

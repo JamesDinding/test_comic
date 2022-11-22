@@ -7,6 +7,7 @@ import { useUser } from "../../context/user";
 import { defaultLocalStorage } from "../../const";
 import { useRouter } from "../../context/router";
 import IconCross from "../../resources/img/icon-cross.svg";
+import { publish } from "../../lib/event";
 
 interface CollectItemProps {
   Data: Book;
@@ -26,11 +27,6 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
   const { customRouter } = useRouter();
   const { isLogIn } = useUser();
   const [showPending, setPending] = useState(true);
-  const [isLongPress, setIsLongPress] = useState(false);
-
-  useEffect(() => {
-    curPress !== index_temp && setIsLongPress(false);
-  }, [curPress, index_temp]);
 
   function collectHandler(event: MouseEvent | TouchEvent) {
     event.preventDefault();
@@ -43,25 +39,25 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
       temp.collection = temp.collection.filter(
         (collect: Book) => collect.id !== Data?.id
       );
+
       updateList((prev) => {
         return prev.filter((p) => p.id !== Data.id);
       });
+      publish("cancelCollect", { target_id: Data.id });
 
       localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
-      setCurPress(-1);
 
       return;
     }
 
     postMyBookmarks(Data.id, "remove")
-      .then((response) => {
+      .then((_) => {
         updateList((prev) => {
-          setCurPress(-1);
           return prev.filter((p) => p.id !== Data.id);
         });
+        publish("cancelCollect", {});
       })
       .catch((err) => {
-        setCurPress(-1);
         console.error(err.message || "failed");
       });
   }
@@ -85,11 +81,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
         >
           &#10005;
         </div>
-        <div
-          className={
-            "duration-300 h-full " + (isLongPress ? "translate-y-[-30px]" : "")
-          }
-        >
+        <div className={"duration-300 h-full "}>
           <div
             className={
               showPending

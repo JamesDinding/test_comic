@@ -7,6 +7,7 @@ import IconBookmark from "../../resources/img/icon-bookmark.svg";
 import IconBookmarkGray from "../../resources/img/icon-bookmark-gray.svg";
 import { defaultLocalStorage } from "../../const";
 import { postMyBookmarks } from "../../lib/api";
+import { subscribe, unsubscribe } from "../../lib/event";
 
 interface BookListItemProps {
   Data: Book;
@@ -50,6 +51,12 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
   }, [Data]);
 
   useEffect(() => {
+    function cancelCollectHandler(e: CustomEvent) {
+      if (e.detail.target_id !== Data.id) return;
+      setIsCollected(false);
+    }
+    subscribe("cancelCollect", cancelCollectHandler);
+
     setIsCollected(false);
     if (isLogIn) {
       setIsCollected(Data.bookmark_status || false);
@@ -64,6 +71,10 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
 
       if (hasBook) setIsCollected(true);
     }
+
+    return () => {
+      unsubscribe("cancelCollect", cancelCollectHandler);
+    };
   }, [isLogIn, Data]);
 
   if (type === "separate")

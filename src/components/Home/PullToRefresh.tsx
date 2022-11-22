@@ -51,9 +51,9 @@ const PullToRefresh: FunctionalComponent<PullToRefresh> = ({
   return (
     <div
       className="grow overflow-y-auto"
-      onTouchStart={touchStartHandler}
-      onTouchMove={touchMovingHandler}
-      onTouchEnd={touchEndHandler}
+      // onTouchStart={touchStartHandler}
+      // onTouchMove={touchMovingHandler}
+      // onTouchEnd={touchEndHandler}
     >
       <p
         className={`${dropCss} text-gray-700 text-xs flex items-end justify-center mb-4 tracking-wider`}

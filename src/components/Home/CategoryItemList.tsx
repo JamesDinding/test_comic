@@ -22,20 +22,26 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   const numRef = useRef(0);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     topRef.current.scrollIntoView();
     pageRef.current = 1;
     curCateId.current = catID;
     setContent([{}, {}, {}, {}, {}, {}, {}]);
-    try {
-      (async () => {
-        const { data } = await getSpecifiedCategory(catID, pageRef.current);
+
+    getSpecifiedCategory(catID, pageRef.current, abortController.signal)
+      .then(({ data }) => {
         numRef.current = data?.length;
         pageRef.current++;
         setContent(data?.sort(() => Math.random() - 0.5));
-      })();
-    } catch (err: any) {
-      console.error(err.message || "failed");
-    }
+      })
+      .catch((err) => {
+        console.log(err.message || "failed");
+      });
+
+    return () => {
+      abortController.abort();
+    };
   }, [catID]);
 
   useEffect(() => {

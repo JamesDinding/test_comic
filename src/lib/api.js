@@ -192,9 +192,10 @@ export async function postMyBookmarks(id, action) {
 export const getCategories = curryFetch_GET("/contents/categories");
 
 // 取得指定分類
-export const getSpecifiedCategory = async (category_id, page = 1) => {
+export const getSpecifiedCategory = async (category_id, page = 1, signal) => {
   const res = await fetch(
-    "/api/v1/contents/categories/" + category_id + "?page=" + page
+    "/api/v1/contents/categories/" + category_id + "?page=" + page,
+    { signal }
   );
   const data = await res.json();
 

@@ -157,20 +157,20 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         </div>
         <div class="title-separate min-h-[1.5rem]">
           {Data.Name || Data.title || (
-            <span className="inline-block m-[.125rem] min-w-[125px] h-5 bg-gray-200 rounded-xl"></span>
+            <span className="inline-block mt-[.125rem] min-w-[125px] h-5 bg-gray-200 rounded-xl"></span>
           )}
         </div>
         <div class="rating-separate min-h-[1rem]">
           {Data.hot ? (
             "★ " + Data.hot
           ) : (
-            <span className="inline-block m-[.125rem] min-w-[55px] h-4 bg-gray-200 rounded-xl"></span>
+            <span className="inline-block mt-[.125rem] min-w-[55px] h-4 bg-gray-200 rounded-xl"></span>
           )}
           &nbsp;&nbsp;
           {Data.views ? (
             "◉ " + Data.views + "万"
           ) : (
-            <span className="inline-block m-[.125rem] min-w-[55px] h-4 bg-gray-200 rounded-xl"></span>
+            <span className="inline-block mt-[.125rem] min-w-[55px] h-4 bg-gray-200 rounded-xl"></span>
           )}
         </div>
       </CustomLink>

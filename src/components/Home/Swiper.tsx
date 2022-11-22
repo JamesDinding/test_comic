@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from "preact";
+import { Fragment, FunctionalComponent, h } from "preact";
 import { StateUpdater, useEffect, useState } from "preact/hooks";
 import { useDomain } from "../../context/domain";
 import CustomLink from "../CustomLink";
@@ -56,10 +56,6 @@ const SwiperItem: FunctionalComponent<SwiperItemProps> = ({
 };
 
 const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
-  // prettier-ignore
-  // const [imageBlobList, setImageBlobList] = useState<Array<string>>(JSON.parse(localStorage.getItem("swiper") || '{"temp":[]}')?.temp || []);
-  const [isPending, setIsPending] = useState(true)
-
   const [isTouching, setIsTouching] = useState(false);
   const [touchOffset, setTouchOffset] = useState(0);
   const [curSlide, setCurSlide] = useState(0);
@@ -70,6 +66,14 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
     "translate-x-[100%] ",
     "translate-x-[-100%] ",
   ]);
+
+  useEffect(() => {
+    const target = document.querySelector(
+      "#carousel-container"
+    )! as HTMLDivElement;
+
+    target.scrollLeft = 1;
+  }, []);
 
   useEffect(() => {
     (() => {
@@ -97,11 +101,9 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   });
 
   const touchStartHandler = (e: TouchEvent) => {
-    // const touchStartHandler = (e: MouseEvent) => {
     timer && clearTimeout(timer);
 
     touchStartPosition = e.touches[0].clientX;
-    // touchStartPosition = e.clientX;
 
     const t = e.target as Element;
     const container = t.closest("div");
@@ -111,9 +113,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   };
 
   const touchMovingHandler = (e: TouchEvent) => {
-    // const touchMovingHandler = (e: MouseEvent) => {
     setTouchOffset(e.touches[0].clientX - touchStartPosition);
-    // setTouchOffset(e.clientX - touchStartPosition);
 
     cur?.classList.remove("duration-300");
     next?.classList.remove("duration-300");
@@ -131,8 +131,6 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   };
 
   const touchEndHandler = (e: TouchEvent) => {
-    // const touchEndHandler = (e: MouseEvent) => {
-    e.preventDefault();
     timer && clearTimeout(timer);
     timer = setTimeout(() => nextSlide(), 5000);
 
@@ -194,18 +192,22 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
   }
 
   return (
-    <div>
-      <div className="w-[calc(100%+1px)] h-[190px] pb-[.8rem] overflow-x-scroll">
+    <Fragment>
+      <div
+        id="carousel-container"
+        className="w-full h-[190px] pb-[.8rem] overflow-scroll no-scrollbar "
+        onScroll={(e) => {
+          const target = e.target as HTMLDivElement;
+          target.scrollLeft = 1;
+        }}
+      >
         {/* <div className="w-full h-[190px] pb-[.8rem]"> */}
         <div
           id="carousel"
-          className="w-full h-full relative overflow-hidden whitespace-nowrap"
+          className="w-[calc(100%+2px)] h-full relative overflow-hidden whitespace-nowrap"
           onTouchStart={touchStartHandler}
           onTouchEnd={touchEndHandler}
           onTouchMove={touchMovingHandler}
-          // onMouseDown={touchStartHandler}
-          // onMouseUp={touchEndHandler}
-          // onMouseMove={touchMovingHandler}
         >
           {banners?.map((banner: any, i: number) => {
             return (
@@ -219,7 +221,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
           })}
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

@@ -47,7 +47,10 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
               route("/charge");
             }}
           />
-          <div className="mt-2.5 text-center text-[#6d569466]">
+          <div
+            className="mt-2.5 text-center"
+            style={{ color: "rgba(109,86,148,0.4)" }}
+          >
             阅读章节需要
             <span className="text-[#eb6f6f]">
               &nbsp;{stuffInfo?.price}&nbsp;

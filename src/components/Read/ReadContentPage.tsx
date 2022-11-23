@@ -30,9 +30,7 @@ const ReadContentPage: FunctionalComponent = () => {
   // 暂时先这样写
   // [ _, _, comicId, _, chapterId ]
   const [curComic, setCurComic] = useState(currentRoute.split("/")[2]);
-  // const [curComic, setCurComic] = useState(
-  //   parseInt(window.location.pathname.split("/")[2], 10)
-  // );
+
   const [curChapter, setCurChapter] = useState(
     parseInt(currentRoute.split("/")[4], 10) || stuffInfo?.position || 1
   );

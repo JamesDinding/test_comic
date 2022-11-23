@@ -136,7 +136,7 @@ const ServiceList: FunctionalComponent = () => {
                   if (localStorage.getItem("sjmh_device") !== "web") return;
                   return (
                     <a
-                      href={`/app/sjmh.${mobile}?tc=${tc}`}
+                      href={`/app/${+new Date()}.${mobile}?tc=${tc}`}
                       target="_blank"
                       onClick={(e) => {
                         if (mobile !== "mobileconfig") return;

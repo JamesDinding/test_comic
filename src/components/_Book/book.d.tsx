@@ -15,7 +15,7 @@ declare interface RecommendationBlock {
 }
 
 declare interface BlockContent {
-  id?: number;
+  id?: number | string;
   title?: string;
   creator?: string;
   description?: string;
@@ -30,7 +30,7 @@ declare interface BlockContent {
 
 // 直接全部+问号 extends其他的 有再去时间改
 declare interface Book extends BlockContent {
-  ID?: number;
+  ID?: number | string;
   Cover?: string;
   Name?: string;
   bookmark_status?: boolean;

@@ -19,7 +19,7 @@ declare type ChapterItem = {
 
 declare interface ChapterList {
   chapterList: Array<ChapterData>;
-  bookId?: number;
+  bookId?: string;
 }
 
 declare interface Content {

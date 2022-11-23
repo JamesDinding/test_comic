@@ -4,7 +4,7 @@ import ChapterItem from "../_Book/ChapterItem";
 
 const ChapterList: FunctionalComponent<ChapterList> = ({
   chapterList,
-  bookId = 0,
+  bookId = "0",
 }) => {
   return (
     <>

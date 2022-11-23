@@ -1,6 +1,5 @@
-
 declare interface Stuff extends ChapterData {
-  bookId?:number;
+  bookId?: string;
 }
 
 declare interface ReadingContextType {

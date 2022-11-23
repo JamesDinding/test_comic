@@ -109,16 +109,22 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
                     temp.collection = temp.collection.filter(
                       (collect: Content) => collect.id !== Data?.id
                     );
+                    collectCallBack && collectCallBack(Data, isCollected);
                   } else {
-                    temp.collection.push({
-                      id: Data?.id,
-                      title: Data?.title,
-                      hot: Data?.hot,
-                      views: Data?.views,
-                      covers: { thumb: Data?.covers?.thumb },
-                    });
+                    const isExist = temp.collection.find(
+                      (el: any) => el.id === Data?.id
+                    );
+                    if (!isExist) {
+                      temp.collection.push({
+                        id: Data?.id,
+                        title: Data?.title,
+                        hot: Data?.hot,
+                        views: Data?.views,
+                        covers: { thumb: Data?.covers?.thumb },
+                      });
+                      collectCallBack && collectCallBack(Data, isCollected);
+                    }
                   }
-                  collectCallBack && collectCallBack(Data, isCollected);
                   localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
                 }
               }}

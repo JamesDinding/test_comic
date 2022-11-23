@@ -96,7 +96,10 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
                 });
             }}
           />
-          <div className="mt-2.5 text-center text-[#6d569466]">
+          <div
+            className="mt-2.5 text-center"
+            style={{ color: "rgba(109,86,148,0.4)" }}
+          >
             现在有
             <span className="text-[#eb6f6f]">
               &nbsp;{userStatus.coins}&nbsp;

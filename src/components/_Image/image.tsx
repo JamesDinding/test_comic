@@ -55,12 +55,12 @@ const Image: FunctionalComponent<ImageProps> = ({
         setImageBlob(b64);
         setParentPending(false);
       } catch (err) {
-        setImageBlob(
-          "/assets/img/chapterCover/" +
-            ((Math.floor(Math.random() * 10) % 5) + 1) +
-            ".jpg"
-        );
-        setParentPending(false);
+        // setImageBlob(
+        //   "/assets/img/chapterCover/" +
+        //     ((Math.floor(Math.random() * 10) % 5) + 1) +
+        //     ".jpg"
+        // );
+        setParentPending(true);
         console.error(err);
       }
     })();

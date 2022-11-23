@@ -71,7 +71,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: '#api-notify'
-          slack-message: "GitHub build result: ${{ job.status }}\n${{ github.repository }}-${{ env.IMAGE_TAG }}:${{ github.sha }}"
+          slack-message: "@U02Q10YJE3Z GitHub build result: ${{ job.status }}\n${{ github.repository }}-${{ env.IMAGE_TAG }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 

@@ -11,7 +11,7 @@ import CardBottom from "./CardBottom";
 
 interface ModalBuyProps {
   setChapterList?: StateUpdater<any>;
-  curComic?: number;
+  curComic?: string;
   cb?: (arg: any) => any;
 }
 

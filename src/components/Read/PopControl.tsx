@@ -10,7 +10,7 @@ import IconHome from "../../resources/img/icon-reading-home.svg";
 interface PopControlProps {
   chapterList: ChapterData[];
   curChapter: number;
-  curComic: number;
+  curComic: string;
   pageNum: number;
   curPage: number;
   setIsDrag: StateUpdater<boolean>;

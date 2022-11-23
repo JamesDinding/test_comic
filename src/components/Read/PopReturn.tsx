@@ -7,7 +7,7 @@ import IconArrow from "../../resources/img/icon-arrow.svg";
 import { route } from "preact-router";
 
 interface PopReturnProps {
-  bookId: number;
+  bookId: string;
   chapterNum: number;
 }
 

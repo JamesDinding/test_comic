@@ -3,27 +3,27 @@ declare type ChapterData = {
     thumb: string;
     thumbx: string;
   };
-  id: number;
+  id: string;
   status: boolean;
   price: number;
   position: number;
-  bookId?: number;
+  bookId?: string;
 };
 
 declare type ChapterItem = {
   chapter: ChapterData;
   smallSize?: boolean;
-  bookId?: number;
+  bookId?: string;
   routeReplace?: boolean;
 };
 
 declare interface ChapterList {
   chapterList: Array<ChapterData>;
-  bookId?: number;
+  bookId?: string;
 }
 
 declare interface Content {
-  id: number;
+  id: string;
   creator: string;
   title: string;
   description: string;

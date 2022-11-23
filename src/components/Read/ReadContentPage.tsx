@@ -29,9 +29,7 @@ const ReadContentPage: FunctionalComponent = () => {
   const [chapterList, setChapterList] = useState([]);
   // 暂时先这样写
   // [ _, _, comicId, _, chapterId ]
-  const [curComic, setCurComic] = useState(
-    parseInt(currentRoute.split("/")[2], 10)
-  );
+  const [curComic, setCurComic] = useState(currentRoute.split("/")[2]);
   // const [curComic, setCurComic] = useState(
   //   parseInt(window.location.pathname.split("/")[2], 10)
   // );
@@ -103,7 +101,7 @@ const ReadContentPage: FunctionalComponent = () => {
       .catch((err) => {
         console.error(err.message);
         // if (err.message === "cannot get chapter by position id") route("/home");
-        setPageList([]);
+        // setPageList([]);
       });
   }, [curComic, curChapter]);
 

@@ -23,7 +23,8 @@ import { useRouter } from "../context/router";
 
 const CategoryPage: FunctionalComponent = ({}) => {
   const containerRef = useRef<HTMLDivElement>(null!);
-  const { currentRoute } = useRouter();
+  const [content, setContent] = useState<Book[]>([]);
+  const { currentRoute, tempData, attachment, attachData } = useRouter();
   const [categories, setCategories] = useState<
     Array<{ name: string; id: number }>
   >(
@@ -67,6 +68,8 @@ const CategoryPage: FunctionalComponent = ({}) => {
           />
           <PullToRefresh containerElement={containerRef}>
             <CategoryItemList
+              content={content}
+              setContent={setContent}
               catID={categories[parseInt(currentCategory, 10) - 1].id}
             />
           </PullToRefresh>

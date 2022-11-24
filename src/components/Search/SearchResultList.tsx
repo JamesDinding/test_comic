@@ -31,8 +31,6 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   const pageRef = useRef(2);
   const numRef = useRef(0);
 
-  const [load, setIsLoad] = useState(false);
-
   useEffect(() => {
     // if (content.length === 0) return;
     if (
@@ -81,6 +79,7 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
               setContent((prev) => prev.concat(response.data));
               setTempData((prev: any) => {
                 return {
+                  ...prev,
                   SearchPage: {
                     ...prev.SearchPage,
                     content: prev.SearchPage.content.concat(response.data),

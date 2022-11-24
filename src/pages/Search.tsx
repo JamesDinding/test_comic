@@ -23,7 +23,7 @@ const SearchPage: FunctionalComponent = () => {
   useEffect(() => {
     if (
       !hasEnter &&
-      tempData &&
+      tempData?.SearchPage &&
       tempData.SearchPage.searchWord.length &&
       tempData.SearchPage.searchWord === localStorage.getItem("sjmh_search_key")
     ) {
@@ -31,11 +31,14 @@ const SearchPage: FunctionalComponent = () => {
       setShowSearchResult(true);
       inputRef.current.value = tempData.SearchPage.searchWord;
     } else {
-      setTempData({
-        SearchPage: {
-          content: searchResult,
-          searchWord: inputRef.current?.value || "",
-        },
+      setTempData((prev: any) => {
+        return {
+          ...prev,
+          SearchPage: {
+            content: searchResult,
+            searchWord: inputRef.current?.value || "",
+          },
+        };
       });
     }
     setHasEnter(true);

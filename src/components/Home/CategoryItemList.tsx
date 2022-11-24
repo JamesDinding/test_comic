@@ -108,7 +108,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     }
     if (scrollHeight && s) {
       s.scrollTo(0, parseInt(scrollHeight, 10));
-      // t.style.minHeight = "";
+      t.style.minHeight = "";
     }
   }, [attachment, tempData, catID]);
 

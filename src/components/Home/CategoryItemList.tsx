@@ -18,25 +18,24 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   content,
   setContent,
 }) => {
-  const [isUsingTemp, setIsUsingTemp] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
   const { setDomain } = useDomain();
   const { tempData, setTempData, attachment, attachData } = useRouter();
-
   // test ref
   const topRef = useRef<HTMLDivElement>(null!);
   const pageRef = useRef(1);
   const curCateId = useRef(catID);
   const numRef = useRef(0);
 
+  function memorizePageRefHandler() {
+    let temp = JSON.parse(localStorage.getItem("category_page") || "");
+    if (!temp) return;
+    temp[catID] = pageRef.current;
+    localStorage.setItem("category_page", JSON.stringify(temp));
+  }
+
   useEffect(() => {
-    function memorizePageRefHandler() {
-      localStorage.setItem(
-        "category_page",
-        JSON.stringify({ [catID]: pageRef.current })
-      );
-    }
     subscribe("memorizePageRef", memorizePageRefHandler);
 
     return () => {
@@ -45,15 +44,16 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   }, []);
 
   useEffect(() => {
-    console.log("attachment:", attachment);
+    pageRef.current = JSON.parse(
+      localStorage.getItem("category_page") || '{"[catID]": 1}'
+    )[catID];
+    if (!pageRef.current) pageRef.current = 1;
     if (attachment && tempData && tempData.CategoryPage[catID]) {
-      console.log("tempdata", tempData.CategoryPage[catID].content);
       setContent(tempData.CategoryPage[catID].content);
       return;
     }
 
     // attachData(null);
-    console.log("normal fetch data");
     const abortController = new AbortController();
 
     topRef.current.scrollIntoView();
@@ -61,10 +61,6 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     curCateId.current = catID;
     setContent([{}, {}, {}, {}, {}, {}, {}]);
 
-    pageRef.current = JSON.parse(
-      localStorage.getItem("category_page") || '{"[catID]": 1}'
-    )[catID];
-    if (!pageRef.current) pageRef.current = 1;
     console.log(pageRef.current);
     // pageRef.current = 1;
 
@@ -91,13 +87,13 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
         setDomain(domain);
       })
       .catch((err) => {
-        console.log(err.message || "failed");
+        console.error(err.message || "failed");
       });
 
     return () => {
       abortController.abort();
     };
-  }, [catID, attachment, isUsingTemp]);
+  }, [catID, attachment]);
 
   useEffect(() => {
     if (!attachment || !tempData) return;
@@ -112,22 +108,24 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     }
     if (scrollHeight && s) {
       s.scrollTo(0, parseInt(scrollHeight, 10));
-      t.style.minHeight = "";
+      // t.style.minHeight = "";
     }
   }, [attachment, tempData, catID]);
 
   useEffect(() => {
     if (observer) return;
     const opt: IntersectionObserverInit = {
-      root: document.querySelector("#scroll"),
+      root: document.querySelector("#category-scroll"),
+      // root: document.querySelector("#scroll"),
       // root: document.querySelector("#category-section"),
       // threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-      rootMargin: "-30px 0px 30px 0px",
+      rootMargin: "-30px 0px 100px 0px",
     };
 
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach(async (e) => {
         if (e.isIntersecting) {
+          console.log(pageRef.current);
           if (pageRef.current === 1) return;
           const { data } = await getSpecifiedCategory(
             curCateId.current,
@@ -140,18 +138,19 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           pageRef.current++;
           numRef.current += data?.length;
           setContent((prev) => prev?.concat(data));
+          memorizePageRefHandler();
           setTempData((prev: any) => {
-            return {
-              ...prev,
-              CategoryPage: {
-                ...prev.CategoryPage,
-                [curCateId.current]: {
-                  ...prev.CategoryPage[curCateId.current],
-                  content:
-                    prev.CategoryPage[curCateId.current].content.concat(data),
-                },
-              },
-            };
+            const temp = { ...prev };
+            console.log(temp);
+            if (temp && temp.CategoryPage[curCateId.current]) {
+              console.log(
+                "previous temp:",
+                temp.CategoryPage[curCateId.current].content
+              );
+              temp.CategoryPage[curCateId.current].content =
+                temp.CategoryPage[curCateId.current].content.concat(data);
+            }
+            return temp;
           });
         }
       });
@@ -172,12 +171,16 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           ItemPerRow={3}
           type={"separate"}
           isTemp={true}
-          itemNum={pageRef.current * CATEGORY_PER_PAGE_NUM}
+          itemNum={
+            tempData && tempData.CategoryPage[catID]
+              ? tempData.CategoryPage[catID].content.length
+              : pageRef.current * CATEGORY_PER_PAGE_NUM
+          }
           isLayoutDiff={true}
         />
         <div
           ref={bottomRef}
-          className="w-[100px] h-[1px] invisible  bg-red-400"
+          className="w-[100px] h-[1px] mb-[1px] invisible  bg-red-400"
         ></div>
       </div>
     </Fragment>

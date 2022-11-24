@@ -30,6 +30,7 @@ import SmartBanner from "../components/SmartBanner";
 localStorage.setItem("sjmh_search_key", "");
 localStorage.setItem("sjmh_search_section_height", "");
 localStorage.setItem("sjmh_scroll_height", "");
+localStorage.setItem("category_page", "{}");
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);

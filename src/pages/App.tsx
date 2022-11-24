@@ -13,6 +13,7 @@ import { RouterProvider } from "../context/router";
 import DefaultRouteHandler from "../components/DefaultRouteHandler";
 
 import HomePage from "./Home";
+import CategoryPage from "./Category";
 import CollectPage from "./Collect";
 import ProfilePage from "./Profile";
 import DirectoryPage from "./Directory";
@@ -25,11 +26,11 @@ import CustomerPage from "./Profile/Customer";
 import MorePage from "./More";
 import SearchPage from "./Search";
 import SmartBanner from "../components/SmartBanner";
-import Loading from "../components/Modal/Loading";
 
 localStorage.setItem("sjmh_search_key", "");
 localStorage.setItem("sjmh_search_section_height", "");
 localStorage.setItem("sjmh_scroll_height", "");
+localStorage.setItem("category_page", "{}");
 
 const App: FunctionalComponent = () => {
   const [showSmartBanner, setShowSmartBanner] = useState(true);
@@ -90,6 +91,7 @@ const App: FunctionalComponent = () => {
                     )}
                     <Router>
                       <HomePage path="/home" />
+                      <CategoryPage path="/home/:category_id" />
                       <CollectPage path="/collect" />
                       <ProfilePage path="/profile" />
 

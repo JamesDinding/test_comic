@@ -8,6 +8,19 @@ import {
   useEffect,
 } from "preact/hooks";
 
+/**
+ * tempData structure
+ *  {
+ *    SearchPage: { content: Book[],
+ *                  searchWord: string
+ *                },
+ *    CategoryPage: { category_id: { content: Book[],
+ *                                   scroll_height: number,
+ *                                   container_height: number }
+ *                  }
+ *  }
+ */
+
 const RouterContext = createContext<RouterContextType>(null!);
 
 export const RouterProvider: FunctionalComponent = ({ children }) => {

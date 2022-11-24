@@ -19,35 +19,23 @@ import SmartBanner from "../components/SmartBanner";
 
 import FooterBar from "../components/FooterBar";
 import { defaultLocalStorage } from "../const";
+import { useRouter } from "../context/router";
 
-let initial = true;
-
-const HomePage: FunctionalComponent = ({}) => {
-  const [currentCategory, setCurrentCategory] = useState(
-    initial
-      ? 0
-      : JSON.parse(localStorage.getItem("sjmh") || defaultLocalStorage).home
-          .curCategoryIndex
-  );
-  const [tc, setTc] = useState("");
+const CategoryPage: FunctionalComponent = ({}) => {
   const containerRef = useRef<HTMLDivElement>(null!);
+  const [content, setContent] = useState<Book[]>([]);
+  const { currentRoute, tempData, attachment, attachData } = useRouter();
   const [categories, setCategories] = useState<
     Array<{ name: string; id: number }>
   >(
-    initial
-      ? []
-      : JSON.parse(localStorage.getItem("sjmh") || defaultLocalStorage).home
-          .categories
+    JSON.parse(localStorage.getItem("sjmh") || defaultLocalStorage).home
+      .categories
   );
 
-  // Part More
-  const [showMore, setShowMore] = useState(false);
-  const [moreResult, setMoreResult] = useState<Book[]>([]);
-  const [moreBlockId, setMoreBlockId] = useState(0);
+  const currentCategory = currentRoute.split("/").pop() || "0";
 
   useEffect(() => {
     if (categories.length !== 0) return;
-    initial = false;
     try {
       (async () => {
         const { data } = await getCategories();
@@ -64,23 +52,6 @@ const HomePage: FunctionalComponent = ({}) => {
     }
   }, [categories]);
 
-  // fetch more content by moreBlockId
-  useEffect(() => {
-    if (moreBlockId === 0) return;
-    getBlockById(moreBlockId)
-      .then((response) => {
-        setMoreResult(response.data);
-      })
-      .catch((err) => {
-        console.error(err.message || "failed");
-        setMoreResult([]);
-      })
-      .finally(() => {
-        setShowMore(true);
-        setCurrentCategory(0);
-      });
-  }, [moreBlockId]);
-
   return (
     <>
       {/* <div class={"grow overflow-hidden overflow-y-auto"} ref={containerRef}> */}
@@ -93,15 +64,14 @@ const HomePage: FunctionalComponent = ({}) => {
           <BrandBar />
           <CategoryListBar
             curCategory={currentCategory}
-            // onCategoryChanged={setCurrentCategory}
             categories={[{ id: 0, name: "首页" }].concat(categories)}
           />
           <PullToRefresh containerElement={containerRef}>
-            {/* {currentCategory == 0 ? ( */}
-            <Recommend setTc={setTc} />
-            {/* ) : (
-              <CategoryItemList catID={categories[currentCategory - 1].id} />
-            )} */}
+            <CategoryItemList
+              content={content}
+              setContent={setContent}
+              catID={categories[parseInt(currentCategory, 10) - 1].id}
+            />
           </PullToRefresh>
         </ObserverProvider>
       </div>
@@ -110,4 +80,4 @@ const HomePage: FunctionalComponent = ({}) => {
   );
 };
 
-export default HomePage;
+export default CategoryPage;

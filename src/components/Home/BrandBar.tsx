@@ -14,7 +14,7 @@ const HomeBrandBar: FunctionalComponent<HomeBrandBarProps> = () => {
 
   return (
     <div class="header flex px-4 py-2 items-center shrink-0">
-      <a href="#">
+      <a href="/home">
         <Logo class="w-24" alt="女神漫画" />
       </a>
       <div

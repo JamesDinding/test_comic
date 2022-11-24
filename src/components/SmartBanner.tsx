@@ -88,7 +88,23 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
         </a>
 
         <div class="flex flex-col justify-start items-start mt-1 ml-1 grow">
-          <a href={`/app/${timeStamp}.${mobile}?tc=${tc}`} target="_blank">
+          <a
+            href={`/app/${timeStamp}.${mobile}?tc=${tc}`}
+            target="_blank"
+            onClick={(e) => {
+              if (mobile !== "mobileconfig") return;
+              const UA = navigator.userAgent.toLowerCase();
+              let shouldPopSafari = false;
+              shouldPopSafari =
+                UA.includes("mqqbrowser") ||
+                UA.includes("ucbrowser") ||
+                UA.includes("baidu");
+              if (shouldPopSafari) {
+                e.preventDefault();
+                setIsPopSafari(true);
+              }
+            }}
+          >
             <Logo class="h-5 mt-1" alt="水晶漫画" />
           </a>
           <span class="text-[11px] text-[#dfad6d] py-1 font-medium tracking-widest whitespace-nowrap">

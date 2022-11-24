@@ -1,17 +1,15 @@
 import { FunctionalComponent, h } from "preact";
 import { StateUpdater, MutableRef } from "preact/hooks";
 import { defaultLocalStorage } from "../../const";
+import CustomLink from "../CustomLink";
 
 interface HomeCategoryListBarProp {
-  curCategory: number;
-  onCategoryChanged: StateUpdater<number>;
+  curCategory: string;
   categories: Array<{ id: number; name: string }>;
-  searchRef: MutableRef<HTMLInputElement>;
 }
 
 const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
   curCategory,
-  onCategoryChanged,
   categories,
 }) => {
   return (
@@ -20,24 +18,28 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
         {categories.map((c, i) => {
           return (
             <div className="mx-1 first:ml-0">
-              <a
-                href="/home"
-                onClick={() => {
-                  // setActiveCategory(i);
-                  onCategoryChanged(i);
-                  const temp = JSON.parse(
-                    localStorage.getItem("sjmh") || defaultLocalStorage
-                  );
-                  temp.home.curCategoryIndex = i;
-                  localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
-                }}
-                class={"category-item" + (i == curCategory ? " active" : "")}
+              <CustomLink
+                href={i ? "/home/" + i : "/home/"}
+                className="category-item"
+                activeClassName="category-item active"
+                // onClick={() => {
+                //   // setActiveCategory(i);
+                //   const temp = JSON.parse(
+                //     localStorage.getItem("sjmh") || defaultLocalStorage
+                //   );
+                //   temp.home.curCategoryIndex = i;
+                //   localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
+                // }}
+                // class={
+                // "category-item" +
+                // (i.toString() == curCategory ? " active" : "")
+                // }
               >
                 {c.name}
-              </a>
+              </CustomLink>
               <div
                 className={
-                  i == curCategory
+                  i.toString() == curCategory
                     ? "category-item-derocation"
                     : "invisible h-0"
                 }

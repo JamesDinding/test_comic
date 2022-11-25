@@ -26,22 +26,42 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
     if (!initial) {
       setBlockOrder(local_block_order);
       setBlocks(local_blocks);
-      return;
+      return () => {
+        setTempData((prev: any) => {
+          let temp = { ...prev };
+          if (!temp) temp = {};
+          temp.HomePage = {
+            container_height:
+              document.querySelector("#home-section")?.clientHeight,
+            scroll_height:
+              document.querySelector("#category-scroll")?.scrollTop || 0,
+          };
+          console.log(document.querySelector("#category-scroll")?.scrollTop);
+          return temp;
+        });
+      };
     }
 
-    // if (tempData?.HomePage) {
-    //   setBlocks(tempData.HomePage.content);
-    //   setBlockOrder(tempData.HomePage.block_order);
-    // }
     try {
       (async () => {
-        console.log("fetch");
         const { data, domain, referrer, ordering } = await getAllBlock();
+        // blockorder.map((bn,i) => .        )
+        // blocks[bn.name as keyof typeof blocks]?.sort(
+        //   () => Math.random() - 0.5
+        // )
+        let temp: any = {};
+        ordering.map((bn: { id: number; name: string; count: number }) => {
+          if (bn.name === "banner") {
+            temp[bn.name] = data[bn.name];
+          }
+
+          temp[bn.name] = data[bn.name]?.sort(() => Math.random() - 0.5);
+        });
         setDomain(domain);
-        setBlocks(data);
-        local_block_order = ordering;
-        local_blocks = data;
+        setBlocks(temp);
         setBlockOrder(ordering);
+        local_block_order = ordering;
+        local_blocks = temp;
         setTc(referrer.toString() || "");
         initial = false;
       })();
@@ -50,7 +70,6 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
     }
 
     return () => {
-      console.log("clean up function");
       setTempData((prev: any) => {
         let temp = { ...prev };
         if (!temp) temp = {};
@@ -60,6 +79,7 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
           scroll_height:
             document.querySelector("#category-scroll")?.scrollTop || 0,
         };
+        console.log(document.querySelector("#category-scroll")?.scrollTop);
         return temp;
       });
     };
@@ -95,9 +115,10 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
               key={i}
               BlockID={bn.id}
               BlockName={bn.name}
-              Items={blocks[bn.name as keyof typeof blocks]?.sort(
-                () => Math.random() - 0.5
-              )}
+              Items={blocks[bn.name as keyof typeof blocks]}
+              // Items={blocks[bn.name as keyof typeof blocks]?.sort(
+              //   () => Math.random() - 0.5
+              // )}
               ItemPerRow={bn.count}
             />
           </Fragment>

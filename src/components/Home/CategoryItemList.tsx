@@ -25,12 +25,18 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   // test ref
   const topRef = useRef<HTMLDivElement>(null!);
   const pageRef = useRef(1);
-  const curCateId = useRef(catID);
   const numRef = useRef(0);
+  console.log(catID);
 
   function memorizePageRefHandler() {
     let temp = JSON.parse(localStorage.getItem("category_page") || "");
-    if (!temp) return;
+    if (!temp) {
+      localStorage.setItem(
+        "category_page",
+        JSON.stringify({ [catID]: pageRef.current })
+      );
+      return;
+    }
     temp[catID] = pageRef.current;
     localStorage.setItem("category_page", JSON.stringify(temp));
   }
@@ -48,7 +54,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
       localStorage.getItem("category_page") || '{"[catID]": 1}'
     )[catID];
     if (!pageRef.current) pageRef.current = 1;
-    if (attachment && tempData?.CategoryPage && tempData?.CategoryPage[catID]) {
+    if (tempData?.CategoryPage && tempData?.CategoryPage[catID]) {
       setContent(tempData.CategoryPage[catID].content);
       return;
     }
@@ -58,7 +64,6 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
 
     topRef.current.scrollIntoView();
 
-    curCateId.current = catID;
     setContent([{}, {}, {}, {}, {}, {}, {}]);
 
     // pageRef.current = 1;
@@ -95,7 +100,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   }, [catID, attachment]);
 
   useEffect(() => {
-    if (!attachment || !tempData?.CategoryPage) return;
+    if (!tempData?.CategoryPage) return;
     const t = document.querySelector("#category-section") as HTMLDivElement;
     const s = document.querySelector("#category-scroll") as HTMLDivElement;
 
@@ -106,7 +111,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
       t.style.minHeight = containerHeight + "px";
     }
     if (scrollHeight && s) {
-      s.scrollTo(0, parseInt(scrollHeight, 10));
+      if (attachment) s.scrollTo(0, parseInt(scrollHeight, 10));
       t.style.minHeight = "";
     }
   }, [attachment, tempData, catID]);
@@ -125,10 +130,9 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
       entries.forEach(async (e) => {
         if (e.isIntersecting) {
           if (pageRef.current === 1) return;
-          const { data } = await getSpecifiedCategory(
-            curCateId.current,
-            pageRef.current
-          );
+
+          console.log(catID);
+          const { data } = await getSpecifiedCategory(catID, pageRef.current);
           if (data.length === 0) {
             // observer.unobserve(e.target);
             return;
@@ -139,14 +143,9 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           memorizePageRefHandler();
           setTempData((prev: any) => {
             const temp = { ...prev };
-            console.log(temp);
-            if (temp && temp.CategoryPage[curCateId.current]) {
-              console.log(
-                "previous temp:",
-                temp.CategoryPage[curCateId.current].content
-              );
-              temp.CategoryPage[curCateId.current].content =
-                temp.CategoryPage[curCateId.current].content.concat(data);
+            if (temp && temp.CategoryPage[catID]) {
+              temp.CategoryPage[catID].content =
+                temp.CategoryPage[catID].content.concat(data);
             }
             return temp;
           });
@@ -157,7 +156,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     setObserver(ob);
 
     ob.observe(bottomRef.current!);
-  }, [observer, bottomRef.current, curCateId.current, pageRef.current]);
+  }, [observer, bottomRef.current, pageRef.current, catID]);
 
   return (
     <Fragment>

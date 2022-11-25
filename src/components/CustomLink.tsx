@@ -6,6 +6,7 @@ interface CustomLinkProps {
   href: string;
   className?: string;
   activeClassName?: string;
+  linkId?: string;
   callback?: () => void;
 }
 
@@ -14,13 +15,14 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
   href,
   className = "",
   activeClassName = "",
+  linkId = "",
   callback,
 }) => {
   const { currentRoute, customRouter, setTempData, attachData } = useRouter();
 
   return (
     <a
-      id={"book" + href.split("/").pop()}
+      id={linkId || "book" + href.split("/").pop()}
       href={href}
       onClick={(e) => {
         const t = e.target as HTMLAnchorElement;
@@ -92,10 +94,12 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
 
         if (target) {
           localStorage.setItem("sjmh_scroll_item", target?.id);
-          if (currentRoute.split("/")[1]) {
+          const isCategoryTab = target.id.startsWith("category-link");
+          attachData(null);
+          if (!isCategoryTab) {
             attachData(target?.id);
-            publish("memorizePageRef");
           }
+          publish("memorizePageRef");
         }
         customRouter.push(href);
       }}

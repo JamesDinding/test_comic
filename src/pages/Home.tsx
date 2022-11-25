@@ -10,12 +10,8 @@ import PullToRefresh from "../components/Home/PullToRefresh";
 import CategoryListBar from "../components/Home/CategoryListBar";
 import BrandBar from "../components/Home/BrandBar";
 import Recommend from "../components/Home/Recommend";
-import CategoryItemList from "../components/Home/CategoryItemList";
-import SearchResultList from "../components/Search/SearchResultList";
-import MoreResultList from "../components/More/MoreResultList";
 import { ObserverProvider } from "../context/observer";
 import { getBlockById, getCategories } from "../lib/api";
-import SmartBanner from "../components/SmartBanner";
 
 import FooterBar from "../components/FooterBar";
 import { defaultLocalStorage } from "../const";
@@ -40,11 +36,6 @@ const HomePage: FunctionalComponent = ({}) => {
           .categories
   );
 
-  // Part More
-  const [showMore, setShowMore] = useState(false);
-  const [moreResult, setMoreResult] = useState<Book[]>([]);
-  const [moreBlockId, setMoreBlockId] = useState(0);
-
   useEffect(() => {
     if (categories.length !== 0) return;
     initial = false;
@@ -64,23 +55,6 @@ const HomePage: FunctionalComponent = ({}) => {
     }
   }, [categories]);
 
-  // fetch more content by moreBlockId
-  useEffect(() => {
-    if (moreBlockId === 0) return;
-    getBlockById(moreBlockId)
-      .then((response) => {
-        setMoreResult(response.data);
-      })
-      .catch((err) => {
-        console.error(err.message || "failed");
-        setMoreResult([]);
-      })
-      .finally(() => {
-        setShowMore(true);
-        setCurrentCategory(0);
-      });
-  }, [moreBlockId]);
-
   return (
     <>
       {/* <div class={"grow overflow-hidden overflow-y-auto"} ref={containerRef}> */}
@@ -93,15 +67,10 @@ const HomePage: FunctionalComponent = ({}) => {
           <BrandBar />
           <CategoryListBar
             curCategory={currentCategory}
-            // onCategoryChanged={setCurrentCategory}
             categories={[{ id: 0, name: "首页" }].concat(categories)}
           />
           <PullToRefresh containerElement={containerRef}>
-            {/* {currentCategory == 0 ? ( */}
             <Recommend setTc={setTc} />
-            {/* ) : (
-              <CategoryItemList catID={categories[currentCategory - 1].id} />
-            )} */}
           </PullToRefresh>
         </ObserverProvider>
       </div>

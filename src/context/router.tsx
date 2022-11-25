@@ -18,6 +18,11 @@ import {
  *                                   scroll_height: number,
  *                                   container_height: number }
  *                  }
+ *    HomePage: {
+ *                content: Book[],
+ *                scroll_height: number,
+ *                container_height: number,
+ *              }
  *  }
  */
 
@@ -74,7 +79,6 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
 
   useEffect(() => {
     window.onpopstate = (e) => {
-      // e.preventDefault();
       const des = popHandler();
 
       const ua = navigator.userAgent.toLowerCase();

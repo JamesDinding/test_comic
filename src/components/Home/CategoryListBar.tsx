@@ -22,18 +22,7 @@ const CategoryListBar: FunctionalComponent<HomeCategoryListBarProp> = ({
                 href={i ? "/home/" + i : "/home/"}
                 className="category-item"
                 activeClassName="category-item active"
-                // onClick={() => {
-                //   // setActiveCategory(i);
-                //   const temp = JSON.parse(
-                //     localStorage.getItem("sjmh") || defaultLocalStorage
-                //   );
-                //   temp.home.curCategoryIndex = i;
-                //   localStorage.setItem("sjmh", JSON.stringify({ ...temp }));
-                // }}
-                // class={
-                // "category-item" +
-                // (i.toString() == curCategory ? " active" : "")
-                // }
+                linkId={"category-link" + i}
               >
                 {c.name}
               </CustomLink>

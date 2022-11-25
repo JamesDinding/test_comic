@@ -25,8 +25,8 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   // test ref
   const topRef = useRef<HTMLDivElement>(null!);
   const pageRef = useRef(1);
+  const curCateId = useRef(catID);
   const numRef = useRef(0);
-  console.log(catID);
 
   function memorizePageRefHandler() {
     let temp = JSON.parse(localStorage.getItem("category_page") || "");
@@ -117,12 +117,19 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   }, [attachment, tempData, catID]);
 
   useEffect(() => {
-    if (observer) return;
+    console.log("catID before generate observer ", catID);
+
+    // check observer is up to date
+    if (curCateId.current === catID && observer) return;
+    if (observer) {
+      observer.unobserve(bottomRef.current!);
+    }
+    curCateId.current = catID;
+    setObserver(null);
+
+    console.log("create observer");
     const opt: IntersectionObserverInit = {
       root: document.querySelector("#category-scroll"),
-      // root: document.querySelector("#scroll"),
-      // root: document.querySelector("#category-section"),
-      // threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       rootMargin: "-30px 0px 100px 0px",
     };
 
@@ -131,12 +138,10 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
         if (e.isIntersecting) {
           if (pageRef.current === 1) return;
 
-          console.log(catID);
+          console.log(" catID when intersect happened ", catID);
           const { data } = await getSpecifiedCategory(catID, pageRef.current);
-          if (data.length === 0) {
-            // observer.unobserve(e.target);
-            return;
-          }
+          if (data.length === 0) return;
+
           pageRef.current++;
           numRef.current += data?.length;
           setContent((prev) => prev?.concat(data));
@@ -156,7 +161,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     setObserver(ob);
 
     ob.observe(bottomRef.current!);
-  }, [observer, bottomRef.current, pageRef.current, catID]);
+  }, [observer, bottomRef.current, pageRef.current, curCateId.current, catID]);
 
   return (
     <Fragment>

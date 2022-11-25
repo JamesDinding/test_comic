@@ -48,7 +48,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
       localStorage.getItem("category_page") || '{"[catID]": 1}'
     )[catID];
     if (!pageRef.current) pageRef.current = 1;
-    if (attachment && tempData && tempData.CategoryPage[catID]) {
+    if (attachment && tempData?.CategoryPage && tempData?.CategoryPage[catID]) {
       setContent(tempData.CategoryPage[catID].content);
       return;
     }
@@ -61,7 +61,6 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     curCateId.current = catID;
     setContent([{}, {}, {}, {}, {}, {}, {}]);
 
-    console.log(pageRef.current);
     // pageRef.current = 1;
 
     getSpecifiedCategory(catID, pageRef.current, abortController.signal)
@@ -96,7 +95,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   }, [catID, attachment]);
 
   useEffect(() => {
-    if (!attachment || !tempData) return;
+    if (!attachment || !tempData?.CategoryPage) return;
     const t = document.querySelector("#category-section") as HTMLDivElement;
     const s = document.querySelector("#category-scroll") as HTMLDivElement;
 
@@ -125,7 +124,6 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach(async (e) => {
         if (e.isIntersecting) {
-          console.log(pageRef.current);
           if (pageRef.current === 1) return;
           const { data } = await getSpecifiedCategory(
             curCateId.current,
@@ -172,7 +170,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           type={"separate"}
           isTemp={true}
           itemNum={
-            tempData && tempData.CategoryPage[catID]
+            tempData?.CataegoryPage && tempData.CategoryPage[catID]
               ? tempData.CategoryPage[catID].content.length
               : pageRef.current * CATEGORY_PER_PAGE_NUM
           }

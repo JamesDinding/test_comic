@@ -1759,6 +1759,11 @@ video {
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
 }
 
+.bg-amber-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
+
 .bg-userSection {
   background-image: url('../img/bg-user.png');
 }
@@ -3560,4 +3565,9 @@ footer .active span {
 
 .hover\:opacity-100:hover {
   opacity: 1;
+}
+
+.active\:bg-amber-800:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(146 64 14 / var(--tw-bg-opacity));
 }

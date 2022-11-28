@@ -83,12 +83,25 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
 
   useEffect(() => {
     window.onpopstate = (e) => {
-      const des = popHandler();
-      console.log(des);
-      if (des === "/") route("/home");
+      const target = e.target as Window;
+      console.log("current url", currentUrlRef.current);
+      console.log("stack", routerStack);
+      console.log("stack的前一頁", routerStack[routerStack.length - 2]);
+      console.log("目標網址", target.location.pathname);
+      const stack_len = routerStack.length;
+      if (
+        stack_len > 1 &&
+        target.location.pathname === routerStack[routerStack.length - 2]
+      ) {
+        console.log("previous page");
+        const des = popHandler();
+        if (des === "/") route("/home");
 
-      if (isUc) {
-        route(des);
+        if (isUc) {
+          route(des);
+        }
+      } else {
+        pushHandler(target.location.pathname);
       }
     };
   }, [popHandler]);

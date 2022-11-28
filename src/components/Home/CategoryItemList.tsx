@@ -116,11 +116,17 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     }
     if (scrollHeight && s) {
       if (attachment) {
-        s.scrollTo(0, parseInt(scrollHeight, 10));
+        const height = parseInt(scrollHeight, 10);
+        s.scrollTo(0, height);
+        const timer = setTimeout(() => {
+          s.scrollTo(0, height);
+          s.scrollTop = height;
+          clearTimeout(timer);
+        }, 0);
       }
       t.style.minHeight = "";
     }
-  }, [attachment, tempData, catID]);
+  }, [attachment, catID]);
 
   useEffect(() => {
     // check observer is up to date

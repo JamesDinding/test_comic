@@ -36,7 +36,6 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
             scroll_height:
               document.querySelector("#category-scroll")?.scrollTop || 0,
           };
-          console.log(document.querySelector("#category-scroll")?.scrollTop);
           return temp;
         });
       };
@@ -79,7 +78,7 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
           scroll_height:
             document.querySelector("#category-scroll")?.scrollTop || 0,
         };
-        console.log(document.querySelector("#category-scroll")?.scrollTop);
+
         return temp;
       });
     };
@@ -98,6 +97,13 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
     }
     if (scrollHeight && s) {
       s.scrollTo(0, parseInt(scrollHeight, 10));
+      s.scrollTop = parseInt(scrollHeight, 10);
+
+      const timer = setTimeout(() => {
+        s.scrollTo(0, parseInt(scrollHeight, 10));
+        s.scrollTop = parseInt(scrollHeight, 10);
+        clearTimeout(timer);
+      }, 0);
       t.style.minHeight = "";
     }
   }, [tempData]);

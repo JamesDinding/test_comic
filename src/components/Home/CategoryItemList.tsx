@@ -53,16 +53,20 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     pageRef.current = JSON.parse(
       localStorage.getItem("category_page") || '{"[catID]": 1}'
     )[catID];
+
     if (!pageRef.current) pageRef.current = 1;
     if (tempData?.CategoryPage && tempData?.CategoryPage[catID]) {
       setContent(tempData.CategoryPage[catID].content);
+      if (!attachment) {
+        topRef.current.scrollIntoView();
+      }
       return;
     }
 
+    topRef.current.scrollIntoView();
+
     // attachData(null);
     const abortController = new AbortController();
-
-    topRef.current.scrollIntoView();
 
     setContent([{}, {}, {}, {}, {}, {}, {}]);
 
@@ -97,7 +101,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     return () => {
       abortController.abort();
     };
-  }, [catID, attachment]);
+  }, [catID]);
 
   useEffect(() => {
     if (!tempData?.CategoryPage) return;
@@ -111,14 +115,20 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
       t.style.minHeight = containerHeight + "px";
     }
     if (scrollHeight && s) {
-      if (attachment) s.scrollTo(0, parseInt(scrollHeight, 10));
+      if (attachment) {
+        const height = parseInt(scrollHeight, 10);
+        s.scrollTo(0, height);
+        const timer = setTimeout(() => {
+          s.scrollTo(0, height);
+          s.scrollTop = height;
+          clearTimeout(timer);
+        }, 0);
+      }
       t.style.minHeight = "";
     }
-  }, [attachment, tempData, catID]);
+  }, [attachment, catID]);
 
   useEffect(() => {
-    console.log("catID before generate observer ", catID);
-
     // check observer is up to date
     if (curCateId.current === catID && observer) return;
     if (observer) {
@@ -127,7 +137,6 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     curCateId.current = catID;
     setObserver(null);
 
-    console.log("create observer");
     const opt: IntersectionObserverInit = {
       root: document.querySelector("#category-scroll"),
       rootMargin: "-30px 0px 100px 0px",
@@ -138,7 +147,6 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
         if (e.isIntersecting) {
           if (pageRef.current === 1) return;
 
-          console.log(" catID when intersect happened ", catID);
           const { data } = await getSpecifiedCategory(catID, pageRef.current);
           if (data.length === 0) return;
 

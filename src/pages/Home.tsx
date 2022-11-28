@@ -15,6 +15,8 @@ import { getBlockById, getCategories } from "../lib/api";
 
 import FooterBar from "../components/FooterBar";
 import { defaultLocalStorage } from "../const";
+import CustomLink from "../components/CustomLink";
+import { route } from "preact-router";
 
 let initial = true;
 

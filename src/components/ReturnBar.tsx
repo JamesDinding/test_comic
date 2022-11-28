@@ -39,9 +39,9 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
             customRouter.push(defaultDestination);
             route(defaultDestination);
           } else {
-            const des = customRouter.pop();
-            // history.back();
-            route(des);
+            // const des = customRouter.pop();
+            history.back();
+            // route(des);
           }
         }}
       >

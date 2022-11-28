@@ -36,6 +36,9 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   const [tc, setTc] = useState("");
   const [tempData, setTempData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isUc, setIsUc] = useState(
+    navigator.userAgent.toLowerCase().includes("ucbrowser")
+  );
 
   // pop the lastest history and return current lastest history
   const popHandler = useCallback(() => {
@@ -58,6 +61,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
         setRouterStack(temp);
       } else {
         temp.push(url);
+
         setRouterStack(temp);
       }
     },
@@ -80,15 +84,17 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   useEffect(() => {
     window.onpopstate = (e) => {
       const des = popHandler();
+      console.log(des);
+      if (des === "/") route("/home");
 
-      const ua = navigator.userAgent.toLowerCase();
-      if (ua.includes("ucbrowser")) {
+      if (isUc) {
         route(des);
       }
     };
   }, [popHandler]);
 
   const value = {
+    isUc,
     currentRoute: currentUrlRef.current,
     customRouter: {
       routerStack,

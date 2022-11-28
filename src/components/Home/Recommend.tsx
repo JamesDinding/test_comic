@@ -24,6 +24,7 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
 
   useEffect(() => {
     if (!initial) {
+      console.log("using temp data");
       setBlockOrder(local_block_order);
       setBlocks(local_blocks);
       return () => {
@@ -41,6 +42,8 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
         });
       };
     }
+
+    console.log("fetch new data");
 
     try {
       (async () => {
@@ -79,28 +82,41 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
           scroll_height:
             document.querySelector("#category-scroll")?.scrollTop || 0,
         };
-        console.log(document.querySelector("#category-scroll")?.scrollTop);
+
         return temp;
       });
     };
   }, []);
 
   useEffect(() => {
+    console.log("set scroll position useEffect");
     if (!tempData?.HomePage) return;
     const t = document.querySelector("#home-section") as HTMLDivElement;
     const s = document.querySelector("#category-scroll") as HTMLDivElement;
 
     const containerHeight = tempData.HomePage?.container_height;
     const scrollHeight = tempData.HomePage?.scroll_height;
+    console.log(containerHeight, scrollHeight);
 
     if (containerHeight && t) {
       t.style.minHeight = containerHeight + "px";
     }
     if (scrollHeight && s) {
-      s.scrollTo(0, parseInt(scrollHeight, 10));
+      console.log("scroll to specific position", parseInt(scrollHeight, 10));
+      // s.scrollTo(0, parseInt(scrollHeight, 10));
+      // s.scrollTop = parseInt(scrollHeight, 10);
+      // console.log(s.scrollTop);
+      const timer = setTimeout(() => {
+        console.log("timer set scroll position");
+        s.scrollTo(0, parseInt(scrollHeight, 10));
+        s.scrollTop = parseInt(scrollHeight, 10);
+        clearTimeout(timer);
+      }, 0);
       t.style.minHeight = "";
     }
   }, [tempData]);
+
+  console.log("render");
 
   return (
     <div id="home-section" className="w-full overflow-hidden">

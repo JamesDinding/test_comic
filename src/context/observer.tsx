@@ -29,7 +29,7 @@ export const ObserverProvider: FunctionComponent<ObserverProviderProps> = ({
     {
       root: rootElement.current,
       rootMargin: "0px 0px 100px 0px",
-      // threshold: [0, 0.25, 0.5, 0.75, 1],
+      threshold: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
     }
   );
 

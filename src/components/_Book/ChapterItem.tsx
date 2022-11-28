@@ -65,6 +65,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
               alt=""
               setParentPending={setIsPending}
               isChapterCover={true}
+              escapeObserve={true}
             />
           </div>
         </ObserverProvider>

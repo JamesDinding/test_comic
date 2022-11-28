@@ -79,7 +79,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
           class="grow overflow-hidden overflow-y-auto px-5"
           ref={containerRef}
         >
-          <Description
+          {/* <Description
             key={content?.covers.thumb}
             title={content?.title}
             author={content?.creator}
@@ -87,8 +87,8 @@ const DirectoryContentPage: FunctionalComponent = () => {
             cover={content?.covers.thumb}
             views={content?.views}
             hot={content?.hot}
-          />
-          <div className="flex mb-5">
+          /> */}
+          {/* <div className="flex mb-5">
             <button
               className="w-full py-2.5 text-center text-white text-lg bg-[#8d6d9f] rounded-xl"
               onClick={() => {
@@ -146,7 +146,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
                 {isCollected ? "已收藏" : "收藏"}
               </span>
             </button>
-          </div>
+          </div> */}
           <div className="pb-10">
             <ChapterList
               chapterList={content?.chapter || []}

@@ -68,20 +68,6 @@ const HomePage: FunctionalComponent = ({}) => {
         class={"flex flex-col grow overflow-hidden"}
         ref={containerRef}
       >
-        <div>for uc test</div>
-        {/* <CustomLink href="/collect">CustomLinkCollect</CustomLink> */}
-        <div
-          className="p-5 bg-amber-400 active:bg-amber-800"
-          onClick={() => {
-            const history = createBrowserHistory();
-            // history.pushState({ test: "test" }, "", "/collect");
-            history.push("/collect", null);
-            // history.push("/collect", null);
-            // route("/collect");
-          }}
-        >
-          routeCollect
-        </div>
         <ObserverProvider rootElement={containerRef}>
           <BrandBar />
           <CategoryListBar

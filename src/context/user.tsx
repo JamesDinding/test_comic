@@ -40,6 +40,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
         return data;
       } catch (err: any) {
+        resetUserInfo();
         console.error(err.message || "login failed");
         return err;
       }

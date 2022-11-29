@@ -4,6 +4,7 @@ import { createPortal } from "preact/compat";
 import { useState, useEffect } from "preact/hooks";
 import { useRouter } from "../context/router";
 import { useUser } from "../context/user";
+import { useNotifyModal } from "../context/modal";
 import DefaultRouteHandler from "../components/DefaultRouteHandler";
 import BackDrop from "../components/BackDrop";
 import ModalNotification from "../components/Modal/ModalNotification";
@@ -24,7 +25,7 @@ import SearchPage from "./Search";
 const AppRoute: FunctionalComponent = () => {
   const { isLegit } = useRouter();
   const { isLogIn, logout } = useUser();
-  const [isPop, setIsPop] = useState(true);
+  const { pop, close, isPop } = useNotifyModal();
 
   useEffect(() => {
     // if (!isLegit && isLogIn) {
@@ -34,11 +35,16 @@ const AppRoute: FunctionalComponent = () => {
     //   setIsPop(false);
     // }
   }, [isLegit, isLogIn]);
-
   return (
     <>
-      <BackDrop onClose={setIsPop} />, document.getElementById("back-drop")!
-      {isPop && <ModalNotification />}
+      {!isLegit &&
+        isLogIn &&
+        isPop &&
+        createPortal(
+          <BackDrop onClose={close} />,
+          document.getElementById("back-drop")!
+        )}
+      {!isLegit && isLogIn && isPop && <ModalNotification />}
       <Router>
         <HomePage path="/home" />
         <CategoryPage path="/home/:category_id" />

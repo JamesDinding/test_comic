@@ -76,6 +76,8 @@ const App: FunctionalComponent = () => {
           <ModalProvider>
             <UserProvider>
               <ChargeProvider>
+                <div id="back-drop"></div>
+                <div id="pop-window"></div>
                 <div id="root" class="w-full max-w-[420px] h-full">
                   <div
                     id="container"
@@ -92,8 +94,6 @@ const App: FunctionalComponent = () => {
                     <AppRoute />
                   </div>
                 </div>
-                <div id="back-drop"></div>
-                <div id="pop-window"></div>
               </ChargeProvider>
             </UserProvider>
           </ModalProvider>

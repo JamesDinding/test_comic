@@ -94,7 +94,9 @@ const ReadContentPage: FunctionalComponent = () => {
     getSpecifiedBookIdContent(curComic, curChapter)
       .then((response) => {
         setDomain(response.domain);
-        setPageList(response.data.contents.images);
+        setPageList(response.data.contents.images.map( (i:string) => {
+          return response.data.source + "/" + i
+        }));
       })
       .catch((err) => {
         console.error(err.message);

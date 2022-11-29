@@ -8,6 +8,7 @@ import IconMenu from "../../resources/img/icon-menu.svg";
 import IconHome from "../../resources/img/icon-reading-home.svg";
 import { useUser } from "../../context/user";
 import BackDrop from "../BackDrop";
+import ModalNotification from "../Modal/ModalNotification";
 import { createPortal } from "preact/compat";
 
 interface PopControlProps {

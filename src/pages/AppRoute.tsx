@@ -32,7 +32,6 @@ const AppRoute: FunctionalComponent = () => {
     }
   }, [isLegit, isLogIn]);
 
-  console.log("isLegit:", isLegit, "isLogIn:", isLogIn, "isPop:", isPop);
   return (
     <>
       {!isLegit &&

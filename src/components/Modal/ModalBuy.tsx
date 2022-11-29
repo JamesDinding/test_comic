@@ -37,7 +37,11 @@ const ModalBuy: FunctionalComponent<ModalBuyProps> = ({
           <BackDrop
             onClose={() => {
               setIsPop(false);
-              if (isLogIn) logout();
+            }}
+            onCallback={() => {
+              if (isLogIn) {
+                logout();
+              }
             }}
           />,
           document.getElementById("back-drop")!

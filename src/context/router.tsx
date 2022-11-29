@@ -52,7 +52,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
         if (data.status === 403) setIsLegit(true);
       })
       .catch((err) => {
-        console.error(err.message);
+        // console.error(err.message);
       });
   }, [currentUrlRef.current]);
 

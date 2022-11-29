@@ -21,8 +21,6 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
 
   let coverImage = chapter.covers.thumb;
 
-  console.log(chapter);
-
   if (coverImage && coverImage != "") {
     coverImage = chapter.source + "/" + coverImage;
   }

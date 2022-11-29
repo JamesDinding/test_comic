@@ -63,11 +63,10 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
   }
   
   let coverImage = Data.Cover || Data.covers?.thumb || "";
+
   if(coverImage !== "") {
     coverImage = Data.source + "/" + coverImage;
   }
-
-  console.log(coverImage);
 
   return (
     <div

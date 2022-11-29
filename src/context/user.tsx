@@ -77,6 +77,7 @@ export const UserProvider: FunctionalComponent = ({ children }) => {
 
   useEffect(() => {
     if (!isLogIn) {
+      console.log("logout in userCtx");
       logoutHandler();
       return;
     }

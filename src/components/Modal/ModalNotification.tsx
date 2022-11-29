@@ -5,7 +5,7 @@ import { useNotifyModal } from "../../context/modal";
 import { StateUpdater } from "preact/hooks";
 
 interface ModalNotificationProps {
-  onClose: StateUpdater<boolean>;
+  onClose: () => void;
   title?: string;
   msg?: string;
 }
@@ -17,7 +17,7 @@ const ModalNotification: FunctionalComponent<ModalNotificationProps> = ({
 }) => {
   return (
     <Card heightShrink={true}>
-      <ModalTitle title={title} onClose={() => onClose(false)} />
+      <ModalTitle title={title} onClose={() => onClose()} />
       <div className="px-5 py-10 text-[#000] text-center">{msg}</div>
     </Card>
   );

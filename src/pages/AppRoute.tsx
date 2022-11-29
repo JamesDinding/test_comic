@@ -30,21 +30,32 @@ const AppRoute: FunctionalComponent = () => {
   useEffect(() => {
     if (!isLegit && isLogIn) {
       setIsPop(true);
-      logout();
-    } else {
-      setIsPop(false);
     }
   }, [isLegit, isLogIn]);
+
+  console.log("isLegit:", isLegit, "isLogIn:", isLogIn, "isPop:", isPop);
   return (
     <>
       {!isLegit &&
         isLogIn &&
         isPop &&
         createPortal(
-          <BackDrop onClose={setIsPop} />,
+          <BackDrop
+            onClose={setIsPop}
+            onCallback={() => {
+              logout();
+            }}
+          />,
           document.getElementById("back-drop")!
         )}
-      {!isLegit && isLogIn && isPop && <ModalNotification onClose={setIsPop} />}
+      {!isLegit && isLogIn && isPop && (
+        <ModalNotification
+          onClose={() => {
+            logout();
+            setIsPop(false);
+          }}
+        />
+      )}
       <Router>
         <HomePage path="/home" />
         <CategoryPage path="/home/:category_id" />

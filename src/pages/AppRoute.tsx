@@ -24,7 +24,7 @@ import SearchPage from "./Search";
 const AppRoute: FunctionalComponent = () => {
   const { isLegit } = useRouter();
   const { isLogIn, logout } = useUser();
-  const [isPop, setIsPop] = useState(false);
+  const [isPop, setIsPop] = useState(true);
 
   useEffect(() => {
     if (!isLegit && isLogIn) {
@@ -35,9 +35,7 @@ const AppRoute: FunctionalComponent = () => {
   console.log("isLegit:", isLegit, "isLogIn:", isLogIn, "isPop:", isPop);
   return (
     <>
-      {!isLegit &&
-        isLogIn &&
-        isPop &&
+      {isPop &&
         createPortal(
           <BackDrop
             onClose={setIsPop}

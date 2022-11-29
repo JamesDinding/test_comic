@@ -409,7 +409,7 @@ input[type="number"] {
 }
 
 .tag {
-  @apply absolute z-30 left-[-5px] w-[36px] h-[21px] whitespace-nowrap text-[12px] font-light leading-[21px] text-white pl-[7px] pr-[5px] rounded-r rounded-l-sm;
+  @apply absolute z-[29] left-[-5px] w-[36px] h-[21px] whitespace-nowrap text-[12px] font-light leading-[21px] text-white pl-[7px] pr-[5px] rounded-r rounded-l-sm;
 }
 
 .tag-decoration {

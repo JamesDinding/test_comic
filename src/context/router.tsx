@@ -46,11 +46,12 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     checkAuth()
       .then((response) => {
         console.log(response);
+        setIsLegit(true);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.status === 401) setIsLegit(false);
       });
-  }, []);
+  }, [currentUrlRef.current]);
 
   // pop the lastest history and return current lastest history
   const popHandler = useCallback(() => {

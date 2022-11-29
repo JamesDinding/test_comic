@@ -24,27 +24,21 @@ import SearchPage from "./Search";
 const AppRoute: FunctionalComponent = () => {
   const { isLegit } = useRouter();
   const { isLogIn, logout } = useUser();
-  const [isPop, setIsPop] = useState(false);
+  const [isPop, setIsPop] = useState(true);
 
   useEffect(() => {
-    if (!isLegit && isLogIn) {
-      setIsPop(true);
-      logout();
-    } else {
-      setIsPop(false);
-    }
+    // if (!isLegit && isLogIn) {
+    //   setIsPop(true);
+    //   logout();
+    // } else {
+    //   setIsPop(false);
+    // }
   }, [isLegit, isLogIn]);
 
   return (
     <>
-      {!isLegit &&
-        isLogIn &&
-        isPop &&
-        createPortal(
-          <BackDrop onClose={setIsPop} />,
-          document.getElementById("back-drop")!
-        )}
-      {!isLegit && isLogIn && isPop && <ModalNotification />}
+      <BackDrop onClose={setIsPop} />, document.getElementById("back-drop")!
+      {isPop && <ModalNotification />}
       <Router>
         <HomePage path="/home" />
         <CategoryPage path="/home/:category_id" />

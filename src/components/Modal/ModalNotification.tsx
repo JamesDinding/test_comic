@@ -15,9 +15,9 @@ const ModalNotification: FunctionalComponent<ModalNotificationProps> = ({
   const { close } = useNotifyModal();
 
   return (
-    <Card>
+    <Card heightShrink={true}>
       <ModalTitle title={title} onClose={close} />
-      <div className="py-5 text-[#000] text-center">{msg}</div>
+      <div className="px-5 py-10 text-[#000] text-center">{msg}</div>
     </Card>
   );
 };

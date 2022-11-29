@@ -123,6 +123,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
                         title: Data?.title,
                         hot: Data?.hot,
                         views: Data?.views,
+                        source: Data?.source,
                         covers: { thumb: Data?.covers?.thumb },
                       });
                       collectCallBack && collectCallBack(Data, isCollected);

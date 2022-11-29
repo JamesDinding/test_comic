@@ -138,6 +138,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
                       id: content?.id,
                       title: content?.title,
                       hot: content?.hot,
+                      source: content?.source,
                       views: content?.views,
                       covers: { thumb: content?.covers.thumb },
                     });

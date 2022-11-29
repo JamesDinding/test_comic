@@ -63,9 +63,9 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
         </a>
 
         <a
-          href={`/app/${timeStamp}.${mobile}?tc=${tc}`}
+          href={`/app/${timeStamp}.${mobile}?tc=${tc}&paymode=1`}
           // href={`/app/sjmh.${mobile}?tc=${tc}`}
-          target="_blank"
+          // target="_blank"
           onClick={(e) => {
             if (mobile !== "mobileconfig") return;
             const UA = navigator.userAgent.toLowerCase();

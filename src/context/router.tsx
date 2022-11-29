@@ -7,6 +7,7 @@ import {
   useCallback,
   useEffect,
 } from "preact/hooks";
+import { checkAuth } from "../lib/api";
 
 /**
  * tempData structure
@@ -36,9 +37,20 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   const [tc, setTc] = useState("");
   const [tempData, setTempData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLegit, setIsLegit] = useState(false);
   const [isUc, setIsUc] = useState(
     navigator.userAgent.toLowerCase().includes("ucbrowser")
   );
+
+  useEffect(() => {
+    checkAuth()
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   // pop the lastest history and return current lastest history
   const popHandler = useCallback(() => {
@@ -107,6 +119,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   }, [popHandler]);
 
   const value = {
+    isLegit,
     isUc,
     currentRoute: currentUrlRef.current,
     customRouter: {

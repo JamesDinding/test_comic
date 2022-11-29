@@ -1,11 +1,5 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import {
-  useState,
-  useRef,
-  useEffect,
-  StateUpdater,
-  useCallback,
-} from "preact/hooks";
+import { useState, useRef, useEffect } from "preact/hooks";
 import PullToRefresh from "../components/Home/PullToRefresh";
 import CategoryListBar from "../components/Home/CategoryListBar";
 import BrandBar from "../components/Home/BrandBar";
@@ -15,11 +9,6 @@ import { getBlockById, getCategories } from "../lib/api";
 
 import FooterBar from "../components/FooterBar";
 import { defaultLocalStorage } from "../const";
-import CustomLink from "../components/CustomLink";
-import { route } from "preact-router";
-
-// npm history package
-import { createBrowserHistory } from "history";
 
 let initial = true;
 

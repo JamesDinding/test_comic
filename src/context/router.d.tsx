@@ -5,6 +5,7 @@ declare type Router = {
 };
 
 declare interface RouterContextType {
+  isLegit: boolean;
   isUc: boolean;
   customRouter: Router;
   currentRoute: string;

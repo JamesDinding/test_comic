@@ -4,7 +4,6 @@ import { createPortal } from "preact/compat";
 import { useState, useEffect } from "preact/hooks";
 import { useRouter } from "../context/router";
 import { useUser } from "../context/user";
-import { useNotifyModal } from "../context/modal";
 import DefaultRouteHandler from "../components/DefaultRouteHandler";
 import BackDrop from "../components/BackDrop";
 import ModalNotification from "../components/Modal/ModalNotification";

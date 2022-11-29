@@ -293,7 +293,10 @@ export const postOrdersPurchase = async (id) => {
   });
   const data = await response.json();
 
-  if (data.error) throw new Error(data.message || "failed");
+  if (data.error) {
+    if (data.status === 401) throw new Error(data.status);
+    throw new Error(data.message || "failed");
+  }
 
   return data;
 };

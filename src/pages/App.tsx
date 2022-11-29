@@ -11,7 +11,7 @@ import { DomainProvider } from "../context/domain";
 import { ModalProvider } from "../context/modal";
 import { RouterProvider } from "../context/router";
 import DefaultRouteHandler from "../components/DefaultRouteHandler";
-
+import AppRoute from "./AppRoute";
 import HomePage from "./Home";
 import CategoryPage from "./Category";
 import CollectPage from "./Collect";
@@ -89,27 +89,7 @@ const App: FunctionalComponent = () => {
                     ) : (
                       <></>
                     )}
-                    <Router>
-                      <HomePage path="/home" />
-                      <CategoryPage path="/home/:category_id" />
-                      <CollectPage path="/collect" />
-                      <ProfilePage path="/profile" />
-
-                      <DirectoryPage path="/directory/:cid" />
-                      <ReadPage path="/read/:directoryId/chapter/:id" />
-
-                      <RegisterPage path="/register" />
-                      <LoginPage path="/login" />
-
-                      <ChargePage path="/charge" />
-                      <RecordPage path="/record" />
-
-                      <MorePage path="/more/:id" />
-                      <SearchPage path="/search" />
-
-                      <CustomerPage path="/service" />
-                      <DefaultRouteHandler default />
-                    </Router>
+                    <AppRoute />
                   </div>
                 </div>
                 <div id="back-drop"></div>

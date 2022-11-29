@@ -214,7 +214,7 @@ const Swiper: FunctionalComponent<SwiperProps> = ({ banners }) => {
                 key={i}
                 bannerId={banner.id}
                 translateOffset={transList[i]}
-                imgPath={banner.covers.thumbx}
+                imgPath={banner.source + "/" + banner.covers.thumbx}
               />
             );
           })}

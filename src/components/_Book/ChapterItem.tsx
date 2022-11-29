@@ -19,6 +19,14 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
   const [isPending, setIsPending] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  let coverImage = chapter.covers.thumb;
+
+  console.log(chapter);
+
+  if (coverImage && coverImage != "") {
+    coverImage = chapter.source + "/" + coverImage;
+  }
+
   return (
     <F>
       <div
@@ -61,7 +69,7 @@ const ChapterItem: FunctionalComponent<ChapterItem> = ({
             className={"overflow-hidden h-full " + (isPending ? "pending" : "")}
           >
             <Image
-              path={chapter.covers.thumb}
+              path={coverImage}
               alt=""
               setParentPending={setIsPending}
               isChapterCover={true}

@@ -77,7 +77,10 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
     };
   }, [isLogIn, Data]);
 
-  if (type === "separate")
+  if (type === "separate") {
+    let coverImage = Data.Cover || Data.covers?.thumb || "";
+    if (coverImage != "") coverImage = Data.source + "/" + coverImage;
+
     return (
       <CustomLink
         href={"/directory/" + Data.id}
@@ -165,7 +168,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
               }
             >
               <Image
-                path={Data.Cover || Data.covers?.thumb || ""}
+                path={coverImage}
                 alt={Data.Name || ""}
                 setParentPending={setPending}
               />
@@ -192,8 +195,16 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         </div>
       </CustomLink>
     );
+  }
 
-  if (type === "stack")
+  if (type === "stack") {
+    let coverImage = Data.Cover || Data.covers?.thumb || "";
+
+    if (coverImage != "" ){
+      coverImage = Data.source + "/" + coverImage;
+    }
+        console.log(Data);
+
     return (
       <CustomLink
         href={"/directory/" + Data.id}
@@ -201,7 +212,7 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
       >
         <div className="relative z-20 rounded-lg overflow-hidden h-full">
           <Image
-            path={Data.Cover || Data.covers?.thumb || ""}
+            path={coverImage}
             alt={Data.Name || ""}
             setParentPending={setPending}
           />
@@ -229,15 +240,22 @@ const BookListItem: FunctionalComponent<BookListItemProps> = ({
         </div>
       </CustomLink>
     );
+  }
 
   // default return
+  let coverImage = Data.Cover || "";
+
+  if (coverImage != "") {
+    coverImage = Data.source + "/" + coverImage;
+  }
+
   return (
     <CustomLink
       href={"/directory/" + Data.ID}
       className={"item " + (showPending ? " pending" : "")}
     >
       <Image
-        path={Data.Cover || ""}
+        path={coverImage}
         alt={Data.Name || ""}
         setParentPending={setPending}
       />

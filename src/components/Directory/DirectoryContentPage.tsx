@@ -70,6 +70,17 @@ const DirectoryContentPage: FunctionalComponent = () => {
       .finally(() => shutLoading());
   }, [currentRoute]);
 
+  let coverImage = content?.covers.thumb;
+  if (coverImage && coverImage != "") {
+    coverImage = content?.source + "/" + coverImage;
+  }
+
+  let chapters = content?.chapter || [];
+  chapters = chapters.map( ch => {
+    ch.source = content?.source; 
+    return ch; 
+  })
+
   return (
     <F>
       <ObserverProvider rootElement={containerRef}>
@@ -84,7 +95,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
             title={content?.title}
             author={content?.creator}
             description={content?.description}
-            cover={content?.covers.thumb}
+            cover={coverImage}
             views={content?.views}
             hot={content?.hot}
           />
@@ -147,7 +158,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
           </div>
           <div className="pb-10">
             <ChapterList
-              chapterList={content?.chapter || []}
+              chapterList={chapters}
               bookId={content?.id}
             />
           </div>

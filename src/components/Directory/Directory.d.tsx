@@ -8,6 +8,7 @@ declare type ChapterData = {
   price: number;
   position: number;
   bookId?: string;
+  source?: string;
 };
 
 declare type ChapterItem = {
@@ -26,6 +27,7 @@ declare interface Content {
   id: string;
   creator: string;
   title: string;
+  source: string;
   description: string;
   status: string;
   covers: {

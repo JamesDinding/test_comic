@@ -61,6 +61,13 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
         console.error(err.message || "failed");
       });
   }
+  
+  let coverImage = Data.Cover || Data.covers?.thumb || "";
+  if(coverImage !== "") {
+    coverImage = Data.source + "/" + coverImage;
+  }
+
+  console.log(coverImage);
 
   return (
     <div
@@ -90,7 +97,7 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
             }
           >
             <Image
-              path={Data.Cover || Data.covers?.thumb || ""}
+              path={coverImage}
               alt={Data.Name || Data.title || ""}
               setParentPending={setPending}
             />

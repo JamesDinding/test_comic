@@ -19,7 +19,7 @@ import CustomLink from "../components/CustomLink";
 import { route } from "preact-router";
 
 // npm history package
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 
 let initial = true;
 

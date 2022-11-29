@@ -6,6 +6,9 @@ import { useReadingModal } from "../../context/reading";
 import IconChevron from "../../resources/img/icon-chevron.svg";
 import IconMenu from "../../resources/img/icon-menu.svg";
 import IconHome from "../../resources/img/icon-reading-home.svg";
+import { useUser } from "../../context/user";
+import BackDrop from "../BackDrop";
+import { createPortal } from "preact/compat";
 
 interface PopControlProps {
   chapterList: ChapterData[];
@@ -27,12 +30,38 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
   setPageList,
   changeChapter,
 }) => {
-  const { customRouter } = useRouter();
+  const { customRouter, setLegit, isLegit } = useRouter();
+  const { isLogIn, logout } = useUser();
   const { isPopControl, popChapter, reset, popBuy, setStuffInfo, popControl } =
     useReadingModal();
+  const [isPop, setIsPop] = useState(false);
 
   return (
     <F>
+      {isPop &&
+        isLogIn &&
+        !isLegit &&
+        createPortal(
+          <BackDrop
+            onClose={() => {
+              setIsPop(false);
+            }}
+            onCallback={() => {
+              if (isLogIn) {
+                logout();
+              }
+            }}
+          />,
+          document.getElementById("back-drop")!
+        )}
+      {isPop && isLogIn && !isLegit && (
+        <ModalNotification
+          onClose={() => {
+            setIsPop(false);
+            if (isLogIn) logout();
+          }}
+        />
+      )}
       <div
         className={
           "fixed z-[30] bottom-0 left-1/2 translate-x-[-50%] h-[50px] max-w-[420px] w-full duration-300 " +
@@ -54,16 +83,31 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
                   popBuy();
                   return;
                 }
-                document.querySelector("#page-1")?.scrollIntoView();
-                setCurPage(1);
-                setPageList([]);
-                changeChapter((prev) => prev - 1);
-                popControl();
-                customRouter.push(
-                  `/read/${curComic}/chapter/${curChapter - 1}`,
-                  true
-                );
-                route(`/read/${curComic}/chapter/${curChapter - 1}`, true);
+
+                fetch("/api/v1/auth/check")
+                  .then((response) => {
+                    if (response.status === 401) {
+                      setLegit(false);
+                      throw new Error("not logged");
+                    }
+                    if (response.status === 403) {
+                      setLegit(true);
+                      document.querySelector("#page-1")?.scrollIntoView();
+                      setCurPage(1);
+                      setPageList([]);
+                      changeChapter((prev) => prev - 1);
+                      popControl();
+                      customRouter.push(
+                        `/read/${curComic}/chapter/${curChapter - 1}`,
+                        true
+                      );
+                      route(
+                        `/read/${curComic}/chapter/${curChapter - 1}`,
+                        true
+                      );
+                    }
+                  })
+                  .catch((err) => {});
               }
             }}
           >
@@ -92,16 +136,29 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
                 popBuy();
                 return;
               }
-              document.querySelector("#page-1")?.scrollIntoView();
-              setCurPage(1);
-              setPageList([]);
-              changeChapter((prev) => prev + 1);
-              popControl();
-              customRouter.push(
-                `/read/${curComic}/chapter/${curChapter + 1}`,
-                true
-              );
-              route(`/read/${curComic}/chapter/${curChapter + 1}`, true);
+
+              fetch("/api/v1/auth/check")
+                .then((response) => {
+                  if (response.status === 401) {
+                    setLegit(false);
+                    throw new Error("not logged");
+                  }
+                  if (response.status === 403) {
+                    setLegit(true);
+
+                    document.querySelector("#page-1")?.scrollIntoView();
+                    setCurPage(1);
+                    setPageList([]);
+                    changeChapter((prev) => prev + 1);
+                    popControl();
+                    customRouter.push(
+                      `/read/${curComic}/chapter/${curChapter + 1}`,
+                      true
+                    );
+                    route(`/read/${curComic}/chapter/${curChapter + 1}`, true);
+                  }
+                })
+                .catch((err) => {});
             }}
           >
             <IconChevron class="h-10 w-10 text-white" />

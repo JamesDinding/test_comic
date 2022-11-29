@@ -3,7 +3,7 @@ import { useRouter } from "../../context/router";
 import { route } from "preact-router";
 import { useReadingModal } from "../../context/reading";
 import { useUser } from "../../context/user";
-import { createOrder, postOrdersPurchase } from "../../lib/api";
+import { postOrdersPurchase } from "../../lib/api";
 import Btn from "../UI/Btn";
 import IconCross from "../../resources/img/icon-cross.svg";
 import { StateUpdater, useState, useEffect } from "preact/hooks";

@@ -1,8 +1,6 @@
 import { h, FunctionalComponent } from "preact";
 import Card from "./Card";
 import ModalTitle from "../UI/ModalTitle";
-import { useNotifyModal } from "../../context/modal";
-import { StateUpdater } from "preact/hooks";
 
 interface ModalNotificationProps {
   onClose: () => void;

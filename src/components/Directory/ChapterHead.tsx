@@ -2,7 +2,7 @@ import { FunctionalComponent, h } from "preact";
 import { useState } from "preact/hooks";
 import IconOrder from "../../resources/img/dir-order.svg";
 
-const ChapterHead = () => {
+const ChapterHead: FunctionalComponent = () => {
   const [isReverseOrder, setIsReverseOrder] = useState(false);
 
   return (

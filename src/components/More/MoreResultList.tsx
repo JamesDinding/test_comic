@@ -21,8 +21,6 @@ const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
   const pageRef = useRef(2);
   const numRef = useRef(0);
 
-  console.log(observer);
-
   useEffect(() => {
     if (observer) return;
     const opt: IntersectionObserverInit = {

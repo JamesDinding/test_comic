@@ -1,5 +1,4 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import { useEffect, StateUpdater } from "preact/hooks";
 import RecommendTitleBar from "./RecommendTitleBar";
 import BookList from "../_Book/List";
 

@@ -10,7 +10,7 @@ import { useDomain } from "../context/domain";
 
 const MorePage: FunctionalComponent = () => {
   const { attachment } = useRouter();
-  const { srcDomain, setDomain } = useDomain();
+  const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
 
   const [moreResult, setMoreResult] = useState<Book[]>([]);

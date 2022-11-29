@@ -1,5 +1,4 @@
 import { FunctionalComponent, h, Fragment } from "preact";
-import { useState, useEffect } from "preact/hooks";
 import ChapterItem from "../_Book/ChapterItem";
 
 const ChapterList: FunctionalComponent<ChapterList> = ({

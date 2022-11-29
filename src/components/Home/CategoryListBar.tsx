@@ -1,6 +1,4 @@
 import { FunctionalComponent, h } from "preact";
-import { StateUpdater, MutableRef } from "preact/hooks";
-import { defaultLocalStorage } from "../../const";
 import CustomLink from "../CustomLink";
 
 interface HomeCategoryListBarProp {

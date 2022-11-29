@@ -1,9 +1,3 @@
-// declare interface RecommendationBlock {
-//   ID: number;
-//   Name: string;
-//   Items: Array<Book>; // Ding: 我这边有改成Array<> ，这边看起来是都会回传用array包起来的资料
-// }
-
 declare interface RecommendationBlock {
   banner?: Array<BlockContent>;
   吸精首选?: Array<BlockContent>;

@@ -111,9 +111,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
                 setIsCollected((prev) => !prev);
                 if (isLogIn) {
                   postMyBookmarks(content?.id, isCollected ? "remove" : "add")
-                    .then((data) => {
-                      // console.log("req response data:", data);
-                    })
+                    .then((data) => {})
                     .catch((err) => console.error(err.message));
                 } else {
                   // using localStorage

@@ -7,30 +7,10 @@ import {
   useCallback,
   useEffect,
 } from "preact/hooks";
-import { checkAuth } from "../lib/api";
-
-/**
- * tempData structure
- *  {
- *    SearchPage: { content: Book[],
- *                  searchWord: string
- *                },
- *    CategoryPage: { category_id: { content: Book[],
- *                                   scroll_height: number,
- *                                   container_height: number }
- *                  }
- *    HomePage: {
- *                content: Book[],
- *                scroll_height: number,
- *                container_height: number,
- *              }
- *  }
- */
 
 const RouterContext = createContext<RouterContextType>(null!);
 
 export const RouterProvider: FunctionalComponent = ({ children }) => {
-  const stackRef = useRef<string[]>([]);
   const [routerStack, setRouterStack] = useState([window.location.pathname]);
   const currentUrlRef = useRef(window.location.pathname || "");
   const [attachment, setaAttachment] = useState(null);
@@ -45,15 +25,13 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   useEffect(() => {
     fetch("/api/v1/auth/check")
       .then((response) => {
-        return response.json();
+        if (response.status === 401) {
+          setIsLegit(false);
+          throw new Error("not logged");
+        }
+        if (response.status === 403) setIsLegit(true);
       })
-      .then((data) => {
-        if (data.status === 401) setIsLegit(false);
-        if (data.status === 403) setIsLegit(true);
-      })
-      .catch((err) => {
-        // console.error(err.message);
-      });
+      .catch((err) => {});
   }, [currentUrlRef.current]);
 
   // pop the lastest history and return current lastest history

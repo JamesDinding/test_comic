@@ -1,6 +1,5 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { useState, useEffect, useRef } from "preact/hooks";
-import IconCollect from "../../resources/img/dir-collect.svg";
 import Image from "../_Image/image";
 
 interface DescriptionProps {

@@ -1,7 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { route } from "preact-router";
 import { useRouter } from "../../context/router";
-import { StateUpdater } from "preact/hooks";
 import IconTriangle from "../../resources/img/icon-triangle.svg";
 
 interface RecommendTitleBarProps {

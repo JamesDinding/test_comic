@@ -1,10 +1,9 @@
 import { FunctionalComponent, h } from "preact";
-import { useRef, StateUpdater, MutableRef } from "preact/hooks";
 import Logo from "./../../resources/img/logo-text.svg";
 import IconSearch from "./../../resources/img/homebrandbar-search.svg";
 import IconCoin from "../../resources/img/icon-coin.svg";
 import { useRouter } from "../../context/router";
-import Router, { route } from "preact-router";
+import { route } from "preact-router";
 import CustomLink from "../CustomLink";
 
 interface HomeBrandBarProps {}

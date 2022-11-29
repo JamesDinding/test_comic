@@ -33,10 +33,6 @@ const FooterBar: FunctionalComponent<FooterBarProps> = ({}) => {
         <IconHome alt="首页" />
         <span className="text-[12px]">首页</span>
       </CustomLink>
-      {/* <Link activeClassName="active" href="/video-home" class="group">
-        <IconVideo alt="动漫" />
-        <span className="text-[12px]">动漫</span>
-      </Link> */}
       <CustomLink activeClassName="active" href="/collect" className="group">
         <IconBookmark alt="收藏" />
         <span className="text-[12px]">收藏</span>

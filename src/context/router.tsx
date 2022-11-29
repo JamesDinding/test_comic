@@ -7,6 +7,7 @@ import {
   useCallback,
   useEffect,
 } from "preact/hooks";
+import { checkAuth } from "../lib/api";
 
 /**
  * tempData structure
@@ -36,9 +37,24 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   const [tc, setTc] = useState("");
   const [tempData, setTempData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLegit, setIsLegit] = useState(true);
   const [isUc, setIsUc] = useState(
     navigator.userAgent.toLowerCase().includes("ucbrowser")
   );
+
+  useEffect(() => {
+    fetch("/api/v1/auth/check")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.status === 401) setIsLegit(false);
+        if (data.status === 403) setIsLegit(true);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  }, [currentUrlRef.current]);
 
   // pop the lastest history and return current lastest history
   const popHandler = useCallback(() => {
@@ -84,10 +100,6 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   useEffect(() => {
     window.onpopstate = (e) => {
       const target = e.target as Window;
-      console.log("current url", currentUrlRef.current);
-      console.log("stack", routerStack);
-      console.log("stack的前一頁", routerStack[routerStack.length - 2]);
-      console.log("目標網址", target.location.pathname);
       const stack_len = routerStack.length;
       if (
         stack_len > 1 &&
@@ -107,6 +119,8 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   }, [popHandler]);
 
   const value = {
+    isLegit,
+    setLegit: (arg: boolean) => setIsLegit(arg),
     isUc,
     currentRoute: currentUrlRef.current,
     customRouter: {

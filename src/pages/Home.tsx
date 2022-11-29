@@ -1,11 +1,5 @@
 import { h, FunctionalComponent, Fragment } from "preact";
-import {
-  useState,
-  useRef,
-  useEffect,
-  StateUpdater,
-  useCallback,
-} from "preact/hooks";
+import { useState, useRef, useEffect } from "preact/hooks";
 import PullToRefresh from "../components/Home/PullToRefresh";
 import CategoryListBar from "../components/Home/CategoryListBar";
 import BrandBar from "../components/Home/BrandBar";

@@ -43,6 +43,8 @@ function curryFetch_GET_QUERY(route) {
 }
 
 /******  AUTH ******/
+export const checkAuth = curryFetch_GET("/auth/check");
+
 export async function login(acc, pw) {
   const res = await fetch("/api/v1/auth/login", {
     method: "POST",

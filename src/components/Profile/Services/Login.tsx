@@ -14,7 +14,7 @@ interface LoginProps {}
 let timer: ReturnType<typeof setTimeout> | undefined;
 
 const Login: FunctionComponent<LoginProps> = ({}) => {
-  const { customRouter } = useRouter();
+  const { customRouter, setLegit } = useRouter();
   const { login } = useUser();
   const [isPending, setIsPending] = useState(false);
 
@@ -164,6 +164,7 @@ const Login: FunctionComponent<LoginProps> = ({}) => {
 
                   if (!hasError) {
                     customRouter.push("/profile");
+                    setLegit(true);
                     route("/profile");
                   }
                 })

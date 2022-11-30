@@ -27,6 +27,7 @@ const SearchBar: FunctionalComponent<SesarchBarProps> = ({
           localStorage.setItem("sjmh_search_key", "");
           localStorage.setItem("sjmh_search_section_height", "");
           localStorage.setItem("sjmh_scroll_height", "");
+          localStorage.setItem("sjmh_search_page", "2");
           if (inputRef.current.value) {
             inputRef.current.value = "";
             onShow(false);

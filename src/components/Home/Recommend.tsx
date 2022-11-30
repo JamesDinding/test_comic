@@ -44,10 +44,6 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
     try {
       (async () => {
         const { data, domain, referrer, ordering } = await getAllBlock();
-        // blockorder.map((bn,i) => .        )
-        // blocks[bn.name as keyof typeof blocks]?.sort(
-        //   () => Math.random() - 0.5
-        // )
         let temp: any = {};
         ordering.map((bn: { id: number; name: string; count: number }) => {
           if (bn.name === "banner") {
@@ -110,7 +106,6 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
 
   return (
     <div id="home-section" className="w-full overflow-hidden">
-      {/* {blockOrder.map((bn, i, arr) => { */}
       {blockOrder.map((bn, i, arr) => {
         if (bn.name === "banner")
           return <Swiper key={i} banners={blocks[bn.name]} />;
@@ -122,9 +117,6 @@ const HomeRecommend: FunctionalComponent<RecommendProps> = ({ setTc }) => {
               BlockID={bn.id}
               BlockName={bn.name}
               Items={blocks[bn.name as keyof typeof blocks]}
-              // Items={blocks[bn.name as keyof typeof blocks]?.sort(
-              //   () => Math.random() - 0.5
-              // )}
               ItemPerRow={bn.count}
             />
           </Fragment>

@@ -11,6 +11,7 @@ import Empty from "../Collect/Empty";
 import { getSearch } from "../../lib/api";
 import { CATEGORY_PER_PAGE_NUM } from "../../const";
 import { useRouter } from "../../context/router";
+import { subscribe, unsubscribe } from "../../lib/event";
 
 interface SearchResultListProps {
   content: Book[];
@@ -30,8 +31,30 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
   const pageRef = useRef(2);
   const numRef = useRef(0);
 
+  function memoSearchPageRefHandler() {
+    let temp = localStorage.getItem("sjmh_search_page") || "2";
+    if (!temp) {
+      localStorage.setItem("sjmh_search_page", pageRef.current.toString());
+      return;
+    }
+    temp = pageRef.current.toString();
+    localStorage.setItem("sjmh_search_page", temp);
+  }
+
+  useEffect(() => {
+    subscribe("memorizePageRef", memoSearchPageRefHandler);
+
+    return () => {
+      unsubscribe("memorizePageRef", memoSearchPageRefHandler);
+    };
+  }, []);
+
   useEffect(() => {
     // if (content.length === 0) return;
+    pageRef.current = parseInt(
+      localStorage.getItem("sjmh_search_page") || "2",
+      10
+    );
     if (
       tempData &&
       tempData.SearchPage.searchWord.length &&
@@ -87,6 +110,7 @@ const SearchResultList: FunctionalComponent<SearchResultListProps> = ({
               });
               pageRef.current++;
               numRef.current += response.data?.length;
+              memoSearchPageRefHandler();
             }
           );
         }

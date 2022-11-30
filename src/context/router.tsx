@@ -83,7 +83,6 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
         stack_len > 1 &&
         target.location.pathname === routerStack[routerStack.length - 2]
       ) {
-        console.log("previous page");
         const des = popHandler();
         if (des === "/") route("/home");
 

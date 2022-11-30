@@ -97,7 +97,6 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
           const isCategoryTab = target.id.startsWith("category-link");
           attachData(null);
           if (!isCategoryTab) {
-            console.log("attach ", target?.id);
             attachData(target?.id);
           }
           publish("memorizePageRef");

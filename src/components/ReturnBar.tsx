@@ -15,6 +15,7 @@ interface ReturnBarProps {
   defaultDestination?: string;
   bgColor?: string;
   hasShadow?: boolean;
+  callback?: () => void;
 }
 
 const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
@@ -23,6 +24,7 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
   bgColor = "bg-white",
   hasShadow = false,
   defaultDestination,
+  callback,
 }) => {
   const { customRouter } = useRouter();
 
@@ -53,7 +55,13 @@ const ReturnBar: FunctionalComponent<ReturnBarProps> = ({
         </div>
       </div>
       <div className="grow overflow-hidden mx-4">
-        <div className="text-center text-[#666666] book-oneline whitespace-nowrap">
+        <div
+          className="text-center text-[#666666] book-oneline whitespace-nowrap"
+          onClick={() => {
+            callback && callback();
+            return;
+          }}
+        >
           {title}
         </div>
       </div>

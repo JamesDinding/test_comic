@@ -31,7 +31,11 @@ const serviceList = [
   },
 ];
 
-const ServiceList: FunctionalComponent = () => {
+interface ServiceListProps {
+  clickCount: number;
+}
+
+const ServiceList: FunctionalComponent<ServiceListProps> = ({ clickCount }) => {
   const { customRouter, tc } = useRouter();
   const { isLogIn, logout, userStatus } = useUser();
   const [isPopBinding, setIsPopBinding] = useState(false);
@@ -195,14 +199,16 @@ const ServiceList: FunctionalComponent = () => {
             </ul>
           </div>
         </div>
-        {/* <div
+        {clickCount > 5 && isLogIn && (
+          <div
             className="cursor-pointer bg-white py-2.5 px-5 text-[#6d5694] text-sm"
             onClick={() => {
               setIsPopLogout((prev) => !prev);
             }}
           >
             登出
-          </div> */}
+          </div>
+        )}
         {!isLogIn && (
           <CustomLink
             className="cursor-pointer bg-white py-2.5 px-5 text-[#6d5694] text-sm"

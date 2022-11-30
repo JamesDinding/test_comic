@@ -12,6 +12,9 @@ const ProfilePage: FunctionalComponent = () => {
   const { isLogIn, getUserStatus } = useUser();
   const { tc } = useRouter();
 
+  // click more than 5 times show the logout btn
+  const [clickCount, setClickCount] = useState(0);
+
   useEffect(() => {
     if (!isLogIn) return;
     try {
@@ -23,12 +26,18 @@ const ProfilePage: FunctionalComponent = () => {
 
   return (
     <>
-      <ReturnBar title="会员中心" defaultDestination="/home" />
+      <ReturnBar
+        title="会员中心"
+        defaultDestination="/home"
+        callback={() => {
+          setClickCount((prev) => prev + 1);
+        }}
+      />
       <div class="relative grow bg-[#fcf6ff] overflow-y-auto no-scrollbar">
         <div className="px-5 mb-1 bg-white">
           <UserSection showVIP={true} />
         </div>
-        <ServiceList />
+        <ServiceList clickCount={clickCount} />
         <div className="pt-8 bg-[#fcf6ff] text-sm text-center text-gray-500 tracking-wide">
           水晶漫画永久域名:
           <a

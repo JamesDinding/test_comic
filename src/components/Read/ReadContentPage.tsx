@@ -36,11 +36,6 @@ const ReadContentPage: FunctionalComponent = () => {
   const [curChapter, setCurChapter] = useState(
     parseInt(currentRoute.split("/")[4], 10) || stuffInfo?.position || 1
   );
-  // const [curChapter, setCurChapter] = useState(
-  //   parseInt(window.location.pathname.split("/")[4], 10) ||
-  //     stuffInfo?.position ||
-  //     1
-  // );
 
   // 进入页面显示bar，让使用者可以注意到，再来是滚动时消失
   useEffect(() => {

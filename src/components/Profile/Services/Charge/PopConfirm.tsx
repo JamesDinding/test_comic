@@ -1,4 +1,4 @@
-import { h, FunctionalComponent, Fragment as F } from "preact";
+import { h, FunctionalComponent } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import { useUser } from "../../../../context/user";

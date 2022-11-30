@@ -1,5 +1,5 @@
 import { FunctionalComponent, h, Fragment } from "preact";
-import { useState, useEffect, MutableRef } from "preact/hooks";
+import { useEffect, MutableRef } from "preact/hooks";
 
 interface UserMessageProps {
   msg: string;

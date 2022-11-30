@@ -1,5 +1,5 @@
 import { FunctionalComponent, h, Fragment as F } from "preact";
-import { StateUpdater, useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
 import { useUser } from "../../context/user";
 import CustomLink from "../CustomLink";

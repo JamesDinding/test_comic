@@ -1,6 +1,4 @@
 import { FunctionalComponent, h } from "preact";
-import { useState } from "preact/hooks";
-
 interface EmptyContentProps {
   title: string;
 }

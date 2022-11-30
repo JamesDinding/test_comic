@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useState, useRef } from "preact/hooks";
 import { postMyProfile } from "../../../lib/api";
 import InputField from "./InputField";
 import CardBottom from "../../Modal/CardBottom";

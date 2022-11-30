@@ -10,21 +10,8 @@ import { UserProvider } from "../context/user";
 import { DomainProvider } from "../context/domain";
 import { ModalProvider } from "../context/modal";
 import { RouterProvider } from "../context/router";
-import DefaultRouteHandler from "../components/DefaultRouteHandler";
 import AppRoute from "./AppRoute";
-import HomePage from "./Home";
-import CategoryPage from "./Category";
-import CollectPage from "./Collect";
-import ProfilePage from "./Profile";
-import DirectoryPage from "./Directory";
-import ReadPage from "./Read";
-import RegisterPage from "./Profile/Register";
-import LoginPage from "./Profile/Login";
-import ChargePage from "./Profile/Charge";
-import RecordPage from "./Profile/Record";
-import CustomerPage from "./Profile/Customer";
-import MorePage from "./More";
-import SearchPage from "./Search";
+
 import SmartBanner from "../components/SmartBanner";
 
 localStorage.setItem("sjmh_search_key", "");

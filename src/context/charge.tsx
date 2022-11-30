@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, createContext } from "preact";
-import { useState, useEffect, useContext } from "preact/hooks";
+import { useState, useContext } from "preact/hooks";
 
 // 支付，支付線路id, 支付線路
 const ChargeContext = createContext<ChargeContextType>(null!);
@@ -8,12 +8,11 @@ export const ChargeProvider: FunctionalComponent = ({ children }) => {
   const [payment, setPayment] = useState<PaymentType | null>(null);
   const [userSelect, setUserSelect] = useState<SalesItem>(null!);
 
-
-  const selectCoinsHandler = (obj:any) => {
+  const selectCoinsHandler = (obj: any) => {
     setUserSelect(obj);
   };
 
-  const selectPayHandler = (obj:any) => {
+  const selectPayHandler = (obj: any) => {
     setPayment(obj);
   };
 

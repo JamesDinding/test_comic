@@ -1,12 +1,11 @@
 import { h, FunctionalComponent } from "preact";
-import { StateUpdater, useState, useEffect } from "preact/hooks";
+import { StateUpdater, useState } from "preact/hooks";
 import { route } from "preact-router";
 import Image from "../_Image/image";
 import { postMyBookmarks } from "../../lib/api";
 import { useUser } from "../../context/user";
 import { defaultLocalStorage } from "../../const";
 import { useRouter } from "../../context/router";
-import IconCross from "../../resources/img/icon-cross.svg";
 import { publish } from "../../lib/event";
 
 interface CollectItemProps {
@@ -61,10 +60,10 @@ const CollectItem: FunctionalComponent<CollectItemProps> = ({
         console.error(err.message || "failed");
       });
   }
-  
+
   let coverImage = Data.Cover || Data.covers?.thumb || "";
 
-  if(coverImage !== "") {
+  if (coverImage !== "") {
     coverImage = Data.source + "/" + coverImage;
   }
 

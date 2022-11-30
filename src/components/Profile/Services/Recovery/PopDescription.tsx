@@ -1,7 +1,6 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import Card from "../../../Modal/Card";
 import ModalTitle from "../../../UI/ModalTitle";
-import IconCross from "../../../../resources/img/icon-cross.svg";
 import Btn from "../../../UI/Btn";
 import { route } from "preact-router";
 import { useRouter } from "../../../../context/router";

@@ -8,16 +8,6 @@ import FooterBar from "../../components/FooterBar";
 
 const desArr = ["充值记录", "购买记录"];
 
-interface Charge {
-  chargeList: Array<{
-    id: string;
-    date: string;
-    coinsCharged: number;
-    cashPaid: number;
-    status: string;
-  }>;
-}
-
 const RecordPage: FunctionalComponent = () => {
   const [curSelect, setCurSelect] = useState(0);
 

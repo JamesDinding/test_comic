@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { useState, useEffect, StateUpdater, useRef } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import ModalTitle from "../../../UI/ModalTitle";
 import PaySelection from "./PaySelection";

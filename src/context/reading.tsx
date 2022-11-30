@@ -1,5 +1,5 @@
 import { h, FunctionalComponent, createContext } from "preact";
-import { useReducer, useEffect, useContext, useState } from "preact/hooks";
+import { useReducer, useContext, useState } from "preact/hooks";
 
 const ReadingContext = createContext<ReadingContextType>(null!);
 
@@ -20,7 +20,7 @@ const ReadingReducer = (state: ReadingState, action: ReadingReducerAction) => {
 };
 
 export const ReadingProvider: FunctionalComponent = ({ children }) => {
-  const [stuff, setStuff] = useState<ChapterData>()
+  const [stuff, setStuff] = useState<ChapterData>();
   const [state, dispatch] = useReducer(ReadingReducer, {
     isPopControl: false,
     isPopChapter: false,

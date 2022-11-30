@@ -1,5 +1,4 @@
 import { h, FunctionalComponent, Component, ErrorInfo } from "preact";
-import { route } from "preact-router";
 
 export default class ErrorBoundary extends Component {
   state = { error: null };

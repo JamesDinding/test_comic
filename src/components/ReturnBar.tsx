@@ -4,7 +4,7 @@ import IconArrow from "../resources/img/icon-arrow.svg";
 import IconCross from "../resources/img/icon-cross.svg";
 import IconCoin from "../resources/img/icon-coin.svg";
 import IconHome from "../resources/img/icon-reading-home.svg";
-import Router, { Link, route } from "preact-router";
+import { route } from "preact-router";
 import { CUSTOMER_SERVICE_URL } from "../const";
 import { useRouter } from "../context/router";
 import CustomLink from "./CustomLink";

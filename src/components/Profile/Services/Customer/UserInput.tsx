@@ -1,7 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { MutableRef, StateUpdater, useState } from "preact/hooks";
 import IconImage from "../../../../resources/img/chat-image.svg";
-import IconSend from "../../../../resources/img/chat-send.svg";
 
 interface UserInputProps {
   ws: null | WebSocket;

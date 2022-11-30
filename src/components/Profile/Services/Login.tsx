@@ -1,7 +1,7 @@
 import { h, FunctionComponent, Fragment as F } from "preact";
 import { route } from "preact-router";
 import { useRouter } from "../../../context/router";
-import { useState, useRef, StateUpdater } from "preact/hooks";
+import { useState, useRef } from "preact/hooks";
 import { useUser } from "../../../context/user";
 import InputField from "./InputField";
 import Btn from "../../UI/Btn";

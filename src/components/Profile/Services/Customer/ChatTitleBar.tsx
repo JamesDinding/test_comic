@@ -2,7 +2,6 @@ import { FunctionalComponent, h } from "preact";
 import CustomLink from "../../../CustomLink";
 import IconCross from "../../../../resources/img/icon-cross.svg";
 import IconChevron from "../../../../resources/img/icon-chevron.svg";
-import IconHome from "../../../../resources/img/footer-home.svg";
 
 interface CharTitleBarProps {
   userName: string;

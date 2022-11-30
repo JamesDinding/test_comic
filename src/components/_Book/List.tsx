@@ -1,5 +1,4 @@
 import { h, FunctionalComponent } from "preact";
-import { MutableRef, useRef } from "preact/hooks";
 import BookListItem from "./ListItem";
 
 interface BookListProps {

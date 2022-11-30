@@ -1,5 +1,4 @@
 import { h, FunctionalComponent } from "preact";
-import { StateUpdater } from "preact/hooks";
 import CardBottom from "./CardBottom";
 import ModalTitle from "../UI/ModalTitle";
 import Btn from "../UI/Btn";

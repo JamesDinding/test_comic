@@ -3,7 +3,6 @@ import {
   useState,
   useEffect,
   useRef,
-  Ref,
   MutableRef,
   StateUpdater,
 } from "preact/hooks";

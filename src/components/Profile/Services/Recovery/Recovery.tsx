@@ -1,6 +1,5 @@
 import { FunctionalComponent, h, Fragment as F } from "preact";
 import { useState, useEffect, useRef } from "preact/hooks";
-import { createPortal } from "preact/compat";
 import BackDrop from "../../../BackDrop";
 import PopDescription from "./PopDescription";
 import InputField from "../InputField";

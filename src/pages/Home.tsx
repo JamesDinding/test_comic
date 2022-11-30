@@ -5,15 +5,10 @@ import CategoryListBar from "../components/Home/CategoryListBar";
 import BrandBar from "../components/Home/BrandBar";
 import Recommend from "../components/Home/Recommend";
 import { ObserverProvider } from "../context/observer";
-import { getBlockById, getCategories } from "../lib/api";
+import { getCategories } from "../lib/api";
 
 import FooterBar from "../components/FooterBar";
 import { defaultLocalStorage } from "../const";
-import CustomLink from "../components/CustomLink";
-import { route } from "preact-router";
-
-// npm history package
-// import { createBrowserHistory } from "history";
 
 let initial = true;
 

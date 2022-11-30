@@ -1,5 +1,5 @@
 import { h, FunctionalComponent } from "preact";
-import { useState, useEffect, useRef, StateUpdater } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import IconChevron from "../../../../resources/img/icon-chevron.svg";
 import IconAlipay from "../../../../resources/img/payway/alipay.svg";

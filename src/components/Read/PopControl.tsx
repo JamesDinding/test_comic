@@ -87,26 +87,21 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
 
                 fetch("/api/v1/auth/check")
                   .then((response) => {
-                    if (response.status === 401) {
+                    if (response.status === 401 && isLogIn) {
                       setLegit(false);
                       throw new Error("not logged");
                     }
-                    if (response.status === 403) {
-                      setLegit(true);
-                      document.querySelector("#page-1")?.scrollIntoView();
-                      setCurPage(1);
-                      setPageList([]);
-                      changeChapter((prev) => prev - 1);
-                      popControl();
-                      customRouter.push(
-                        `/read/${curComic}/chapter/${curChapter - 1}`,
-                        true
-                      );
-                      route(
-                        `/read/${curComic}/chapter/${curChapter - 1}`,
-                        true
-                      );
-                    }
+                    setLegit(true);
+                    document.querySelector("#page-1")?.scrollIntoView();
+                    setCurPage(1);
+                    setPageList([]);
+                    changeChapter((prev) => prev - 1);
+                    popControl();
+                    customRouter.push(
+                      `/read/${curComic}/chapter/${curChapter - 1}`,
+                      true
+                    );
+                    route(`/read/${curComic}/chapter/${curChapter - 1}`, true);
                   })
                   .catch((err) => {});
               }
@@ -140,24 +135,22 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
 
               fetch("/api/v1/auth/check")
                 .then((response) => {
-                  if (response.status === 401) {
+                  if (response.status === 401 && isLogIn) {
                     setLegit(false);
                     throw new Error("not logged");
                   }
-                  if (response.status === 403) {
-                    setLegit(true);
+                  setLegit(true);
 
-                    document.querySelector("#page-1")?.scrollIntoView();
-                    setCurPage(1);
-                    setPageList([]);
-                    changeChapter((prev) => prev + 1);
-                    popControl();
-                    customRouter.push(
-                      `/read/${curComic}/chapter/${curChapter + 1}`,
-                      true
-                    );
-                    route(`/read/${curComic}/chapter/${curChapter + 1}`, true);
-                  }
+                  document.querySelector("#page-1")?.scrollIntoView();
+                  setCurPage(1);
+                  setPageList([]);
+                  changeChapter((prev) => prev + 1);
+                  popControl();
+                  customRouter.push(
+                    `/read/${curComic}/chapter/${curChapter + 1}`,
+                    true
+                  );
+                  route(`/read/${curComic}/chapter/${curChapter + 1}`, true);
                 })
                 .catch((err) => {});
             }}

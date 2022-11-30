@@ -13,9 +13,11 @@ import {
 } from "../../lib/api";
 import { useDomain } from "../../context/domain";
 import { useRouter } from "../../context/router";
+import { useUser } from "../../context/user";
 
 let test: any;
 const ReadContentPage: FunctionalComponent = () => {
+  const { isLogIn } = useUser();
   const { currentRoute } = useRouter();
   const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
@@ -94,9 +96,11 @@ const ReadContentPage: FunctionalComponent = () => {
     getSpecifiedBookIdContent(curComic, curChapter)
       .then((response) => {
         setDomain(response.domain);
-        setPageList(response.data.contents.images.map( (i:string) => {
-          return response.data.source + "/" + i
-        }));
+        setPageList(
+          response.data.contents.images.map((i: string) => {
+            return response.data.source + "/" + i;
+          })
+        );
       })
       .catch((err) => {
         console.error(err.message);
@@ -105,6 +109,7 @@ const ReadContentPage: FunctionalComponent = () => {
       });
   }, [curComic, curChapter]);
 
+  // isLogIn => when user has been logout during reading, update the chapterlist status
   useEffect(() => {
     try {
       (async () => {
@@ -114,7 +119,7 @@ const ReadContentPage: FunctionalComponent = () => {
     } catch (err: any) {
       console.error(err.message);
     }
-  }, [curComic]);
+  }, [curComic, isLogIn]);
 
   // 随页码条滚动
   useEffect(() => {

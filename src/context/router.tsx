@@ -22,6 +22,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     navigator.userAgent.toLowerCase().includes("ucbrowser")
   );
 
+  // check user valid when url changed
   useEffect(() => {
     fetch("/api/v1/auth/check")
       .then((response) => {

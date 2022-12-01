@@ -27,6 +27,7 @@ const AppRoute: FunctionalComponent = () => {
   const [isPop, setIsPop] = useState(false);
 
   useEffect(() => {
+    setIsPop(false);
     if (!isLegit && isLogIn) {
       setIsPop(true);
     }

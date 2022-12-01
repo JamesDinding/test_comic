@@ -2,6 +2,7 @@ import { h, FunctionalComponent } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import { useCharge } from "../../../../context/charge";
 import { useUser } from "../../../../context/user";
+import { useRouter } from "../../../../context/router";
 import ModalTitle from "../../../UI/ModalTitle";
 import Card from "../../../Modal/Card";
 import { postOrdersCharge, postMyRegisterRandom } from "../../../../lib/api";
@@ -12,6 +13,7 @@ interface PopConfirmProps {
 
 const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
   const { isLogIn, setLogin } = useUser();
+  const { setLegit } = useRouter();
   const { payment, userSelect, selectCoins, selectPay } = useCharge();
   const [isPosting, setIsPosting] = useState(false);
   const [ip, setIp] = useState<string>();
@@ -201,6 +203,8 @@ const PopConfirm: FunctionalComponent<PopConfirmProps> = ({ onClose }) => {
                 .then((res) => {
                   setLogin();
                   localStorage.setItem("sjmh_log_status", "true");
+                  setLegit(true);
+
                   postOrdersCharge(
                     payment?.id,
                     userSelect.cash_amount,

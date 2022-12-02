@@ -36,7 +36,7 @@ const Image: FunctionalComponent<ImageProps> = ({
     if (!path && isChapterCover) {
       setImageBlob(
         "/assets/img/chapterCover/" +
-          ((Math.floor(Math.random() * 10) % 5) + 1) +
+          ((Math.floor(Math.random() * 78) % 78) + 1) +
           ".jpg"
       );
       setParentPending(false);

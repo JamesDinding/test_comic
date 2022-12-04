@@ -34,18 +34,18 @@ const Image: FunctionalComponent<ImageProps> = ({
     }
 
     if (!path && isChapterCover) {
-      setImageBlob(
-        "/assets/img/chapterCover/" +
-          ((Math.floor(Math.random() * 78) % 78) + 1) +
-          ".jpg"
-      );
-      setParentPending(false);
+      path = "/assets/img/chapterCover/" + ((Math.floor(Math.random() * 78) % 78) + 1) + ".txt";
     }
 
     if (!path || !srcDomain) return;
+
     (async () => {
       try {
-        const res = await fetch("//" + srcDomain + "/" + path);
+        if(path[0] !== "/") {
+           path = "//" + srcDomain + "/" + path
+        }
+
+        const res = await fetch(path);
 
         if (!res.ok) throw new Error("fail to fetch");
 

@@ -56,10 +56,14 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
 
     if (!pageRef.current) pageRef.current = 1;
     if (tempData?.CategoryPage && tempData?.CategoryPage[catID]) {
-      setContent(tempData.CategoryPage[catID].content);
-      if (!attachment) {
-        topRef.current.scrollIntoView();
-      }
+      setContent([{}, {}, {}, {}, {}, {}, {}]);
+      const __timer = setTimeout(() => {
+        setContent(tempData.CategoryPage[catID].content);
+        if (!attachment) {
+          topRef.current.scrollIntoView();
+        }
+        clearTimeout(__timer);
+      }, 0);
       return;
     }
 

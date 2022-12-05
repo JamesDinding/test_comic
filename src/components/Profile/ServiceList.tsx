@@ -141,7 +141,7 @@ const ServiceList: FunctionalComponent<ServiceListProps> = ({ clickCount }) => {
                   return (
                     <a
                       href={`/app/${+new Date()}.${mobile}?tc=${tc}&paymode=1`}
-                      // target="_blank"
+                      target="_blank"
                       onClick={(e) => {
                         if (mobile !== "mobileconfig") return;
                         const UA = navigator.userAgent.toLowerCase();

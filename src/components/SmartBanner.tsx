@@ -62,24 +62,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
           <IconClose class="text-gray-500 m-2 ml-3 h-4" />
         </a>
 
-        <a
-          href={`/app/${timeStamp}.${mobile}?tc=${tc}&paymode=1`}
-          // href={`/app/sjmh.${mobile}?tc=${tc}`}
-          // target="_blank"
-          onClick={(e) => {
-            if (mobile !== "mobileconfig") return;
-            const UA = navigator.userAgent.toLowerCase();
-            let shouldPopSafari = false;
-            shouldPopSafari =
-              UA.includes("mqqbrowser") ||
-              UA.includes("ucbrowser") ||
-              UA.includes("baidu");
-            if (shouldPopSafari) {
-              e.preventDefault();
-              setIsPopSafari(true);
-            }
-          }}
-        >
+        <a href={`/home`}>
           <img
             src="/assets/favicon.svg"
             class="rounded-lg shadow-md h-12"
@@ -89,7 +72,7 @@ const SmartBanner: FunctionalComponent<SmartBannerProps> = ({
 
         <div class="flex flex-col justify-start items-start mt-1 ml-1 grow">
           <a
-            href={`/app/${timeStamp}.${mobile}?tc=${tc}`}
+            href={`/app/${timeStamp}.${mobile}?tc=${tc}&paymode=1`}
             target="_blank"
             onClick={(e) => {
               if (mobile !== "mobileconfig") return;

@@ -63,7 +63,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
           topRef.current.scrollIntoView();
         }
         clearTimeout(__timer);
-      }, 0);
+      }, 200);
       return;
     }
 

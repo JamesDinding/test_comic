@@ -57,12 +57,15 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
             const t = { ...prev };
 
             if (
-              currentCagetoryId &&
-              t.CategoryPage &&
-              t.CategoryPage[currentCagetoryId]
+              !currentCagetoryId ||
+              !t.CategoryPage ||
+              !t.CategoryPage[currentCagetoryId]
             )
-              t.CategoryPage[currentCagetoryId].container_height =
-                container_category?.clientHeight;
+              return t;
+
+            t.CategoryPage[currentCagetoryId].container_height =
+              container_category?.clientHeight;
+            return t;
           });
         }
 
@@ -85,12 +88,16 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
 
             const t = { ...prev };
             if (
-              currentCagetoryId &&
-              t.CategoryPage &&
-              t.CategoryPage[currentCagetoryId]
+              !currentCagetoryId ||
+              !t.CategoryPage ||
+              !t.CategoryPage[currentCagetoryId]
             )
-              t.CategoryPage[currentCagetoryId].scroll_height =
-                temp_category?.scrollTop || 0;
+              return t;
+
+            t.CategoryPage[currentCagetoryId].scroll_height =
+              temp_category?.scrollTop || 0;
+
+            return t;
           });
         }
 

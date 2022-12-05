@@ -10,7 +10,7 @@ import IconGash from "../../../../resources/img/payway/gash.svg";
 
 const iconMap: Map<any, { title: string; element: h.JSX.Element }> = new Map();
 iconMap.set("ALIPAY", {
-  title: "支付寶",
+  title: "支付宝",
   element: <IconAlipay class="h-5 w-5" />,
 });
 iconMap.set("USDT", { title: "USDT", element: <IconUsdt class="h-5 w-5" /> });

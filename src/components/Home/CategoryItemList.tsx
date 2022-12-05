@@ -27,6 +27,7 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
   const pageRef = useRef(1);
   const curCateId = useRef(catID);
   const numRef = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null!);
 
   function memorizePageRefHandler() {
     let temp = JSON.parse(localStorage.getItem("category_page") || "");
@@ -57,14 +58,18 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
     if (!pageRef.current) pageRef.current = 1;
     if (tempData?.CategoryPage && tempData?.CategoryPage[catID]) {
       setContent([{}, {}, {}, {}, {}, {}, {}]);
-      const __timer = setTimeout(() => {
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        console.log("setContent");
         setContent(tempData.CategoryPage[catID].content);
         if (!attachment) {
           topRef.current.scrollIntoView();
         }
-        clearTimeout(__timer);
-      }, 200);
-      return;
+      }, 450);
+      return () => {
+        console.log("clear timer in if");
+        clearTimeout(timerRef.current);
+      };
     }
 
     topRef.current.scrollIntoView();
@@ -103,6 +108,8 @@ const HomeCategoryItemList: FunctionalComponent<CategoryItemListProps> = ({
       });
 
     return () => {
+      console.log("clear timer");
+      clearTimeout(timerRef.current);
       abortController.abort();
     };
   }, [catID]);

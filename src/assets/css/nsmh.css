@@ -680,6 +680,11 @@ video {
   margin-right: 1.25rem;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -703,11 +708,6 @@ video {
 .mx-2\.5 {
   margin-left: 0.625rem;
   margin-right: 0.625rem;
-}
-
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .my-10 {
@@ -1037,6 +1037,10 @@ video {
   height: 49px;
 }
 
+.max-h-\[200px\] {
+  max-height: 200px;
+}
+
 .max-h-\[160px\] {
   max-height: 160px;
 }
@@ -1055,10 +1059,6 @@ video {
 
 .max-h-\[350px\] {
   max-height: 350px;
-}
-
-.max-h-\[200px\] {
-  max-height: 200px;
 }
 
 .min-h-\[160px\] {
@@ -1107,10 +1107,6 @@ video {
 
 .min-h-\[60px\] {
   min-height: 60px;
-}
-
-.min-h-\[300px\] {
-  min-height: 300px;
 }
 
 .w-\[1\.125rem\] {
@@ -1515,10 +1511,6 @@ video {
   border-width: 6px;
 }
 
-.border {
-  border-width: 1px;
-}
-
 .border-t {
   border-top-width: 1px;
 }
@@ -1663,6 +1655,21 @@ video {
   background-color: rgb(252 246 255 / var(--tw-bg-opacity));
 }
 
+.bg-amber-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 230 138 / var(--tw-bg-opacity));
+}
+
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
+.bg-red-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#a8a8a8\] {
   --tw-bg-opacity: 1;
   background-color: rgb(168 168 168 / var(--tw-bg-opacity));
@@ -1676,11 +1683,6 @@ video {
 .bg-\[\#f1f1f1\] {
   --tw-bg-opacity: 1;
   background-color: rgb(241 241 241 / var(--tw-bg-opacity));
-}
-
-.bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#eb6f6f\] {
@@ -1769,21 +1771,6 @@ video {
 .bg-\[\#a186af\] {
   --tw-bg-opacity: 1;
   background-color: rgb(161 134 175 / var(--tw-bg-opacity));
-}
-
-.bg-amber-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(253 230 138 / var(--tw-bg-opacity));
-}
-
-.bg-red-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
-}
-
-.bg-red-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
 
 .bg-userSection {

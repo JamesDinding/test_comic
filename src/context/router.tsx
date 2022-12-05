@@ -21,6 +21,42 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   const [isUc, setIsUc] = useState(
     navigator.userAgent.toLowerCase().includes("ucbrowser")
   );
+  const ucQueueRef = useRef<string[]>([]);
+  const [ucQ, setUcQ] = useState<string[]>([]);
+  const isBusyRef = useRef(false);
+
+  // test
+  useEffect(() => {
+    const q_len = ucQ.length;
+
+    if (q_len === 0 || isBusyRef.current) return;
+    let timer: any;
+    const q_promise = new Promise((resolve) => {
+      let counter = 0;
+      // timer = setInterval(() => {
+      timer = setTimeout(() => {
+        // if (location.pathname !== ucQ[q_len - 1]) {
+        counter++;
+        history.pushState({ isPush: true }, "", ucQ[q_len - 1]);
+        // } else {
+        setTempData("resolve pop");
+        resolve("pop");
+        // }
+      }, 1000);
+    });
+
+    isBusyRef.current = true;
+    q_promise.then((res) => {
+      // clearInterval(timer);
+      isBusyRef.current = false;
+      setTempData("pop");
+      setUcQ((prev) => {
+        const temp = [...prev];
+        temp.pop();
+        return temp;
+      });
+    });
+  }, [ucQ, isBusyRef.current]);
 
   // check user valid when url changed
   useEffect(() => {
@@ -81,7 +117,6 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
       window.onpopstate = (e) => {
         const des = popHandler();
         route(des);
-        console.log(`route(${des})`);
       };
     } else {
       window.onpopstate = (e) => {
@@ -105,6 +140,15 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
     isLegit,
     setLegit: (arg: boolean) => setIsLegit(arg),
     isUc,
+    ucQueue: ucQueueRef.current,
+    ucQ,
+    pushUcQ: (arg: string) => {
+      setUcQ((prev) => {
+        const temp = [...prev];
+        temp.unshift(arg);
+        return temp;
+      });
+    },
     currentRoute: currentUrlRef.current,
     customRouter: {
       routerStack,

@@ -8,6 +8,9 @@ declare interface RouterContextType {
   isLegit: boolean;
   setLegit: (arg: boolean) => void;
   isUc: boolean;
+  ucQueue: any[];
+  ucQ: any[];
+  pushUcQ: (arg: string) => void;
   customRouter: Router;
   currentRoute: string;
   tc: string;

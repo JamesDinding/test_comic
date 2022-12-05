@@ -18,8 +18,16 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
   linkId = "",
   callback,
 }) => {
-  const { currentRoute, customRouter, setTempData, attachData, isUc } =
-    useRouter();
+  const {
+    currentRoute,
+    customRouter,
+    setTempData,
+    attachData,
+    isUc,
+    ucQueue,
+    ucQ,
+    pushUcQ,
+  } = useRouter();
 
   return (
     <a
@@ -96,6 +104,10 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
           publish("memorizePageRef");
         }
         customRouter.push(href);
+        if (isUc) {
+          pushUcQ(href);
+          // window.location.pathname = href;
+        }
       }}
       className={currentRoute === href ? activeClassName : className}
     >

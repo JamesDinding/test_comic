@@ -15,7 +15,7 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   const currentUrlRef = useRef(window.location.pathname || "");
   const [attachment, setaAttachment] = useState(null);
   const [tc, setTc] = useState("");
-  const [tempData, setTempData] = useState(null);
+  const [tempData, setTempData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isLegit, setIsLegit] = useState(true);
   const [isUc, setIsUc] = useState(
@@ -77,23 +77,28 @@ export const RouterProvider: FunctionalComponent = ({ children }) => {
   );
 
   useEffect(() => {
-    window.onpopstate = (e) => {
-      const target = e.target as Window;
-      const stack_len = routerStack.length;
-      if (
-        stack_len > 1 &&
-        target.location.pathname === routerStack[routerStack.length - 2]
-      ) {
+    if (isUc) {
+      window.onpopstate = (e) => {
         const des = popHandler();
-        if (des === "/") route("/home");
+        route(des);
+        console.log(`route(${des})`);
+      };
+    } else {
+      window.onpopstate = (e) => {
+        const target = e.target as Window;
+        const stack_len = routerStack.length;
 
-        if (isUc) {
-          route(des);
+        if (
+          stack_len > 1 &&
+          target.location.pathname === routerStack[routerStack.length - 2]
+        ) {
+          const des = popHandler();
+          if (des === "/") route("/home");
+        } else {
+          pushHandler(target.location.pathname);
         }
-      } else {
-        pushHandler(target.location.pathname);
-      }
-    };
+      };
+    }
   }, [popHandler]);
 
   const value = {

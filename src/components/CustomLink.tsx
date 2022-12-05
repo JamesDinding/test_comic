@@ -18,7 +18,8 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
   linkId = "",
   callback,
 }) => {
-  const { currentRoute, customRouter, setTempData, attachData } = useRouter();
+  const { currentRoute, customRouter, setTempData, attachData, isUc } =
+    useRouter();
 
   return (
     <a
@@ -48,15 +49,12 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
             const t = { ...prev };
 
             if (
-              !currentCagetoryId ||
-              !t.CategoryPage ||
-              !t.CategoryPage[currentCagetoryId]
+              currentCagetoryId &&
+              t.CategoryPage &&
+              t.CategoryPage[currentCagetoryId]
             )
-              return t;
-
-            t.CategoryPage[currentCagetoryId].container_height =
-              container_category?.clientHeight;
-            return t;
+              t.CategoryPage[currentCagetoryId].container_height =
+                container_category?.clientHeight;
           });
         }
 
@@ -79,16 +77,12 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
 
             const t = { ...prev };
             if (
-              !currentCagetoryId ||
-              !t.CategoryPage ||
-              !t.CategoryPage[currentCagetoryId]
+              currentCagetoryId &&
+              t.CategoryPage &&
+              t.CategoryPage[currentCagetoryId]
             )
-              return t;
-
-            t.CategoryPage[currentCagetoryId].scroll_height =
-              temp_category?.scrollTop || 0;
-
-            return t;
+              t.CategoryPage[currentCagetoryId].scroll_height =
+                temp_category?.scrollTop || 0;
           });
         }
 

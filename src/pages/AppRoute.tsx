@@ -21,6 +21,9 @@ import CustomerPage from "./Profile/Customer";
 import MorePage from "./More";
 import SearchPage from "./Search";
 
+// test page
+import UcPage from "./__UC_TEST";
+
 const AppRoute: FunctionalComponent = () => {
   const { isLegit } = useRouter();
   const { isLogIn, logout } = useUser();
@@ -74,6 +77,9 @@ const AppRoute: FunctionalComponent = () => {
         <SearchPage path="/search" />
 
         <CustomerPage path="/service" />
+
+        {/* test page */}
+        <UcPage path="/__uc_test/:id" />
         <DefaultRouteHandler default />
       </Router>
     </>

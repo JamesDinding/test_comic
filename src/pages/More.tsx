@@ -23,7 +23,7 @@ const MorePage: FunctionalComponent = () => {
   useEffect(() => {
     if (moreBlockId === 0) return;
     setIsPendng(true);
-    setMoreResult([]);
+    setMoreResult([{}, {}, {}, {}, {}, {}]);
     getBlockById(moreBlockId)
       .then((response) => {
         setMoreResult(response.data);

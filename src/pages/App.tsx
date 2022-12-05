@@ -88,7 +88,7 @@ const App: FunctionalComponent = () => {
       </RouterProvider>
     </ErrorBoundary>
   ) : (
-    <div></div>
+    <div className="fixed bg-gray-200 w-full h-full"></div>
   );
 };
 

@@ -8,11 +8,13 @@ import { CATEGORY_PER_PAGE_NUM } from "../../const";
 interface MoreResultListProps {
   content: Book[];
   moreBlockId: number;
+  isPending: boolean;
 }
 
 const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
   content,
   moreBlockId,
+  isPending,
 }) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
@@ -56,7 +58,9 @@ const MoreResultList: FunctionalComponent<MoreResultListProps> = ({
   return (
     <Fragment>
       <div id="category-section relative" className="px-5 bg-[#fcf6ff]">
-        {content.length === 0 ? (
+        {isPending ? (
+          <div className="min-h-[160px]"></div>
+        ) : content.length === 0 ? (
           <Empty bgColor="bg-[#fcf6ff]" msg="搜寻无结果" />
         ) : (
           <BookList

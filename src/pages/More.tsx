@@ -9,8 +9,8 @@ import { useRouter } from "../context/router";
 import { useDomain } from "../context/domain";
 
 const MorePage: FunctionalComponent = () => {
-  const { attachment } = useRouter();
   const { setDomain } = useDomain();
+  const [isPending, setIsPendng] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null!);
 
   const [moreResult, setMoreResult] = useState<Book[]>([]);
@@ -22,13 +22,16 @@ const MorePage: FunctionalComponent = () => {
 
   useEffect(() => {
     if (moreBlockId === 0) return;
+    setIsPendng(true);
     getBlockById(moreBlockId)
       .then((response) => {
         setMoreResult(response.data);
         setDomain(response.domain);
+        setIsPendng(false);
       })
       .catch((err) => {
         console.error(err.message || "failed");
+        setIsPendng(false);
         setMoreResult([]);
       });
   }, [moreBlockId]);
@@ -57,7 +60,11 @@ const MorePage: FunctionalComponent = () => {
         ref={containerRef}
       >
         <ObserverProvider rootElement={containerRef}>
-          <MoreResultList content={moreResult} moreBlockId={moreBlockId} />
+          <MoreResultList
+            content={moreResult}
+            isPending={isPending}
+            moreBlockId={moreBlockId}
+          />
           {moreResult.length === 0 && (
             <div className="mx-5 mt-5">
               <RecommendBlock

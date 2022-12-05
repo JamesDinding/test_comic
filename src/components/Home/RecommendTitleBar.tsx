@@ -40,6 +40,7 @@ const RecommendTitleBar: FunctionalComponent<RecommendTitleBarProps> = ({
       <div
         onClick={() => {
           attachData(BlockName);
+          localStorage.setItem("sjmh_more_type", BlockName);
           customRouter.push("/more/" + BlockID);
           route("/more/" + BlockID);
         }}

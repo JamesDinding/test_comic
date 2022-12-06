@@ -6,7 +6,8 @@ import PopControl from "./PopControl";
 import ModalBuy from "../Modal/ModalBuy";
 import PopReturn from "./PopReturn";
 import PopChapter from "./PopChapter";
-import Image from "../_Image/image";
+import ModalReadNext from "../Modal/ModalReadNext";
+import Page from "./Page";
 import {
   getSpecifiedBookChapterList,
   getSpecifiedBookIdContent,
@@ -18,17 +19,18 @@ import { useUser } from "../../context/user";
 let test: any;
 const ReadContentPage: FunctionalComponent = () => {
   const bottomRef = useRef<HTMLDivElement>(null!);
+  const [isPopNext, setIsPopNext] = useState(false);
   const { isLogIn } = useUser();
   const { currentRoute } = useRouter();
   const { setDomain } = useDomain();
   const containerRef = useRef<HTMLDivElement>(null!);
-  const { isPopControl, popControl, reset, stuffInfo } = useReadingModal();
-  const [parentPending, setParentPending] = useState(true);
+  const { isPopControl, popControl, reset, stuffInfo, setStuffInfo, popBuy } =
+    useReadingModal();
   const [pageList, setPageList] = useState<string[]>([]);
   // 控制列的页码
   const [curPage, setCurPage] = useState(1);
-  const [observer, setObserver] = useState<IntersectionObserver>();
-  const [chapterList, setChapterList] = useState([]);
+  const [observer, setObserver] = useState<IntersectionObserver | null>(null);
+  const [chapterList, setChapterList] = useState<any>([]);
   // 暂时先这样写
   // [ _, _, comicId, _, chapterId ]
   const [curComic, setCurComic] = useState(currentRoute.split("/")[2]);
@@ -56,33 +58,50 @@ const ReadContentPage: FunctionalComponent = () => {
     };
   }, [containerRef.current]);
 
-  // setup intersection observer for detecting current page
+  // setup intersection observer for detecting bottom
   useEffect(() => {
-    if (pageList.length === 0) return;
+    if (pageList.length === 0 || chapterList.length === 0) return;
     if (observer) return;
     const opt: IntersectionObserverInit = {
       root: containerRef.current,
-      threshold: [0.1, 1],
+      threshold: [0, 1],
       rootMargin: "",
     };
 
-    const targets = document.querySelectorAll(".page");
+    const lastPage = document.getElementById("page-" + pageList.length);
 
     const ob = new IntersectionObserver((entries, observer) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          const p = parseInt(e.target.id.split("-").pop()!, 10);
-          setCurPage(p);
+          // 最後一頁載入完才跳通知
+          if (!lastPage?.classList.contains("wait")) {
+            console.log("bottom");
+            console.log("chapterList:", chapterList);
+            console.log("curChapter:", curChapter);
+            console.log(chapterList[curChapter]);
+            setStuffInfo({ ...chapterList[curChapter], bookId: curComic });
+            if (!chapterList[curChapter].status) {
+              popBuy();
+              return;
+            }
+            // pop normal read next chapter
+            setIsPopNext(true);
+          }
         }
       });
     }, opt);
 
-    targets.forEach((target, i) => {
-      ob.observe(target);
-    });
+    ob.observe(bottomRef.current);
 
     setObserver(ob);
-  }, [observer, containerRef.current, pageList.length]);
+  }, [
+    observer,
+    containerRef.current,
+    pageList.length,
+    chapterList,
+    curChapter,
+    curComic,
+  ]);
 
   useEffect(() => {
     if (!curChapter) {
@@ -125,6 +144,8 @@ const ReadContentPage: FunctionalComponent = () => {
         changeChapter={setCurChapter}
         setCurPage={setCurPage}
         setPageList={setPageList}
+        setOb={setObserver}
+        ob={observer}
       />
       <PopControl
         chapterList={chapterList}
@@ -135,6 +156,8 @@ const ReadContentPage: FunctionalComponent = () => {
         setCurPage={setCurPage}
         setPageList={setPageList}
         changeChapter={setCurChapter}
+        setOb={setObserver}
+        ob={observer}
       />
       <ModalBuy
         setChapterList={setChapterList}
@@ -145,6 +168,20 @@ const ReadContentPage: FunctionalComponent = () => {
           setCurChapter(chapter);
         }}
       />
+      {isPopNext && (
+        <ModalReadNext
+          onClose={() => setIsPopNext(false)}
+          nextChapter={`/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`}
+          resetPageData={() => {
+            document.querySelector("#page-1")?.scrollIntoView();
+            setCurPage(1);
+            setPageList([]);
+            setCurChapter((prev) => prev + 1);
+            observer?.disconnect();
+            setObserver(null);
+          }}
+        />
+      )}
       <div
         className="relative grow overflow-hidden overflow-y-auto no-scollbar"
         onClick={(e) => {
@@ -161,22 +198,9 @@ const ReadContentPage: FunctionalComponent = () => {
         <PopReturn bookId={curComic} chapterNum={curChapter} />
         <ObserverProvider rootElement={containerRef}>
           {pageList?.map((page, i, arr) => {
-            return (
-              <div
-                id={`page-${i + 1}`}
-                className={"page" + (parentPending ? " min-h-[160px]" : "")}
-              >
-                <Image
-                  path={page}
-                  alt=""
-                  isFullHeight={false}
-                  setParentPending={setParentPending}
-                  pendingHeight="min-h-[160px]"
-                />
-              </div>
-            );
+            return <Page page={page} pageIndex={i} />;
           })}
-          <div id="reading-bottom" ref={bottomRef}></div>
+          <div id="reading-bottom" ref={bottomRef} className="h-1 w-full"></div>
         </ObserverProvider>
       </div>
     </F>

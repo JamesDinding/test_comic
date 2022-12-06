@@ -10,6 +10,8 @@ interface PopChapterProps extends ChapterList {
   setCurPage: StateUpdater<number>;
   setPageList: StateUpdater<string[]>;
   curChapter: number;
+  setOb: StateUpdater<IntersectionObserver | null>;
+  ob: IntersectionObserver | null;
 }
 
 let layerCss = "translate-y-full";
@@ -20,6 +22,8 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
   changeChapter,
   setCurPage,
   setPageList,
+  setOb,
+  ob,
 }) => {
   const { isPopChapter, reset, popControl } = useReadingModal();
   const [isSort, setIsSort] = useState(false);
@@ -59,6 +63,8 @@ const PopChapter: FunctionalComponent<PopChapterProps> = ({
                   setCurPage(1);
                   setPageList([]);
                   changeChapter(c.position);
+                  ob?.disconnect();
+                  setOb(null);
                 }}
               >
                 <ChapterItem

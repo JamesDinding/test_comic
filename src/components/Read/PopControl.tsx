@@ -20,6 +20,8 @@ interface PopControlProps {
   setCurPage: StateUpdater<number>;
   setPageList: StateUpdater<string[]>;
   changeChapter: StateUpdater<number>;
+  setOb: StateUpdater<IntersectionObserver | null>;
+  ob: IntersectionObserver | null;
 }
 
 const PopControl: FunctionalComponent<PopControlProps> = ({
@@ -29,6 +31,8 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
   setCurPage,
   setPageList,
   changeChapter,
+  setOb,
+  ob,
 }) => {
   const { customRouter, setLegit, isLegit } = useRouter();
   const { isLogIn, logout } = useUser();
@@ -95,6 +99,8 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
                     setCurPage(1);
                     setPageList([]);
                     changeChapter((prev) => prev - 1);
+                    ob?.disconnect();
+                    setOb(null);
                     popControl();
                     customRouter.push(
                       `/read/${curComic}/chapter/${curChapter - 1}`,
@@ -144,6 +150,8 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
                   setCurPage(1);
                   setPageList([]);
                   changeChapter((prev) => prev + 1);
+                  ob?.disconnect();
+                  setOb(null);
                   popControl();
                   customRouter.push(
                     `/read/${curComic}/chapter/${curChapter + 1}`,

@@ -41,6 +41,7 @@ const ReadContentPage: FunctionalComponent = () => {
 
   // 进入页面显示bar，让使用者可以注意到，再来是滚动时消失
   useEffect(() => {
+    document.querySelector("#page-1")?.scrollIntoView();
     popControl();
   }, []);
 
@@ -75,10 +76,6 @@ const ReadContentPage: FunctionalComponent = () => {
         if (e.isIntersecting) {
           // 最後一頁載入完才跳通知
           if (!lastPage?.classList.contains("wait")) {
-            console.log("bottom");
-            console.log("chapterList:", chapterList);
-            console.log("curChapter:", curChapter);
-            console.log(chapterList[curChapter]);
             setStuffInfo({ ...chapterList[curChapter], bookId: curComic });
             if (!chapterList[curChapter].status) {
               popBuy();
@@ -173,7 +170,6 @@ const ReadContentPage: FunctionalComponent = () => {
           onClose={() => setIsPopNext(false)}
           nextChapter={`/read/${stuffInfo?.bookId}/chapter/${stuffInfo?.position}`}
           resetPageData={() => {
-            document.querySelector("#page-1")?.scrollIntoView();
             setCurPage(1);
             setPageList([]);
             setCurChapter((prev) => prev + 1);

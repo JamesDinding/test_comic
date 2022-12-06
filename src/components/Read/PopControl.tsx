@@ -95,7 +95,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
                       throw new Error("not logged");
                     }
                     setLegit(true);
-                    document.querySelector("#page-1")?.scrollIntoView();
+                    // document.querySelector("#page-1")?.scrollIntoView();
                     setCurPage(1);
                     setPageList([]);
                     changeChapter((prev) => prev - 1);
@@ -146,7 +146,7 @@ const PopControl: FunctionalComponent<PopControlProps> = ({
                   }
                   setLegit(true);
 
-                  document.querySelector("#page-1")?.scrollIntoView();
+                  // document.querySelector("#page-1")?.scrollIntoView();
                   setCurPage(1);
                   setPageList([]);
                   changeChapter((prev) => prev + 1);

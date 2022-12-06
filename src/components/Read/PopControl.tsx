@@ -17,7 +17,6 @@ interface PopControlProps {
   curComic: string;
   pageNum: number;
   curPage: number;
-  setIsDrag: StateUpdater<boolean>;
   setCurPage: StateUpdater<number>;
   setPageList: StateUpdater<string[]>;
   changeChapter: StateUpdater<number>;

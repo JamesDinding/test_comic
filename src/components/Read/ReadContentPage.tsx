@@ -17,6 +17,7 @@ import { useUser } from "../../context/user";
 
 let test: any;
 const ReadContentPage: FunctionalComponent = () => {
+  const bottomRef = useRef<HTMLDivElement>(null!);
   const { isLogIn } = useUser();
   const { currentRoute } = useRouter();
   const { setDomain } = useDomain();
@@ -25,7 +26,6 @@ const ReadContentPage: FunctionalComponent = () => {
   const [parentPending, setParentPending] = useState(true);
   const [pageList, setPageList] = useState<string[]>([]);
   // 控制列的页码
-  const [isDrag, setIsDrag] = useState(false);
   const [curPage, setCurPage] = useState(1);
   const [observer, setObserver] = useState<IntersectionObserver>();
   const [chapterList, setChapterList] = useState([]);
@@ -116,15 +116,6 @@ const ReadContentPage: FunctionalComponent = () => {
     }
   }, [curComic, isLogIn]);
 
-  // 随页码条滚动
-  useEffect(() => {
-    if (!isDrag) return;
-    const target = document.querySelector("#page-" + curPage);
-
-    target?.scrollIntoView();
-    setIsDrag(false);
-  }, [curPage, isDrag]);
-
   return (
     <F>
       <PopChapter
@@ -141,7 +132,6 @@ const ReadContentPage: FunctionalComponent = () => {
         curChapter={curChapter}
         curComic={curComic}
         curPage={curPage}
-        setIsDrag={setIsDrag}
         setCurPage={setCurPage}
         setPageList={setPageList}
         changeChapter={setCurChapter}
@@ -186,6 +176,7 @@ const ReadContentPage: FunctionalComponent = () => {
               </div>
             );
           })}
+          <div id="reading-bottom" ref={bottomRef}></div>
         </ObserverProvider>
       </div>
     </F>

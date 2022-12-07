@@ -29,6 +29,7 @@ const ModalReadNext: FunctionalComponent<ModalReadNextProps> = ({
           cb={() => {
             resetPageData();
             customRouter.push(nextChapter);
+            onClose();
             route(nextChapter);
           }}
         />

@@ -28,9 +28,9 @@ const ModalReadNext: FunctionalComponent<ModalReadNextProps> = ({
           bgColor="bg-[#8d6d9f]"
           cb={() => {
             resetPageData();
-            customRouter.push(nextChapter);
+            customRouter.push(nextChapter, true);
             onClose();
-            route(nextChapter);
+            route(nextChapter, true);
           }}
         />
       </div>

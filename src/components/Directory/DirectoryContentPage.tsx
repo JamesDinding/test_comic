@@ -44,7 +44,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
   }, [isLogIn, content]);
 
   useEffect(() => {
-    getSpecifiedBook(currentRoute.split("/").pop(), 30000)
+    getSpecifiedBook(currentRoute.split("/").pop())
       .then((response) => {
         const { data, domain } = response;
         setContent(data);
@@ -76,10 +76,10 @@ const DirectoryContentPage: FunctionalComponent = () => {
   }
 
   let chapters = content?.chapter || [];
-  chapters = chapters.map( ch => {
-    ch.source = content?.source; 
-    return ch; 
-  })
+  chapters = chapters.map((ch) => {
+    ch.source = content?.source;
+    return ch;
+  });
 
   return (
     <F>
@@ -158,10 +158,7 @@ const DirectoryContentPage: FunctionalComponent = () => {
             </button>
           </div>
           <div className="pb-10">
-            <ChapterList
-              chapterList={chapters}
-              bookId={content?.id}
-            />
+            <ChapterList chapterList={chapters} bookId={content?.id} />
           </div>
         </div>
       </ObserverProvider>

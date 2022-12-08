@@ -1,12 +1,25 @@
 import { h, FunctionalComponent, Fragment as F } from "preact";
 import { useRouter } from "../context/router";
 import CustomLink from "../components/CustomLink";
+import { route } from "preact-router";
 
 const UcPage: FunctionalComponent = () => {
   const { customRouter, currentRoute, tempData, isUc, ucQueue, ucQ, pushUcQ } =
     useRouter();
   return (
     <div className="p-5 bg-amber-200">
+      <div className="m-10">
+        <a
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            if (true) route("/collect");
+            return null;
+          }}
+        >
+          test anchor tag
+        </a>
+      </div>
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((el, i) => (
         <CustomLink
           href={`/__uc_test/${el}`}

@@ -26,6 +26,7 @@ const CategoryPage: FunctionalComponent = ({}) => {
 
   useEffect(() => {
     if (categories.length !== 0) return;
+
     try {
       (async () => {
         const { data } = await getCategories();

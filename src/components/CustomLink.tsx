@@ -112,8 +112,6 @@ const CustomLink: FunctionalComponent<CustomLinkProps> = ({
         }
         customRouter.push(href);
         if (isUc) {
-          pushUcQ(href);
-          // window.location.pathname = href;
         }
       }}
       className={currentRoute === href ? activeClassName : className}
